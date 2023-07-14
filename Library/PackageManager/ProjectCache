@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638218318318790202
-    m_Hash: 3580431527
+      ticks: 638248906653644866
+    m_Hash: 1933428735
   m_LockFileStatus:
     m_FilePath: C:/Users/riong/VR_projects/BGC3D_23/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638218318318976303
-    m_Hash: 2770952264
+      ticks: 638248906653701925
+    m_Hash: 754014525
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -34,14 +34,14 @@ m_LocalPackages:
       ticks: 638199177457335680
     m_Hash: 2919789393
 m_ProjectPath: C:/Users/riong/VR_projects/BGC3D_23/Packages
-m_EditorVersion: 2022.3.1f1 (f18e0c1b5784)
+m_EditorVersion: 2022.3.3f1 (7cdc2969a641)
 m_ResolvedPackages:
-- packageId: com.unity.ai.navigation@1.1.3
+- packageId: com.unity.ai.navigation@1.1.4
   testable: 0
   isDirectDependency: 1
-  version: 1.1.3
+  version: 1.1.4
   source: 1
-  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.ai.navigation@1.1.3
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.ai.navigation@1.1.4
   assetPath: Packages/com.unity.ai.navigation
   name: com.unity.ai.navigation
   displayName: AI Navigation
@@ -50,7 +50,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: High-level NavMesh components for building and using NavMeshes at
     runtime and at edit time.
   status: 0
@@ -65,10 +65,12 @@ m_ResolvedPackages:
     - 1.1.0-pre.2
     - 1.1.1
     - 1.1.3
+    - 1.1.4
     - 2.0.0-pre.3
     compatible:
     - 1.1.3
-    recommended: 1.1.3
+    - 1.1.4
+    recommended: 1.1.4
     deprecated: []
   dependencies:
   - name: com.unity.modules.ai
@@ -85,15 +87,15 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638173260900000000
+  datePublishedTicks: 638224218100000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ai.navigation@1.1/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ai.navigation.git
-    revision: 21cc07be635247d730f8d1ef7c1987e222159a45
+    revision: 3e8d494400ccac6cbd90ee1b474470f4b1299bfa
     path: 
   unityLifecycle:
     version: 1.1.3
@@ -193,7 +195,6 @@ m_ResolvedPackages:
     - 2.1.0-preview.5
     - 2.1.0-preview.6
     compatible:
-    - 2.0.4
     - 2.0.5
     - 2.1.0-preview.3
     - 2.1.0-preview.5
@@ -225,7 +226,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638218079810000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.0/manual/index.html
@@ -236,19 +237,19 @@ m_ResolvedPackages:
     revision: 7f68049e8cae5b51ad0d17cc01b8c6e802bf3866
     path: 
   unityLifecycle:
-    version: 2.0.4
+    version: 2.0.5
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.ide.rider@3.0.22
+- packageId: com.unity.ide.rider@3.0.24
   testable: 0
   isDirectDependency: 1
-  version: 3.0.22
+  version: 3.0.24
   source: 1
-  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.ide.rider@3.0.22
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.ide.rider@3.0.24
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -257,7 +258,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: The JetBrains Rider Editor package provides an integration for using
     the JetBrains Rider IDE as a code editor for Unity. It adds support for generating
     .csproj files for code completion and auto-discovery of installations.
@@ -304,8 +305,6 @@ m_ResolvedPackages:
     - 3.0.22
     - 3.0.24
     compatible:
-    - 3.0.21
-    - 3.0.22
     - 3.0.24
     recommended: 3.0.24
     deprecated: []
@@ -324,18 +323,18 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638211305930000000
+  datePublishedTicks: 638221653400000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.rider@3.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-    revision: 1f4f2178384a8da373435c9912afcca7d6bb823a
+    revision: f5decc642e3618ce1c6827d47318260e61d64714
     path: 
   unityLifecycle:
-    version: 3.0.21
+    version: 3.0.24
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -410,7 +409,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638173205920000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.visualstudio@2.0/manual/index.html
@@ -496,6 +495,103 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+- packageId: com.unity.postprocessing@3.2.2
+  testable: 0
+  isDirectDependency: 1
+  version: 3.2.2
+  source: 1
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.postprocessing@3.2.2
+  assetPath: Packages/com.unity.postprocessing
+  name: com.unity.postprocessing
+  displayName: Post Processing
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: asset
+  description: The post-processing stack (v2) comes with a collection of effects
+    and image filters you can apply to your cameras to improve the visuals of your
+    games.
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 0.1.7
+    - 0.1.8
+    - 2.0.0-beta
+    - 2.0.1-beta
+    - 2.0.2-preview
+    - 2.0.3-preview
+    - 2.0.5-preview
+    - 2.0.7-preview
+    - 2.0.8-preview
+    - 2.0.9-preview
+    - 2.0.10-preview
+    - 2.0.11-preview
+    - 2.0.12-preview
+    - 2.0.13-preview
+    - 2.0.14-preview
+    - 2.0.15-preview
+    - 2.0.16-preview
+    - 2.0.17-preview
+    - 2.1.0
+    - 2.1.1
+    - 2.1.2
+    - 2.1.3
+    - 2.1.4
+    - 2.1.5
+    - 2.1.6
+    - 2.1.7
+    - 2.2.1
+    - 2.2.2
+    - 2.3.0
+    - 3.0.1
+    - 3.0.3
+    - 3.1.0
+    - 3.1.1
+    - 3.2.0
+    - 3.2.1
+    - 3.2.2
+    - 3.3.0
+    compatible:
+    - 3.2.2
+    - 3.3.0
+    recommended: 3.2.2
+    deprecated: []
+  dependencies:
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637855259850000000
+  documentationUrl: 
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.com/Unity-Technologies/Graphics.git
+    revision: 815ce78463c7d3006fa97cd6e8898d91cb9c3ebf
+    path: 
+  unityLifecycle:
+    version: 3.2.2
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.test-framework@1.1.33
   testable: 0
   isDirectDependency: 1
@@ -557,6 +653,7 @@ m_ResolvedPackages:
     - 1.3.4
     - 1.3.5
     - 1.3.7
+    - 1.3.8
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -570,6 +667,7 @@ m_ResolvedPackages:
     - 1.3.4
     - 1.3.5
     - 1.3.7
+    - 1.3.8
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -601,7 +699,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 637938212700000000
   documentationUrl: 
@@ -778,7 +876,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 637547111200000000
   documentationUrl: 
@@ -796,12 +894,12 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.timeline@1.7.4
+- packageId: com.unity.timeline@1.7.5
   testable: 0
   isDirectDependency: 1
-  version: 1.7.4
+  version: 1.7.5
   source: 1
-  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.timeline@1.7.4
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.timeline@1.7.5
   assetPath: Packages/com.unity.timeline
   name: com.unity.timeline
   displayName: Timeline
@@ -810,7 +908,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: Use Unity Timeline to create cinematic content, game-play sequences,
     audio sequences, and complex particle effects.
   status: 0
@@ -893,17 +991,21 @@ m_ResolvedPackages:
     - 1.7.2
     - 1.7.3
     - 1.7.4
+    - 1.7.5
     - 1.8.0
     - 1.8.1
     - 1.8.2
     - 1.8.3
+    - 1.8.4
     compatible:
     - 1.7.4
+    - 1.7.5
     - 1.8.0
     - 1.8.1
     - 1.8.2
     - 1.8.3
-    recommended: 1.7.4
+    - 1.8.4
+    recommended: 1.7.5
     deprecated: []
   dependencies:
   - name: com.unity.modules.director
@@ -937,15 +1039,15 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638143790870000000
+  datePublishedTicks: 638229649600000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.timeline@1.7/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git
-    revision: 1f458a5d3f2bc66f0c1182feeaa9fcea4e8b1496
+    revision: fdb1ca9a2c2a131e0ff9cb257b2eae3b53337b3a
     path: 
   unityLifecycle:
     version: 1.7.4
@@ -1098,8 +1200,10 @@ m_ResolvedPackages:
     - 4.2.1
     - 4.3.1
     - 4.3.3
+    - 4.4.0
     compatible:
     - 4.3.3
+    - 4.4.0
     recommended: 4.3.3
     deprecated: []
   dependencies:
@@ -1140,7 +1244,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638121371540000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.xr.management@4.3/manual/index.html
@@ -1158,12 +1262,12 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
-- packageId: com.unity.xr.openxr@1.7.0
+- packageId: com.unity.xr.openxr@1.8.1
   testable: 0
   isDirectDependency: 1
-  version: 1.7.0
+  version: 1.8.1
   source: 1
-  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.xr.openxr@1.7.0
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.xr.openxr@1.8.1
   assetPath: Packages/com.unity.xr.openxr
   name: com.unity.xr.openxr
   displayName: OpenXR Plugin
@@ -1172,7 +1276,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: OpenXR is an open, royalty-free standard developed by Khronos that
     aims to simplify AR/VR development by allowing developers to target a wide range
     of AR/VR devices. Use this plug-in to enable OpenXR in XR Plug-in Management.
@@ -1202,10 +1306,10 @@ m_ResolvedPackages:
     - 1.6.0
     - 1.7.0
     - 1.8.0
+    - 1.8.1
     compatible:
-    - 1.7.0
-    - 1.8.0
-    recommended: 1.7.0
+    - 1.8.1
+    recommended: 1.8.1
     deprecated: []
   dependencies:
   - name: com.unity.xr.management
@@ -1214,6 +1318,8 @@ m_ResolvedPackages:
     version: 2.1.2
   - name: com.unity.inputsystem
     version: 1.4.4
+  - name: com.unity.xr.core-utils
+    version: 2.1.1
   resolvedDependencies:
   - name: com.unity.xr.management
     version: 4.3.3
@@ -1237,6 +1343,8 @@ m_ResolvedPackages:
     version: 1.0.0
   - name: com.unity.modules.imgui
     version: 1.0.0
+  - name: com.unity.xr.core-utils
+    version: 2.2.1
   keywords:
   - openxr
   - xr
@@ -1250,18 +1358,18 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638137880400000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.7/manual/index.html
+  datePublishedTicks: 638222423880000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.8/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/xr.sdk.openxr.git
-    revision: 6a1990de9658294dd93a1f786585fe9878eac1eb
+    revision: 45f13b26a02832b14dd93ff3d908779c3f9c6970
     path: 
   unityLifecycle:
-    version: 1.7.0
+    version: 1.8.1
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -3454,7 +3562,7 @@ m_ResolvedPackages:
     isDefault: 1
     capabilities: 7
     configSource: 0
-  hideInEditor: 0
+  hideInEditor: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638207453750000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.6/manual/index.html
@@ -3466,6 +3574,95 @@ m_ResolvedPackages:
     path: 
   unityLifecycle:
     version: 1.6.1
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
+- packageId: com.unity.xr.core-utils@2.2.1
+  testable: 0
+  isDirectDependency: 0
+  version: 2.2.1
+  source: 1
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.xr.core-utils@2.2.1
+  assetPath: Packages/com.unity.xr.core-utils
+  name: com.unity.xr.core-utils
+  displayName: XR Core Utilities
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: asset
+  description: "Common utility classes for XR projects\nRefer to API documentation
+    for details. Some particularly useful utilities include:\n\u25AA Geometry Utilities\n 
+    \u25AA Point of closest approach\n  \u25AA Closest edge of a polygon\n  \u25AA
+    Check if point inside of polygon\n  \u25AA Compute 2D convex hull\n\u25AA Collection
+    pool\n\u25AA Math Utilities\n  \u25AA Bounds extensions\n  \u25AA Quaternion
+    extensions\n\u25AA Editor GUI\n  \u25AA Flags Property Drawer\n\u25AA Scriptable
+    Settings (serialized project settings)\n\u25AA Conditional Compilation Utility\n\u25AA
+    XR Origin Implementation"
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 2.0.0-pre.3
+    - 2.0.0-pre.5
+    - 2.0.0-pre.6
+    - 2.0.0
+    - 2.0.1
+    - 2.1.0-pre.1
+    - 2.1.0
+    - 2.1.1
+    - 2.2.0-pre.1
+    - 2.2.0-pre.2
+    - 2.2.0
+    - 2.2.1
+    compatible:
+    - 2.2.1
+    recommended: 2.2.1
+    deprecated: []
+  dependencies:
+  - name: com.unity.modules.xr
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.xr
+    version: 1.0.0
+  - name: com.unity.modules.physics
+    version: 1.0.0
+  - name: com.unity.modules.jsonserialize
+    version: 1.0.0
+  - name: com.unity.modules.subsystems
+    version: 1.0.0
+  keywords:
+  - xr
+  - ar
+  - augmented
+  - reality
+  - utility
+  - utilities
+  - core
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638187829490000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.xr.core-utils@2.2/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/com.unity.xr.core-utils.git
+    revision: 0ec01755305a46c64c285b7ff29bc99eabf34a87
+    path: 
+  unityLifecycle:
+    version: 2.2.1
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -3486,7 +3683,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Libraries
-  type: 
+  type: asset
   description: Custom version of the nunit package build to work with Unity. Used
     by the Unity Test Framework.
   status: 0
@@ -3501,10 +3698,14 @@ m_ResolvedPackages:
     - 1.0.6
     - 2.0.2
     - 2.0.3
+    - 2.0.4
+    - 2.0.5
     compatible:
     - 1.0.6
     - 2.0.2
     - 2.0.3
+    - 2.0.4
+    - 2.0.5
     recommended: 1.0.6
     deprecated: []
   dependencies: []

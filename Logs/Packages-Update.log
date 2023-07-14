@@ -195,3 +195,11 @@ The following packages were 更新済:
   com.unity.timeline をバージョン 1.7.3 から 1.7.4 へ
   com.unity.xr.management をバージョン 4.2.1 から 4.3.3 へ
   com.unity.xr.openxr をバージョン 1.6.0 から 1.7.0 へ
+
+=== Mon Jun 26 09:06:10 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were 更新済:
+  com.unity.xr.openxr をバージョン 1.7.0 から 1.8.1 へ
