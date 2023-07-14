@@ -138,8 +138,8 @@
     <Compile Include="Assets\SteamVR\InteractionSystem\Core\Scripts\SleepOnAwake.cs" />
     <Compile Include="Assets\SteamVR\InteractionSystem\Longbow\Scripts\ExplosionWobble.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_CameraHelper.cs" />
-    <Compile Include="Assets\SteamVR\Input\BehaviourUnityEvents\SteamVR_Behaviour_PoseEvent.cs" />
     <Compile Include="Assets\SteamVR\InteractionSystem\Samples\Scripts\URPMaterialSwitcher.cs" />
+    <Compile Include="Assets\SteamVR\Input\BehaviourUnityEvents\SteamVR_Behaviour_PoseEvent.cs" />
     <Compile Include="Assets\SteamVR\Input\SteamVR_Behaviour_Vector2.cs" />
     <Compile Include="Assets\SteamVR\InteractionSystem\Core\Scripts\SoundDeparent.cs" />
     <Compile Include="Assets\SteamVR\InteractionSystem\Core\Scripts\Interactable.cs" />
