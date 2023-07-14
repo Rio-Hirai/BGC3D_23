@@ -1,0 +1,95 @@
+-----------------------------------------------------------------------------------------
+
+target_pattorn:
+17
+25
+------------
+
+test_start_time:1.720241
+
+select_1_start:1.720241
+select_target = 16: 1.720241
+
+select_1_end:1.720241
+
+select_2_start:1.720241
+
+select_2_end:1.720241
+
+test_end_time:1.720241
+-----------------------------------------------------------------------------------------
+
+target_pattorn:
+17
+25
+------------
+
+test_start_time:3.234078
+
+select_1_start:3.234078
+select_target = 16: 1.720241
+
+select_1_end:3.234078
+
+select_2_start:3.234078
+select_target = 16: 1.746105
+select_target = 16: 1.771068
+select_target = 16: 1.796194
+select_target = 16: 1.819476
+select_target = 16: 1.849844
+select_target = 16: 1.882989
+select_target = 16: 1.916217
+select_target = 16: 1.950288
+select_target = 16: 1.976254
+select_target = 16: 2.007321
+select_target = 16: 2.034324
+select_target = 16: 2.057961
+select_target = 16: 2.084225
+select_target = 16: 2.109508
+select_target = 16: 2.134338
+select_target = 16: 2.165028
+select_target = 16: 2.19226
+select_target = 16: 2.217947
+select_target = 17: 3.234078
+
+select_2_end:3.234078
+
+test_end_time:3.234078
+-----------------------------------------------------------------------------------------
+
+target_pattorn:
+17
+25
+------------
+
+test_start_time:4.766715
+
+select_1_start:4.766715
+select_target = 16: 1.720241
+
+select_1_end:4.766715
+
+select_2_start:4.766715
+select_target = 16: 1.746105
+select_target = 16: 1.771068
+select_target = 16: 1.796194
+select_target = 16: 1.819476
+select_target = 16: 1.849844
+select_target = 16: 1.882989
+select_target = 16: 1.916217
+select_target = 16: 1.950288
+select_target = 16: 1.976254
+select_target = 16: 2.007321
+select_target = 16: 2.034324
+select_target = 16: 2.057961
+select_target = 16: 2.084225
+select_target = 16: 2.109508
+select_target = 16: 2.134338
+select_target = 16: 2.165028
+select_target = 16: 2.19226
+select_target = 16: 2.217947
+select_target = 17: 3.234078
+
+select_2_end:4.766715
+
+test_end_time:4.766715

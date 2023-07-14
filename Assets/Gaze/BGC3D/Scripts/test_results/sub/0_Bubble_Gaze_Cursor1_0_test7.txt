@@ -1,0 +1,152 @@
+-----------------------------------------------------------------------------------------
+
+target_pattorn:
+2
+11
+7
+18
+16
+8
+9
+4
+23
+19
+12
+1
+24
+22
+13
+3
+21
+15
+5
+0
+20
+14
+6
+17
+10
+-----------------------------------------------------------------------------------------
+
+target_pattorn:
+2
+11
+7
+------------
+
+test_start_time:6.558382
+
+select_0_start:6.558382
+select_target = 2: 1.655122
+
+select_0_end:6.558382
+
+select_1_start:6.558382
+select_target = 2: 1.67736
+select_target = 2: 1.699188
+select_target = 2: 1.720623
+select_target = 2: 1.744943
+select_target = 2: 1.769914
+select_target = 2: 1.800393
+select_target = 2: 1.835024
+select_target = 2: 1.867209
+select_target = 2: 1.898184
+select_target = 2: 1.924222
+select_target = 2: 1.954207
+select_target = 2: 1.978146
+select_target = 2: 2.003237
+select_target = 2: 2.027343
+select_target = 2: 2.052394
+select_target = 2: 2.077458
+select_target = 2: 2.107932
+select_target = 2: 2.13436
+select_target = 2: 2.160541
+select_target = 2: 2.186273
+select_target = 2: 2.211171
+select_target = 2: 2.236348
+select_target = 2: 2.266543
+select_target = 2: 2.2936
+select_target = 2: 2.319144
+select_target = 2: 2.344279
+select_target = 2: 2.369255
+select_target = 2: 2.394262
+select_target = 2: 2.425253
+select_target = 2: 2.452186
+select_target = 2: 2.477241
+select_target = 2: 2.503211
+select_target = 2: 2.529086
+select_target = 2: 2.550851
+select_target = 2: 2.581044
+select_target = 2: 2.603188
+select_target = 2: 2.627954
+select_target = 2: 2.653188
+select_target = 2: 2.67787
+select_target = 2: 2.703394
+select_target = 2: 2.734583
+select_target = 2: 2.761118
+select_target = 2: 2.785079
+select_target = 2: 2.809302
+select_target = 2: 2.834091
+select_target = 2: 2.861124
+select_target = 2: 2.89163
+select_target = 2: 2.913012
+select_target = 2: 2.936149
+select_target = 2: 2.961246
+select_target = 2: 2.984319
+select_target = 2: 3.007981
+select_target = 2: 3.032378
+select_target = 2: 3.06363
+select_target = 2: 3.086315
+select_target = 2: 3.109648
+select_target = 2: 3.135799
+select_target = 2: 3.160906
+select_target = 2: 3.186128
+select_target = 2: 3.216321
+select_target = 2: 3.243544
+select_target = 2: 3.268674
+select_target = 2: 3.295919
+select_target = 2: 3.319606
+select_target = 2: 3.344929
+select_target = 2: 3.376863
+select_target = 2: 3.400338
+select_target = 2: 3.427691
+select_target = 2: 3.450337
+select_target = 2: 3.476422
+select_target = 2: 3.502727
+select_target = 2: 3.534189
+select_target = 2: 3.555391
+select_target = 2: 3.574442
+select_target = 2: 3.598973
+select_target = 2: 3.624793
+select_target = 2: 3.649173
+select_target = 2: 3.673094
+select_target = 2: 3.700739
+select_target = 2: 3.725975
+select_target = 2: 3.74993
+select_target = 2: 3.776041
+select_target = 2: 3.800131
+select_target = 2: 3.823172
+select_target = 11: 5.168242
+
+select_1_end:6.558382
+
+select_2_start:6.558382
+select_target = 11: 5.193652
+select_target = 11: 5.218824
+select_target = 11: 5.243636
+select_target = 11: 5.275076
+select_target = 11: 5.307078
+select_target = 11: 5.339663
+select_target = 11: 5.368733
+select_target = 11: 5.393267
+select_target = 11: 5.418739
+select_target = 11: 5.448876
+select_target = 11: 5.475096
+select_target = 11: 5.500715
+select_target = 11: 5.527653
+select_target = 11: 5.552696
+select_target = 7: 6.558382
+
+select_2_end:6.558382
+
+test_end_time:6.558382
