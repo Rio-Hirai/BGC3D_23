@@ -1,0 +1,347 @@
+-----------------------------------------------------------------------------------------
+
+target_pattorn:
+23
+13
+11
+6
+3
+24
+18
+0
+1
+19
+10
+8
+21
+14
+16
+15
+12
+2
+7
+4
+22
+17
+9
+20
+5
+-----------------------------------------------------------------------------------------
+
+target_pattorn:
+23
+13
+11
+------------
+
+test_start_time:19.96837
+
+select_0_start:19.96837
+select_target = 23: 1.645167
+
+select_0_end:19.96837
+
+select_1_start:19.96837
+select_target = 23: 1.668735
+select_target = 23: 1.700168
+select_target = 23: 1.728734
+select_target = 23: 1.75887
+select_target = 23: 1.787584
+select_target = 23: 1.812336
+select_target = 23: 1.835431
+select_target = 23: 1.864686
+select_target = 23: 1.888283
+select_target = 13: 2.937897
+
+select_1_end:19.96837
+
+select_2_start:19.96837
+select_target = 13: 2.962389
+select_target = 13: 2.994757
+select_target = 13: 3.025466
+select_target = 13: 3.059173
+select_target = 13: 3.09023
+select_target = 13: 3.113144
+select_target = 13: 3.139772
+select_target = 13: 3.163242
+select_target = 13: 3.187119
+select_target = 13: 3.211928
+select_target = 13: 3.236868
+select_target = 13: 3.261849
+select_target = 13: 3.286464
+select_target = 13: 3.314093
+select_target = 13: 3.336547
+select_target = 13: 3.36153
+select_target = 13: 3.386879
+select_target = 13: 3.414105
+select_target = 13: 3.436758
+select_target = 13: 3.46823
+select_target = 13: 3.492918
+select_target = 13: 3.519241
+select_target = 13: 3.54322
+select_target = 13: 3.567297
+select_target = 13: 3.593298
+select_target = 13: 3.625075
+select_target = 13: 3.652919
+select_target = 13: 3.676748
+select_target = 13: 3.702845
+select_target = 17: 4.732376
+select_target = 17: 4.753952
+select_target = 17: 4.778085
+select_target = 17: 4.801085
+select_target = 17: 4.822342
+select_target = 17: 4.84302
+select_target = 17: 4.86773
+select_target = 17: 4.896002
+select_target = 17: 4.918897
+select_target = 17: 4.941973
+select_target = 17: 4.967446
+select_target = 17: 4.990978
+select_target = 17: 5.016426
+select_target = 17: 5.043125
+select_target = 17: 5.074594
+select_target = 17: 5.097231
+select_target = 17: 5.121413
+select_target = 17: 5.146783
+select_target = 17: 5.170638
+select_target = 17: 5.193793
+select_target = 17: 5.223841
+select_target = 17: 5.251243
+select_target = 17: 5.27814
+select_target = 17: 5.302807
+select_target = 17: 5.327787
+select_target = 17: 5.353421
+select_target = 17: 5.384714
+select_target = 17: 5.410395
+select_target = 17: 5.435892
+select_target = 17: 5.459823
+select_target = 17: 5.493094
+select_target = 17: 5.51893
+select_target = 17: 5.551437
+select_target = 17: 5.576762
+select_target = 17: 5.601798
+select_target = 17: 5.628606
+select_target = 17: 5.654329
+select_target = 17: 5.678303
+select_target = 17: 5.710356
+select_target = 17: 5.737472
+select_target = 17: 5.760851
+select_target = 17: 5.786537
+select_target = 17: 5.807448
+select_target = 17: 5.830705
+select_target = 17: 5.859617
+select_target = 17: 5.886041
+select_target = 17: 5.910779
+select_target = 17: 5.935704
+select_target = 17: 5.961241
+select_target = 17: 5.985762
+select_target = 17: 6.017076
+select_target = 17: 6.043637
+select_target = 17: 6.06897
+select_target = 17: 6.094458
+select_target = 17: 6.119278
+select_target = 17: 6.144227
+select_target = 17: 6.17614
+select_target = 17: 6.203894
+select_target = 17: 6.229258
+select_target = 17: 6.254885
+select_target = 17: 6.279531
+select_target = 17: 6.302747
+select_target = 17: 6.33352
+select_target = 17: 6.360605
+select_target = 17: 6.385718
+select_target = 17: 6.41033
+select_target = 17: 6.43451
+select_target = 17: 6.45843
+select_target = 17: 6.492081
+select_target = 17: 6.518326
+select_target = 17: 6.541825
+select_target = 17: 6.568757
+select_target = 17: 6.594549
+select_target = 17: 6.619133
+select_target = 17: 6.649207
+select_target = 17: 6.673029
+select_target = 17: 6.697688
+select_target = 17: 6.72051
+select_target = 17: 6.744761
+select_target = 17: 6.768491
+select_target = 17: 6.79464
+select_target = 17: 6.828113
+select_target = 17: 6.85293
+select_target = 17: 6.878447
+select_target = 6: 7.922645
+select_target = 6: 7.944113
+select_target = 6: 7.966491
+select_target = 6: 7.990064
+select_target = 6: 8.012308
+select_target = 6: 8.037195
+select_target = 6: 8.061344
+select_target = 6: 8.091886
+select_target = 6: 8.120419
+select_target = 6: 8.143521
+select_target = 6: 8.166807
+select_target = 6: 8.193164
+select_target = 6: 8.217755
+select_target = 6: 8.248646
+select_target = 6: 8.275122
+select_target = 6: 8.300351
+select_target = 6: 8.325379
+select_target = 6: 8.350836
+select_target = 6: 8.375579
+select_target = 6: 8.405857
+select_target = 6: 8.427527
+select_target = 6: 8.450907
+select_target = 6: 8.475253
+select_target = 6: 8.500169
+select_target = 6: 8.529364
+select_target = 6: 8.560774
+select_target = 6: 8.584046
+select_target = 6: 8.608302
+select_target = 6: 8.632558
+select_target = 6: 8.656848
+select_target = 6: 8.681513
+select_target = 6: 8.714265
+select_target = 6: 8.741138
+select_target = 6: 8.764486
+select_target = 6: 8.787768
+select_target = 6: 8.810454
+select_target = 6: 8.832436
+select_target = 6: 8.86445
+select_target = 6: 8.887998
+select_target = 6: 8.912175
+select_target = 6: 8.934342
+select_target = 6: 8.959395
+select_target = 6: 8.98448
+select_target = 6: 9.016597
+select_target = 6: 9.041183
+select_target = 6: 9.067199
+select_target = 6: 9.091385
+select_target = 6: 9.116324
+select_target = 6: 9.139588
+select_target = 6: 9.168761
+select_target = 6: 9.192268
+select_target = 6: 9.217203
+select_target = 6: 9.243238
+select_target = 6: 9.269084
+select_target = 6: 9.294221
+select_target = 6: 9.325016
+select_target = 6: 9.349073
+select_target = 6: 9.377116
+select_target = 6: 9.401139
+select_target = 6: 9.424563
+select_target = 6: 9.44884
+select_target = 6: 9.481031
+select_target = 6: 9.506965
+select_target = 6: 9.532161
+select_target = 6: 9.55835
+select_target = 6: 9.583649
+select_target = 6: 9.609406
+select_target = 6: 9.643067
+select_target = 6: 9.669048
+select_target = 6: 9.693162
+select_target = 6: 9.718316
+select_target = 6: 9.743572
+select_target = 6: 9.769042
+select_target = 6: 9.800573
+select_target = 6: 9.826731
+select_target = 6: 9.851825
+select_target = 6: 9.876518
+select_target = 6: 9.904299
+select_target = 6: 9.92797
+select_target = 6: 9.961225
+select_target = 6: 9.98608
+select_target = 6: 10.01089
+select_target = 6: 10.03649
+select_target = 6: 10.06105
+select_target = 6: 10.08457
+select_target = 6: 10.11759
+select_target = 6: 10.14409
+select_target = 6: 10.17063
+select_target = 6: 10.19359
+select_target = 6: 10.21852
+select_target = 6: 10.24258
+select_target = 6: 10.27331
+select_target = 6: 10.29975
+select_target = 6: 10.3265
+select_target = 6: 10.35193
+select_target = 6: 10.3763
+select_target = 6: 10.40063
+select_target = 6: 10.4326
+select_target = 6: 10.4562
+select_target = 6: 10.48309
+select_target = 6: 10.50897
+select_target = 6: 10.53351
+select_target = 6: 10.55988
+select_target = 6: 10.5928
+select_target = 6: 10.61884
+select_target = 6: 10.64261
+select_target = 6: 10.66545
+select_target = 6: 10.69039
+select_target = 6: 10.71473
+select_target = 6: 10.74353
+select_target = 6: 10.76757
+select_target = 6: 10.79019
+select_target = 6: 10.81758
+select_target = 6: 10.84029
+select_target = 6: 10.86534
+select_target = 6: 10.89766
+select_target = 6: 10.92312
+select_target = 6: 10.94907
+select_target = 6: 10.972
+select_target = 6: 10.99965
+select_target = 6: 11.02464
+select_target = 6: 11.06101
+select_target = 6: 11.08221
+select_target = 6: 11.10739
+select_target = 6: 11.12883
+select_target = 6: 11.15267
+select_target = 6: 11.17555
+select_target = 6: 11.20912
+select_target = 6: 11.23592
+select_target = 6: 11.25853
+select_target = 6: 11.28136
+select_target = 6: 11.30832
+select_target = 6: 11.33233
+select_target = 6: 11.36638
+select_target = 6: 11.39147
+select_target = 6: 11.41531
+select_target = 6: 11.44094
+select_target = 6: 11.46811
+select_target = 6: 11.49359
+select_target = 6: 11.52505
+select_target = 6: 11.55037
+select_target = 6: 11.57538
+select_target = 6: 11.60022
+select_target = 6: 11.62376
+select_target = 6: 11.64855
+select_target = 6: 11.68093
+select_target = 6: 11.7099
+select_target = 6: 11.73481
+select_target = 6: 11.7614
+select_target = 6: 11.78528
+select_target = 6: 11.81113
+select_target = 6: 11.84194
+select_target = 6: 11.86856
+select_target = 6: 11.89259
+select_target = 6: 11.91647
+select_target = 6: 11.94078
+select_target = 6: 11.96738
+select_target = 6: 11.99635
+select_target = 6: 12.02029
+select_target = 6: 12.04475
+select_target = 6: 12.06831
+select_target = 6: 12.09303
+select_target = 6: 12.11839
+select_target = 6: 12.14885
+select_target = 6: 12.17365
+select_target = 6: 12.19627
+select_target = 6: 12.2203
+select_target = 6: 12.24354
+select_target = 6: 12.26674
+select_target = 6: 12.29195
+select_target = 26: 18.95864
+select_target = 11: 19.96837
+
+select_2_end:19.96837
+
+test_end_time:19.96837
