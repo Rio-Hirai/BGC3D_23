@@ -24,18 +24,6 @@ public class target_para_set : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dtime > 0 && script.cd_flag)
-        {
-            if (script.DwellTarget.GetComponent<target_para_set>().Id != Id)
-            {
-                dtime -= (script.DeltaTime / 3);
-            }
-        }
-        else if (dtime < 0)
-        {
-            dtime = 0;
-        }
-
         if (Server.GetComponent<receiver>().enabled == false)
         {
             // åãâ ï\é¶ópÇÃèàóù
@@ -46,7 +34,7 @@ public class target_para_set : MonoBehaviour
                     this.GetComponent<Renderer>().material.color = Color.blue;
                 }
             }
-            
+
             return;
         }
 
@@ -63,7 +51,8 @@ public class target_para_set : MonoBehaviour
             else if (Id == 999)
             {
                 this.GetComponent<Renderer>().material.color = Color.black;
-            } else if (script.DwellTarget != null)
+            }
+            else if (script.DwellTarget != null)
             {
                 if (script.DwellTarget.GetComponent<target_para_set>().Id == Id)
                 {
@@ -74,7 +63,8 @@ public class target_para_set : MonoBehaviour
             {
                 this.GetComponent<Renderer>().material.color = Color.white;
             }
-        } else
+        }
+        else
         {
             if (script.output_flag)
             {

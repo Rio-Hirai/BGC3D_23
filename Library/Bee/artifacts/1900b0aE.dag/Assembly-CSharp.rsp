@@ -385,6 +385,7 @@
 "Assets/Gaze_Team/BGC3D/Scripts/gaze_dates.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/LaserPointerHandler.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/lesn_pos.cs"
+"Assets/Gaze_Team/BGC3D/Scripts/LightSensor.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/LookAt.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/nearpoint.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/receiver.cs"

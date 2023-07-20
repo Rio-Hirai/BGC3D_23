@@ -492,7 +492,7 @@ public class receiver : MonoBehaviour
 
         // 時間計測
         test_time += Time.deltaTime;
-        DeltaTime = Time.deltaTime;
+        //DeltaTime = Time.deltaTime;
 
         // タスクの推移管理
         if (select_target_id == 999 && taskflag == false)

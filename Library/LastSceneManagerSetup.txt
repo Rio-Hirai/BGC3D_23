@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Gaze_Team23/BGC3D/Scenes/BGC3D_2023.unity
+- path: Assets/Gaze_Team/BGC3D/Scenes/BGC3D_2023.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

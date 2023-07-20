@@ -66,10 +66,6 @@ namespace ViveSR.anipal.Eye
                     if (FocusInfo.collider.gameObject != null)
                     {
                         objectName_new = FocusInfo.collider.gameObject;
-                        if (script.next_step__flag == false)
-                        {
-                            FocusInfo.collider.GetComponent<Renderer>().material.color = script.select_color;
-                        }
                         script.RayTarget = objectName_new;
                         //objectName_new.GetComponent<Renderer>().material.color = Color.blue;
                     }
