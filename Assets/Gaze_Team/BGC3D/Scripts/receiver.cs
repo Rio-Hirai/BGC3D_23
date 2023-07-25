@@ -21,7 +21,8 @@ public class receiver : MonoBehaviour
         Bubble_Gaze_Cursor1, // BGC
         Bubble_Gaze_Cursor2, // BGC with RayCast
         Gaze_Raycast, // 視線によるレイキャスト
-        Controller_Raycast // コントローラによるレイキャスト
+        Controller_Raycast, // コントローラによるレイキャスト
+        Bubble_Gaze_Cursor3 // コントローラによるレイキャスト
     }
     public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1; //　手法切り替え用のリスト構造
     private int target_p_id;
@@ -82,6 +83,7 @@ public class receiver : MonoBehaviour
     public bool output_flag;
     public bool next_step__flag;
     public bool error_output_flag; //強制中断用フラグ
+    public bool gaze_data_switch;
     //private bool target_pos_set = false;
     private int logoutput_count = 0;
 
@@ -114,6 +116,7 @@ public class receiver : MonoBehaviour
 
     public GameObject bubblegaze;
     public GameObject gazeraycast;
+    public GameObject gazeraycast2;
     public GameObject controller_R;
     public GameObject controller_L;
 
@@ -209,6 +212,9 @@ public class receiver : MonoBehaviour
             case "Controller_Raycast":
                 test_id = 4;
                 break;
+            case "Bubble_Gaze_Cursor3":
+                test_id = 5;
+                break;
             default:
                 test_id = 0;
                 break;
@@ -279,6 +285,13 @@ public class receiver : MonoBehaviour
             controller_R.GetComponent<SteamVR_LaserPointer>().active = true;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = true;
         }
+        else if (test_id == 5)
+        {
+            gazeraycast2.SetActive(true);
+            bubblegaze_switch = true;
+            controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
+            controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+        }
 
         if (test_id == 2)
         {
@@ -299,7 +312,7 @@ public class receiver : MonoBehaviour
         filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time;
         //filePath = Application.dataPath + "/BGS3D/Scripts/test_results/" + test_id + "_" + test_pattern + "_" + target_p_id + "_" + target_pattern + "_" + tester_id + "_" + tester_name + ".txt";
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv");
-        result_output_every("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z", streamWriter_gaze, false);
+        result_output_every("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false);
 
         // ログ作成
         tasklogs = new List<string>();
@@ -457,6 +470,13 @@ public class receiver : MonoBehaviour
                 controller_R.GetComponent<SteamVR_LaserPointer>().active = true;
                 controller_L.GetComponent<SteamVR_LaserPointer>().active = true;
             }
+            else if (test_id == 5)
+            {
+                gazeraycast2.SetActive(true);
+                bubblegaze_switch = true;
+                controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
+                controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+            }
 
             if (test_id == 2)
             {
@@ -605,7 +625,11 @@ public class receiver : MonoBehaviour
 
         // 視線関係のデータ取得
         // gaze_data.get_gaze_data();
-        if(output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false);
+        if (gaze_data_switch)
+        {
+            if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false);
+        }
+        
 
         // 画面明度の変更
         if (colorgrading != null)
@@ -772,7 +796,7 @@ public class receiver : MonoBehaviour
         StreamWriter streamWriter = File.AppendText(filePath + "_gaze_data.csv");
 
         // 各タスクの計測を追記
-        streamWriter.WriteLine("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z");
+        streamWriter.WriteLine("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue");
         for (int i = 0; i < tasklogs3.Count; i++)
         {
             streamWriter.WriteLine(tasklogs3[i]);

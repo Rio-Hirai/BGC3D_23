@@ -44,6 +44,10 @@ namespace ViveSR
                 //public GameObject EyePoint_sub;
                 private receiver script;
 
+                // レイ算出用
+                public Vector3 ray0;
+                public Vector3 ray1;
+
                 private void Start()
                 {
                     if (!SRanipal_Eye_Framework.Instance.EnableEye)
@@ -159,6 +163,10 @@ namespace ViveSR
                     Vector3 GazeDirectionCombined = Camera.main.transform.TransformDirection(GazeDirectionCombinedLocal);
                     GazeRayRenderer.SetPosition(0, Camera.main.transform.position - Camera.main.transform.up * 0.05f);
                     GazeRayRenderer.SetPosition(1, Camera.main.transform.position + GazeDirectionCombined * LengthOfRay);
+
+                    ray0 = Camera.main.transform.position - Camera.main.transform.up * 0.05f;
+                    //ray1 = Camera.main.transform.position + GazeDirectionCombined * LengthOfRay;
+                    ray1 = GazeDirectionCombined;
 
                     //// 焦点を合わせる
                     //foreach (GazeIndex index in GazePriority)

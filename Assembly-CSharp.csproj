@@ -111,6 +111,8 @@
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_Lines.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\receiver2.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_new_1.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus_pointer.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\LaserPointerHandler.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_Framework.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_DrawGraphic.cs" />
