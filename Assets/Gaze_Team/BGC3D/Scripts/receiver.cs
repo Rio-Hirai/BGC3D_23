@@ -174,8 +174,8 @@ public class receiver : MonoBehaviour
     private float test_time_tmp;
 
     public gaze_data gaze_data;
-    public float DeltaTime;
-    public bool cd_flag;
+    //public float DeltaTime;
+    //public bool cd_flag;
 
     //ファイル生成
     private StreamWriter streamWriter_gaze;
@@ -186,6 +186,8 @@ public class receiver : MonoBehaviour
     // 画面明度
     public float brightness;
     private ColorGrading colorgrading;
+    public float lightValue;
+    public LightSensor sensor;
 
     void Start()
     {
@@ -294,7 +296,7 @@ public class receiver : MonoBehaviour
         //ファイル名作成
         DateTime dt = DateTime.Now;
         input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString();
-        filePath = Application.dataPath + "/Gaze_Team23/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time;
+        filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time;
         //filePath = Application.dataPath + "/BGS3D/Scripts/test_results/" + test_id + "_" + test_pattern + "_" + target_p_id + "_" + target_pattern + "_" + tester_id + "_" + tester_name + ".txt";
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv");
         result_output_every("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z", streamWriter_gaze, false);
@@ -339,7 +341,7 @@ public class receiver : MonoBehaviour
         //    Debug.LogError("No ui interaction action has been set on this component.", this);
 
         // 画面の明度設定
-        colorgrading = this.GetComponent<ColorGrading>();
+        // colorgrading = this.GetComponent<ColorGrading>();
     }
 
     // Update is called once per frame
@@ -610,6 +612,7 @@ public class receiver : MonoBehaviour
         {
             //colorgrading.brightness = 100.0f;
         }
+        lightValue = sensor.lightValue;
     }
 
     public void result_output()

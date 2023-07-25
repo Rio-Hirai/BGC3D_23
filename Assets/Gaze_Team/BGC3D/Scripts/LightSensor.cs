@@ -30,7 +30,7 @@ public class LightSensor : MonoBehaviour
             lightValue = GetLightValue(targetTexture);
 
             // è∆ìxÇï\é¶Ç∑ÇÈ
-            Debug.Log(lightValue);
+            //Debug.Log(lightValue);
         }
     }
 

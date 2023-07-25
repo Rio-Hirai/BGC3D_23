@@ -212,8 +212,8 @@ namespace ViveSR
                     //------------------------------
 
                     //// データをリストに格納
-                    //// タイムスタンプ，タスク番号，焦点座標x，焦点座標y，瞳孔径・右，瞳孔径・左，開き具合・右，開き具合・左，頭部角度・x，頭部角度・y，頭部角度・z
-                    script.tasklogs3.Add(script.test_time + "," + (script.task_num) + "," + (CombineFocus.point.x) + "," + (CombineFocus.point.y) + "," + (RightPupiltDiameter) + "," + (LeftPupiltDiameter) + "," + (RightOpenness) + "," + (LeftOpenness) + "," + (script.HMDRotation.x) + "," + (script.HMDRotation.y) + "," + (script.HMDRotation.z));
+                    //// タイムスタンプ，タスク番号，焦点座標x，焦点座標y，瞳孔径・右，瞳孔径・左，開き具合・右，開き具合・左，頭部角度・x，頭部角度・y，頭部角度・z，画面輝度
+                    script.tasklogs3.Add(script.test_time + "," + (script.task_num) + "," + (CombineFocus.point.x) + "," + (CombineFocus.point.y) + "," + (RightPupiltDiameter) + "," + (LeftPupiltDiameter) + "," + (RightOpenness) + "," + (LeftOpenness) + "," + (script.HMDRotation.x) + "," + (script.HMDRotation.y) + "," + (script.HMDRotation.z) + "," + (script.lightValue));
                 }
 
                 public string get_gaze_data2()

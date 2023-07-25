@@ -82,7 +82,7 @@ MonoBehaviour:
     value: 0
   brightness:
     overrideState: 1
-    value: 6
+    value: -0
   postExposure:
     overrideState: 0
     value: 0
