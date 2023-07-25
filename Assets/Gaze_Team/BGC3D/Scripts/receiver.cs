@@ -34,7 +34,6 @@ public class receiver : MonoBehaviour
         Density_and_Occlusion // 密度＆オクルージョン条件
     }
     public target_pattern_list target_pattern = target_pattern_list.High_Density; //　条件切り替え用のリスト構造
-    public bool bubble_switch; // バブルカーソルの表示・非表示
     public float pointvalue; // サッケード運動に対する閾値
     public float pointvalue2; // 同上（ほぼ使ってない）
 
@@ -49,6 +48,23 @@ public class receiver : MonoBehaviour
     public int select_target_id = 0; // 選択されたターゲットのID
     public float test_time = 0; // 実験時間
     public float Depth; // 奥行距離
+
+    // 各種機能切り替え
+    public bool bubble_switch; // バブルカーソルの表示・非表示
+    public bool bubblegaze_switch;
+    public bool gazeraycast_switch;
+    public bool controller_switch;
+    public bool laserswitch;
+    public bool lens_switch;
+    public bool cursor_switch;
+    public bool target_alpha_switch;
+    private string filePath;
+    public bool same_target;
+    public bool taskflag;
+    public bool output_flag;
+    public bool next_step__flag;
+    public bool error_output_flag; //強制中断用フラグ
+    public bool gaze_data_switch;
 
     public string now_test_pattern;
     public string now_target_pattern;
@@ -77,13 +93,6 @@ public class receiver : MonoBehaviour
     public List<string> tasklogs3;
     private List<float> task_start_time;
     private List<float> task_end_time;
-    private string filePath;
-    public bool same_target;
-    public bool taskflag;
-    public bool output_flag;
-    public bool next_step__flag;
-    public bool error_output_flag; //強制中断用フラグ
-    public bool gaze_data_switch;
     //private bool target_pos_set = false;
     private int logoutput_count = 0;
 
@@ -109,21 +118,11 @@ public class receiver : MonoBehaviour
     public Color select_color;
     public Color cursor_color;
 
-    // 各種機能切り替え
-    public bool bubblegaze_switch;
-    public bool gazeraycast_switch;
-    public bool controller_switch;
-
     public GameObject bubblegaze;
     public GameObject gazeraycast;
     public GameObject gazeraycast2;
     public GameObject controller_R;
     public GameObject controller_L;
-
-    public bool laserswitch;
-    public bool lens_switch;
-    public bool cursor_switch;
-    public bool target_alpha_switch;
 
     // クローンID
     public float target_id;
