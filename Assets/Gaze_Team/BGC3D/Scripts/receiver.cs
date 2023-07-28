@@ -297,7 +297,7 @@ public class receiver : MonoBehaviour
         if (test_id == 2)
         {
             bubblegaze.GetComponent<Collider>().enabled = false;
-            
+
         }
         else
         {
@@ -355,7 +355,7 @@ public class receiver : MonoBehaviour
         //    Debug.LogError("No ui interaction action has been set on this component.", this);
 
         // 画面の明度設定
-        // colorgrading = this.GetComponent<ColorGrading>();
+        //this.GetComponent<ColorGrading>().brightness = 0f;
     }
 
     // Update is called once per frame
@@ -631,7 +631,7 @@ public class receiver : MonoBehaviour
         {
             if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false);
         }
-        
+
 
         // 画面明度の変更
         if (colorgrading != null)
