@@ -19,6 +19,7 @@ public class target_para_set : MonoBehaviour
     {
         script = Server.GetComponent<receiver>();
         script2 = Server.GetComponent<results>();
+        //this.transform.localScale = new Vector3();
     }
 
     // Update is called once per frame

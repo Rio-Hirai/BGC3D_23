@@ -20,9 +20,9 @@ public class receiver : MonoBehaviour
         Zero_Cursor, // カーソルなし
         Bubble_Gaze_Cursor1, // BGC
         Bubble_Gaze_Cursor2, // BGC with RayCast
+        Bubble_Gaze_Cursor3, // BGC_new
         Gaze_Raycast, // 視線によるレイキャスト
-        Controller_Raycast, // コントローラによるレイキャスト
-        Bubble_Gaze_Cursor3 // コントローラによるレイキャスト
+        Controller_Raycast // コントローラによるレイキャスト
     }
     public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1; //　手法切り替え用のリスト構造
     private int target_p_id;
@@ -191,6 +191,8 @@ public class receiver : MonoBehaviour
     public float lightValue;
     public LightSensor sensor;
 
+    public string output_message;
+
     void Start()
     {
         // モード管理
@@ -287,7 +289,7 @@ public class receiver : MonoBehaviour
         else if (test_id == 5)
         {
             gazeraycast2.SetActive(true);
-            bubblegaze_switch = true;
+            bubblegaze_switch = false;
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
         }
@@ -472,7 +474,7 @@ public class receiver : MonoBehaviour
             else if (test_id == 5)
             {
                 gazeraycast2.SetActive(true);
-                bubblegaze_switch = true;
+                bubblegaze_switch = false;
                 controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
                 controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
             }
@@ -563,7 +565,8 @@ public class receiver : MonoBehaviour
                     tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
                     audioSource.PlayOneShot(sound_NG);
                 }
-            } else if (select_target_id == 999)
+            }
+            else if (select_target_id == 999)
             {
                 //audioSource.PlayOneShot(sound_START);
             }

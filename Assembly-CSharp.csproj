@@ -163,6 +163,7 @@
     <None Include="Assets\ViveSR\Shaders\Unlit-Alpha2Gray.shader" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 2___tester_id  = 5___kokubu___1021171353.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\sub\0_Bubble_Gaze_Cursor1_0_test.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 5___name_n.n___728185146.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 1___target_p_id = 2___tester_id  = 5___kokubu___1021172550.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 2___target_p_id = 3___tester_id  = 5___sample___518222332.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 1___target_p_id = 3___tester_id  = 5___kokubu___1021181628.txt" />
@@ -194,6 +195,7 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 1___target_p_id = 3___tester_id  = 5___kokubu___121433835.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 3___tester_id  = 4___yamaguchi___1021163128.txt" />
     <None Include="Assets\ViveSR\Plugins\libHTC_License.dll" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 5___name_n.n___728172416.txt" />
     <None Include="Assets\ViveSR\Plugins\ViveSR_Client.dll" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 1___tester_id  = 5___kokubu___1021174241.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 2___target_p_id = 2___tester_id  = 5___kokubu___12125024.txt" />
@@ -230,6 +232,7 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\sub\test_id = 1___target_p_id = 3___tester_id  = 206___hirai___102033656.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 3___tester_id  = 3___suzuki___1021143515.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\sub\4_Controller_Raycast_1_testes1.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 5___name_n.n___7281962.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 3___tester_id  = 4___yamaguchi___1021152843.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\67224232.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 3___tester_id  = 5___sample0.8___6137412.txt" />
