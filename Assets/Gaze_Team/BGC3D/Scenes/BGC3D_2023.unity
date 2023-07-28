@@ -10016,8 +10016,8 @@ GameObject:
   - component: {fileID: 697780620}
   - component: {fileID: 697780625}
   - component: {fileID: 697780628}
-  - component: {fileID: 697780629}
   - component: {fileID: 697780630}
+  - component: {fileID: 697780629}
   m_Layer: 0
   m_Name: eyepoint_cursor
   m_TagString: Untagged
@@ -11264,6 +11264,7 @@ Transform:
   - {fileID: 120218393}
   - {fileID: 921684698}
   - {fileID: 2115585858}
+  - {fileID: 1204634730}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12762,8 +12763,8 @@ GameObject:
   m_Component:
   - component: {fileID: 902051020}
   - component: {fileID: 902051019}
-  - component: {fileID: 902051021}
   - component: {fileID: 902051018}
+  - component: {fileID: 902051021}
   m_Layer: 0
   m_Name: eyepoint
   m_TagString: Untagged
@@ -17241,11 +17242,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204634729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1213967896}
+  m_Father: {fileID: 773869164}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1204634731
@@ -17298,7 +17299,6 @@ Transform:
   - {fileID: 902051020}
   - {fileID: 697780623}
   - {fileID: 700524652}
-  - {fileID: 1204634730}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
