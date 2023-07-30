@@ -6,18 +6,19 @@ using ViveSR.anipal.Eye;
 
 public class EyeCalibrator : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public receiver server;
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero);
-        //}
+        if (server.eye_calibration)
+        {
+            SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero);
+            server.eye_calibration = false;
+        }
     }
 }
