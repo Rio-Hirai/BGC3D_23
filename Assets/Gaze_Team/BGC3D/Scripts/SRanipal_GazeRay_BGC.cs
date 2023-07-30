@@ -23,8 +23,7 @@ namespace ViveSR
                 public float maxradius = 5.0f;
 
                 // サーバー接続
-                public GameObject Server;
-                private receiver script;
+                public receiver script;
 
                 // レイ算出用
                 public Vector3 ray0;
@@ -37,8 +36,6 @@ namespace ViveSR
                         enabled = false;
                         return;
                     }
-
-                    script = Server.GetComponent<receiver>();
 
                     Assert.IsNotNull(GazeRayRenderer);
 
