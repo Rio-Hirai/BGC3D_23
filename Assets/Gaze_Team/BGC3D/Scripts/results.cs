@@ -9,7 +9,7 @@ using Valve.VR;
 public class results : MonoBehaviour
 {
     // 実験用パラメータ
-    private int test_id;
+    private int test_id = 0;
     public enum test_pattern_list
     {
         Bubble_Gaze_Cursor,
@@ -72,7 +72,6 @@ public class results : MonoBehaviour
 
         }
 
-
         target_set[target_p_id - 1].SetActive(true);
 
         csvFile = Resources.Load("testCSV") as TextAsset; // Resouces下のCSV読み込み
@@ -93,7 +92,7 @@ public class results : MonoBehaviour
             //    tasklogs.Add("-1");
             //    i++;
             //}
-            
+
         }
 
         // csvDatas[行][列]を指定して値を自由に取り出せる

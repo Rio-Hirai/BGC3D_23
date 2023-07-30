@@ -15,18 +15,18 @@ namespace ViveSR
 
             public class Gaze_con_new_1 : MonoBehaviour
             {
-                public receiver script;                    // サーバと接続
-                public SRanipal_GazeRaySample rayset;      // レイキャストのデータを取得
+                public receiver script;                     // サーバと接続
+                public SRanipal_GazeRaySample rayset;       // レイキャストのデータを取得
 
                 [SerializeField]
-                private string tagName = "Targets";          // 注視可能対象の選定．インスペクターで変更可能
+                private string tagName = "Targets";         // 注視可能対象の選定．インスペクターで変更可能
 
-                public GameObject searchNearObj;           // 最も近いオブジェクト(public修飾子にすることで外部のクラスから参照できる)
-                public GameObject oldNearObj;              // 前フレームに注視していたターゲット
-                public Transform camera_obj;              // ユーザの位置
-                private float searchWaitTime = 1/60;      // 検索の待機時間
+                public GameObject searchNearObj;            // 最も近いオブジェクト(public修飾子にすることで外部のクラスから参照できる)
+                public GameObject oldNearObj;               // 前フレームに注視していたターゲット
+                public Transform camera_obj;                // ユーザの位置
+                private float searchWaitTime = 1/60;        // 検索の待機時間
 
-                private float timer = 0f;                  // 検索までの待機時間計測用
+                private float timer = 0f;                   // 検索までの待機時間計測用
                 private Vector3 cursor_point;               // カーソルの位置
                 private float target_size;                  // 注視しているターゲットの大きさ
                 private float distance_of_camera_to_target; // ユーザとターゲット間の距離
@@ -34,7 +34,7 @@ namespace ViveSR
 
                 void Start()
                 {
-                    searchNearObj = Serch();             // 注視ターゲット周りを初期化
+                    searchNearObj = Serch(); // 注視ターゲット周りを初期化
                     color_alpha = script.cursor_color.a; // カーソルの透明度を保存
                 }
 
@@ -115,7 +115,7 @@ namespace ViveSR
                     if (oldNearObj != searchTargetObj || nearDistance > (cursor_size_limit))
                     {
                         script.same_target = false;
-                        script.select_target_id = -1; // 選択状態のターゲットを初期化
+                        script.select_target_id = -1; // 選択状態のターゲットのIDを初期化
                         searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
 
                         script.BlinkFlag = 0; // 連続瞬きを初期化

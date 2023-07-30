@@ -60,9 +60,11 @@
   <ItemGroup>
     <Compile Include="Assets\ViveSR\Scripts\Lip\Sample\SRanipal_MirrorCameraSample_Lip.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_LipShapeTableDrawer_v2.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\test2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_3.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_AvatarEyeSample_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\nearpoint.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\test.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye_Framework.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_AvatarEyeSample.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Example\Sample.cs" />
@@ -99,8 +101,8 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\red_result.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\target_size_set.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\UmeEye.cs" />
-    <Compile Include="Assets\Gaze_Team\TEST\test2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeFocusSample.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\PlaceInFrontOfCamera.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_v2.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_DragBar.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_MirrorCameraSample_Eye_v2.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_LineButtonsContent.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\target_para_set.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeFocusSample_v2.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\approve_test.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_0.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\booleanlefttest.cs" />
     <Compile Include="Assets\ViveSR\Scripts\SRWorks_Enums.cs" />
@@ -115,11 +118,11 @@
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeShapeTableDrawer_v2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_API.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\receiver_sub.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Example\Sample_L.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeDataType_v2.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\EyeCalibrator.cs" />
-    <Compile Include="Assets\Gaze_Team\TEST\test.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_dates.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\VIVEsample.cs" />

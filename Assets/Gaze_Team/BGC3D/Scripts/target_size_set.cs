@@ -36,7 +36,7 @@ public class target_size_set : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
+
     }
 
     private void OnTriggerExit(Collider collider)

@@ -17,181 +17,155 @@ public class receiver : MonoBehaviour
     // 実験用パラメータ
     public enum test_pattern_list
     {
-        Zero_Cursor, // カーソルなし
-        Bubble_Gaze_Cursor1, // BGC
-        Bubble_Gaze_Cursor2, // BGC with RayCast
-        Bubble_Gaze_Cursor3, // BGC_new
-        Gaze_Raycast, // 視線によるレイキャスト
-        Controller_Raycast // コントローラによるレイキャスト
+        Zero_Cursor,                    // カーソルなし
+        Bubble_Gaze_Cursor1,            // BGC
+        Bubble_Gaze_Cursor2,            // BGC with RayCast
+        Bubble_Gaze_Cursor3,            // BGC_new（コレがBubble Gaze Cursor内で一番性能高い）
+        Gaze_Raycast,                   // 視線によるレイキャスト
+        Controller_Raycast              // コントローラによるレイキャスト
     }
     public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1; //　手法切り替え用のリスト構造
     private int target_p_id;
     public enum target_pattern_list
     {
-        Null, // ターゲット無し
-        High_Density, // 高密度条件
-        High_Occlusion, // 高オクルージョン条件
-        Density_and_Occlusion // 密度＆オクルージョン条件
+        Null,                           // ターゲット無し
+        High_Density,                   // 高密度条件
+        High_Occlusion,                 // 高オクルージョン条件
+        Density_and_Occlusion,          // 密度＆オクルージョン条件
+        Random                          // ランダム配置
     }
-    public target_pattern_list target_pattern = target_pattern_list.High_Density; //　条件切り替え用のリスト構造
-    public float pointvalue; // サッケード運動に対する閾値
-    public float pointvalue2; // 同上（ほぼ使ってない）
+    public target_pattern_list target_pattern = target_pattern_list.High_Density; // 条件切り替え用のリスト構造
 
-    public int test_id;
-    public int tester_id; // 被験者のID
-    public string tester_name; // 被験者の名前
-    public int target_amount_all; // ターゲットの総数
-    public int target_amount_select; // 選択する数
-    public int target_amount_count; // 繰り返し回数
-    private string input_start_time;
-    public int task_num = 0; // タスクの番号
-    public int select_target_id = 0; // 選択されたターゲットのID
-    public float test_time = 0; // 実験時間
-    public float Depth; // 奥行距離
+    // 調整用パラメータ
+    public int tester_id;               // 被験者のID
+    public string tester_name;          // 被験者の名前
+    public int test_id;                 // 使用手法のID
+    public int target_amount_all;       // ターゲットの総数
+    public int target_amount_select;    // 選択する数
+    public int target_amount_count;     // 繰り返し回数
+    private string input_start_time;    // タスク開始時間
+    public int task_num = 0;            // タスクの番号
+    public int select_target_id = 0;    // 選択されたターゲットのID
+    public float test_time = 0;         // 実験時間
+    public float Depth;                 // 奥行距離
+    private string filePath;            // 出力用ファイル名
+    public float set_dtime = 0.6f;      // 注視時間
+    public float pointvalue;            // サッケード運動に対する閾値
+    public float pointvalue2;           // 同上（ほぼ使っていない）
+    private string now_test_pattern;    // 現在の使用手法のパターン
+    private string now_target_pattern;  // 現在のターゲット配置のパターン
 
     // 各種機能切り替え
-    public bool bubble_switch; // バブルカーソルの表示・非表示
-    public bool bubblegaze_switch;
-    public bool gazeraycast_switch;
-    public bool controller_switch;
-    public bool laserswitch;
-    public bool lens_switch;
-    public bool cursor_switch;
-    public bool target_alpha_switch;
-    private string filePath;
-    public bool same_target;
-    public bool taskflag;
-    public bool output_flag;
-    public bool next_step__flag;
-    public bool error_output_flag; //強制中断用フラグ
-    public bool gaze_data_switch;
-
-    public string now_test_pattern;
-    public string now_target_pattern;
-
-    //②まぶたの開き具合------------
-    //左のまぶたの開き具合格納用関数
-    public float LeftBlink;
-    //右のまぶたの開き具合格納用関数
-    public float RightBlink;
-    //------------------------------
-    public int BlinkFlag; // これがTrueになった瞬間にターゲット選択を確定させるので，瞬き関係はこれを弄るだけで十分．
-    public int BlinkCount;
-    public int BlinkSwitch;
-    public float BlinkTime;
-
-    // 注視時間
-    public float set_dtime = 0.6f;
-    public GameObject selecting_target;
-    public GameObject DwellTarget;
-    public GameObject RayTarget;
-
-    private List<int> numbers;
-    public List<int> tasknums;
-    public List<string> tasklogs;
-    public List<string> tasklogs2;
-    public List<string> tasklogs3;
-    private List<float> task_start_time;
-    private List<float> task_end_time;
-    //private bool target_pos_set = false;
-    private int logoutput_count = 0;
-
-    // ターゲットの位置調整
-    // public GameObject CameraRig;
-    public GameObject Camera;
-    public GameObject[] target_set;
-
-    // ターゲットのパラメータ
-    public float target_size;
-    public float target_distance;
-    public float point_size;
-    public int target_amount;
-    public GameObject target_objects;
-    //public List<int> target_ids = new List<int>();
-    //public int target_id;
-
-    // 誘目対策
-    //public float pointvalue2;
+    public bool bubble_switch;          // バブルカーソルの表示・非表示
+    public bool bubblegaze_switch;      //
+    public bool gazeraycast_switch;     //
+    public bool controller_switch;      // コントローラの表示・非表示
+    public bool laserswitch;            // コントローラのレイの表示・非表示
+    public bool lens_switch;            // レンズの表示・非表示（使っていない）
+    public bool cursor_switch;          // バブルカーソルの表示・非表示
+    public bool target_alpha_switch;    // ターゲットの透明度
+    public bool same_target;            //
+    public bool taskflag;               //
+    public bool output_flag;            //
+    public bool next_step__flag;        //
+    public bool error_output_flag;      // 強制中断用フラグ
+    public bool gaze_data_switch;       //
 
     // 色設定
-    public Color target_color;
-    public Color select_color;
-    public Color cursor_color;
+    public Color target_color;          // 選択確定時のターゲットの色
+    public Color select_color;          // 注視状態のターゲットの色
+    public Color cursor_color;          // バブルカーソルの色
 
-    public GameObject bubblegaze;
-    public GameObject gazeraycast;
-    public GameObject gazeraycast2;
-    public GameObject controller_R;
-    public GameObject controller_L;
-
-    // クローンID
-    public float target_id;
-    public GameObject target_clone;
-
-    //public int select_flag;
-    //public int select_cnt;
-    //public int select_cnt_tmp;
-    public byte color_alpha;
-    public float cursor_radious;
-
-    public float LeftPupiltDiameter;
-    public float RightPupiltDiameter;
-    public int LeftPupiltDiameter_flag;
-    public int RightPupiltDiameter_flag;
-
-    //public GameObject eyePoint;
-    public int select_flag_2;
-    public Vector3 old_eye_position;
-    public Vector3 new_eye_position;
-    //public int select_flag_gaze;
-    //public int select_flag_other;
-    public GameObject head_obj;
-
-    // Bubble Gaze Lens用
-    public GameObject Lens_Object;
-    public bool lens_flag;
-    public bool lens_flag2;
-
-    // コントローラボタン
-    // [SerializeField] SteamVR_Input_Sources hand;
-    // [SerializeField] SteamVR_Action_Boolean action;
-    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;
-    //public SteamVR_Action_Boolean interactWithUI = SteamVR_Input.GetBooleanAction("InteractUI");
-    // public SteamVR_Behaviour_Pose pose;
-    // bool isActive = false;
-
-    //結果の格納用Boolean型関数grapgrip
-    public Boolean grapgrip;
-    public Boolean trackpad;
-
-    private int switch_flag = 0;
+    // 各種オブジェクト
+    public GameObject head_obj;         // 頭部（カメラ）オブジェクト
+    public GameObject bubblegaze;       // Bubble_Gaze_Cursor1のオブジェクト（表示・非表示用）
+    public GameObject gazeraycast;      // Bubble_Gaze_Cursor2のオブジェクト（表示・非表示用）
+    public GameObject gazeraycast2;     // Bubble_Gaze_Cursor3のオブジェクト（表示・非表示用）
+    public GameObject controller_R;     // 右コントローラ（表示・非表示用）
+    public GameObject controller_L;     // 左コントローラ（表示・非表示用）
+    public GameObject[] target_set;     // ターゲット群を保存するための配列（表示・非表示用）
 
     // 効果音
-    public AudioClip sound_OK;
-    public AudioClip sound_NG;
-    public AudioClip sound_START;
-    public AudioClip sound_END;
-    AudioSource audioSource;
+    public AudioClip sound_OK;          // 指示通りのターゲットを選択できた時の音
+    public AudioClip sound_NG;          // エラーした時の音
+    public AudioClip sound_END;         // タスクが終了した時の音
 
-    private float test_time_tmp;
+    // 各種スクリプト
+    public gaze_data gaze_data;         // 各種自然情報を取得
+    public LightSensor sensor;          // 画面の色彩情報
 
-    public gaze_data gaze_data;
-    //public float DeltaTime;
-    //public bool cd_flag;
+    // 瞬き関係
+    public float LeftBlink;             // 左のまぶたの開き具合格納用関数
+    public float RightBlink;            // 右のまぶたの開き具合格納用関数
+    public int BlinkFlag;               // これがTrueになった瞬間にターゲット選択を確定させるように実装してあるので，瞬き関係はこれを弄るだけで十分．
+    public int BlinkCount;              // 瞬きの回数
+    public int BlinkSwitch;             //
+    public float BlinkTime;             // 瞬きの時間
+
+    // ターゲット選択関係
+    public GameObject selecting_target; // 選択状態のターゲット
+    public GameObject DwellTarget;      // 注視状態のターゲット
+    public GameObject RayTarget;        // レイキャストによって選択されているターゲット
+
+    private List<int> numbers;          //
+    public List<int> tasknums;          //
+    public List<string> tasklogs;       //
+    public List<string> tasklogs2;      //
+    public List<string> tasklogs3;      //
+    private List<float> task_start_time;//
+    private List<float> task_end_time;  //
+    private int logoutput_count = 0;    //
+
+    // ターゲットのパラメータ
+    public float target_size;           // 注視状態のターゲットの大きさ
+    public GameObject target_objects;   //
+
+    public byte color_alpha;            //
+    public float cursor_radious;        //
+
+    public float LeftPupiltDiameter;    //
+    public float RightPupiltDiameter;   //
+    public int LeftPupiltDiameter_flag; //
+    public int RightPupiltDiameter_flag;//
+
+    public int select_flag_2;           //
+    public Vector3 old_eye_position;    //
+    public Vector3 new_eye_position;    //
+
+    // Bubble Gaze Lens用
+    public GameObject Lens_Object;      //
+    public bool lens_flag;              //
+    public bool lens_flag2;             //
+
+    // コントローラボタン
+    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;
+
+    // 結果の格納用Boolean型関数grapgrip
+    public Boolean grapgrip;            //
+    public Boolean trackpad;            //
+
+    private int switch_flag = 0;        //
+
+    AudioSource audioSource;            //
+
+    private float test_time_tmp;        //
 
     //ファイル生成
-    private StreamWriter streamWriter_gaze;
+    private StreamWriter streamWriter_gaze;//
 
-    private Quaternion HMDRotationQ; // HMDの角度
-    public Vector3 HMDRotation; // HMDの角度
+    private Quaternion HMDRotationQ;    // HMDの角度
+    public Vector3 HMDRotation;         // HMDの角度
 
-    // 画面明度
-    public float brightness;
-    private ColorGrading colorgrading;
-    public float lightValue;
-    public LightSensor sensor;
+    // 画面明度関係
+    public float lightValue;            // 画面全体の明度
 
-    public string output_message;
+    public string output_message;       //
+
+    // ランダム配置関係
+    public GameObject target_clone;     // クローンするターゲット
+    public float target_id;             // クローンターゲットのID
+    public float target_distance;       // クローンターゲットとユーザ間の距離
+    public int target_amount;           // クローンするターゲットの数
 
     void Start()
     {
@@ -245,6 +219,9 @@ public class receiver : MonoBehaviour
                 target_amount_select = 25;
                 target_amount_count = 1;
                 Depth = 3.5f;
+                break;
+            case "Random":
+                target_p_id = 4;
                 break;
             default:
                 target_p_id = 0;
@@ -304,14 +281,18 @@ public class receiver : MonoBehaviour
             bubblegaze.GetComponent<Collider>().enabled = true;
         }
 
-        //　ターゲットの初期化
-        set_testpattern();
+        if (target_id == 4)
+        {
+            random_target_set(); // ランダムにターゲットを配置
+        } else
+        {
+            set_testpattern(); // ターゲットの初期化
+        }
 
         //ファイル名作成
         DateTime dt = DateTime.Now;
         input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString();
         filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time;
-        //filePath = Application.dataPath + "/BGS3D/Scripts/test_results/" + test_id + "_" + test_pattern + "_" + target_p_id + "_" + target_pattern + "_" + tester_id + "_" + tester_name + ".txt";
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv");
         result_output_every("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false);
 
@@ -320,30 +301,7 @@ public class receiver : MonoBehaviour
         task_start_time = new List<float>();
         task_end_time = new List<float>();
 
-        // ターゲット作成
-        target_id = 0;
-        for (int i = 0; i < target_amount; i++)
-        {
-            float target_x = 0.0f;
-            float target_y = 0.0f;
-            float target_z = 0.0f;
-            while (!(target_x > target_distance || target_x < -target_distance))
-            {
-                target_x = UnityEngine.Random.Range(-(target_distance + 1.0f), target_distance + 1.0f);
-            }
-            while (!(target_z > target_distance || target_z < -target_distance))
-            {
-                target_z = UnityEngine.Random.Range(-(target_distance + 1.0f), target_distance + 1.0f);
-            }
-            //target_x = Random.Range(-1.5f, 1.5f);
-            target_y = UnityEngine.Random.Range(-1.0f, 2.2f);
-            //target_z = Random.Range(-1.5f, 1.5f);
-            Instantiate(target_objects, new Vector3(target_x, target_y, target_z), Quaternion.identity);
-        }
-
-        audioSource = GetComponent<AudioSource>();
-
-
+        audioSource = GetComponent<AudioSource>(); // 音響設定
 
         //// コントローラ設定
         //if (pose == null)
@@ -353,12 +311,8 @@ public class receiver : MonoBehaviour
 
         //if (interactWithUI == null)
         //    Debug.LogError("No ui interaction action has been set on this component.", this);
-
-        // 画面の明度設定
-        //this.GetComponent<ColorGrading>().brightness = 0f;
     }
 
-    // Update is called once per frame
     [Obsolete]
     void Update()
     {
@@ -500,22 +454,35 @@ public class receiver : MonoBehaviour
         //Debug.Log(SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any));
         grapgrip = SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any);
         // grapgrip = interactWithUI.GetState(pose.inputSource);
+
         if (grapgrip)
         {
             //target_pos_set = true;
 
             target_set[target_p_id - 1].SetActive(true);
-            Transform myTransform = target_set[target_p_id - 1].transform;
-            Vector3 pos = myTransform.position;
-            pos.y = Camera.transform.position.y;
-            pos.z = Depth;
-            myTransform.position = pos;
-            //myTransform.LookAt(Camera.transform);
+            //Transform myTransform = target_set[target_p_id - 1].transform;
+            //Vector3 pos = myTransform.position;
+
+            //pos.y = head_obj.transform.position.y;
+            //pos.z = Depth;
+            //myTransform.position = pos;
+            ////myTransform.LookAt(Camera.transform);
+
+            Camera mainCamera = Camera.main;
+            Vector3 cameraPosition = mainCamera.transform.position;
+            Vector3 cameraForward = mainCamera.transform.forward;
+
+            // カメラの正面にオブジェクトを配置
+            target_set[target_p_id - 1].transform.position = cameraPosition + cameraForward * Depth;
+
+            // オブジェクトをカメラに向ける
+            target_set[target_p_id - 1].transform.LookAt(2 * target_set[target_p_id - 1].transform.position - mainCamera.transform.position);
+
         }
 
-        // 時間計測
-        test_time += Time.deltaTime;
+        test_time += Time.deltaTime; // タスク時間を更新
         //DeltaTime = Time.deltaTime;
+        lightValue = sensor.lightValue; // 画面全体の明度を更新
 
         // タスクの推移管理
         if (select_target_id == 999 && taskflag == false)
@@ -592,16 +559,6 @@ public class receiver : MonoBehaviour
             result_output_every("", streamWriter_gaze, true);
         }
 
-        //if (laserswitch == false)
-        //{
-        //    Rlaser.GetComponent<SteamVR_LaserPointer>().enabled = false;
-        //    Llaser.GetComponent<SteamVR_LaserPointer>().enabled = false;
-        //}
-        //else
-        //{
-        //    Rlaser.GetComponent<SteamVR_LaserPointer>().enabled = true;
-        //    Llaser.GetComponent<SteamVR_LaserPointer>().enabled = true;
-        //}
         if (lens_switch)
         {
             if (lens_flag)
@@ -632,13 +589,6 @@ public class receiver : MonoBehaviour
             if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false);
         }
 
-
-        // 画面明度の変更
-        if (colorgrading != null)
-        {
-            //colorgrading.brightness = 100.0f;
-        }
-        lightValue = sensor.lightValue;
     }
 
     public void result_output()
@@ -916,6 +866,29 @@ public class receiver : MonoBehaviour
                 }
                 numbers.RemoveAt(index);
             }
+        }
+    }
+
+    private void random_target_set()
+    {
+        target_id = 0;
+        for (int i = 0; i < target_amount; i++)
+        {
+            float target_x = 0.0f;
+            float target_y = 0.0f;
+            float target_z = 0.0f;
+            while (!(target_x > target_distance || target_x < -target_distance))
+            {
+                target_x = UnityEngine.Random.Range(-(target_distance + 1.0f), target_distance + 1.0f);
+            }
+            while (!(target_z > target_distance || target_z < -target_distance))
+            {
+                target_z = UnityEngine.Random.Range(-(target_distance + 1.0f), target_distance + 1.0f);
+            }
+            //target_x = Random.Range(-1.5f, 1.5f);
+            target_y = UnityEngine.Random.Range(-1.0f, 2.2f);
+            //target_z = Random.Range(-1.5f, 1.5f);
+            Instantiate(target_objects, new Vector3(target_x, target_y, target_z), Quaternion.identity);
         }
     }
 
