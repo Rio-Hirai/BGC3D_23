@@ -63,12 +63,12 @@ public class receiver : MonoBehaviour
     public bool laserswitch;            // コントローラのレイの表示・非表示
     public bool lens_switch;            // レンズの表示・非表示（使っていない）
     public bool cursor_switch;          // バブルカーソルの表示・非表示
-    public bool target_alpha_switch;    // ターゲットの透明度
+    public bool target_alpha_switch;    // ターゲットの透明化
     public bool same_target;            //
     public bool taskflag;               //
     public bool output_flag;            //
     public bool next_step__flag;        //
-    public bool error_output_flag;      // 強制中断用フラグ
+    public bool error_output_flag;      // 強制中断用
     public bool gaze_data_switch;       //
 
     // 色設定
@@ -78,11 +78,13 @@ public class receiver : MonoBehaviour
 
     // 各種オブジェクト
     public GameObject head_obj;         // 頭部（カメラ）オブジェクト
-    public GameObject bubblegaze;       // Bubble_Gaze_Cursor1のオブジェクト（表示・非表示用）
-    public GameObject gazeraycast;      // Bubble_Gaze_Cursor2のオブジェクト（表示・非表示用）
+    public GameObject bubblegaze;       // Bubble_Gaze_Cursor1・2のオブジェクト（表示・非表示用）
+    public GameObject gazeraycast;      // Gaze_Raycasのオブジェクト（表示・非表示用）
     public GameObject gazeraycast2;     // Bubble_Gaze_Cursor3のオブジェクト（表示・非表示用）
     public GameObject controller_R;     // 右コントローラ（表示・非表示用）
     public GameObject controller_L;     // 左コントローラ（表示・非表示用）
+    public GameObject target_clone;     // 正体不明（要リファクタリング）
+    public GameObject Lens_Object;      // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
     public GameObject[] target_set;     // ターゲット群を保存するための配列（表示・非表示用）
 
     // 効果音
@@ -118,7 +120,6 @@ public class receiver : MonoBehaviour
 
     // ターゲットのパラメータ
     public float target_size;           // 注視状態のターゲットの大きさ
-    public GameObject target_objects;   //
 
     public byte color_alpha;            //
     public float cursor_radious;        //
@@ -133,7 +134,6 @@ public class receiver : MonoBehaviour
     public Vector3 new_eye_position;    //
 
     // Bubble Gaze Lens用
-    public GameObject Lens_Object;      //
     public bool lens_flag;              //
     public bool lens_flag2;             //
 
@@ -162,8 +162,8 @@ public class receiver : MonoBehaviour
     public string output_message;       //
 
     // ランダム配置関係
-    public GameObject target_clone;     // クローンするターゲット
-    public float target_id;             // クローンターゲットのID
+    public GameObject target_objects;   // クローンするターゲット
+    public int target_id;             // クローンターゲットのID
     public float target_distance;       // クローンターゲットとユーザ間の距離
     public int target_amount;           // クローンするターゲットの数
 
@@ -281,7 +281,7 @@ public class receiver : MonoBehaviour
             bubblegaze.GetComponent<Collider>().enabled = true;
         }
 
-        if (target_id == 4)
+        if (target_p_id == 4)
         {
             random_target_set(); // ランダムにターゲットを配置
         } else
@@ -316,6 +316,148 @@ public class receiver : MonoBehaviour
     [Obsolete]
     void Update()
     {
+        method_change(); // 使用している手法を変更
+
+        // ターゲット位置の調整
+        grapgrip = SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any);
+        if (grapgrip)
+        {
+            //target_pos_set = true;
+
+            target_set[target_p_id - 1].SetActive(true);
+            //Transform myTransform = target_set[target_p_id - 1].transform;
+            //Vector3 pos = myTransform.position;
+
+            //pos.y = head_obj.transform.position.y;
+            //pos.z = Depth;
+            //myTransform.position = pos;
+            ////myTransform.LookAt(Camera.transform);
+
+            Camera mainCamera = Camera.main;
+            Vector3 cameraPosition = mainCamera.transform.position;
+            Vector3 cameraForward = mainCamera.transform.forward;
+
+            // カメラの正面にオブジェクトを配置
+            target_set[target_p_id - 1].transform.position = cameraPosition + cameraForward * Depth;
+
+            // オブジェクトをカメラに向ける
+            target_set[target_p_id - 1].transform.LookAt(2 * target_set[target_p_id - 1].transform.position - mainCamera.transform.position);
+
+        }
+
+        test_time += Time.deltaTime; // タスク時間を更新
+        //DeltaTime = Time.deltaTime;
+        lightValue = sensor.lightValue; // 画面全体の明度を更新
+
+        // タスクの推移管理
+        if (select_target_id == 999 && taskflag == false)
+        {
+            taskflag = true;
+            tasklogs.Add("");
+            task_start_time.Add(test_time);
+            test_time_tmp = test_time;
+            logoutput_count = 0;
+        }
+
+        // タスクの状態チェック
+        if (taskflag)
+        {
+            if (select_target_id != -1 && select_target_id != 999 && same_target == false)
+            {
+                tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp));
+                test_time_tmp = test_time;
+                if (select_target_id == tasknums[task_num])
+                {
+                    tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count);
+                }
+                else
+                {
+                    logoutput_count++;
+                }
+
+                if (select_target_id == tasknums[task_num])
+                {
+                    same_target = true;
+
+                    tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
+                    //tasklogs2.Add(task_num + "," + tasknums[task_num] + "," + select_target_id + "," + ",");
+
+                    if (task_num < target_amount_select)
+                    {
+                        task_end_time.Add(test_time);
+                        task_num++;
+                        test_time_tmp = 0;
+                        audioSource.PlayOneShot(sound_OK);
+                        taskflag = false;
+                    }
+                }
+                else
+                {
+                    same_target = true;
+                    tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
+                    audioSource.PlayOneShot(sound_NG);
+                }
+            }
+            else if (select_target_id == 999)
+            {
+                //audioSource.PlayOneShot(sound_START);
+            }
+
+            if (task_num == target_amount_select && output_flag == false)
+            {
+                output_flag = true;
+                audioSource.PlayOneShot(sound_END);
+                result_output();
+                result_output_csv();
+                //result_output_csv2();
+                result_output_every("", streamWriter_gaze, true);
+            }
+        }
+
+        if (error_output_flag)
+        {
+            error_output_flag = false;
+            audioSource.PlayOneShot(sound_END);
+            error_output();
+            result_output_csv();
+            //result_output_csv2();
+            result_output_every("", streamWriter_gaze, true);
+        }
+
+        if (lens_switch)
+        {
+            if (lens_flag)
+            {
+                Lens_Object.SetActive(true);
+            }
+            else
+            {
+                Lens_Object.SetActive(false);
+            }
+        }
+
+        // Blink3();
+        // Blink();
+        //result_output_every("test,test,test.test", streamWriter_gaze, false);
+
+        // Head（ヘッドマウンドディスプレイ）の情報を一時保管-----------
+        //回転座標をクォータニオンで値を受け取る
+        HMDRotationQ = InputTracking.GetLocalRotation(XRNode.Head);
+        // 取得した値をクォータニオン → オイラー角に変換
+        HMDRotation = HMDRotationQ.eulerAngles;
+        //--------------------------------------------------------------
+
+        // 視線関係のデータ取得
+        // gaze_data.get_gaze_data();
+        if (gaze_data_switch)
+        {
+            if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false);
+        }
+
+    }
+
+    private void method_change()
+    {
         if (SteamVR_Actions.default_SnapTurnLeft.GetStateDown(SteamVR_Input_Sources.Any) && switch_flag == 0)
         {
             Debug.Log("LEFT");
@@ -325,14 +467,14 @@ public class receiver : MonoBehaviour
             }
             else
             {
-                test_id = 4;
+                test_id = 5;
             }
             switch_flag = 1;
         }
         else if (SteamVR_Actions.default_SnapTurnRight.GetStateDown(SteamVR_Input_Sources.Any) && switch_flag == 0)
         {
             Debug.Log("RIGHT");
-            if (test_id < 4)
+            if (test_id < 5)
             {
                 test_id += 1;
             }
@@ -447,148 +589,6 @@ public class receiver : MonoBehaviour
         {
             now_target_pattern = target_pattern.ToString();
         }
-
-
-        // ターゲット位置の調整
-        //grapgrip = GrabG.GetState(SteamVR_Input_Sources.RightHand);
-        //Debug.Log(SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any));
-        grapgrip = SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any);
-        // grapgrip = interactWithUI.GetState(pose.inputSource);
-
-        if (grapgrip)
-        {
-            //target_pos_set = true;
-
-            target_set[target_p_id - 1].SetActive(true);
-            //Transform myTransform = target_set[target_p_id - 1].transform;
-            //Vector3 pos = myTransform.position;
-
-            //pos.y = head_obj.transform.position.y;
-            //pos.z = Depth;
-            //myTransform.position = pos;
-            ////myTransform.LookAt(Camera.transform);
-
-            Camera mainCamera = Camera.main;
-            Vector3 cameraPosition = mainCamera.transform.position;
-            Vector3 cameraForward = mainCamera.transform.forward;
-
-            // カメラの正面にオブジェクトを配置
-            target_set[target_p_id - 1].transform.position = cameraPosition + cameraForward * Depth;
-
-            // オブジェクトをカメラに向ける
-            target_set[target_p_id - 1].transform.LookAt(2 * target_set[target_p_id - 1].transform.position - mainCamera.transform.position);
-
-        }
-
-        test_time += Time.deltaTime; // タスク時間を更新
-        //DeltaTime = Time.deltaTime;
-        lightValue = sensor.lightValue; // 画面全体の明度を更新
-
-        // タスクの推移管理
-        if (select_target_id == 999 && taskflag == false)
-        {
-            taskflag = true;
-            tasklogs.Add("");
-            task_start_time.Add(test_time);
-            test_time_tmp = test_time;
-            logoutput_count = 0;
-        }
-
-        // タスクチェック
-        if (taskflag)
-        {
-            if (select_target_id != -1 && select_target_id != 999 && same_target == false)
-            {
-                tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp));
-                test_time_tmp = test_time;
-                if (select_target_id == tasknums[task_num])
-                {
-                    tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count);
-                }
-                else
-                {
-                    logoutput_count++;
-                }
-
-                if (select_target_id == tasknums[task_num])
-                {
-                    same_target = true;
-
-                    tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
-                    //tasklogs2.Add(task_num + "," + tasknums[task_num] + "," + select_target_id + "," + ",");
-
-                    if (task_num < target_amount_select)
-                    {
-                        task_end_time.Add(test_time);
-                        task_num++;
-                        test_time_tmp = 0;
-                        audioSource.PlayOneShot(sound_OK);
-                        taskflag = false;
-                    }
-                }
-                else
-                {
-                    same_target = true;
-                    tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
-                    audioSource.PlayOneShot(sound_NG);
-                }
-            }
-            else if (select_target_id == 999)
-            {
-                //audioSource.PlayOneShot(sound_START);
-            }
-
-            if (task_num == target_amount_select && output_flag == false)
-            {
-                output_flag = true;
-                audioSource.PlayOneShot(sound_END);
-                result_output();
-                result_output_csv();
-                //result_output_csv2();
-                result_output_every("", streamWriter_gaze, true);
-            }
-        }
-
-        if (error_output_flag)
-        {
-            error_output_flag = false;
-            audioSource.PlayOneShot(sound_END);
-            error_output();
-            result_output_csv();
-            //result_output_csv2();
-            result_output_every("", streamWriter_gaze, true);
-        }
-
-        if (lens_switch)
-        {
-            if (lens_flag)
-            {
-                Lens_Object.SetActive(true);
-            }
-            else
-            {
-                Lens_Object.SetActive(false);
-            }
-        }
-
-        // Blink3();
-        // Blink();
-        //result_output_every("test,test,test.test", streamWriter_gaze, false);
-
-        // Head（ヘッドマウンドディスプレイ）の情報を一時保管-----------
-        //回転座標をクォータニオンで値を受け取る
-        HMDRotationQ = InputTracking.GetLocalRotation(XRNode.Head);
-        // 取得した値をクォータニオン → オイラー角に変換
-        HMDRotation = HMDRotationQ.eulerAngles;
-        //--------------------------------------------------------------
-
-        // 視線関係のデータ取得
-        // gaze_data.get_gaze_data();
-        if (gaze_data_switch)
-        {
-            if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false);
-        }
-
     }
 
     public void result_output()
@@ -720,6 +720,7 @@ public class receiver : MonoBehaviour
         }
     }
 
+    // 実験結果をcsv形式で出力する関数
     public void result_output_csv()
     {
         Debug.Log("data_input_csv_start!!");
@@ -740,6 +741,7 @@ public class receiver : MonoBehaviour
         Debug.Log("data_input_end!!");
     }
 
+    // 視線情報をcsv形式で出力する関数（処理が重いので使っていない）
     public void result_output_csv2()
     {
         Debug.Log("data_input_csv_start2!!");
@@ -760,9 +762,10 @@ public class receiver : MonoBehaviour
         Debug.Log("data_output_end2!!");
     }
 
+    // 引数をファイルに出力する関数
     public void result_output_every(string data, StreamWriter streamWriter, bool endtask)
     {
-        // これが呼び出されるたびに変数（第一引数の文字列）をcsvファイルに出力する
+        // これが呼び出されるたびに変数（第一引数の文字列）をcsvファイルに出力
         // falseの場合は書き込み処理，trueの場合は閉じる処理
         if (endtask == false) streamWriter.WriteLine(data);
 
@@ -773,6 +776,7 @@ public class receiver : MonoBehaviour
         }
     }
 
+    // 実験を途中で中断した場合にログを出力するための関数
     public void error_output()
     {
         Debug.Log("data_input_start!!");
@@ -829,6 +833,7 @@ public class receiver : MonoBehaviour
         Debug.Log("data_input_end!!");
     }
 
+    // タスク（選択するターゲット）を生成する関数
     void set_testpattern()
     {
         numbers = new List<int>();
@@ -869,9 +874,12 @@ public class receiver : MonoBehaviour
         }
     }
 
+    // ランダム配置条件のためのターゲット生成と配置を行う関数
     private void random_target_set()
     {
         target_id = 0;
+        target_objects.SetActive(true);
+
         for (int i = 0; i < target_amount; i++)
         {
             float target_x = 0.0f;
@@ -892,11 +900,10 @@ public class receiver : MonoBehaviour
         }
     }
 
-    // アプリケーション終了時の処理を記述
+    // アプリケーション終了時の処理
     private void OnApplicationQuit()
     {
-        // 視線データを保存したファイルを閉じる
-        result_output_every("", streamWriter_gaze, true);
+        result_output_every("", streamWriter_gaze, true); // 視線データを保存したファイルを閉じる
         Debug.Log("data_output_every!!");
     }
 }

@@ -8,7 +8,7 @@ public class target_size_set : MonoBehaviour
     private receiver script;
     //private int flag = 0;
     public float dtime;
-    public float Id;
+    public int Id;
     //public GameObject targetObj;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,7 @@ public class target_size_set : MonoBehaviour
         script = Server.GetComponent<receiver>();
         this.transform.localScale = new Vector3(script.target_size, script.target_size, script.target_size);
         this.name = "target_" + script.target_id;
+        this.GetComponent<target_para_set>().Id = script.target_id;
         script.target_id++;
     }
 

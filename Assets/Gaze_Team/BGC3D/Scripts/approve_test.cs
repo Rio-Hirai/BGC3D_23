@@ -13,10 +13,10 @@ public class approve_test : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Vector3 rotationInEulerAngles = head.rotation.eulerAngles;
-            Debug.Log("Rotation of head: " + rotationInEulerAngles);
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    Vector3 rotationInEulerAngles = head.rotation.eulerAngles;
+        //    Debug.Log("Rotation of head: " + rotationInEulerAngles);
+        //}
     }
 }

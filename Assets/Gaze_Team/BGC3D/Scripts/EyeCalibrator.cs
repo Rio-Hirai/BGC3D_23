@@ -15,9 +15,9 @@ public class EyeCalibrator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SRanipal_Eye_API.LaunchEyeCalibration(IntPtr.Zero);
+        //}
     }
 }
