@@ -306,7 +306,7 @@ public class receiver : MonoBehaviour
         //    Debug.LogError("No ui interaction action has been set on this component.", this);
     }
 
-    
+
     void Update()
     {
         method_change(); // 使用している手法を変更
