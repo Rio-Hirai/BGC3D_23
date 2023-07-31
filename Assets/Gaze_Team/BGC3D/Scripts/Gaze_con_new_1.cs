@@ -16,7 +16,7 @@ namespace ViveSR
             public class Gaze_con_new_1 : MonoBehaviour
             {
                 public receiver script;                     // サーバと接続
-                public SRanipal_GazeRaySample rayset;       // レイキャストのデータを取得
+                public SRanipal_GazeRay_BGC rayset;         // レイキャストのデータを取得
 
                 [SerializeField]
                 private string tagName = "Targets";         // 注視可能対象の選定．インスペクターで変更可能
@@ -112,7 +112,7 @@ namespace ViveSR
 
                     // 最も近かったオブジェクトを返す
                     // 注視していたターゲットが変わった（連続注視が途切れた）場合
-                    if (oldNearObj != searchTargetObj || nearDistance > (cursor_size_limit))
+                    if (oldNearObj != searchTargetObj || nearDistance > cursor_size_limit)
                     {
                         script.same_target = false;
                         script.select_target_id = -1; // 選択状態のターゲットのIDを初期化

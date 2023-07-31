@@ -190,18 +190,21 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\sub\test_id = 1___target_p_id = 1___tester_id  = 206___hirai___102032915.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\sub\1_Bubble_Gaze_Cursor1_1_testes1.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 1___tester_id  = 3___suzuki___102114116.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 5___name_n.n___73117314.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 2___target_p_id = 1___tester_id  = 5___kokubu___12125850.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\sub\test_id = 1___target_p_id = 1___tester_id  = 206___hirai___1019215946.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 2___target_p_id = 3___tester_id  = 5___kokubu___31645641.txt" />
     <None Include="Assets\ViveSR\Plugins\SRWorks_Log.dll" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 2___target_p_id = 3___tester_id  = 5___sample___518221925.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 3___tester_id  = 1___tsunoda___1020151851.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 5___name_n.n___7311740.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 2___target_p_id = 3___tester_id  = 5___sample___51822151.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 3___tester_id  = 5___sample0.6___61291240.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\sub\0_Bubble_Gaze_Cursor1_0_test7.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 1___target_p_id = 3___tester_id  = 5___kokubu___121433835.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 3___tester_id  = 4___yamaguchi___1021163128.txt" />
     <None Include="Assets\ViveSR\Plugins\libHTC_License.dll" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 5___name_n.n___731172249.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 5___name_n.n___728172416.txt" />
     <None Include="Assets\ViveSR\Plugins\ViveSR_Client.dll" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 1___tester_id  = 5___kokubu___1021174241.txt" />
@@ -229,6 +232,7 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 3___tester_id  = 1___tsunoda___1020152521.txt" />
     <None Include="Assets\ViveSR\Plugins\nanomsg.dll" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 1___tester_id  = 2___iguchi___10201666.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 5___name_n.n___731172741.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 2___target_p_id = 3___tester_id  = 5___sample___51822136.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\sub\0_Bubble_Gaze_Cursor1_0_test9.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 2___tester_id  = 3___suzuki___10211516.txt" />

@@ -306,7 +306,7 @@ public class receiver : MonoBehaviour
         //    Debug.LogError("No ui interaction action has been set on this component.", this);
     }
 
-    [Obsolete]
+    
     void Update()
     {
         method_change(); // 使用している手法を変更
@@ -331,8 +331,8 @@ public class receiver : MonoBehaviour
             Vector3 cameraForward = mainCamera.transform.forward;
 
             target_set[target_p_id - 1].transform.position = cameraPosition + cameraForward * Depth; // カメラの正面にオブジェクトを配置
-
             target_set[target_p_id - 1].transform.LookAt(2 * target_set[target_p_id - 1].transform.position - mainCamera.transform.position); // オブジェクトをカメラに向ける
+            target_set[target_p_id - 1].transform.rotation = Quaternion.Euler(0, target_set[target_p_id - 1].transform.rotation.eulerAngles.y, target_set[target_p_id - 1].transform.rotation.eulerAngles.z);
 
             target_pos__calibration = false; // 機能フラグをリセット
         }
