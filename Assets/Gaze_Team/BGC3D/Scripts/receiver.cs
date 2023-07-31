@@ -103,7 +103,7 @@ public class receiver : MonoBehaviour
 
     // モニタ用変数-------------------------------------------------
     public int test_id;                 // 使用手法のID
-    private int target_p_id;            // 配置条件のID
+    public int target_p_id;             // 配置条件のID
     public int target_amount_all;       // ターゲットの総数
     public int target_amount_select;    // 選択する数
     public int target_amount_count;     // 繰り返し回数
@@ -295,10 +295,17 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
+        // 表示されているターゲット群を全て非表示-----------------------
+        for (int i = 0; i < target_set.Length; i++) {
+            target_set[i].SetActive(false);
+        }
+        //--------------------------------------------------------------
+
+
         // ランダム配置条件の場合の処理---------------------------------
         if (target_p_id == 4)
         {
-            random_target_set(); // ランダムにターゲットを配置
+            random_target_set2(); // ランダムにターゲットを配置
         }
         else
         {
@@ -947,6 +954,31 @@ public class receiver : MonoBehaviour
             target_y = UnityEngine.Random.Range(-1.0f, 2.2f);
             //target_z = Random.Range(-1.5f, 1.5f);
             Instantiate(target_objects, new Vector3(target_x, target_y, target_z), Quaternion.identity);
+        }
+    }
+    //--------------------------------------------------------------
+
+
+    // ランダム配置条件のためのターゲット生成と配置を行う関数-------
+    private void random_target_set2()
+    {
+        target_id = 0;
+        target_objects.SetActive(true);
+
+        for (int i = 0; i < target_amount; i++)
+        {
+            // カメラからランダムな方向を取得
+            Vector3 randomDirection = UnityEngine.Random.onUnitSphere;
+            //randomDirection.y = Mathf.Abs(randomDirection.y); // 上方向に配置するためにy座標を正にする
+
+            // ランダムな距離を計算
+            float randomDistance = UnityEngine.Random.Range(Depth, target_distance + Depth);
+
+            // オブジェクトの位置を決定
+            Vector3 objectPosition = Camera.main.transform.position + randomDirection * randomDistance;
+
+            // オブジェクトを複製して配置
+            Instantiate(target_objects, objectPosition, Quaternion.identity);
         }
     }
     //--------------------------------------------------------------
