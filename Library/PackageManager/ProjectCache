@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638264091089232215
-    m_Hash: 2182652880
+      ticks: 638264778045088741
+    m_Hash: 429279232
   m_LockFileStatus:
     m_FilePath: C:/Users/riong/WORKSPACE_M.2/BGC3D_23/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638264091089232215
-    m_Hash: 305185243
+      ticks: 638264778045344676
+    m_Hash: 696725343
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -113,12 +113,12 @@ m_ResolvedPackages:
     for the new properties that were made available in 1.1.0"}'
   assetStore:
     productId: 
-- packageId: com.unity.collab-proxy@2.0.5
+- packageId: com.unity.collab-proxy@2.0.7
   testable: 0
   isDirectDependency: 1
-  version: 2.0.5
+  version: 2.0.7
   source: 1
-  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.collab-proxy@2.0.5
+  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.collab-proxy@2.0.7
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Version Control
@@ -199,15 +199,17 @@ m_ResolvedPackages:
     - 2.0.3
     - 2.0.4
     - 2.0.5
+    - 2.0.7
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
     compatible:
     - 2.0.5
+    - 2.0.7
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
-    recommended: 2.0.5
+    recommended: 2.0.7
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -238,13 +240,13 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638218079810000000
+  datePublishedTicks: 638264754080000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.cloud.collaborate.git
-    revision: 7f68049e8cae5b51ad0d17cc01b8c6e802bf3866
+    revision: 13a0e74f47307a1b20a57747cea59891ce36a647
     path: 
   unityLifecycle:
     version: 2.0.5
@@ -262,10 +264,13 @@ m_ResolvedPackages:
     Version Control to get started!\nIf you have previously used the Unity Asset
     Store Plastic SCM plug-in, you can now simply use this package. Make sure you
     delete the plug-in from your project.\nRemoving a previously added Plastic SCM
-    Asset Store Plug-In:\n- Select the PlasticSCM folder in the Assets\\Plugins folder
-    on the Project tab, then click Edit > Delete\n- Close the Unity Editor and open
-    your project again. You will find the Plastic SCM menu item in the Window menu.\n\n###
-    Fixed\n- Fixed remaining references to ''Plastic SCM'' in localized labels."}'
+    Asset Store Plug-In:\n\n- Select the PlasticSCM folder in the Assets\\Plugins
+    folder on the Project tab, then click Edit > Delete\n- Close the Unity Editor
+    and open your project again. You will find the Plastic SCM menu item in the Window
+    menu.\n\nFixed:\n\n- Fixed the Unity Version Control icon disappearing from the
+    Editor Toolbar on domain reload.\n- Fixed the popup stating \"An existing checkout
+    operation has locked the workspace\" when trying to check in a scene with unsaved
+    changes."}'
   assetStore:
     productId: 
 - packageId: com.unity.ide.rider@3.0.24
