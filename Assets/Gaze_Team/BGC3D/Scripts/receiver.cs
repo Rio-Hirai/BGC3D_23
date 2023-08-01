@@ -35,6 +35,7 @@ public class receiver : MonoBehaviour
         High_Density,                   // 高密度条件
         High_Occlusion,                 // 高オクルージョン条件
         Density_and_Occlusion,          // 密度＆オクルージョン条件
+        Density_and_Occlusion2,          // 密度＆オクルージョン条件2
         Random                          // ランダム配置
     }
     public target_pattern_list target_pattern = target_pattern_list.High_Density;   // 条件切り替え用のリスト構造
@@ -261,35 +262,42 @@ public class receiver : MonoBehaviour
         // タスク条件管理-----------------------------------------------
         switch (target_pattern.ToString())
         {
-            case "High_Density":
-                target_p_id = 1;
-                target_amount_all = 25;
-                target_amount_select = 25;
-                target_amount_count = 1;
-                Depth = 5.0f;
+            case "High_Density":            // 高密度条件
+                target_p_id = 1;            // 高密度条件のID
+                target_amount_all = 25;     // ターゲットの総数
+                target_amount_select = 25;  // 選択（タスク）回数
+                target_amount_count = 1;    // 繰り返し回数
+                Depth = 5.0f;               // 奥行き距離
                 break;
-            case "High_Occlusion":
-                target_p_id = 2;
-                target_amount_all = 4;
-                target_amount_select = 24;
-                target_amount_count = 6;
-                Depth = 5.0f;
+            case "High_Occlusion":          // 高オクルージョン条件
+                target_p_id = 2;            // 高オクルージョン条件のID
+                target_amount_all = 4;      // ターゲットの総数
+                target_amount_select = 24;  // 選択（タスク）回数
+                target_amount_count = 6;    // 繰り返し回数（ターゲットの総数が選択回数より少ない場合に使用する）
+                Depth = 5.0f;               // 奥行き距離
                 break;
-            case "Density_and_Occlusion":
-                target_p_id = 3;
-                target_amount_all = 124;
-                target_amount_select = 25;
-                target_amount_count = 1;
-                Depth = 3.5f;
+            case "Density_and_Occlusion":   // 密度＆オクルージョン条件
+                target_p_id = 3;            // 密度＆オクルージョン条件のID
+                target_amount_all = 124;    // ターゲットの総数
+                target_amount_select = 25;  // 選択（タスク）回数
+                target_amount_count = 1;    // 繰り返し回数
+                Depth = 3.5f;               // 奥行き距離
                 break;
-            case "Random":
-                target_p_id = 4;
+            case "Density_and_Occlusion2":  // 密度＆オクルージョン条件2
+                target_p_id = 4;            // 密度＆オクルージョン条件2のID
+                target_amount_all = 48;     // ターゲットの総数
+                target_amount_select = 25;  // 選択（タスク）回数
+                target_amount_count = 1;    // 繰り返し回数
+                Depth = 3.5f;               // 奥行き距離
+                break;
+            case "Random":                  // ランダム配置条件
+                target_p_id = 99;           // ランダム配置条件のID（配置条件を追加できるように99にしている）
                 break;
             default:
                 target_p_id = 0;
-                target_amount_all = 1;
-                target_amount_select = 1;
-                target_amount_count = 1;
+                target_amount_all = 0;
+                target_amount_select = 0;
+                target_amount_count = 0;
                 break;
         }
         //--------------------------------------------------------------
@@ -303,9 +311,9 @@ public class receiver : MonoBehaviour
 
 
         // ランダム配置条件の場合の処理---------------------------------
-        if (target_p_id == 4)
+        if (target_p_id == 99)
         {
-            random_target_set2(); // ランダムにターゲットを配置
+            random_target_set(); // ランダムにターゲットを配置
         }
         else
         {
@@ -323,7 +331,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // ログ作成-----------------------------------------------------
+        // ログ作成（データ分析をする分には消してもいい）---------------
         tasklogs = new List<string>();
         task_start_time = new List<float>();
         task_end_time = new List<float>();
@@ -331,16 +339,6 @@ public class receiver : MonoBehaviour
 
 
         audioSource = GetComponent<AudioSource>(); // 音響設定
-
-
-        //// コントローラ設定
-        //if (pose == null)
-        //    pose = this.GetComponent<SteamVR_Behaviour_Pose>();
-        //if (pose == null)
-        //    Debug.LogError("No SteamVR_Behaviour_Pose component found on this object", this);
-
-        //if (interactWithUI == null)
-        //    Debug.LogError("No ui interaction action has been set on this component.", this);
     }
 
 
@@ -352,14 +350,7 @@ public class receiver : MonoBehaviour
         grapgrip = SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any);
         if (grapgrip || target_pos__calibration)
         {
-            target_set[target_p_id - 1].SetActive(true);
-
-            //Transform myTransform = target_set[target_p_id - 1].transform;
-            //Vector3 pos = myTransform.position;
-            //pos.y = head_obj.transform.position.y;
-            //pos.z = Depth;
-            //myTransform.position = pos;
-            ////myTransform.LookAt(Camera.transform);
+            target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
             Camera mainCamera = Camera.main;
             Vector3 cameraPosition = mainCamera.transform.position;
@@ -374,7 +365,6 @@ public class receiver : MonoBehaviour
 
 
         test_time += Time.deltaTime; // タスク時間を更新
-        //DeltaTime = Time.deltaTime;
 
 
         // タスクの推移管理---------------------------------------------
@@ -932,35 +922,6 @@ public class receiver : MonoBehaviour
 
     // ランダム配置条件のためのターゲット生成と配置を行う関数-------
     private void random_target_set()
-    {
-        target_id = 0;
-        target_objects.SetActive(true);
-
-        for (int i = 0; i < target_amount; i++)
-        {
-            float target_x = 0.0f;
-            float target_y = 0.0f;
-            float target_z = 0.0f;
-
-            while (!(target_x > target_distance || target_x < -target_distance))
-            {
-                target_x = UnityEngine.Random.Range(-(target_distance + 1.0f), target_distance + 1.0f);
-            }
-            while (!(target_z > target_distance || target_z < -target_distance))
-            {
-                target_z = UnityEngine.Random.Range(-(target_distance + 1.0f), target_distance + 1.0f);
-            }
-            //target_x = Random.Range(-1.5f, 1.5f);
-            target_y = UnityEngine.Random.Range(-1.0f, 2.2f);
-            //target_z = Random.Range(-1.5f, 1.5f);
-            Instantiate(target_objects, new Vector3(target_x, target_y, target_z), Quaternion.identity);
-        }
-    }
-    //--------------------------------------------------------------
-
-
-    // ランダム配置条件のためのターゲット生成と配置を行う関数-------
-    private void random_target_set2()
     {
         target_id = 0;
         target_objects.SetActive(true);
