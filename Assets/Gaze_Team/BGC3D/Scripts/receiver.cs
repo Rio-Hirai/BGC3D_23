@@ -15,28 +15,28 @@ using UnityEngine.Rendering.PostProcessing;
 public class receiver : MonoBehaviour
 {
     // 使用手法のリスト---------------------------------------------
-    public enum test_pattern_list
+    public enum test_pattern_list       // 新たな手法を追加したい場合はココに名前を追加する
     {
-        Zero_Cursor,                    // カーソル無し
-        Bubble_Gaze_Cursor1,            // BGC
-        Bubble_Gaze_Cursor2,            // BGC with RayCast
-        Bubble_Gaze_Cursor3,            // BGC_new（コレがBubble Gaze Cursor内で一番性能高い）
-        Gaze_Raycast,                   // 視線によるレイキャスト
-        Controller_Raycast              // コントローラによるレイキャスト
+        Zero_Cursor,                    // カーソル無し（IDは0）
+        Bubble_Gaze_Cursor1,            // BGC（IDは1）
+        Bubble_Gaze_Cursor2,            // BGC with RayCast（IDは2）
+        Bubble_Gaze_Cursor3,            // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは3）
+        Gaze_Raycast,                   // 視線によるレイキャスト（IDは4）
+        Controller_Raycast              // コントローラによるレイキャスト（IDは5）
     }
     public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1;  // 手法切り替え用のリスト構造
     //--------------------------------------------------------------
 
 
     // ターゲット配置条件のリスト-----------------------------------
-    public enum target_pattern_list
+    public enum target_pattern_list     // 新たなターゲット配置条件を追加したい場合はココに名前を追加する
     {
-        Null,                           // ターゲット無し
-        High_Density,                   // 高密度条件
-        High_Occlusion,                 // 高オクルージョン条件
-        Density_and_Occlusion,          // 密度＆オクルージョン条件
-        Density_and_Occlusion2,          // 密度＆オクルージョン条件2
-        Random                          // ランダム配置
+        Null,                           // ターゲット無し（IDは0）
+        High_Density,                   // 高密度条件（IDは1）
+        High_Occlusion,                 // 高オクルージョン条件（IDは2）
+        Density_and_Occlusion,          // 密度＆オクルージョン条件（IDは3）
+        Density_and_Occlusion2,          // 密度＆オクルージョン条件2（IDは4）
+        Random                          // ランダム配置（IDは99）
     }
     public target_pattern_list target_pattern = target_pattern_list.High_Density;   // 条件切り替え用のリスト構造
     //--------------------------------------------------------------
@@ -45,25 +45,26 @@ public class receiver : MonoBehaviour
     // 調整用パラメータ--------------------------------------------
     public int tester_id;               // 被験者のID
     public string tester_name;          // 被験者の名前
-    public float set_dtime = 0.6f;      // 注視時間
+    public float set_dtime;             // 注視時間
     public float Depth;                 // ユーザとターゲット間の距離
-    public int Brightness;              // 画面明度（使用していない）
     public float pointvalue;            // サッケード運動に対する閾値
     public float pointvalue2;           // 同上（ほぼ使っていない）
+    [SerializeField, Range(-100, 100)] public int Brightness;   // 画面明度（使用していない）
     //--------------------------------------------------------------
 
 
     // 各種機能切り替え---------------------------------------------
+    public bool total_DwellTime_mode;   // 累積注視時間モードのオン・オフ
     public bool gaze_data_switch;       // 視線情報出力機能のオン・オフ（実験以外ではオフにしておく）
     public bool eye_calibration;        // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
     public bool target_pos__calibration;// ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
-    public bool bubble_switch;          // バブルカーソルの表示・非表示
-    public bool bubblegaze_switch;      // バブルカーソルの表示・非表示
     public bool cursor_switch;          // バブルカーソルの表示・非表示
+    public bool bubblegaze_switch;      // ？？？
     public bool gazeraycast_switch;     // ？？？
-    public bool controller_switch;      // コントローラの表示・非表示
-    public bool laserswitch;            // コントローラのレイの表示・非表示
+    public bool controller_switch;      // コントローラの表示・非表示（まだコントローラを非表示にできない）
+    public bool laserswitch;            // コントローラのレイの表示・非表示（まだレイを非表示にできない）
     public bool target_alpha_switch;    // ターゲットの透明化
+    public bool task_skip;              // 現在のタスクをスキップする
     public bool error_output_flag;      // 強制中断用
     public bool lens_switch;            // レンズの表示・非表示（使っていない）
     //--------------------------------------------------------------
@@ -119,7 +120,7 @@ public class receiver : MonoBehaviour
     private List<string> tasklogs3;     // 結果を格納するリスト3
     private List<float> task_start_time;// タスクが開始した時の時間（タスク間に休憩時間があるため必要性が低い）
     private List<float> task_end_time;  // タスクが終了した時の時間（タスク間に休憩時間があるため必要性が低い）
-    private int logoutput_count = 0;    // ？？？
+    private int logoutput_count = 0;    // そのタスク中のエラー数
     private string now_test_pattern;    // 現在の使用手法のパターン
     private string now_target_pattern;  // 現在のターゲット配置のパターン
     public Vector3 HMDRotation;         // HMDの角度
@@ -137,9 +138,11 @@ public class receiver : MonoBehaviour
 
     // その他フラグ-------------------------------------------------
     public bool same_target;            // ？？？
-    public bool taskflag;               // ？？？
-    public bool next_step__flag;        // ？？？
-    public bool output_flag;            // ？？？
+    public bool taskflag;               // タスク中か否かを示す変数（trueだとタスク中）
+    public bool next_step__flag;        // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
+    public bool output_flag;            // タスクが全て完了したか否かを示す変数（trueだと完了）
+    public Boolean grapgrip;            // 結果の格納用Boolean型関数grapgrip
+    public Boolean trackpad;            // ？？？
     private int switch_flag = 0;        // ？？？
     //--------------------------------------------------------------
 
@@ -159,18 +162,10 @@ public class receiver : MonoBehaviour
 
 
     // ターゲットのパラメータ---------------------------------------
-    public byte color_alpha;            // ？？？
     public float cursor_radious;        // ？？？
     public int select_flag_2;           // ？？？
-    public Vector3 old_eye_position;    // ？？？
-    public Vector3 new_eye_position;    // ？？？
-    //--------------------------------------------------------------
-
-
-    // コントローラボタン-------------------------------------------
-    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;
-    public Boolean grapgrip;            // 結果の格納用Boolean型関数grapgrip
-    public Boolean trackpad;            // ？？？
+    public Vector3 old_eye_position;    // 以前の視線座標（瞬き選択用）
+    public Vector3 new_eye_position;    // 新しい視線座標（瞬き選択用）
     //--------------------------------------------------------------
 
 
@@ -188,17 +183,15 @@ public class receiver : MonoBehaviour
     public int target_amount;           // クローンするターゲットの数
     //--------------------------------------------------------------
 
-    private StreamWriter streamWriter_gaze; // ファイル出力用
     AudioSource audioSource;                // 音を鳴らせるようにする
+    private StreamWriter streamWriter_gaze; // ファイル出力用
+    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip; // コントローラボタン
 
     void Start()
     {
         // 手法管理---------------------------------------------------
-        switch (test_pattern.ToString())
+        switch (test_pattern.ToString()) // ココで手法毎にIDを割り振る
         {
-            case "Zero_Cursor":
-                test_id = 0;
-                break;
             case "Bubble_Gaze_Cursor1":
                 test_id = 1;
                 break;
@@ -260,7 +253,7 @@ public class receiver : MonoBehaviour
 
 
         // タスク条件管理-----------------------------------------------
-        switch (target_pattern.ToString())
+        switch (target_pattern.ToString()) // ココで条件毎にIDを割り振りつつ，条件のパラメータを入力
         {
             case "High_Density":            // 高密度条件
                 target_p_id = 1;            // 高密度条件のID
@@ -323,11 +316,13 @@ public class receiver : MonoBehaviour
 
 
         //ファイル名作成------------------------------------------------
-        DateTime dt = DateTime.Now;
+        DateTime dt = DateTime.Now; // 時間を保存
+
         input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString();
         filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time;
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv");
-        result_output_every("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false);
+
+        if (gaze_data_switch)result_output_every ("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む
         //--------------------------------------------------------------
 
 
@@ -346,6 +341,7 @@ public class receiver : MonoBehaviour
     {
         method_change(); // 使用している手法を変更
 
+
         // ターゲット位置の調整---------------------------------------
         grapgrip = SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any);
         if (grapgrip || target_pos__calibration)
@@ -355,9 +351,9 @@ public class receiver : MonoBehaviour
             Camera mainCamera = Camera.main;
             Vector3 cameraPosition = mainCamera.transform.position;
             Vector3 cameraForward = mainCamera.transform.forward;
-            target_set[target_p_id - 1].transform.position = cameraPosition + cameraForward * Depth; // カメラの正面にオブジェクトを配置
-            target_set[target_p_id - 1].transform.LookAt(2 * target_set[target_p_id - 1].transform.position - mainCamera.transform.position); // オブジェクトをカメラに向ける
-            target_set[target_p_id - 1].transform.rotation = Quaternion.Euler(0, target_set[target_p_id - 1].transform.rotation.eulerAngles.y, target_set[target_p_id - 1].transform.rotation.eulerAngles.z);
+            target_set[target_p_id - 1].transform.position = cameraPosition + cameraForward * Depth; // ユーザの正面にターゲット群を配置
+            target_set[target_p_id - 1].transform.LookAt(2 * target_set[target_p_id - 1].transform.position - mainCamera.transform.position); // ターゲット群をユーザに向ける
+            target_set[target_p_id - 1].transform.rotation = Quaternion.Euler(0, target_set[target_p_id - 1].transform.rotation.eulerAngles.y, target_set[target_p_id - 1].transform.rotation.eulerAngles.z); // ターゲット群の角度を調整
 
             target_pos__calibration = false; // 機能フラグをリセット
         }
@@ -382,25 +378,18 @@ public class receiver : MonoBehaviour
         // タスクの状態チェック-----------------------------------------
         if (taskflag)
         {
-            if (select_target_id != -1 && select_target_id != 999 && same_target == false)
+            if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
             {
                 tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp));
                 test_time_tmp = test_time;
-                if (select_target_id == tasknums[task_num])
-                {
-                    tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count);
-                }
-                else
-                {
-                    logoutput_count++;
-                }
 
-                if (select_target_id == tasknums[task_num])
+                if ((select_target_id == tasknums[task_num]) || task_skip)
                 {
                     same_target = true;
+                    task_skip = false;
 
                     tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
-                    //tasklogs2.Add(task_num + "," + tasknums[task_num] + "," + select_target_id + "," + ",");
+                    tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
 
                     if (task_num < target_amount_select)
                     {
@@ -413,6 +402,8 @@ public class receiver : MonoBehaviour
                 }
                 else
                 {
+                    logoutput_count++;
+
                     same_target = true;
                     tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
                     audioSource.PlayOneShot(sound_NG);
@@ -457,13 +448,7 @@ public class receiver : MonoBehaviour
 
         lightValue = sensor.lightValue; // 画面全体の明度情報を更新
 
-
-        // 視線関係のデータ取得-----------------------------------------
-        if (gaze_data_switch)
-        {
-            if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false);
-        }
-        //--------------------------------------------------------------
+        if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false); // 視線関係のデータを取得
     }
     //--------------------------------------------------------------
 
@@ -471,6 +456,7 @@ public class receiver : MonoBehaviour
     // 手法を変更する関数
     private void method_change()
     {
+        // ？？？-------------------------------------------------------
         if (SteamVR_Actions.default_SnapTurnLeft.GetStateDown(SteamVR_Input_Sources.Any) && switch_flag == 0)
         {
             Debug.Log("LEFT");
@@ -501,46 +487,27 @@ public class receiver : MonoBehaviour
         {
             switch_flag = 0;
         }
+        //--------------------------------------------------------------
+
+
         //trackpad = SteamVR_Actions.default_Teleport.GetStateDown(SteamVR_Input_Sources.Any);
 
 
+        // ？？？-------------------------------------------------------
         if (now_test_pattern != test_pattern.ToString() || switch_flag == 1)
         {
             now_test_pattern = test_pattern.ToString();
 
+
+            // ？？？-------------------------------------------------------
             if (DwellTarget != null)
             {
                 DwellTarget.GetComponent<Renderer>().material.color = Color.white;
             }
+            //--------------------------------------------------------------
 
 
-            // モード管理
-            //switch (test_pattern.ToString())
-            //{
-            //    case "Zero_Cursor":
-            //        test_id = 0;
-            //        break;
-            //    case "Bubble_Gaze_Cursor1":
-            //        test_id = 1;
-            //        break;
-            //    case "Bubble_Gaze_Cursor2":
-            //        test_id = 2;
-            //        break;
-            //    case "Bubble_Gaze_Cursor3":
-            //        test_id = 5;
-            //        break;
-            //    case "Gaze_Raycast":
-            //        test_id = 3;
-            //        break;
-            //    case "Controller_Raycast":
-            //        test_id = 4;
-            //        break;
-            //    default:
-            //        test_id = 0;
-            //        break;
-            //}
-
-            // パラメータ初期化
+            // パラメータ初期化---------------------------------------------
             bubblegaze_switch = false;
             gazeraycast_switch = false;
             controller_switch = false;
@@ -548,8 +515,10 @@ public class receiver : MonoBehaviour
             gazeraycast.SetActive(false);
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+            //--------------------------------------------------------------
 
-            // パラメータ更新
+
+            // パラメータ更新-----------------------------------------------
             if (test_id == 0)
             {
                 controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
@@ -596,13 +565,20 @@ public class receiver : MonoBehaviour
             {
                 bubblegaze.GetComponent<Collider>().enabled = true;
             }
+            //--------------------------------------------------------------
         }
+        //--------------------------------------------------------------
 
+
+        // ？？？-------------------------------------------------------
         if (now_target_pattern != target_pattern.ToString())
         {
             now_target_pattern = target_pattern.ToString();
         }
+        //--------------------------------------------------------------
 
+
+        // ？？？-------------------------------------------------------
         if (lens_switch)
         {
             if (lens_flag)
@@ -614,6 +590,7 @@ public class receiver : MonoBehaviour
                 Lens_Object.SetActive(false);
             }
         }
+        //--------------------------------------------------------------
     }
     //--------------------------------------------------------------
 
@@ -623,10 +600,15 @@ public class receiver : MonoBehaviour
     {
         Debug.Log("data_input_start!!"); // 確認メッセージを出力
 
-        //ファイル生成
+
+        //ファイル生成-------------------------------------------------
         StreamWriter streamWriter = File.AppendText(filePath + ".txt");
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         streamWriter.WriteLine("target_pattorn:");
+        //--------------------------------------------------------------
+
+
+        // ？？？-------------------------------------------------------
         for (int i = 0; i < target_amount_all - 5; i++)
         {
             streamWriter.WriteLine(tasknums[i]);
@@ -640,12 +622,16 @@ public class receiver : MonoBehaviour
             //streamWriter.WriteLine(" ");
         }
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
+        //--------------------------------------------------------------
 
-        // 開始時間
+
+        // 開始時間-----------------------------------------------------
         streamWriter.WriteLine("test_start_time: " + task_start_time[0]);
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
+        //--------------------------------------------------------------
 
-        // 各タスクの計測を追記
+
+        // 各タスクの計測を追記-----------------------------------------
         for (int i = 0; i < target_amount_select; i++)
         {
             streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n");
@@ -654,6 +640,8 @@ public class receiver : MonoBehaviour
             streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_end: " + task_end_time[i]);
             streamWriter.WriteLine("task_time: " + ( task_end_time[i] - task_start_time[i]));
         }
+        //--------------------------------------------------------------
+
 
         //// 各タスクの計測を追記3
         //streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n");
@@ -663,95 +651,18 @@ public class receiver : MonoBehaviour
         //}
         //streamWriter.WriteLine("\n-----------------------------------------------------------------------------------------\n");
 
-        // 終了時間
+
+        // 終了時間-----------------------------------------------------
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         streamWriter.WriteLine("test_end_time: " + task_end_time[target_amount_select-1]);
+        //--------------------------------------------------------------
 
-        // 後処理
+
+        // 後処理-------------------------------------------------------
         streamWriter.Flush();
         streamWriter.Close();
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
-    }
-    //--------------------------------------------------------------
-
-
-    // 瞬き3回で選択行為を行う関数----------------------------------
-    public void Blink3()
-    {
-        BlinkTime += Time.deltaTime;
-
-        // 1回目
-        if (RightBlink == 0 && BlinkSwitch == 0 && BlinkCount == 0)
-        {
-            BlinkSwitch = 1;
-            BlinkCount = 1;
-            BlinkTime = 0;
-            Debug.Log("OK1");
-        }
-
-        // 2回目以降
-        if (RightBlink == 0 && BlinkSwitch == 0 && BlinkCount > 0 && BlinkTime < 1.0f)
-        {
-            BlinkCount += 1;
-            Debug.Log("OK=count" + BlinkCount);
-        } else if (BlinkCount < 3 && BlinkTime > 1.0f)
-        {
-            BlinkCount = 0;
-            Debug.Log("OK=count" + 0);
-        }
-
-        if (RightBlink > 0.3)
-        {
-            BlinkSwitch = 0;
-            Debug.Log("OK=Switch" + 0);
-        }
-
-        // 3回以上瞬きをした場合
-        if (BlinkCount > 2)
-        {
-            BlinkFlag = 1;
-            Debug.Log("OKFlag");
-        }
-    }
-    //--------------------------------------------------------------
-
-
-    // 瞬きを3回行うと選択になる関数--------------------------------
-    public void Blink()
-    {
-        BlinkTime += Time.deltaTime;
-
-        if (RightBlink == 0 && BlinkSwitch == 0 && BlinkTime < 0.5)
-        {
-            BlinkCount += 1;
-            BlinkTime = 0;
-            BlinkSwitch = 1;
-            Debug.Log("OK=count" + BlinkCount);
-        } else if (BlinkTime > 1.0f)
-        {
-            BlinkCount = 0;
-            BlinkTime = 0;
-            BlinkFlag = 0;
-            //Debug.Log("OK=count" + 0);
-        } else if (BlinkTime > 0.3f)
-        {
-            BlinkFlag = 0;
-        }
-
-        if (RightBlink > 0.3 && RightBlink != 1)
-        {
-            BlinkSwitch = 0;
-            //Debug.Log("OK=Switch" + 0);
-        }
-
-        // 3回以上瞬きをしあ場合
-        if (BlinkCount > 1)
-        {
-            BlinkFlag = 1;
-            BlinkCount = 0;
-            BlinkTime = 0;
-            //Debug.Log("OKFlag");
-        }
+        //--------------------------------------------------------------
     }
     //--------------------------------------------------------------
 
@@ -760,21 +671,23 @@ public class receiver : MonoBehaviour
     public void result_output_csv()
     {
         Debug.Log("data_input_csv_start!!"); // 確認メッセージを出力
+        StreamWriter streamWriter = File.AppendText(filePath + ".csv"); //ファイル生成
 
-        //ファイル生成
-        StreamWriter streamWriter = File.AppendText(filePath + ".csv");
 
-        // 各タスクの計測を追記
+        // 各タスクの計測を追記-----------------------------------------
         streamWriter.WriteLine("task,target,select,time,totaltime,totalerror");
         for (int i = 0; i < tasklogs2.Count; i++)
         {
             streamWriter.WriteLine(tasklogs2[i]);
         }
+        //--------------------------------------------------------------
 
-        // 後処理
+
+        // 後処理-------------------------------------------------------
         streamWriter.Flush();
         streamWriter.Close();
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
+        //--------------------------------------------------------------
     }
     //--------------------------------------------------------------
 
@@ -783,37 +696,40 @@ public class receiver : MonoBehaviour
     public void result_output_csv2()
     {
         Debug.Log("data_input_csv_start2!!"); // 確認メッセージを出力
+        StreamWriter streamWriter = File.AppendText(filePath + "_gaze_data.csv"); //ファイル生成
 
-        //ファイル生成
-        StreamWriter streamWriter = File.AppendText(filePath + "_gaze_data.csv");
 
-        // 各タスクの計測を追記
+        // 各タスクの計測を追記----------------------------------------
         streamWriter.WriteLine("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue");
         for (int i = 0; i < tasklogs3.Count; i++)
         {
             streamWriter.WriteLine(tasklogs3[i]);
         }
+        //--------------------------------------------------------------
 
-        // 後処理
+
+        // 後処理-------------------------------------------------------
         streamWriter.Flush();
         streamWriter.Close();
         Debug.Log("data_output_end2!!"); // 確認メッセージを出力
+        //--------------------------------------------------------------
     }
     //--------------------------------------------------------------
 
 
     // 引数をファイルに出力する関数---------------------------------
-    public void result_output_every(string data, StreamWriter streamWriter, bool endtask)
+    public void result_output_every(string data, StreamWriter streamWriter, bool endtask) // これが呼び出されるたびに変数（第一引数の文字列）をcsvファイルに出力
     {
-        // これが呼び出されるたびに変数（第一引数の文字列）をcsvファイルに出力
-        // falseの場合は書き込み処理，trueの場合は閉じる処理
-        if (endtask == false) streamWriter.WriteLine(data);
+        if (endtask == false) streamWriter.WriteLine(data); // falseの場合は書き込み処理，trueの場合は閉じる処理
 
+
+        // 閉じる処理---------------------------------------------------
         if (endtask)
         {
             streamWriter.Close();
             Debug.Log("data_output_every!!"); // 確認メッセージを出力
         }
+        //--------------------------------------------------------------
     }
     //--------------------------------------------------------------
 
@@ -823,29 +739,35 @@ public class receiver : MonoBehaviour
     {
         Debug.Log("data_input_start!!"); // 確認メッセージを出力
 
-        //ファイル生成
+        //ファイル生成--------------------------------------------------
         StreamWriter streamWriter = File.AppendText(filePath + ".txt");
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         streamWriter.WriteLine("target_pattorn:");
+        //--------------------------------------------------------------
+
+
+        // ？？？-------------------------------------------------------
         for (int i = 0; i < target_amount_all - 5; i++)
         {
             streamWriter.WriteLine(tasknums[i]);
-            //streamWriter.WriteLine(" ");
         }
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         streamWriter.WriteLine("target_pattorn:");
         for (int i = 0; i < target_amount_select; i++)
         {
             streamWriter.WriteLine(tasknums[i]);
-            //streamWriter.WriteLine(" ");
         }
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
+        //--------------------------------------------------------------
 
-        // 開始時間
+
+        // 開始時間-----------------------------------------------------
         streamWriter.WriteLine("test_start_time: " + task_start_time[0]);
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
+        //--------------------------------------------------------------
 
-        // 各タスクの計測を追記
+
+        // 各タスクの計測を追記-----------------------------------------
         for (int i = 0; i < task_num; i++)
         {
             streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n");
@@ -854,8 +776,10 @@ public class receiver : MonoBehaviour
             streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_end: " + task_end_time[i]);
             streamWriter.WriteLine("task_time: " + (task_end_time[i] - task_start_time[i]));
         }
+        //--------------------------------------------------------------
 
-        // 各タスクの計測を追記2
+
+        // 各タスクの計測を追記2----------------------------------------
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n");
         streamWriter.WriteLine("task,target,select,time,totaltime,totalerror");
         for (int i = 0; i < tasklogs2.Count; i++)
@@ -863,16 +787,19 @@ public class receiver : MonoBehaviour
             streamWriter.WriteLine(tasklogs2[i]);
         }
         streamWriter.WriteLine("\n-----------------------------------------------------------------------------------------\n");
+        //--------------------------------------------------------------
 
 
-        // 終了時間
+        // 終了時間-----------------------------------------------------
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         streamWriter.WriteLine("test_end_time: " + task_end_time[task_num - 1]);
+        //--------------------------------------------------------------
 
-        // 後処理
+        // 後処理-------------------------------------------------------
         streamWriter.Flush();
         streamWriter.Close();
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
+        //--------------------------------------------------------------
     }
     //--------------------------------------------------------------
 
@@ -923,24 +850,19 @@ public class receiver : MonoBehaviour
     // ランダム配置条件のためのターゲット生成と配置を行う関数-------
     private void random_target_set()
     {
-        target_id = 0;
-        target_objects.SetActive(true);
+        target_id = 0; // ターゲットに割り振るIDを初期化
+        target_objects.SetActive(true); // クローンするターゲットを表示
 
+
+        // ？？？-------------------------------------------------------
         for (int i = 0; i < target_amount; i++)
         {
-            // カメラからランダムな方向を取得
-            Vector3 randomDirection = UnityEngine.Random.onUnitSphere;
-            //randomDirection.y = Mathf.Abs(randomDirection.y); // 上方向に配置するためにy座標を正にする
-
-            // ランダムな距離を計算
-            float randomDistance = UnityEngine.Random.Range(Depth, target_distance + Depth);
-
-            // オブジェクトの位置を決定
-            Vector3 objectPosition = Camera.main.transform.position + randomDirection * randomDistance;
-
-            // オブジェクトを複製して配置
-            Instantiate(target_objects, objectPosition, Quaternion.identity);
+            Vector3 randomDirection = UnityEngine.Random.onUnitSphere; // カメラからランダムな方向を取得
+            float randomDistance = UnityEngine.Random.Range(Depth, target_distance + Depth); // ランダムな距離を計算
+            Vector3 objectPosition = Camera.main.transform.position + randomDirection * randomDistance; // オブジェクトの位置を決定
+            Instantiate(target_objects, objectPosition, Quaternion.identity); // オブジェクトを複製して配置
         }
+        //--------------------------------------------------------------
     }
     //--------------------------------------------------------------
 
@@ -950,6 +872,104 @@ public class receiver : MonoBehaviour
     {
         result_output_every("", streamWriter_gaze, true);   // 視線データを保存したファイルを閉じる
         Debug.Log("data_output_every!!");                   // 確認メッセージを出力
+    }
+    //--------------------------------------------------------------
+
+
+    // 瞬き3回で選択行為を行う関数----------------------------------
+    public void Blink3()
+    {
+        BlinkTime += Time.deltaTime;
+
+
+        // 1回目--------------------------------------------------------
+        if (RightBlink == 0 && BlinkSwitch == 0 && BlinkCount == 0)
+        {
+            BlinkSwitch = 1;
+            BlinkCount = 1;
+            BlinkTime = 0;
+            Debug.Log("OK1");
+        }
+        //--------------------------------------------------------------
+
+
+        // 2回目以降----------------------------------------------------
+        if (RightBlink == 0 && BlinkSwitch == 0 && BlinkCount > 0 && BlinkTime < 1.0f)
+        {
+            BlinkCount += 1;
+            Debug.Log("OK=count" + BlinkCount);
+        }
+        else if (BlinkCount < 3 && BlinkTime > 1.0f)
+        {
+            BlinkCount = 0;
+            Debug.Log("OK=count" + 0);
+        }
+        //--------------------------------------------------------------
+
+
+        // ？？？-------------------------------------------------------
+        if (RightBlink > 0.3)
+        {
+            BlinkSwitch = 0;
+            Debug.Log("OK=Switch" + 0);
+        }
+        //--------------------------------------------------------------
+
+
+        // 3回以上瞬きをした場合----------------------------------------
+        if (BlinkCount > 2)
+        {
+            BlinkFlag = 1;
+            Debug.Log("OKFlag");
+        }
+        //--------------------------------------------------------------
+    }
+    //--------------------------------------------------------------
+
+
+    // 瞬きを3回行うと選択になる関数--------------------------------
+    public void Blink()
+    {
+        BlinkTime += Time.deltaTime;
+
+
+        // ？？？-------------------------------------------------------
+        if (RightBlink == 0 && BlinkSwitch == 0 && BlinkTime < 0.5)
+        {
+            BlinkCount += 1;
+            BlinkTime = 0;
+            BlinkSwitch = 1;
+            Debug.Log("OK=count" + BlinkCount);
+        }
+        else if (BlinkTime > 1.0f)
+        {
+            BlinkCount = 0;
+            BlinkTime = 0;
+            BlinkFlag = 0;
+        }
+        else if (BlinkTime > 0.3f)
+        {
+            BlinkFlag = 0;
+        }
+        //--------------------------------------------------------------
+
+
+        // ？？？-------------------------------------------------------
+        if (RightBlink > 0.3 && RightBlink != 1)
+        {
+            BlinkSwitch = 0;
+        }
+        //--------------------------------------------------------------
+
+
+        // 3回以上瞬きをした場合----------------------------------------
+        if (BlinkCount > 1)
+        {
+            BlinkFlag = 1;
+            BlinkCount = 0;
+            BlinkTime = 0;
+        }
+        //--------------------------------------------------------------
     }
     //--------------------------------------------------------------
 }

@@ -105,17 +105,17 @@ namespace ViveSR
                 //1フレーム毎に実行
                 void Update()
                 {
-                    // デバッグ用
-                    if (script.bubble_switch)
-                    {
-                        script.cursor_color.a = 0.5f;
-                        coloralpha = 0.5f;
-                    }
-                    else
-                    {
-                        script.cursor_color.a = 0.0f;
-                        coloralpha = 0.0f;
-                    }
+                    //// デバッグ用
+                    //if (script.cursor_switch)
+                    //{
+                    //    script.cursor_color.a = 0.5f;
+                    //    coloralpha = 0.5f;
+                    //}
+                    //else
+                    //{
+                    //    script.cursor_color.a = 0.0f;
+                    //    coloralpha = 0.0f;
+                    //}
 
                     // cursorの色を指定
                     this.GetComponent<Renderer>().material.color = script.cursor_color;
@@ -127,7 +127,7 @@ namespace ViveSR
                     }
                     //-------------------------------------------
 
-                    //?取得呼び出し-----------------------------
+                    // 取得呼び出し-----------------------------
                     SRanipal_Eye_API.GetEyeData(ref eye);
                     //-------------------------------------------
 

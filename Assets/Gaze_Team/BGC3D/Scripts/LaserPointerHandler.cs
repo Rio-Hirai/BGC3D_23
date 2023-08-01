@@ -7,16 +7,9 @@ using Valve.VR.Extras;
 
 public class LaserPointerHandler : MonoBehaviour
 {
-    //右手用
-    public SteamVR_LaserPointer laserPointer;
-    //左手用
-    public SteamVR_LaserPointer laserPointer2;
-
-    public GameObject dummy;
-    public GameObject Server;
-    private receiver script;
-
-    public string tarObj_name;
+    public SteamVR_LaserPointer laserPointer;   // 右コントローラのレイ
+    public SteamVR_LaserPointer laserPointer2;  // 左コントローラのレイ
+    public receiver Server;                     // サーバ
 
     void Awake()
     {
@@ -30,32 +23,44 @@ public class LaserPointerHandler : MonoBehaviour
 
     void Start()
     {
-        script = Server.GetComponent<receiver>();
     }
 
-    //レーザーポインターをtargetに焦点をあわせてトリガーをひいたとき
+
+    // レーザーポインターをtargetに焦点をあわせてトリガーをひいたとき
     public void PointerClick(object sender, PointerEventArgs e)
     {
-        //Debug.Log("PointerClick" + e.target.name);
-        GameObject testcube = GameObject.Find(e.target.name);
-        //Debug.Log("PointerClick" + testcube.name + "=" + e.target.name);
-        script.same_target = false;
-        testcube.GetComponent<Renderer>().material.color = script.target_color;
+        if(Server.laserswitch)
+        {
+            GameObject testcube = GameObject.Find(e.target.name);
+            Server.same_target = false;
+            testcube.GetComponent<Renderer>().material.color = Server.target_color;
 
-        script.select_target_id = testcube.GetComponent<target_para_set>().Id;
-        //this.GetComponent<receiver>().target_clone = testcube;
+            if (this.tag == "Target")
+            {
+                Server.select_target_id = testcube.GetComponent<target_para_set>().Id;
+            }
+            else if (this.tag == "UI")
+            {
+                testcube.GetComponent<UI_default>().Click_flag = true;
+            }
+        }
     }
+    //--------------------------------------------------------------
 
-    //レーザーポインターがtargetに触れたとき
+
+    // レーザーポインターがtargetに触れたとき-----------------------
     public void PointerInside(object sender, PointerEventArgs e)
     {
     }
+    //--------------------------------------------------------------
 
-    //レーザーポインターがtargetから離れたとき
+
+    // レーザーポインターがtargetから離れたとき---------------------
     public void PointerOutside(object sender, PointerEventArgs e)
     {
         GameObject testcube = GameObject.Find(e.target.name);
         testcube.GetComponent<Renderer>().material.color = Color.white;
-        this.GetComponent<receiver>().target_clone = dummy;
+        Server.target_clone = null;
     }
+    //--------------------------------------------------------------
 }

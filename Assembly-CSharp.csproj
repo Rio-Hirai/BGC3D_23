@@ -89,6 +89,7 @@
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\receiver2.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_Lines.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\UI_default.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\LaserPointerHandler.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_DrawGraphic.cs" />
     <Compile Include="Assets\ViveSR\Scripts\SRanipal_Enums.cs" />

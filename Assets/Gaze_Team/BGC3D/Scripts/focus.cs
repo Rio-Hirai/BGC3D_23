@@ -13,15 +13,11 @@ namespace ViveSR.anipal.Eye
         private static EyeData eyeData = new EyeData();
         private bool eye_callback_registered = false;
 
+        public receiver script; // サーバー接続
         public GameObject pointer;
         public GameObject objectName_now;
         public GameObject objectName_new;
         public GameObject Lens_camera;
-
-        // サーバー接続
-        public GameObject Server;
-        //public GameObject EyePoint_sub;
-        private receiver script;
 
         private void Start()
         {
@@ -30,8 +26,6 @@ namespace ViveSR.anipal.Eye
                 enabled = false;
                 return;
             }
-
-            script = Server.GetComponent<receiver>();
         }
 
         private void Update()
@@ -81,7 +75,7 @@ namespace ViveSR.anipal.Eye
             {
                 script.same_target = false;
                 script.select_target_id = -1;
-                objectName_new.GetComponent<target_para_set>().dtime = 0; //注視時間を初期化
+                if (script.total_DwellTime_mode == false) objectName_new.GetComponent<target_para_set>().dtime = 0; //注視時間を初期化
                 //objectName_now.GetComponent<Renderer>().material.color = Color.white;
                 //objectName_new.GetComponent<Renderer>().material.color = Color.yellow;
                 script.selecting_target = objectName_new; //注視しているオブジェクトを更新

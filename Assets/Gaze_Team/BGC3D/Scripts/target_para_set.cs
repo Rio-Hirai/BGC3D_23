@@ -37,6 +37,30 @@ public class target_para_set : MonoBehaviour
             return;
         }
 
+
+        // 累積注視時間モード時の処理
+        if (script.total_DwellTime_mode)
+        {
+            if (script.DwellTarget != this.gameObject)
+            {
+                if (dtime > 0)
+                {
+                    dtime -= Time.deltaTime;
+                }
+                else
+                {
+                    dtime = 0;
+                }
+            }
+
+            if(Id != 999 && script.taskflag == false)
+            {
+                dtime = 0;
+            }
+        }
+
+
+        // 色変化の処理（要リファクタリング部分）
         if (script.controller_switch)
         {
             if (script.output_flag)

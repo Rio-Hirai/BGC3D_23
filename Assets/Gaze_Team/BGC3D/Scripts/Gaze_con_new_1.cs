@@ -41,7 +41,7 @@ namespace ViveSR
                 void Update()
                 {
                     // カーソルの位置と半径と色を更新
-                    if (script.bubblegaze_switch) // カーソル表示・非常時スイッチの有無
+                    if (script.cursor_switch) // カーソル表示・非常時スイッチの有無
                     {
                         this.GetComponent<Renderer>().material.color = script.cursor_color; // 透明度を0より大きくしてカーソルを表示
                     }
@@ -116,7 +116,7 @@ namespace ViveSR
                     {
                         script.same_target = false;
                         script.select_target_id = -1; // 選択状態のターゲットのIDを初期化
-                        searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
+                        if (script.total_DwellTime_mode == false) searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
 
                         script.BlinkFlag = 0; // 連続瞬きを初期化
                     }

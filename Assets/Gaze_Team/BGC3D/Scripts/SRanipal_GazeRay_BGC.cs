@@ -13,14 +13,15 @@ namespace ViveSR
         {
             public class SRanipal_GazeRay_BGC : MonoBehaviour
             {
-                public int LengthOfRay = 25;
+                [SerializeField, Range(0, 30)] public int LengthOfRay = 25;
                 [SerializeField] private LineRenderer GazeRayRenderer;
                 [SerializeField] private Gradient _gradient;
                 private static EyeData eyeData = new EyeData();
                 private bool eye_callback_registered = false;
 
-                public float radius = 5.0f;
-                public float maxradius = 5.0f;
+                [SerializeField, Range(0.0f, 25.0f)] public float radius = 5.0f;
+
+                [SerializeField, Range(0.0f, 25.0f)] public float maxradius = 5.0f;
 
                 // サーバー接続
                 public receiver script;
