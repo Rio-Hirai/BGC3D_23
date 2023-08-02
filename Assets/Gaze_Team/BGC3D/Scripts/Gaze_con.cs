@@ -99,7 +99,7 @@ namespace ViveSR
                     {
                         coloralpha = 0.0f;
                     }
-                    
+
                     searchNearObj = Serch();
                     //Debug.Log(searchNearObj);
                     //Debug.Log(script.cursor_radious);
@@ -181,7 +181,7 @@ namespace ViveSR
                     // objsから１つずつobj変数に取り出す
                     foreach (GameObject obj in objs)
                     {
-                        if (obj.name != script.target_clone.name)
+                        if (obj.name != "")
                         {
                             obj.GetComponent<Renderer>().material.color = Color.white;
                         }

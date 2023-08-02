@@ -84,9 +84,8 @@ public class receiver : MonoBehaviour
     public GameObject gazeraycast2;     // Bubble_Gaze_Cursor3のオブジェクト（表示・非表示用）
     public GameObject controller_R;     // 右コントローラ（表示・非表示用）
     public GameObject controller_L;     // 左コントローラ（表示・非表示用）
-    public GameObject target_clone;     // 正体不明（要リファクタリング）
     public GameObject Lens_Object;      // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
-    public GameObject[] target_set;     // ターゲット群を保存するための配列（表示・非表示用）
+    public GameObject[] target_set;     // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
     //--------------------------------------------------------------
 
 

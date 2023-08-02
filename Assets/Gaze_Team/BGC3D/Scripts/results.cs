@@ -9,7 +9,7 @@ using Valve.VR;
 public class results : MonoBehaviour
 {
     // 実験用パラメータ
-    private int test_id = 0;
+    private int test_id;
     public enum test_pattern_list
     {
         Bubble_Gaze_Cursor,

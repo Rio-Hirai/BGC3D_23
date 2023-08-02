@@ -64,7 +64,7 @@ namespace ViveSR
                 //レイの最大の長さ
                 float CombineFocusmaxDistance;
                 //オブジェクトを選択的に無視するために使用されるレイヤー ID
-                int CombinefocusableLayer = 0;
+                int CombinefocusableLayer;
                 //------------------------------
 
                 //①どのぐらいまぶたを開いてるか-----------------

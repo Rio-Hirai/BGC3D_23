@@ -60,7 +60,6 @@ public class LaserPointerHandler : MonoBehaviour
     {
         GameObject testcube = GameObject.Find(e.target.name);
         testcube.GetComponent<Renderer>().material.color = Color.white;
-        Server.target_clone = null;
     }
     //--------------------------------------------------------------
 }

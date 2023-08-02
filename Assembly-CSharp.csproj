@@ -79,7 +79,6 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\SRanipal_GazeRay_BGC.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_data.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_LineButton.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\booleanrighttest.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\LookAt.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_ZoomButton.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_CoordinateAxis.cs" />
@@ -101,8 +100,8 @@
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye_Enums.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\red_result.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\target_size_set.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\UmeEye.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeFocusSample.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\UmeEye.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\PlaceInFrontOfCamera.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_v2.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_DragBar.cs" />
@@ -113,7 +112,6 @@
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeFocusSample_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\approve_test.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_0.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\booleanlefttest.cs" />
     <Compile Include="Assets\ViveSR\Scripts\SRWorks_Enums.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeSettingSample.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye.cs" />
@@ -125,7 +123,9 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\EyeCalibrator.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_dates.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\booleanrighttest.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\booleanlefttest.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\VIVEsample.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeShapeTableDrawer.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_data_v1.cs" />
