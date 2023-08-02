@@ -13,8 +13,8 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638264778045344676
-    m_Hash: 696725343
+      ticks: 638265709846476425
+    m_Hash: 4088210765
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -34,7 +34,7 @@ m_LocalPackages:
       ticks: 638258020229274531
     m_Hash: 2919789393
 m_ProjectPath: C:/Users/riong/WORKSPACE_M.2/BGC3D_23/Packages
-m_EditorVersion: 2023.1.6f1 (964b2488c462)
+m_EditorVersion: 2023.1.7f1 (4f4e359ec3fc)
 m_ResolvedPackages:
 - packageId: com.unity.ai.navigation@1.1.4
   testable: 0
@@ -1377,7 +1377,7 @@ m_ResolvedPackages:
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.xr.core-utils
-    version: 2.2.1
+    version: 2.2.2
   keywords:
   - openxr
   - xr
@@ -3914,12 +3914,12 @@ m_ResolvedPackages:
   upmReserved: '{"changelog":"### Fixed\n- Fixed warning in USS file"}'
   assetStore:
     productId: 
-- packageId: com.unity.xr.core-utils@2.2.1
+- packageId: com.unity.xr.core-utils@2.2.2
   testable: 0
   isDirectDependency: 0
-  version: 2.2.1
+  version: 2.2.2
   source: 1
-  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.xr.core-utils@2.2.1
+  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.xr.core-utils@2.2.2
   assetPath: Packages/com.unity.xr.core-utils
   name: com.unity.xr.core-utils
   displayName: XR Core Utilities
@@ -3928,7 +3928,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: asset
+  type: assets
   description: "Common utility classes for XR projects\nRefer to API documentation
     for details. Some particularly useful utilities include:\n\u25AA Geometry Utilities\n 
     \u25AA Point of closest approach\n  \u25AA Closest edge of a polygon\n  \u25AA
@@ -3956,7 +3956,6 @@ m_ResolvedPackages:
     - 2.2.2
     - 2.4.0-exp.1
     compatible:
-    - 2.2.1
     - 2.2.2
     - 2.4.0-exp.1
     recommended: 2.2.2
@@ -3993,16 +3992,16 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638187829490000000
+  datePublishedTicks: 638252782650000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.xr.core-utils@2.2/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.xr.core-utils.git
-    revision: 0ec01755305a46c64c285b7ff29bc99eabf34a87
+    revision: 90abac9940e57d3a7e04d00761ee4787e76aed4c
     path: 
   unityLifecycle:
-    version: 2.2.1
+    version: 2.2.2
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -4012,10 +4011,8 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"### Changed\n\n- Renamed the following display names
-    of the properties in `XROrigin` inspector:\n  - **Camera GameObject** to **Camera**
-    for `Camera` property\n  - **Camera Floor Offset Object** to **Camera Floor Offset
-    GameObject** for `CameraFloorOffsetObject` property"}'
+  upmReserved: '{"changelog":"### Changed\n\n- Fixed bug with Datum property editor
+    incorrectly reporting the height of datum properties in the inspector."}'
   assetStore:
     productId: 
 - packageId: com.unity.ext.nunit@2.0.3
