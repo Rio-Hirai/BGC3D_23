@@ -59,8 +59,8 @@ public class receiver : MonoBehaviour
     public bool eye_calibration;        // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
     public bool target_pos__calibration;// ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
     public bool cursor_switch;          // バブルカーソルの表示・非表示
-    public bool bubblegaze_switch;      // ？？？
-    public bool gazeraycast_switch;     // ？？？
+    public bool bubblegaze_switch;      // ？？？（要キャリブレーション）
+    public bool gazeraycast_switch;     // ？？？（要キャリブレーション）
     public bool controller_switch;      // コントローラの表示・非表示（まだコントローラを非表示にできない）
     public bool laserswitch;            // コントローラのレイの表示・非表示（まだレイを非表示にできない）
     public bool target_alpha_switch;    // ターゲットの透明化
@@ -114,23 +114,23 @@ public class receiver : MonoBehaviour
     public float test_time = 0;         // 実験時間
     private float test_time_tmp;        // 前フレームまでの実験時間
     public List<int> tasknums;          // タスクの順番を格納するリスト
-    public List<string> tasklogs;       // 結果を格納するリスト1（分析で殆ど使っていないので消してもいい）
-    public List<string> tasklogs2;      // 結果を格納するリスト2
-    private List<string> tasklogs3;     // 結果を格納するリスト3
+    private List<string> tasklogs;      // 実験結果を格納するリスト1（分析で殆ど使っていないので消してもいい）
+    public List<string> tasklogs2;      // 実験結果を格納するリスト2
+    private List<string> tasklogs3;     // 視線情報を格納するリスト
     private List<float> task_start_time;// タスクが開始した時の時間（タスク間に休憩時間があるため必要性が低い）
     private List<float> task_end_time;  // タスクが終了した時の時間（タスク間に休憩時間があるため必要性が低い）
     private int logoutput_count = 0;    // そのタスク中のエラー数
     private string now_test_pattern;    // 現在の使用手法のパターン
     private string now_target_pattern;  // 現在のターゲット配置のパターン
-    public Vector3 HMDRotation;         // HMDの角度
     public float lightValue;            // 画面全体の明度
+    [System.NonSerialized] public Vector3 HMDRotation;  // HMDの角度
     //--------------------------------------------------------------
 
 
     // ターゲット選択関係-------------------------------------------
-    public GameObject selecting_target; // 選択状態のターゲット
-    public GameObject DwellTarget;      // 注視状態のターゲット
-    public GameObject RayTarget;        // レイキャストによって選択されているターゲット
+    public GameObject selecting_target; // 選択状態のターゲット（主にinspectorでのモニタ用で無くても問題なし）
+    public GameObject DwellTarget;      // 注視状態のターゲット（主に注視状態のターゲットの色の変更に使用）
+    public GameObject RayTarget;        // レイキャストによって注視されているターゲット（Bubble Gaze Cursor with Raycastで使用）
     public int select_target_id = 0;    // 選択されたターゲットのID
     //--------------------------------------------------------------
 
@@ -143,6 +143,15 @@ public class receiver : MonoBehaviour
     public Boolean grapgrip;            // 結果の格納用Boolean型関数grapgrip
     public Boolean trackpad;            // ？？？
     private int switch_flag = 0;        // ？？？
+    //--------------------------------------------------------------
+
+
+    // ランダム配置関係---------------------------------------------
+    public GameObject target_objects;   // クローンするターゲット
+    public int target_id;               // クローンターゲットのID
+    public float target_size;           // 注視状態のターゲットの大きさ
+    public float target_distance;       // クローンターゲットとユーザ間の距離
+    public int target_amount;           // クローンするターゲットの数
     //--------------------------------------------------------------
 
 
@@ -163,8 +172,8 @@ public class receiver : MonoBehaviour
     // ターゲットのパラメータ---------------------------------------
     public float cursor_radious;        // ？？？
     public int select_flag_2;           // ？？？
-    public Vector3 old_eye_position;    // 以前の視線座標（瞬き選択用）
-    public Vector3 new_eye_position;    // 新しい視線座標（瞬き選択用）
+    [System.NonSerialized] public Vector3 old_eye_position; // 以前の視線座標（瞬き選択用）
+    [System.NonSerialized] public Vector3 new_eye_position; // 新しい視線座標（瞬き選択用）
     //--------------------------------------------------------------
 
 
@@ -173,18 +182,9 @@ public class receiver : MonoBehaviour
     public bool lens_flag2;             // ？？？
     //--------------------------------------------------------------
 
-
-    // ランダム配置関係---------------------------------------------
-    public GameObject target_objects;   // クローンするターゲット
-    public int target_id;               // クローンターゲットのID
-    public float target_size;           // 注視状態のターゲットの大きさ
-    public float target_distance;       // クローンターゲットとユーザ間の距離
-    public int target_amount;           // クローンするターゲットの数
-    //--------------------------------------------------------------
-
     AudioSource audioSource;                // 音を鳴らせるようにする
     private StreamWriter streamWriter_gaze; // ファイル出力用
-    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip; // コントローラボタン
+    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;    // コントローラボタン
 
     void Start()
     {

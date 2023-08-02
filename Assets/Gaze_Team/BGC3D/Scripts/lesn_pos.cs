@@ -21,8 +21,8 @@ public class lesn_pos : MonoBehaviour
     {
         if (script.lens_flag)
         {
-            //this.transform.position = (head_point.transform.position * head_gain + gaze_point.transform.position * gaze_gain) / (head_gain + gaze_gain);
-            this.transform.position = (head_point.transform.position * head_gain + script.selecting_target.transform.position * gaze_gain) / (head_gain + gaze_gain);
+            // this.transform.position = (head_point.transform.position * head_gain + gaze_point.transform.position * gaze_gain) / (head_gain + gaze_gain);
+            // this.transform.position = (head_point.transform.position * head_gain + script.selecting_target.transform.position * gaze_gain) / (head_gain + gaze_gain);
             script.lens_flag2 = false;
         }
     }
