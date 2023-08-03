@@ -173,6 +173,7 @@ public class receiver : MonoBehaviour
     // ターゲットのパラメータ---------------------------------------
     public float cursor_radious;        // ？？？
     public int select_flag_2;           // ？？？
+    public int cursor_count;            // バブルカーソル内に存在するターゲットの数
     [System.NonSerialized] public Vector3 old_eye_position; // 以前の視線座標（瞬き選択用）
     [System.NonSerialized] public Vector3 new_eye_position; // 新しい視線座標（瞬き選択用）
     //--------------------------------------------------------------

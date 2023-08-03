@@ -4,6 +4,7 @@ using System.IO.Pipes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Valve.Newtonsoft.Json.Linq;
 using Valve.VR.Extras;
 
 namespace ViveSR
@@ -17,6 +18,7 @@ namespace ViveSR
             {
                 public receiver script;                     // サーバと接続
                 public SRanipal_GazeRay_BGC rayset;         // レイキャストのデータを取得
+                public MovingAverageFilter filter;          // 移動平均フィルタを取得
 
                 [SerializeField]
                 private string tagName = "Targets";         // 注視可能対象の選定．インスペクターで変更可能
@@ -31,6 +33,11 @@ namespace ViveSR
                 private float target_size;                  // 注視しているターゲットの大きさ
                 private float distance_of_camera_to_target; // ユーザとターゲット間の距離
                 private float color_alpha = 0.45f;          // カーソルの透明度
+
+                // 移動平均フィルター関係
+                private int windowSize = 10; // 移動平均のウィンドウサイズ
+                private Queue<Vector3> values = new Queue<Vector3>(); // ウィンドウ内の値を保持
+                private Vector3 sum = Vector3.zero; // ウィンドウ内の値の合計
 
                 void Start()
                 {
@@ -68,6 +75,7 @@ namespace ViveSR
                     float nearDistance = 0; // 最も近いオブジェクトの距離を代入するための変数
                     float cursor_size_limit = distance_of_camera_to_target / 8; // カーソルの大きさの上限を設定するための変数（でないと無限に大きくなる）
                     GameObject searchTargetObj = null; // 検索された最も近いゲームオブジェクトを代入するための変数
+                    script.cursor_count = 0; // バブルカーソル内に存在するターゲットの数を初期化
 
                     GameObject[] objs = GameObject.FindGameObjectsWithTag(tagName); // tagNameで指定されたTagを持つ、すべてのゲームオブジェクトを配列に取得
 
@@ -93,7 +101,7 @@ namespace ViveSR
                                 nearDistance = distance; // nearDistanceを更新
                                 searchTargetObj = obj; // searchTargetObjを更新
                                 target_size = obj.transform.localScale.x; // 注視しているターゲットの大きさを更新．ターゲットの大きさが全次元で一律のためx次元のみ取得
-                                distance_of_camera_to_target = Vector3.Distance(camera_obj.position, obj.transform.position);
+                                distance_of_camera_to_target = Vector3.Distance(camera_obj.position, obj.transform.position); // ユーザとターゲット間の距離を更新
 
                                 // カーソルの大きさの上限に抵触した場合の処理
                                 if (nearDistance < (cursor_size_limit)) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
@@ -106,6 +114,12 @@ namespace ViveSR
                                     script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
                                     script.DwellTarget = null; // 注視しているオブジェクトを更新
                                 }
+                            }
+
+                            // カーソル内に存在するターゲットをカウント
+                            if (distance < cursor_size_limit)
+                            {
+                                script.cursor_count++;
                             }
                         }
                     }
@@ -134,6 +148,22 @@ namespace ViveSR
                     script.cursor_radious = nearDistance * 2 + target_size; // カーソルの大きさを更新
 
                     return searchTargetObj; // 最も近いオブジェクトを返す
+                }
+
+                // 移動平均フィルタ
+                private Vector3 Move_filter(Vector3 newValue)
+                {
+                    // ウィンドウサイズを超えた場合、最も古い値を取り除く
+                    if (values.Count >= windowSize)
+                    {
+                        sum -= values.Dequeue();
+                    }
+
+                    // 新しい値を追加
+                    values.Enqueue(newValue);
+                    sum += newValue;
+
+                    return sum / values.Count; // 平均値を計算して返す
                 }
             }
         }
