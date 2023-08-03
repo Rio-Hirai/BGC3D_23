@@ -57,6 +57,13 @@ public class target_para_set : MonoBehaviour
             {
                 dtime = 0;
             }
+
+            if (dtime >= 1)
+            {
+                script.select_target_id = Id;
+                script.selecting_target = this.gameObject;
+                script.same_target = false;
+            }
         }
 
 

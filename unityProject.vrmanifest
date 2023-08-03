@@ -2,13 +2,13 @@
   "source": "Unity",
   "applications": [
     {
-      "app_key": "application.generated.unity.bgs.exe",
+      "app_key": "application.generated.unity.bubblegazecursor_3d.exe",
       "launch_type": "url",
       "url": "steam://launch/",
       "action_manifest_path": "C:\\Users\\riong\\VR_projects\\BGC3D_23\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
-          "name": "BGS [Testing]"
+          "name": "BubbleGazeCursor_3D [Testing]"
         }
       }
     }

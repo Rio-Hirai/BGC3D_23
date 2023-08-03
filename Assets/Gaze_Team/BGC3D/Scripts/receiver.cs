@@ -137,6 +137,7 @@ public class receiver : MonoBehaviour
 
     // その他フラグ-------------------------------------------------
     public bool same_target;            // ？？？
+    public bool session_flag;           // セッション中か否かを素雌変数（trueだとセッション中）
     public bool taskflag;               // タスク中か否かを示す変数（trueだとタスク中）
     public bool next_step__flag;        // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
     public bool output_flag;            // タスクが全て完了したか否かを示す変数（trueだと完了）
@@ -345,7 +346,7 @@ public class receiver : MonoBehaviour
         grapgrip = SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any);
         if (grapgrip || target_pos__calibration)
         {
-            target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
+            if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
             Camera mainCamera = Camera.main;
             Vector3 cameraPosition = mainCamera.transform.position;
@@ -370,6 +371,7 @@ public class receiver : MonoBehaviour
             task_start_time.Add(test_time);
             test_time_tmp = test_time;
             logoutput_count = 0;
+            session_flag = true;
         }
         //--------------------------------------------------------------
 
