@@ -14,7 +14,7 @@ namespace ViveSR
 
             public class Gaze_con_3 : MonoBehaviour
             {
-                //?取得呼び出し-----------------------------
+                //取得呼び出し-----------------------------
                 //呼び出したデータ格納用の関数
                 EyeData eye;
                 //-------------------------------------------
@@ -57,9 +57,7 @@ namespace ViveSR
                 //------------------------------
 
                 // サーバー接続
-                public GameObject Server;
-                //public GameObject EyePoint_sub;
-                private receiver script;
+                public receiver script;
 
                 public int cnt = 0;
 
@@ -84,10 +82,7 @@ namespace ViveSR
 
                 void Start()
                 {
-                    // サーバと接続
-                    script = Server.GetComponent<receiver>();
                     // 指定したタグを持つゲームオブジェクトのうち、このゲームオブジェクトに最も近いゲームオブジェクト１つを取得
-                    script = Server.GetComponent<receiver>();
                     if (script.cursor_switch)
                     {
                         coloralpha = script.cursor_color.a;

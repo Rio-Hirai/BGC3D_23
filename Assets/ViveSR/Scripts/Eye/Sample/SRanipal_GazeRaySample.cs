@@ -40,9 +40,7 @@ namespace ViveSR
                 private Vector3 hit_position_fil;
 
                 // サーバー接続
-                public GameObject Server;
-                //public GameObject EyePoint_sub;
-                private receiver script;
+                public receiver script;
 
                 // レイ算出用
                 public Vector3 ray0;
@@ -55,8 +53,6 @@ namespace ViveSR
                         enabled = false;
                         return;
                     }
-
-                    script = Server.GetComponent<receiver>();
 
                     Assert.IsNotNull(GazeRayRenderer);
 
@@ -86,7 +82,7 @@ namespace ViveSR
 
                     if (eye_callback_registered)
                     {
-                        if (SRanipal_Eye.GetGazeRay(GazeIndex.COMBINE, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData)) 
+                        if (SRanipal_Eye.GetGazeRay(GazeIndex.COMBINE, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData))
                         {
                         }
                         else if (SRanipal_Eye.GetGazeRay(GazeIndex.LEFT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData))
@@ -135,7 +131,7 @@ namespace ViveSR
                             //    script.selecting_target = objectName_new;
                             //    script.lens_flag = true;
                             //    script.lens_flag2 = true;
-                            //} 
+                            //}
                             //objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime;
                             //if (objectName_new.GetComponent<target_para_set>().dtime >= script.set_dtime)
                             //{
@@ -151,10 +147,10 @@ namespace ViveSR
                             //    script.lens_flag2 = false;
                             //}
                         }
-                        else if (SRanipal_Eye.GetGazeRay(GazeIndex.LEFT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal)) 
+                        else if (SRanipal_Eye.GetGazeRay(GazeIndex.LEFT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal))
                         {
                         }
-                        else if (SRanipal_Eye.GetGazeRay(GazeIndex.RIGHT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal)) 
+                        else if (SRanipal_Eye.GetGazeRay(GazeIndex.RIGHT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal))
                         {
                         }
                         else return;

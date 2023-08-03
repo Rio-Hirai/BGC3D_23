@@ -59,11 +59,12 @@ public class receiver : MonoBehaviour
     public bool eye_calibration;        // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
     public bool target_pos__calibration;// ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
     public bool cursor_switch;          // バブルカーソルの表示・非表示
-    public bool bubblegaze_switch;      // ？？？（要キャリブレーション）
-    public bool gazeraycast_switch;     // ？？？（要キャリブレーション）
+    public bool bubblegaze_switch;      // ？？？（要リファクタリング）
+    public bool gazeraycast_switch;     // ？？？（要リファクタリング）
     public bool controller_switch;      // コントローラの表示・非表示（まだコントローラを非表示にできない）
     public bool laserswitch;            // コントローラのレイの表示・非表示（まだレイを非表示にできない）
     public bool target_alpha_switch;    // ターゲットの透明化
+    public bool MAverageFilter;         // 動的移動平均Fフィルタのオン・オフ
     public bool task_skip;              // 現在のタスクをスキップする
     public bool error_output_flag;      // 強制中断用
     public bool lens_switch;            // レンズの表示・非表示（使っていない）

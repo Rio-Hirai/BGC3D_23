@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class MovingAverageFilter : MonoBehaviour
 {
-    public int windowSize = 10; // 移動平均のウィンドウサイズ
-    public Queue<Vector3> values = new Queue<Vector3>(); // ウィンドウ内の値を保持
-    public Vector3 sum = Vector3.zero; // ウィンドウ内の値の合計
-    public Vector3[] stock_values = new Vector3[25];
-    public int index = 0;
+    private int windowSize = 10; // 移動平均のウィンドウサイズ
+    private Queue<Vector3> values = new Queue<Vector3>(); // ウィンドウ内の値を保持
+    private Vector3 sum = Vector3.zero; // ウィンドウ内の値の合計
+    private Vector3[] stock_values = new Vector3[25];
+    private int index = 0;
     private int i = 0;
 
-    public void value_stock(Vector3 newvalue)
+    public Vector3 filter(Vector3 newvalue, int NowWindowSize)
     {
-        sum = new Vector3(0, 0, 0);
+        sum = Vector3.zero;
+
+        windowSize = NowWindowSize;
+        if (windowSize > 5) windowSize = 5;
 
         if (stock_values.Length < index + 1)
         {
             index = 0;
         }
 
-        stock_values[index++] = newvalue;
+        stock_values[index] = newvalue;
 
         int index2 = index;
 
@@ -34,7 +37,8 @@ public class MovingAverageFilter : MonoBehaviour
             index2--;
         }
 
-        sum /= windowSize;
+        index++;
+        return sum /= windowSize;
     }
 
     //public Vector3 Filter(Vector3 newValue)
@@ -54,6 +58,6 @@ public class MovingAverageFilter : MonoBehaviour
 
     void Update()
     {
-        value_stock(new Vector3(i++, i++, i++));
+        //Vector3 res = filter(new Vector3(i++, i++, i++), 3);
     }
 }

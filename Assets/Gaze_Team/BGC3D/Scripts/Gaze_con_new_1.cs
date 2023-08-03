@@ -90,8 +90,12 @@ namespace ViveSR
                     {
                         foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
                         {
+                            // 動的移動平均フィルタの切り替え
+                            Vector3 ray1 = rayset.ray1;
+                            if (script.MAverageFilter) ray1 = filter.filter(rayset.ray1, script.cursor_count); // 動的移動平均フィルタを適用（第一引数がフィルタリングする値，第二引数が窓の大きさ）
+
                             Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
-                            Vector3 projection = Vector3.Project(toObject, rayset.ray1.normalized); // 直線に対するオブジェクトの投影点を計算
+                            Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
                             cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
                             float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
 
