@@ -137,7 +137,7 @@ public class receiver : MonoBehaviour
 
     // その他フラグ-------------------------------------------------
     public bool same_target;            // ？？？
-    public bool session_flag;           // セッション中か否かを素雌変数（trueだとセッション中）
+    public bool session_flag;           // セッション中か否かを示す変数（trueだとセッション中）
     public bool taskflag;               // タスク中か否かを示す変数（trueだとタスク中）
     public bool next_step__flag;        // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
     public bool output_flag;            // タスクが全て完了したか否かを示す変数（trueだと完了）
