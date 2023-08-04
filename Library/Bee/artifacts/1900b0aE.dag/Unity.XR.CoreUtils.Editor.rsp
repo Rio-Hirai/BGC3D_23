@@ -395,7 +395,7 @@
 /nowarn:1701
 /nowarn:1702
 /utf8output
-/preferreduilang:en-US
+/preferreduilang:ja
 
 -warn:0
 

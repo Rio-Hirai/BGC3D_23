@@ -85,6 +85,7 @@ public class receiver : MonoBehaviour
     public GameObject gazeraycast2;     // Bubble_Gaze_Cursor3のオブジェクト（表示・非表示用）
     public GameObject controller_R;     // 右コントローラ（表示・非表示用）
     public GameObject controller_L;     // 左コントローラ（表示・非表示用）
+    public GameObject controller_Raycast;// 左コントローラ（表示・非表示用）
     public GameObject Lens_Object;      // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
     public GameObject[] target_set;     // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
                                         //--------------------------------------------------------------
@@ -214,6 +215,11 @@ public class receiver : MonoBehaviour
                 break;
         }
 
+        bubblegaze.SetActive(false);
+        gazeraycast.SetActive(false);
+        controller_Raycast.SetActive(false);
+        gazeraycast2.SetActive(false);
+
         if (test_id == 0)
         {
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
@@ -241,6 +247,7 @@ public class receiver : MonoBehaviour
         else if (test_id == 4)
         {
             controller_switch = true;
+            controller_Raycast.SetActive(true);
             controller_R.GetComponent<SteamVR_LaserPointer>().active = true;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = true;
         }
