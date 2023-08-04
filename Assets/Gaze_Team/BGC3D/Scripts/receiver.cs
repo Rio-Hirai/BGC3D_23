@@ -87,10 +87,11 @@ public class receiver : MonoBehaviour
     public GameObject controller_L;     // 左コントローラ（表示・非表示用）
     public GameObject Lens_Object;      // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
     public GameObject[] target_set;     // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
-    //--------------------------------------------------------------
+                                        //--------------------------------------------------------------
 
 
     // 効果音-------------------------------------------------------
+    public AudioSource audioSource;     // 音響設定
     public AudioClip sound_OK;          // 指示通りのターゲットを選択できた時の音
     public AudioClip sound_NG;          // エラーした時の音
     public AudioClip sound_END;         // タスクが終了した時の音
@@ -185,7 +186,6 @@ public class receiver : MonoBehaviour
     public bool lens_flag2;             // ？？？
     //--------------------------------------------------------------
 
-    AudioSource audioSource;                // 音を鳴らせるようにする
     private StreamWriter streamWriter_gaze; // ファイル出力用
     private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;    // コントローラボタン
 
@@ -333,9 +333,6 @@ public class receiver : MonoBehaviour
         task_start_time = new List<float>();
         task_end_time = new List<float>();
         //--------------------------------------------------------------
-
-
-        audioSource = GetComponent<AudioSource>(); // 音響設定
     }
 
 
@@ -355,7 +352,8 @@ public class receiver : MonoBehaviour
             Vector3 cameraForward = mainCamera.transform.forward;
             target_set[target_p_id - 1].transform.position = cameraPosition + cameraForward * Depth; // ユーザの正面にターゲット群を配置
             target_set[target_p_id - 1].transform.LookAt(2 * target_set[target_p_id - 1].transform.position - mainCamera.transform.position); // ターゲット群をユーザに向ける
-            target_set[target_p_id - 1].transform.rotation = Quaternion.Euler(0, target_set[target_p_id - 1].transform.rotation.eulerAngles.y, target_set[target_p_id - 1].transform.rotation.eulerAngles.z); // ターゲット群の角度を調整
+            target_set[target_p_id - 1].transform.rotation = Quaternion.Euler(0, target_set[target_p_id - 1].transform.rotation.eulerAngles.y, target_set[target_p_id - 1].transform.rotation.eulerAngles.z); // ターゲット群の角度を微調整
+            //target_set[target_p_id - 1].transform.position = new Vector3(target_set[target_p_id - 1].transform.position.x, cameraPosition.y, target_set[target_p_id - 1].transform.position.y); // ターゲット群の位置を微調整
 
             target_pos__calibration = false; // 機能フラグをリセット
         }
@@ -381,12 +379,13 @@ public class receiver : MonoBehaviour
         // タスクの状態チェック-----------------------------------------
         if (taskflag)
         {
+            // ターゲットの選択が行われた時の処理---------------------
             if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
             {
                 tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp));
                 test_time_tmp = test_time;
 
-                if ((select_target_id == tasknums[task_num]) || task_skip)
+                if ((select_target_id == tasknums[task_num]) || task_skip)　// 正しいターゲットを選択した時の処理
                 {
                     same_target = true;
                     task_skip = false;
@@ -396,27 +395,26 @@ public class receiver : MonoBehaviour
 
                     if (task_num < target_amount_select)
                     {
-                        task_end_time.Add(test_time);
-                        task_num++;
-                        test_time_tmp = 0;
-                        audioSource.PlayOneShot(sound_OK);
-                        taskflag = false;
+                        task_end_time.Add(test_time); // タスクが終了した時の時間を保存
+                        task_num++; // タスクを次に進める
+                        test_time_tmp = 0; // タスク時間を初期化
+                        audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
+                        taskflag = false; // 非タスク中にする
                     }
                 }
-                else
+                else　// 間違えたターゲットを選択した時の処理
                 {
-                    logoutput_count++;
+                    logoutput_count++; // 間違えた数をカウント
 
                     same_target = true;
                     tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
-                    audioSource.PlayOneShot(sound_NG);
+                    audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
                 }
             }
-            else if (select_target_id == 999)
-            {
-                //audioSource.PlayOneShot(sound_START);
-            }
+            //--------------------------------------------------------------
 
+
+            // セッションが終了するか，強制中断を行った時の処理-------------
             if (task_num == target_amount_select && output_flag == false)
             {
                 output_flag = true;
@@ -426,6 +424,7 @@ public class receiver : MonoBehaviour
                 //result_output_csv2();
                 result_output_every("", streamWriter_gaze, true);
             }
+            //--------------------------------------------------------------
         }
         //--------------------------------------------------------------
 

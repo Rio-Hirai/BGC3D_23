@@ -34,11 +34,6 @@ namespace ViveSR
                 private float distance_of_camera_to_target; // ユーザとターゲット間の距離
                 private float color_alpha = 0.45f;          // カーソルの透明度
 
-                // 移動平均フィルター関係
-                private int windowSize = 10; // 移動平均のウィンドウサイズ
-                private Queue<Vector3> values = new Queue<Vector3>(); // ウィンドウ内の値を保持
-                private Vector3 sum = Vector3.zero; // ウィンドウ内の値の合計
-
                 void Start()
                 {
                     searchNearObj = Serch(); // 注視ターゲット周りを初期化
@@ -76,13 +71,24 @@ namespace ViveSR
                     float cursor_size_limit = distance_of_camera_to_target / 8; // カーソルの大きさの上限を設定するための変数（でないと無限に大きくなる）
                     GameObject searchTargetObj = null; // 検索された最も近いゲームオブジェクトを代入するための変数
                     script.cursor_count = 0; // バブルカーソル内に存在するターゲットの数を初期化
-
+                    Vector3 ray1 = rayset.ray1;
                     GameObject[] objs = GameObject.FindGameObjectsWithTag(tagName); // tagNameで指定されたTagを持つ、すべてのゲームオブジェクトを配列に取得
 
-                    // 取得したゲームオブジェクトが0ならnullを返す(nullでもエラーにならないように処理)
-                    if (objs.Length == 0)
+                    if (objs.Length == 0) return searchTargetObj; // 取得したゲームオブジェクトが0ならnullを返す(nullでもエラーにならないように処理)
+
+                    if (script.MAverageFilter)
                     {
-                        return searchTargetObj;
+                        foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
+                        {
+                            Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
+                            Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
+                            cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                            float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
+
+                            if (distance < cursor_size_limit / 2) script.cursor_count++; // カーソル内に存在するターゲットをカウント
+                        }
+
+                        ray1 = filter.filter(rayset.ray1, script.cursor_count); // 動的移動平均フィルタを適用（第一引数がフィルタリングする値，第二引数が窓の大きさ）
                     }
 
                     // ここの条件を確認する！！（リファクタリング部分）
@@ -90,10 +96,6 @@ namespace ViveSR
                     {
                         foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
                         {
-                            // 動的移動平均フィルタの切り替え
-                            Vector3 ray1 = rayset.ray1;
-                            if (script.MAverageFilter) ray1 = filter.filter(rayset.ray1, script.cursor_count); // 動的移動平均フィルタを適用（第一引数がフィルタリングする値，第二引数が窓の大きさ）
-
                             Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
                             Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
                             cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
@@ -118,12 +120,6 @@ namespace ViveSR
                                     script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
                                     script.DwellTarget = null; // 注視しているオブジェクトを更新
                                 }
-                            }
-
-                            // カーソル内に存在するターゲットをカウント
-                            if (distance < cursor_size_limit)
-                            {
-                                script.cursor_count++;
                             }
                         }
                     }
@@ -152,22 +148,6 @@ namespace ViveSR
                     script.cursor_radious = nearDistance * 2 + target_size; // カーソルの大きさを更新
 
                     return searchTargetObj; // 最も近いオブジェクトを返す
-                }
-
-                // 移動平均フィルタ
-                private Vector3 Move_filter(Vector3 newValue)
-                {
-                    // ウィンドウサイズを超えた場合、最も古い値を取り除く
-                    if (values.Count >= windowSize)
-                    {
-                        sum -= values.Dequeue();
-                    }
-
-                    // 新しい値を追加
-                    values.Enqueue(newValue);
-                    sum += newValue;
-
-                    return sum / values.Count; // 平均値を計算して返す
                 }
             }
         }

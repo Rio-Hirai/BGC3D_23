@@ -9,7 +9,7 @@ using Valve.VR.Extras;
 
 public class target_para_set : MonoBehaviour
 {
-    public receiver Server;
+    public GameObject Server;
     private receiver script;
     private results script2;
     public float dtime;
