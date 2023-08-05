@@ -175,7 +175,7 @@ public class receiver : MonoBehaviour
 
 
     // ターゲットのパラメータ---------------------------------------------
-    public float cursor_radious;        // ？？？
+    public float cursor_radious;        // バブルカーソルの大きさ
     public int select_flag_2;           // ？？？
     public int cursor_count;            // バブルカーソル内に存在するターゲットの数
     [System.NonSerialized] public Vector3 old_eye_position; // 以前の視線座標（瞬き選択用）
@@ -189,7 +189,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
     private StreamWriter streamWriter_gaze; // ファイル出力用
-    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;    // コントローラボタン
+    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;    // コントローラのトリガーボタン
 
     void Start()
     {
@@ -231,26 +231,23 @@ public class receiver : MonoBehaviour
         }
         else if (test_id < 3)
         {
-            bubblegaze_switch = true;
-            bubblegaze.SetActive(true);
+            bubblegaze_switch = true; // Bubble Gaze Cursorの機能をオン
+            bubblegaze.SetActive(true); // Bubble Gaze Cursorを表示
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
 
-            if (test_id == 2)
-            {
-                gazeraycast.SetActive(true);
-            }
+            if (test_id == 2) gazeraycast.SetActive(true); // 視線レイキャストを表示
         }
         else if (test_id == 3)
         {
-            gazeraycast_switch = true;
-            gazeraycast.SetActive(true);
+            gazeraycast_switch = true; // 視線レイキャストの機能をオン
+            gazeraycast.SetActive(true); // 視線レイキャストを表示
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
         }
         else if (test_id == 4)
         {
-            controller_switch = true;
+            controller_switch = true; // コントローラの機能をオン
             controller_Raycast.SetActive(true);
             controller_R.GetComponent<SteamVR_LaserPointer>().active = true;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = true;
