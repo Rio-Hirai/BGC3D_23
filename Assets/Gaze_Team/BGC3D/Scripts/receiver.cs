@@ -35,7 +35,7 @@ public class receiver : MonoBehaviour
         High_Density,                   // 高密度条件（IDは1）
         High_Occlusion,                 // 高オクルージョン条件（IDは2）
         Density_and_Occlusion,          // 密度＆オクルージョン条件（IDは3）
-        Density_and_Occlusion2,          // 密度＆オクルージョン条件2（IDは4）
+        Density_and_Occlusion2,         // 密度＆オクルージョン条件2（IDは4）
         Random                          // ランダム配置（IDは99）
     }
     public target_pattern_list target_pattern = target_pattern_list.High_Density;   // 条件切り替え用のリスト構造
@@ -56,6 +56,7 @@ public class receiver : MonoBehaviour
     // 各種機能切り替え---------------------------------------------
     public bool total_DwellTime_mode;   // 累積注視時間モードのオン・オフ
     public bool gaze_data_switch;       // 視線情報出力機能のオン・オフ（実験以外ではオフにしておく）
+    public bool TimeOut_switch;         // タスクでタイムアウトを行うか否かのフラグ
     public bool eye_calibration;        // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
     public bool target_pos__calibration;// ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
     public bool cursor_switch;          // バブルカーソルの表示・非表示
@@ -111,13 +112,13 @@ public class receiver : MonoBehaviour
     public int target_amount_all;       // ターゲットの総数
     public int target_amount_select;    // 選択する数
     public int target_amount_count;     // 繰り返し回数
-    private string input_start_time;    // タスク開始時間
+    private string input_start_time;    // アプリケーションを実行した時の時間（ほぼ確実に一意に定まるのでファイル名に使用）
     public int task_num = 0;            // タスクの番号
     private string filePath;            // 出力用ファイル名
     public float test_time = 0;         // 実験時間
     private float test_time_tmp;        // 前フレームまでの実験時間
     public List<int> tasknums;          // タスクの順番を格納するリスト
-    private List<string> tasklogs;      // 実験結果を格納するリスト1（分析で殆ど使っていないので消してもいい）
+    private List<string> tasklogs;      // 実験結果を格納するリスト1（人間が見るため用で分析には殆ど使っていないので消してもいい）
     public List<string> tasklogs2;      // 実験結果を格納するリスト2
     private List<string> tasklogs3;     // 視線情報を格納するリスト
     private List<float> task_start_time;// タスクが開始した時の時間（タスク間に休憩時間があるため必要性が低い）
@@ -214,7 +215,7 @@ public class receiver : MonoBehaviour
                 test_id = 0;
                 break;
         }
-        
+
         // 各種手法のオブジェクトを非表示（以降の条件分岐で該当する手法のみ表示するため）
         bubblegaze.SetActive(false);
         gazeraycast.SetActive(false);
@@ -262,7 +263,6 @@ public class receiver : MonoBehaviour
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
         }
         //--------------------------------------------------------------
-
         //--------------------------------------------------------------
 
 
@@ -310,11 +310,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // 表示されているターゲット群を全て非表示--------------------------------
-        for (int i = 0; i < target_set.Length; i++) {
-            target_set[i].SetActive(false);
-        }
-        //--------------------------------------------------------------
+        for (int i = 0; i < target_set.Length; i++) target_set[i].SetActive(false); // 表示されているターゲット群を全て非表示
 
 
         // ランダム配置条件の場合の処理--------------------------------------
@@ -332,18 +328,18 @@ public class receiver : MonoBehaviour
         //ファイル名作成---------------------------------------------------
         DateTime dt = DateTime.Now; // 時間を保存
 
-        input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString();
-        filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time;
-        streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv");
+        input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString(); // ファイル名に使用する月日時分を保存
+        filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
+        streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv"); // 視線情報用のcsvファイルを作成
 
-        if (gaze_data_switch)result_output_every ("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む
+        if (gaze_data_switch)result_output_every ("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
         //--------------------------------------------------------------
 
 
-        // ログ作成（データ分析をする分には消してもいい）---------------------------
-        tasklogs = new List<string>();
-        task_start_time = new List<float>();
-        task_end_time = new List<float>();
+        // ログ作成-----------------------------------------------------
+        tasklogs = new List<string>(); // 実験データを保存するリストを初期化（データ分析をする分には消してもいい）
+        task_start_time = new List<float>(); // タスクが開始された時の時間を保存するリストを初期化
+        task_end_time = new List<float>(); // タスクが終了した時の時間を保存するリストを初期化（データ分析をする分には消してもいい）
         //--------------------------------------------------------------
     }
 
@@ -394,15 +390,16 @@ public class receiver : MonoBehaviour
             // ターゲットの選択が行われた時の処理---------------------
             if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
             {
-                tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp));
+                tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp));　// タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
                 test_time_tmp = test_time;
+                if (test_time - task_start_time[task_num] > 60.0f) TimeOut_switch = true; // 1分以上選択できなかった場合にタスクをスキップ
 
                 if ((select_target_id == tasknums[task_num]) || task_skip)　// 正しいターゲットを選択した時の処理
                 {
                     same_target = true;
-                    task_skip = false;
+                    task_skip = false; // フラグを初期化
 
-                    tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
+                    tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIIDとタスク完了時の時間を追記
                     tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
 
                     if (task_num < target_amount_select)
@@ -426,7 +423,7 @@ public class receiver : MonoBehaviour
             //--------------------------------------------------------------
 
 
-            // セッションが終了するか，強制中断を行った時の処理-------------------------
+            // セッションが終了するか，強制中断を行った時の処理--------------
             if (task_num == target_amount_select && output_flag == false)
             {
                 output_flag = true; // 出力済みにする
@@ -444,12 +441,12 @@ public class receiver : MonoBehaviour
         // タスクを中断する際の処理-------------------------------------
         if (error_output_flag)
         {
-            error_output_flag = false;
-            audioSource.PlayOneShot(sound_END);
-            error_output();
-            result_output_csv();
+            error_output_flag = false; // 出力済みにする
+            audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
+            error_output(); // 実験結果をテキスト形式で出力
+            result_output_csv(); // 視線情報をcsv形式で出力
             //result_output_csv2();
-            result_output_every("", streamWriter_gaze, true);
+            result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
         }
         //--------------------------------------------------------------
 
@@ -467,7 +464,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // 手法を変更する関数
+    // 手法を変更する関数-------------------------------------------
     private void method_change()
     {
         // ？？？-------------------------------------------------------
@@ -674,7 +671,7 @@ public class receiver : MonoBehaviour
 
         // 後処理-------------------------------------------------------
         streamWriter.Flush();
-        streamWriter.Close();
+        streamWriter.Close(); // ファイルを閉じる
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
         //--------------------------------------------------------------
     }
@@ -689,17 +686,14 @@ public class receiver : MonoBehaviour
 
 
         // 各タスクの計測を追記-----------------------------------------
-        streamWriter.WriteLine("task,target,select,time,totaltime,totalerror");
-        for (int i = 0; i < tasklogs2.Count; i++)
-        {
-            streamWriter.WriteLine(tasklogs2[i]);
-        }
+        streamWriter.WriteLine("task,target,select,time,totaltime,totalerror"); // 表のタイトルを出力
+        for (int i = 0; i < tasklogs2.Count; i++) streamWriter.WriteLine(tasklogs2[i]); // 実験結果を出力
         //--------------------------------------------------------------
 
 
         // 後処理-------------------------------------------------------
         streamWriter.Flush();
-        streamWriter.Close();
+        streamWriter.Close(); // ファイルを閉じる
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
         //--------------------------------------------------------------
     }
@@ -714,17 +708,14 @@ public class receiver : MonoBehaviour
 
 
         // 各タスクの計測を追記----------------------------------------
-        streamWriter.WriteLine("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue");
-        for (int i = 0; i < tasklogs3.Count; i++)
-        {
-            streamWriter.WriteLine(tasklogs3[i]);
-        }
+        streamWriter.WriteLine("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue"); // 表のタイトルを出力
+        for (int i = 0; i < tasklogs3.Count; i++) streamWriter.WriteLine(tasklogs3[i]); // 実験結果を出力
         //--------------------------------------------------------------
 
 
         // 後処理-------------------------------------------------------
         streamWriter.Flush();
-        streamWriter.Close();
+        streamWriter.Close(); // ファイルを閉じる
         Debug.Log("data_output_end2!!"); // 確認メッセージを出力
         //--------------------------------------------------------------
     }
@@ -740,7 +731,7 @@ public class receiver : MonoBehaviour
         // 閉じる処理---------------------------------------------------
         if (endtask)
         {
-            streamWriter.Close();
+            streamWriter.Close(); // ファイルを閉じる
             Debug.Log("data_output_every!!"); // 確認メッセージを出力
         }
         //--------------------------------------------------------------
