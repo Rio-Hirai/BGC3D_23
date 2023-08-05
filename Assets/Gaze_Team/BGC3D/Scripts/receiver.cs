@@ -64,9 +64,9 @@ public class receiver : MonoBehaviour
     public bool controller_switch;      // コントローラの表示・非表示（まだコントローラを非表示にできない）
     public bool laserswitch;            // コントローラのレイの表示・非表示（まだレイを非表示にできない）
     public bool target_alpha_switch;    // ターゲットの透明化
-    public bool MAverageFilter;         // 動的移動平均Fフィルタのオン・オフ
-    public bool task_skip;              // 現在のタスクをスキップする
-    public bool error_output_flag;      // 強制中断用
+    public bool MAverageFilter;         // 動的移動平均フィルタのオン・オフ
+    public bool task_skip;              // 現在のタスクをスキップ（フラグを立てた瞬間に１度だけ実行されfalseに戻る）
+    public bool error_output_flag;      // 強制中断（フラグを立てた瞬間に現時点での実験結果が出力される）
     public bool lens_switch;            // レンズの表示・非表示（使っていない）
     //--------------------------------------------------------------
 
@@ -78,17 +78,17 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // 各種オブジェクト--------------------------------------------
+    // 各種オブジェクト--------------------------------------------------
     public GameObject head_obj;         // 頭部（カメラ）オブジェクト
     public GameObject bubblegaze;       // Bubble_Gaze_Cursor1・2のオブジェクト（表示・非表示用）
     public GameObject gazeraycast;      // Gaze_Raycasのオブジェクト（表示・非表示用）
     public GameObject gazeraycast2;     // Bubble_Gaze_Cursor3のオブジェクト（表示・非表示用）
     public GameObject controller_R;     // 右コントローラ（表示・非表示用）
     public GameObject controller_L;     // 左コントローラ（表示・非表示用）
-    public GameObject controller_Raycast;// 左コントローラ（表示・非表示用）
+    public GameObject controller_Raycast;// コントローラのレイキャスト機能（機能の無効化用）
     public GameObject Lens_Object;      // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
     public GameObject[] target_set;     // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
-                                        //--------------------------------------------------------------
+    //--------------------------------------------------------------
 
 
     // 効果音-------------------------------------------------------
@@ -99,13 +99,13 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // 各種スクリプト-----------------------------------------------
+    // 各種スクリプト---------------------------------------------------
     public gaze_data gaze_data;         // 各種自然情報を取得
     public LightSensor sensor;          // 画面の色彩情報
     //--------------------------------------------------------------
 
 
-    // モニタ用変数-------------------------------------------------
+    // モニタ用変数---------------------------------------------------
     public int test_id;                 // 使用手法のID
     public int target_p_id;             // 配置条件のID
     public int target_amount_all;       // ターゲットの総数
@@ -130,7 +130,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // ターゲット選択関係-------------------------------------------
+    // ターゲット選択関係-----------------------------------------------
     public GameObject selecting_target; // 選択状態のターゲット（主にinspectorでのモニタ用で無くても問題なし）
     public GameObject DwellTarget;      // 注視状態のターゲット（主に注視状態のターゲットの色の変更に使用）
     public GameObject RayTarget;        // レイキャストによって注視されているターゲット（Bubble Gaze Cursor with Raycastで使用）
@@ -138,7 +138,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // その他フラグ-------------------------------------------------
+    // その他フラグ----------------------------------------------------
     public bool same_target;            // ？？？
     public bool session_flag;           // セッション中か否かを示す変数（trueだとセッション中）
     public bool taskflag;               // タスク中か否かを示す変数（trueだとタスク中）
@@ -150,7 +150,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // ランダム配置関係---------------------------------------------
+    // ランダム配置関係------------------------------------------------
     public GameObject target_objects;   // クローンするターゲット
     public int target_id;               // クローンターゲットのID
     public float target_size;           // 注視状態のターゲットの大きさ
@@ -159,7 +159,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // 瞬き関係-----------------------------------------------------
+    // 瞬き関係-------------------------------------------------------
     public float LeftBlink;             // 左のまぶたの開き具合格納用関数
     public float RightBlink;            // 右のまぶたの開き具合格納用関数
     public int BlinkFlag;               // これがTrueになった瞬間にターゲット選択を確定させるように実装してあるので，瞬き関係はこれを弄るだけで十分．
@@ -173,7 +173,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // ターゲットのパラメータ---------------------------------------
+    // ターゲットのパラメータ---------------------------------------------
     public float cursor_radious;        // ？？？
     public int select_flag_2;           // ？？？
     public int cursor_count;            // バブルカーソル内に存在するターゲットの数
@@ -182,7 +182,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // Bubble Gaze Lens関係-----------------------------------------
+    // Bubble Gaze Lens関係------------------------------------------
     public bool lens_flag;              // ？？？
     public bool lens_flag2;             // ？？？
     //--------------------------------------------------------------
@@ -193,7 +193,7 @@ public class receiver : MonoBehaviour
     void Start()
     {
         // 手法管理---------------------------------------------------
-        switch (test_pattern.ToString()) // ココで手法毎にIDを割り振る
+        switch (test_pattern.ToString()) // ココで手法毎にIDを割り振る（IDの順番とリスト構造の順番には関係がないため気にせず順番にIDを振ればいい）
         {
             case "Bubble_Gaze_Cursor1":
                 test_id = 1;
@@ -214,12 +214,15 @@ public class receiver : MonoBehaviour
                 test_id = 0;
                 break;
         }
-
+        
+        // 各種手法のオブジェクトを非表示（以降の条件分岐で該当する手法のみ表示するため）
         bubblegaze.SetActive(false);
         gazeraycast.SetActive(false);
         controller_Raycast.SetActive(false);
         gazeraycast2.SetActive(false);
+        //--------------------------------------------------------------
 
+        // 該当する手法のオブジェクトを表示-------------------------------------
         if (test_id == 0)
         {
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
@@ -258,6 +261,8 @@ public class receiver : MonoBehaviour
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
         }
+        //--------------------------------------------------------------
+
         //--------------------------------------------------------------
 
 
@@ -305,14 +310,14 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // 表示されているターゲット群を全て非表示-----------------------
+        // 表示されているターゲット群を全て非表示--------------------------------
         for (int i = 0; i < target_set.Length; i++) {
             target_set[i].SetActive(false);
         }
         //--------------------------------------------------------------
 
 
-        // ランダム配置条件の場合の処理---------------------------------
+        // ランダム配置条件の場合の処理--------------------------------------
         if (target_p_id == 99)
         {
             random_target_set(); // ランダムにターゲットを配置
@@ -324,7 +329,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        //ファイル名作成------------------------------------------------
+        //ファイル名作成---------------------------------------------------
         DateTime dt = DateTime.Now; // 時間を保存
 
         input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString();
@@ -335,7 +340,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // ログ作成（データ分析をする分には消してもいい）---------------
+        // ログ作成（データ分析をする分には消してもいい）---------------------------
         tasklogs = new List<string>();
         task_start_time = new List<float>();
         task_end_time = new List<float>();
@@ -348,7 +353,7 @@ public class receiver : MonoBehaviour
         method_change(); // 使用している手法を変更
 
 
-        // ターゲット位置の調整---------------------------------------
+        // ターゲット位置の調整----------------------------------------------
         grapgrip = SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any);
         if (grapgrip || target_pos__calibration)
         {
@@ -370,7 +375,7 @@ public class receiver : MonoBehaviour
         test_time += Time.deltaTime; // タスク時間を更新
 
 
-        // タスクの推移管理---------------------------------------------
+        // タスクの推移管理-------------------------------------------------
         if (select_target_id == 999 && taskflag == false)
         {
             taskflag = true;
@@ -383,7 +388,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // タスクの状態チェック-----------------------------------------
+        // タスクの状態チェック----------------------------------------------
         if (taskflag)
         {
             // ターゲットの選択が行われた時の処理---------------------
@@ -421,15 +426,15 @@ public class receiver : MonoBehaviour
             //--------------------------------------------------------------
 
 
-            // セッションが終了するか，強制中断を行った時の処理-------------
+            // セッションが終了するか，強制中断を行った時の処理-------------------------
             if (task_num == target_amount_select && output_flag == false)
             {
-                output_flag = true;
-                audioSource.PlayOneShot(sound_END);
-                result_output();
-                result_output_csv();
-                //result_output_csv2();
-                result_output_every("", streamWriter_gaze, true);
+                output_flag = true; // 出力済みにする
+                audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
+                result_output(); // 実験結果をテキスト形式で出力
+                result_output_csv(); // 実験結果をcsv形式で出力
+                //result_output_csv2(); // 視線情報をcsv形式で出力
+                result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
             }
             //--------------------------------------------------------------
         }
@@ -508,7 +513,7 @@ public class receiver : MonoBehaviour
             now_test_pattern = test_pattern.ToString();
 
 
-            // ？？？-------------------------------------------------------
+            // ？？？----------------------------------------------------------
             if (DwellTarget != null)
             {
                 DwellTarget.GetComponent<Renderer>().material.color = Color.white;
@@ -516,7 +521,7 @@ public class receiver : MonoBehaviour
             //--------------------------------------------------------------
 
 
-            // パラメータ初期化---------------------------------------------
+            // パラメータ初期化-------------------------------------------------
             bubblegaze_switch = false;
             gazeraycast_switch = false;
             controller_switch = false;
@@ -527,7 +532,7 @@ public class receiver : MonoBehaviour
             //--------------------------------------------------------------
 
 
-            // パラメータ更新-----------------------------------------------
+            // パラメータ更新---------------------------------------------------
             if (test_id == 0)
             {
                 controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
@@ -579,7 +584,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // ？？？-------------------------------------------------------
+        // ？？？----------------------------------------------------------
         if (now_target_pattern != target_pattern.ToString())
         {
             now_target_pattern = target_pattern.ToString();
@@ -587,7 +592,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // ？？？-------------------------------------------------------
+        // ？？？----------------------------------------------------------
         if (lens_switch)
         {
             if (lens_flag)
@@ -604,7 +609,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // 結果を出力する関数-------------------------------------------
+    // 結果を出力する関数----------------------------------------------
     public void result_output()
     {
         Debug.Log("data_input_start!!"); // 確認メッセージを出力
@@ -617,7 +622,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // ？？？-------------------------------------------------------
+        // ？？？----------------------------------------------------------
         for (int i = 0; i < target_amount_all - 5; i++)
         {
             streamWriter.WriteLine(tasknums[i]);
