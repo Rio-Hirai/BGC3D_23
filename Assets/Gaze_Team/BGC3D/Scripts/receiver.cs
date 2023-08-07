@@ -100,13 +100,18 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // 各種スクリプト---------------------------------------------------
+    // 各種スクリプト-----------------------------------------------
     public gaze_data gaze_data;         // 各種自然情報を取得
     public LightSensor sensor;          // 画面の色彩情報
     //--------------------------------------------------------------
 
 
-    // モニタ用変数---------------------------------------------------
+    // コントローラ関係----------------------------------------------
+    public Valve.VR.SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;    // コントローラのトリガーボタン
+    //--------------------------------------------------------------
+
+
+    // モニタ用変数-------------------------------------------------
     public int test_id;                 // 使用手法のID
     public int target_p_id;             // 配置条件のID
     public int target_amount_all;       // ターゲットの総数
@@ -189,7 +194,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
     private StreamWriter streamWriter_gaze; // ファイル出力用
-    private SteamVR_Action_Boolean GrabG = SteamVR_Actions.default_GrabGrip;    // コントローラのトリガーボタン
+
 
     void Start()
     {
@@ -347,7 +352,7 @@ public class receiver : MonoBehaviour
 
 
         // ターゲット位置の調整----------------------------------------------
-        grapgrip = SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.Any);
+        grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any);
         if (grapgrip || target_pos__calibration)
         {
             if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する

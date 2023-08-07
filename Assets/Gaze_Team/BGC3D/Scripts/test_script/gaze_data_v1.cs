@@ -16,7 +16,8 @@ namespace ViveSR
                 private static EyeData eyeData = new EyeData();
                 private bool eye_callback_registered = false;
 
-                public receiver script; // サーバー接続
+                [SerializeField]
+                private receiver Server; // サーバー接続
 
                 private void Start()
                 {
