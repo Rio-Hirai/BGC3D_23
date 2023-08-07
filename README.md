@@ -1,6 +1,6 @@
 # BGC3D_23
 ## 概要
-視線班の3次元Bubble Gaze Cursorのアプリケーション
+IPLAB視線班の3次元Bubble Gaze Cursorの実験アプリケーション
   
 主な中身はAssets/Gaze_Team
 
@@ -10,11 +10,11 @@
 - Sources：各種効果音が入っている
 
 ## 環境
-Unity 2023.1.7f1
+windows11(22H2) + Unity 2023.1.7f1 + Vive Pro Eye
 
 
 ## 使用法
-実験環境は，Assets/Gaze_Team/BGC3D/ScenesのBGC3D_2023.unity
+実験環境にあたるシーンは，Assets/Gaze_Team/BGC3D/ScenesのBGC3D_2023.unity
 
 serverオブジェクトのinspectorにあるReceiverスクリプトから実験条件を設定する（詳細は該当するScriptのコメントを参照）
 
