@@ -6,12 +6,7 @@ using ViveSR.anipal.Eye;
 
 public class EyeCalibrator : MonoBehaviour
 {
-    public receiver server;
-
-    void Start()
-    {
-
-    }
+    [SerializeField] private receiver server;
 
     void Update()
     {

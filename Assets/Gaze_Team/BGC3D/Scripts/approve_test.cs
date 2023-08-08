@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class approve_test : MonoBehaviour
 {
-    public Transform head;
+    [SerializeField] private Transform head;// ユーザの頭部位置
 
-    private float lastRotationX; // 前回のx軸の回転
-    private float timer; // タイマー
-    private float rotationThreshold = 10f; // 回転閾値（度）
-    private float timeThreshold = 0.3f; // 時間閾値（秒）
+    private float lastRotationX;            // 前回のx軸の回転
+    private float timer;                    // タイマー
+    private float rotationThreshold = 10f;  // 回転閾値（度）
+    private float timeThreshold = 0.3f;     // 時間閾値（秒）
 
     void Start()
     {
@@ -20,8 +20,7 @@ public class approve_test : MonoBehaviour
 
     void Update()
     {
-        // 時間を更新
-        timer += Time.deltaTime;
+        timer += Time.deltaTime; // 時間を更新
 
         // 指定した時間が経過したら、x軸の回転をチェック
         if (timer >= timeThreshold)

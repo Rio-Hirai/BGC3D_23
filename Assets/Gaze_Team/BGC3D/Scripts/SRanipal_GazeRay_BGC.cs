@@ -13,22 +13,21 @@ namespace ViveSR
         {
             public class SRanipal_GazeRay_BGC : MonoBehaviour
             {
-                [SerializeField, Range(0, 30)] public int LengthOfRay = 25;
-                [SerializeField] private LineRenderer GazeRayRenderer;
-                [SerializeField] private Gradient _gradient;
-                private static EyeData eyeData = new EyeData();
-                private bool eye_callback_registered = false;
+                [SerializeField, Range(0, 30)] public int LengthOfRay = 25;         // レイの最大長
+                [SerializeField] private LineRenderer GazeRayRenderer;              // レイの色
+                [SerializeField] private Gradient _gradient;                        // レイの色
+                private static EyeData eyeData = new EyeData();                     // 視線情報
+                private bool eye_callback_registered = false;                       // callback関係
 
-                [SerializeField, Range(0.0f, 25.0f)] public float radius = 5.0f;
+                [SerializeField, Range(0.0f, 25.0f)] public float radius = 5.0f;    // Bubble Cursorの半径
+                [SerializeField, Range(0.0f, 25.0f)] public float maxradius = 5.0f; // Bubble Cursorの最大半径
 
-                [SerializeField, Range(0.0f, 25.0f)] public float maxradius = 5.0f;
+                public receiver script;                                             // サーバー接続
 
-                // サーバー接続
-                public receiver script;
-
-                // レイ算出用
-                public Vector3 ray0;
-                public Vector3 ray1;
+                // レイ算出用---------------------------------------------------
+                [System.NonSerialized] public Vector3 ray0;                         // 視線の始点ベクトル
+                [System.NonSerialized] public Vector3 ray1;                         // 視線の方向ベクトル
+                //--------------------------------------------------------------
 
                 private void Start()
                 {

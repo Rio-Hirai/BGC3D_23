@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LightSensor : MonoBehaviour
 {
-    public Camera dispCamera;
+    [SerializeField] private Camera dispCamera;
     private Texture2D targetTexture;
 
-    public float lightValue;
+    [System.NonSerialized] public float lightValue;
 
     // Use this for initialization
     IEnumerator Start()
