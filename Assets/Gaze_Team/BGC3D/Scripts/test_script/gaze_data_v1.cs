@@ -43,6 +43,8 @@ namespace ViveSR
                         SRanipal_Eye.WrapperUnRegisterEyeDataCallback(Marshal.GetFunctionPointerForDelegate((SRanipal_Eye.CallbackBasic)EyeCallback));
                         eye_callback_registered = false;
                     }
+
+                    Debug.Log(eyeData.verbose_data.right.eye_openness);
                 }
 
                 private void Release()
