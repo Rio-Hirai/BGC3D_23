@@ -90,7 +90,7 @@ namespace ViveSR
                     SRanipal_Eye.Focus(GazeIndex.COMBINE, out ray, out focusInfo);
 
                     //GetEyeOpenness
-                    SRanipal_Eye.GetEyeOpenness(EyeIndex.LEFT, out LeftOpenness);
+                    SRanipal_Eye.GetEyeOpenness(EyeIndex.LEFT, out LeftOpenness, eyeData);
 
                     //GetGazeRay
                     SRanipal_Eye.GetGazeRay(GazeIndex.COMBINE, out origin, out direction);

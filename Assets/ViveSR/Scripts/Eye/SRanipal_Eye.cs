@@ -106,7 +106,7 @@ namespace ViveSR
                 /// <param name="eye">The index of an eye.</param>
                 /// <param name="openness">The openness value of an eye, clamped between 0 (fully closed) and 1 (fully open). </param>
                 /// <returns>Indicates whether the openness value received is valid.</returns>
-                public static bool GetEyeOpenness(EyeIndex eye, out float openness)
+                public static bool GetEyeOpenness(GazeIndex lEFT, EyeIndex eye, out float openness)
                 {
                     UpdateData();
                     return GetEyeOpenness(eye, out openness, EyeData_);

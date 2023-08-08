@@ -49,7 +49,8 @@ public class receiver : MonoBehaviour
     public float Depth;                 // ユーザとターゲット間の距離
     public float pointvalue;            // サッケード運動に対する閾値
     public float pointvalue2;           // 同上（ほぼ使っていない）
-    [SerializeField, Range(-100, 100)] public int Brightness;   // 画面明度（使用していない）
+    [SerializeField, Range(-100, 100)]
+    public int Brightness;              // 画面明度（使用していない）
     //--------------------------------------------------------------
 
 
@@ -132,7 +133,8 @@ public class receiver : MonoBehaviour
     private string now_test_pattern;    // 現在の使用手法のパターン
     private string now_target_pattern;  // 現在のターゲット配置のパターン
     public float lightValue;            // 画面全体の明度
-    [System.NonSerialized] public Vector3 HMDRotation;  // HMDの角度
+    [System.NonSerialized]
+    public Vector3 HMDRotation;         // HMDの角度
     //--------------------------------------------------------------
 
 
@@ -183,8 +185,10 @@ public class receiver : MonoBehaviour
     public float cursor_radious;        // バブルカーソルの大きさ
     public int select_flag_2;           // ？？？
     public int cursor_count;            // バブルカーソル内に存在するターゲットの数
-    [System.NonSerialized] public Vector3 old_eye_position; // 以前の視線座標（瞬き選択用）
-    [System.NonSerialized] public Vector3 new_eye_position; // 新しい視線座標（瞬き選択用）
+    [System.NonSerialized]
+    public Vector3 old_eye_position;    // 以前の視線座標（瞬き選択用）
+    [System.NonSerialized]
+    public Vector3 new_eye_position;    // 新しい視線座標（瞬き選択用）
     //--------------------------------------------------------------
 
 
@@ -334,7 +338,8 @@ public class receiver : MonoBehaviour
         filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv"); // 視線情報用のcsvファイルを作成
 
-        if (gaze_data_switch)result_output_every ("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
+        if (gaze_data_switch) this.GetComponent<gaze_data>().enabled = true;
+        if (gaze_data_switch) result_output_every ("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
         //--------------------------------------------------------------
 
 

@@ -1,5 +1,6 @@
 //========= Copyright 2018, HTC Corporation. All rights reserved. ===========
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
@@ -14,10 +15,13 @@ namespace ViveSR
             public class gaze_data_v1 : MonoBehaviour
             {
                 private static EyeData eyeData = new EyeData();
+                private static VerboseData VerboseData = new VerboseData();
                 private bool eye_callback_registered = false;
 
                 [SerializeField]
                 private receiver Server; // サーバー接続
+
+                StreamWriter csv_results;
 
                 private void Start()
                 {
@@ -26,6 +30,10 @@ namespace ViveSR
                         enabled = false;
                         return;
                     }
+
+                    //csv_results = File.AppendText("/Gaze_Team/BGC3D/Scripts/test_results/eyedata.csv");
+                    SRanipal_Eye.WrapperRegisterEyeDataCallback(
+                        Marshal.GetFunctionPointerForDelegate((SRanipal_Eye.CallbackBasic)EyeCallback));
                 }
 
                 private void Update()
@@ -44,7 +52,86 @@ namespace ViveSR
                         eye_callback_registered = false;
                     }
 
-                    Debug.Log(eyeData.verbose_data.right.eye_openness);
+                    // 瞼の開き具合
+                    float leftopeness, rightopness;
+                    if (eye_callback_registered)
+                    {
+                        if (SRanipal_Eye.GetEyeOpenness(EyeIndex.LEFT, out leftopeness, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+                    else
+                    {
+                        if (SRanipal_Eye.GetEyeOpenness(EyeIndex.LEFT, out leftopeness, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+                    if (eye_callback_registered)
+                    {
+                        if (SRanipal_Eye.GetEyeOpenness(EyeIndex.RIGHT, out rightopness, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+                    else
+                    {
+                        if (SRanipal_Eye.GetEyeOpenness(EyeIndex.RIGHT, out rightopness, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+
+                    // 瞳孔位置
+                    Vector2 left_pupilpos, right_pupilpos;
+                    if (eye_callback_registered)
+                    {
+                        if (SRanipal_Eye.GetPupilPosition(EyeIndex.LEFT, out left_pupilpos, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+                    else
+                    {
+                        if (SRanipal_Eye.GetPupilPosition(EyeIndex.LEFT, out left_pupilpos, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+                    if (eye_callback_registered)
+                    {
+                        if (SRanipal_Eye.GetPupilPosition(EyeIndex.RIGHT, out right_pupilpos, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+                    else
+                    {
+                        if (SRanipal_Eye.GetPupilPosition(EyeIndex.RIGHT, out right_pupilpos, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+
+                    // 視線情報
+                    SRanipal_Eye.GetVerboseData(out VerboseData, eyeData);
+                    if (eye_callback_registered)
+                    {
+                        if (SRanipal_Eye.GetVerboseData(out VerboseData, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+                    else
+                    {
+                        if (SRanipal_Eye.GetVerboseData(out VerboseData, eyeData))
+                        {
+                        }
+                        else return;
+                    }
+
+                    Debug.Log("Data = " + leftopeness + "," + rightopness + "," + left_pupilpos + "," + right_pupilpos);
                 }
 
                 private void Release()
