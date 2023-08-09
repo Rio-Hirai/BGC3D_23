@@ -233,7 +233,7 @@ public class receiver : MonoBehaviour
         gazeraycast2.SetActive(false);
         //--------------------------------------------------------------
 
-        // 該当する手法のオブジェクトを表示-------------------------------------
+        // 該当する手法のオブジェクトを表示-----------------------------
         if (test_id == 0)
         {
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
