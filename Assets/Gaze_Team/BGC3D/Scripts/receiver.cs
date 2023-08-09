@@ -364,13 +364,14 @@ public class receiver : MonoBehaviour
         {
             if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
-            Camera mainCamera = Camera.main;
-            Vector3 cameraPosition = mainCamera.transform.position;
-            Vector3 cameraForward = mainCamera.transform.forward;
-            target_set[target_p_id - 1].transform.position = cameraPosition + cameraForward * Depth; // ユーザの正面にターゲット群を配置
-            target_set[target_p_id - 1].transform.LookAt(2 * target_set[target_p_id - 1].transform.position - mainCamera.transform.position); // ターゲット群をユーザに向ける
-            target_set[target_p_id - 1].transform.rotation = Quaternion.Euler(0, target_set[target_p_id - 1].transform.rotation.eulerAngles.y, target_set[target_p_id - 1].transform.rotation.eulerAngles.z); // ターゲット群の角度を微調整
-            //target_set[target_p_id - 1].transform.position = new Vector3(target_set[target_p_id - 1].transform.position.x, cameraPosition.y, target_set[target_p_id - 1].transform.position.y); // ターゲット群の位置を微調整
+            Vector3 forward = head_obj.transform.forward; // ユーザ（カメラ）の前方方向を取得
+            Vector3 newPosition = head_obj.transform.position + forward * Depth; // ユーザ（カメラ）の位置をターゲット群の新しい位置に設定
+            newPosition.y = head_obj.transform.position.y; // ターゲット群とユーザ（カメラ）の高さを同じにする
+            target_set[target_p_id - 1].transform.position = newPosition; // ターゲット群を新しい位置に移動
+            target_set[target_p_id - 1].transform.LookAt(head_obj.transform.position); // ターゲット群をユーザ（カメラ）の方向に向ける
+            Vector3 rotation = target_set[target_p_id - 1].transform.eulerAngles; // ターゲット群が逆を向いてしまうので180度回転させる
+            rotation.y += 180;
+            target_set[target_p_id - 1].transform.eulerAngles = rotation;
 
             target_pos__calibration = false; // 機能フラグをリセット
         }

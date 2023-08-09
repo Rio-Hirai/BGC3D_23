@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___849278.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8995240.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8385431.txt" />
     <None Include="Assets\ViveSR\Plugins\SRanipal.dll" />
     <None Include="Assets\ViveSR\Shaders\Unlit-Alpha2Gray.shader" />
@@ -161,6 +162,7 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___848365.txt" />
     <None Include="Assets\ViveSR\Plugins\nanomsg.dll" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 1___tester_id  = 0___name_n.n___841019.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8994210.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8484413.txt" />
   </ItemGroup>
   <ItemGroup>

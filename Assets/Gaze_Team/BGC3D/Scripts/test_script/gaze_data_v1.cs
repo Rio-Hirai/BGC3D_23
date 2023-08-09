@@ -135,7 +135,7 @@ namespace ViveSR
                 public string get_gaze_data2()
                 {
                     if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
-                        SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return null;
+                        SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT);
 
                     if (SRanipal_Eye_Framework.Instance.EnableEyeDataCallback == true && eye_callback_registered == false)
                     {
@@ -155,28 +155,24 @@ namespace ViveSR
                         if (SRanipal_Eye.GetEyeOpenness(EyeIndex.LEFT, out leftopeness, eyeData))
                         {
                         }
-                        else return null;
                     }
                     else
                     {
                         if (SRanipal_Eye.GetEyeOpenness(EyeIndex.LEFT, out leftopeness, eyeData))
                         {
                         }
-                        else return null;
                     }
                     if (eye_callback_registered)
                     {
                         if (SRanipal_Eye.GetEyeOpenness(EyeIndex.RIGHT, out rightopness, eyeData))
                         {
                         }
-                        else return null;
                     }
                     else
                     {
                         if (SRanipal_Eye.GetEyeOpenness(EyeIndex.RIGHT, out rightopness, eyeData))
                         {
                         }
-                        else return null;
                     }
 
                     // ìµçEà íu
@@ -186,28 +182,24 @@ namespace ViveSR
                         if (SRanipal_Eye.GetPupilPosition(EyeIndex.LEFT, out left_pupilpos, eyeData))
                         {
                         }
-                        else return null;
                     }
                     else
                     {
                         if (SRanipal_Eye.GetPupilPosition(EyeIndex.LEFT, out left_pupilpos, eyeData))
                         {
                         }
-                        else return null;
                     }
                     if (eye_callback_registered)
                     {
                         if (SRanipal_Eye.GetPupilPosition(EyeIndex.RIGHT, out right_pupilpos, eyeData))
                         {
                         }
-                        else return null;
                     }
                     else
                     {
                         if (SRanipal_Eye.GetPupilPosition(EyeIndex.RIGHT, out right_pupilpos, eyeData))
                         {
                         }
-                        else return null;
                     }
 
                     // éãê¸èÓïÒ
@@ -216,14 +208,12 @@ namespace ViveSR
                         if (SRanipal_Eye.GetVerboseData(out VerboseData, eyeData))
                         {
                         }
-                        else return null;
                     }
                     else
                     {
                         if (SRanipal_Eye.GetVerboseData(out VerboseData, eyeData))
                         {
                         }
-                        else return null;
                     }
 
                     // éãê¸èÓïÒ
@@ -234,17 +224,14 @@ namespace ViveSR
                         if (SRanipal_Eye.Focus(GazeIndex.COMBINE, out CombineRay, out CombineFocus/*, CombineFocusradius, CombineFocusmaxDistance, CombinefocusableLayer*/))
                         {
                         }
-                        else return null;
                     }
                     else
                     {
                         if (SRanipal_Eye.Focus(GazeIndex.COMBINE, out CombineRay, out CombineFocus/*, CombineFocusradius, CombineFocusmaxDistance, CombinefocusableLayer*/))
                         {
                         }
-                        else return null;
                     }
 
-                    Debug.Log("Data = " + leftopeness + "," + rightopness + "," + left_pupilpos + "," + right_pupilpos);
                     return (Server.test_time + "," + (Server.task_num) + "," + (CombineFocus.point.x) + "," + (CombineFocus.point.y) + "," + (VerboseData.right.pupil_diameter_mm) + "," + (VerboseData.left.pupil_diameter_mm) + "," + (rightopness) + "," + (leftopeness) + "," + (Server.HMDRotation.x) + "," + (Server.HMDRotation.y) + "," + (Server.HMDRotation.z) + "," + (Server.lightValue));
                 }
 
