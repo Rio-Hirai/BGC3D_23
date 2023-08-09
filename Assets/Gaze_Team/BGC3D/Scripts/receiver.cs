@@ -102,7 +102,8 @@ public class receiver : MonoBehaviour
 
 
     // 各種スクリプト-----------------------------------------------
-    public gaze_data gaze_data;         // 各種自然情報を取得
+    public gaze_data gaze_data;         // 各種視線情報を取得
+    public gaze_data_v1 gaze_data_v1;   // 各種視線情報を取得
     public LightSensor sensor;          // 画面の色彩情報
     //--------------------------------------------------------------
 
@@ -338,7 +339,8 @@ public class receiver : MonoBehaviour
         filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv"); // 視線情報用のcsvファイルを作成
 
-        if (gaze_data_switch) this.GetComponent<gaze_data>().enabled = true;
+        //if (gaze_data_switch) this.GetComponent<gaze_data>().enabled = true;
+        if (gaze_data_switch) this.GetComponent<gaze_data_v1>().enabled = true;
         if (gaze_data_switch) result_output_every ("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
         //--------------------------------------------------------------
 
@@ -466,7 +468,8 @@ public class receiver : MonoBehaviour
 
         lightValue = sensor.lightValue; // 画面全体の明度情報を更新
 
-        if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false); // 視線関係のデータを取得
+        //if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false); // 視線関係のデータを取得
+        if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data_v1.get_gaze_data2(), streamWriter_gaze, false); // 視線関係のデータを取得
     }
     //--------------------------------------------------------------
 
