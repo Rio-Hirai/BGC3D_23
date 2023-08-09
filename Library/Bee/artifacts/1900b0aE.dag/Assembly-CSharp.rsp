@@ -408,6 +408,7 @@
 "Assets/Gaze_Team/BGC3D/Scripts/target_size_set.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/booleanlefttest.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/booleanrighttest.cs"
+"Assets/Gaze_Team/BGC3D/Scripts/test_script/CallbackExample.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/gaze_dates.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/LookAt.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/PlaceInFrontOfCamera.cs"
