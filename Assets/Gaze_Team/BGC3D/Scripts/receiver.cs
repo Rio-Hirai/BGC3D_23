@@ -377,88 +377,90 @@ public class receiver : MonoBehaviour
         }
         //--------------------------------------------------------------
 
-
-        test_time += Time.deltaTime; // タスク時間を更新
-
-
-        // タスクの推移管理-------------------------------------------------
-        if (select_target_id == 999 && taskflag == false)
+        if (test_id != 0)
         {
-            taskflag = true;
-            tasklogs.Add("");
-            task_start_time.Add(test_time);
-            test_time_tmp = test_time;
-            logoutput_count = 0;
-            session_flag = true;
-        }
-        //--------------------------------------------------------------
+            test_time += Time.deltaTime; // タスク時間を更新
 
 
-        // タスクの状態チェック----------------------------------------------
-        if (taskflag)
-        {
-            // ターゲットの選択が行われた時の処理---------------------
-            if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
+            // タスクの推移管理-------------------------------------------------
+            if (select_target_id == 999 && taskflag == false)
             {
-                tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp));　// タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
+                taskflag = true;
+                tasklogs.Add("");
+                task_start_time.Add(test_time);
                 test_time_tmp = test_time;
-                if (test_time - task_start_time[task_num] > 60.0f) TimeOut_switch = true; // 1分以上選択できなかった場合にタスクをスキップ
-
-                if ((select_target_id == tasknums[task_num]) || task_skip)　// 正しいターゲットを選択した時の処理
-                {
-                    same_target = true;
-                    task_skip = false; // フラグを初期化
-
-                    tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIIDとタスク完了時の時間を追記
-                    tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
-
-                    if (task_num < target_amount_select)
-                    {
-                        task_end_time.Add(test_time); // タスクが終了した時の時間を保存
-                        task_num++; // タスクを次に進める
-                        test_time_tmp = 0; // タスク時間を初期化
-                        audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
-                        taskflag = false; // 非タスク中にする
-                    }
-                }
-                else　// 間違えたターゲットを選択した時の処理
-                {
-                    logoutput_count++; // 間違えた数をカウント
-
-                    same_target = true;
-                    tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
-                    audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
-                }
+                logoutput_count = 0;
+                session_flag = true;
             }
             //--------------------------------------------------------------
 
 
-            // セッションが終了するか，強制中断を行った時の処理--------------
-            if (task_num == target_amount_select && output_flag == false)
+            // タスクの状態チェック----------------------------------------------
+            if (taskflag)
             {
-                output_flag = true; // 出力済みにする
+                // ターゲットの選択が行われた時の処理---------------------
+                if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
+                {
+                    tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
+                    test_time_tmp = test_time;
+                    if (test_time - task_start_time[task_num] > 60.0f) TimeOut_switch = true; // 1分以上選択できなかった場合にタスクをスキップ
+
+                    if ((select_target_id == tasknums[task_num]) || task_skip) // 正しいターゲットを選択した時の処理
+                    {
+                        same_target = true;
+                        task_skip = false; // フラグを初期化
+
+                        tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIIDとタスク完了時の時間を追記
+                        tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
+
+                        if (task_num < target_amount_select)
+                        {
+                            task_end_time.Add(test_time); // タスクが終了した時の時間を保存
+                            task_num++; // タスクを次に進める
+                            test_time_tmp = 0; // タスク時間を初期化
+                            audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
+                            taskflag = false; // 非タスク中にする
+                        }
+                    }
+                    else // 間違えたターゲットを選択した時の処理
+                    {
+                        logoutput_count++; // 間違えた数をカウント
+
+                        same_target = true;
+                        tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
+                        audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
+                    }
+                }
+                //--------------------------------------------------------------
+
+
+                // セッションが終了するか，強制中断を行った時の処理--------------
+                if (task_num == target_amount_select && output_flag == false)
+                {
+                    output_flag = true; // 出力済みにする
+                    audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
+                    result_output(); // 実験結果をテキスト形式で出力
+                    result_output_csv(); // 実験結果をcsv形式で出力
+                                         //result_output_csv2(); // 視線情報をcsv形式で出力
+                    result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
+                }
+                //--------------------------------------------------------------
+            }
+            //--------------------------------------------------------------
+
+
+            // タスクを中断する際の処理-------------------------------------
+            if (error_output_flag)
+            {
+                error_output_flag = false; // 出力済みにする
                 audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
-                result_output(); // 実験結果をテキスト形式で出力
-                result_output_csv(); // 実験結果をcsv形式で出力
-                //result_output_csv2(); // 視線情報をcsv形式で出力
+                error_output(); // 実験結果をテキスト形式で出力
+                result_output_csv(); // 視線情報をcsv形式で出力
+                                     //result_output_csv2();
                 result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
             }
             //--------------------------------------------------------------
         }
-        //--------------------------------------------------------------
-
-
-        // タスクを中断する際の処理-------------------------------------
-        if (error_output_flag)
-        {
-            error_output_flag = false; // 出力済みにする
-            audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
-            error_output(); // 実験結果をテキスト形式で出力
-            result_output_csv(); // 視線情報をcsv形式で出力
-            //result_output_csv2();
-            result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
-        }
-        //--------------------------------------------------------------
 
 
         // Head（ヘッドマウンドディスプレイ）の情報を一時保管-----------

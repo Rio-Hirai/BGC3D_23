@@ -104,7 +104,6 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\red_result.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\target_size_set.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeFocusSample.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\gaze_data_v1.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\UmeEye.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\PlaceInFrontOfCamera.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_v2.cs" />
@@ -130,6 +129,7 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\booleanlefttest.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeShapeTableDrawer.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\LookAt.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_data_v1.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_new_1.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus_pointer.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_Framework.cs" />
