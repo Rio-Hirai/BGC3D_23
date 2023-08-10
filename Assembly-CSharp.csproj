@@ -109,7 +109,6 @@
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_v2.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_DragBar.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_MirrorCameraSample_Eye_v2.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\results.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_LineButtonsContent.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\target_para_set.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeFocusSample_v2.cs" />
@@ -135,12 +134,13 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\CallbackExample.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_Framework.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\MovingAverageFilter.cs" />
-    <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\CallbackExample_v2.cs" />
+    <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\lesn_pos.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\target_posi_set.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\VIVEsample2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_MirrorCameraSample_Eye.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\results.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\DartBoard.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeData.cs" />
   </ItemGroup>
