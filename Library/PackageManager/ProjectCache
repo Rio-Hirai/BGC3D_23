@@ -34,7 +34,7 @@ m_LocalPackages:
       ticks: 638258020229274531
     m_Hash: 2919789393
 m_ProjectPath: C:/Users/riong/WORKSPACE_M.2/BGC3D_23/Packages
-m_EditorVersion: 2023.1.7f1 (4f4e359ec3fc)
+m_EditorVersion: 2023.1.8f1 (ab88ac34d80c)
 m_ResolvedPackages:
 - packageId: com.unity.ai.navigation@1.1.4
   testable: 0
@@ -1340,7 +1340,6 @@ m_ResolvedPackages:
     - 1.8.1
     - 1.8.2
     compatible:
-    - 1.8.1
     - 1.8.2
     recommended: 1.8.2
     deprecated: []
@@ -1404,7 +1403,7 @@ m_ResolvedPackages:
     revision: be41b6db171e2e06fb1bd863b239a7fc7b2f10cf
     path: 
   unityLifecycle:
-    version: 1.8.1
+    version: 1.8.2
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
