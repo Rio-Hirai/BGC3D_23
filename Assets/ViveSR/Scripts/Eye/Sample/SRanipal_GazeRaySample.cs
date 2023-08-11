@@ -31,19 +31,13 @@ namespace ViveSR
 
                 public GameObject Lens_rotation;
 
-                //private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
-
-                // 移動平均フィルター関係
-                private int window = 25; // 窓の大きさ
-                private int[] count = new int[5]; // 新しい値の格納場所
-                private Vector3[,] hit_position = new Vector3[5,25];
-                private Vector3 hit_position_fil;
-
                 // サーバー接続
-                public receiver script;
+                public receiver Server;
 
                 // レイ算出用
+                [System.NonSerialized]
                 public Vector3 ray0;
+                [System.NonSerialized]
                 public Vector3 ray1;
 
                 private void Start()
@@ -58,8 +52,6 @@ namespace ViveSR
 
                     GazeRayRenderer.material = new Material(Shader.Find("Sprites/Default"));
                     GazeRayRenderer.colorGradient = _gradient;
-                    //GazeRayRenderer.startColor = Color.red;
-                    //GazeRayRenderer.endColor = Color.green;
                 }
 
                 private void Update()
@@ -97,55 +89,6 @@ namespace ViveSR
                     {
                         if (SRanipal_Eye.GetGazeRay(GazeIndex.COMBINE, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal))
                         {
-                            //// 必要な変数を定義
-                            //Vector3 GazeDirectionCombined2 = Camera.main.transform.TransformDirection(GazeDirectionCombinedLocal);
-                            //RaycastHit hit;
-
-                            // 移動平均フィルターを適用
-                            //GazeDirectionCombined2 = Move_filter2(GazeDirectionCombined2, 0);
-                            //Vector3 CameraMainTransform2 = Move_filter2(Camera.main.transform.position, 1);
-
-                            //// 移動平均フィルターを適用
-                            //Vector3 CameraMainTransform2 = Camera.main.transform.position;
-
-                            //// オブジェクトのレイヤー指定
-                            //int layerMask = 7 << 10;
-
-                            // レイの衝突判定
-                            //if (Physics.Raycast((Camera.main.transform.position - Camera.main.transform.up * 0.05f), (Camera.main.transform.position + (Camera.main.transform.TransformDirection(GazeDirectionCombinedLocal)) * LengthOfRay), out hit, Mathf.Infinity, layerMask))
-                            //{
-                            //    string objectName = hit.collider.gameObject.name;
-                            //    hit_point.transform.position = hit.point;
-
-                            //    objectName_new = hit.collider.gameObject;
-                            //}
-
-                            //// オブジェクト選択
-                            //if (objectName_now != objectName_new)
-                            //{
-                            //    script.same_target = false;
-                            //    script.select_target_id = -1;
-                            //    objectName_new.GetComponent<target_para_set>().dtime = 0;
-                            //    //objectName_now.GetComponent<Renderer>().material.color = Color.white;
-                            //    //objectName_new.GetComponent<Renderer>().material.color = Color.yellow;
-                            //    script.selecting_target = objectName_new;
-                            //    script.lens_flag = true;
-                            //    script.lens_flag2 = true;
-                            //}
-                            //objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime;
-                            //if (objectName_new.GetComponent<target_para_set>().dtime >= script.set_dtime)
-                            //{
-                            //    script.select_target_id = objectName_new.GetComponent<target_para_set>().Id;
-                            //    //objectName_new.GetComponent<Renderer>().material.color = script.target_color;
-                            //}
-
-                            //objectName_now = objectName_new;
-
-                            //if (Vector3.Distance(hit_point.transform.position, objectName_now.transform.position) > 0.2f)
-                            //{
-                            //    script.lens_flag = false;
-                            //    script.lens_flag2 = false;
-                            //}
                         }
                         else if (SRanipal_Eye.GetGazeRay(GazeIndex.LEFT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal))
                         {
@@ -161,27 +104,7 @@ namespace ViveSR
                     GazeRayRenderer.SetPosition(1, Camera.main.transform.position + GazeDirectionCombined * LengthOfRay);
 
                     ray0 = Camera.main.transform.position - Camera.main.transform.up * 0.05f;
-                    //ray1 = Camera.main.transform.position + GazeDirectionCombined * LengthOfRay;
                     ray1 = GazeDirectionCombined;
-
-                    //// 焦点を合わせる
-                    //foreach (GazeIndex index in GazePriority)
-                    //{
-                    //    Ray GazeRay;
-                    //    int dart_board_layer_id = LayerMask.NameToLayer("NoReflection");
-                    //    bool eye_focus;
-                    //    if (eye_callback_registered)
-                    //        eye_focus = SRanipal_Eye.Focus(index, out GazeRay, out FocusInfo, 0, MaxDistance, (1 << dart_board_layer_id), eyeData);
-                    //    else
-                    //        eye_focus = SRanipal_Eye.Focus(index, out GazeRay, out FocusInfo, 0, MaxDistance, (1 << dart_board_layer_id));
-
-                    //    if (eye_focus)
-                    //    {
-                    //        DartBoard dartBoard = FocusInfo.transform.GetComponent<DartBoard>();
-                    //        if (dartBoard != null) dartBoard.Focus(FocusInfo.point);
-                    //        break;
-                    //    }
-                    //}
                 }
 
                 private void Release() {
@@ -195,25 +118,6 @@ namespace ViveSR
                 private static void EyeCallback(ref EyeData eye_data)
                 {
                     eyeData = eye_data;
-                }
-
-                // 移動平均フィルター
-                public Vector3 Move_filter2(Vector3 position, int coll)
-                {
-                    if (count[coll] > window - 1)
-                    {
-                        count[coll] = 0;
-                    }
-
-                    hit_position[coll, count[coll]] = position;
-                    hit_position_fil = new Vector3(0f, 0f, 0f);
-                    for (int i = 0; i < window; i++)
-                    {
-                        hit_position_fil += hit_position[coll, i];
-                    }
-                    count[coll]++;
-
-                    return hit_position_fil /= window;
                 }
             }
         }
