@@ -104,6 +104,7 @@ public class receiver : MonoBehaviour
     // 各種スクリプト-----------------------------------------------
     public gaze_data gaze_data;         // 各種視線情報を取得
     public gaze_data_v1 gaze_data_v1;   // 各種視線情報を取得
+    public gaze_data_v2 gaze_data_v2;   // 各種視線情報を取得
     public LightSensor sensor;          // 画面の色彩情報
     //--------------------------------------------------------------
 
@@ -114,7 +115,9 @@ public class receiver : MonoBehaviour
 
 
     // モニタ用変数-------------------------------------------------
+    [System.NonSerialized]
     public int test_id;                 // 使用手法のID
+    [System.NonSerialized]
     public int target_p_id;             // 配置条件のID
     public int target_amount_all;       // ターゲットの総数
     public int target_amount_select;    // 選択する数
@@ -197,6 +200,7 @@ public class receiver : MonoBehaviour
     public bool lens_flag;              // ？？？
     public bool lens_flag2;             // ？？？
     //--------------------------------------------------------------
+
 
     private StreamWriter streamWriter_gaze; // ファイル出力用
 
