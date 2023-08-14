@@ -247,6 +247,7 @@ namespace ViveSR
                 private static void EyeCallback(ref EyeData eye_data)
                 {
                     eyeData = eye_data;
+                    Debug.Log("OK");
                 }
             }
         }
