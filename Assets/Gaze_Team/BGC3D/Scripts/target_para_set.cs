@@ -58,15 +58,23 @@ public class target_para_set : MonoBehaviour
             {
                 dtime = 0; // 累計注視時間を0にする．この処理のせいで非タスク中に練習を行えないため，要改良部分
             }
-
-            if (dtime >= script.set_dtime) // 累計注視時間が設定した時間以上の場合，
+        }
+        else
+        {
+            if (script.DwellTarget != this.gameObject) // このターゲットと注視中のターゲットが異なる場合
             {
-                script.selecting_target = this.gameObject; // 選択されたターゲットを更新
-                script.select_target_id = Id; // 選択されたターゲットのIDを更新
-                script.same_target = false; // ？？？
+                dtime = 0; // 累計注視時間を0にする
             }
         }
         //--------------------------------------------------------------
+
+
+        if (dtime >= script.set_dtime) // 累計注視時間が設定した時間以上の場合，
+        {
+            script.selecting_target = this.gameObject; // 選択されたターゲットを更新
+            script.select_target_id = Id; // 選択されたターゲットのIDを更新
+            script.same_target = false; // ？？？
+        }
 
 
         // 色変化の処理（要リファクタリング部分）-----------------------

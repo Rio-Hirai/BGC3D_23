@@ -68,6 +68,6 @@ public class CallbackExample : MonoBehaviour
     private static void EyeCallback(ref EyeData eye_data)
     {
         eyeData = eye_data;
-        Debug.Log("OK = " + eyeData.verbose_data.right.eye_openness);
+        ///Debug.Log("OK = " + eyeData.verbose_data.right.eye_openness);
     }
 }

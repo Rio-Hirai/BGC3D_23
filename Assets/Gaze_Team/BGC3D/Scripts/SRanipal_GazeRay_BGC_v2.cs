@@ -16,7 +16,7 @@ namespace ViveSR
                 [SerializeField, Range(0, 30)] public int LengthOfRay = 25;         // レイの最大長
                 [SerializeField] private LineRenderer GazeRayRenderer;              // レイの色
                 [SerializeField] private Gradient _gradient;                        // レイの色
-                private static EyeData_v2 eyeData = new EyeData_v2();                     // 視線情報
+                private static EyeData_v2 eyeData = new EyeData_v2();               // 視線情報
                 private bool eye_callback_registered = false;                       // callback関係
 
                 [SerializeField, Range(0.0f, 25.0f)] public float radius = 5.0f;    // Bubble Cursorの半径
@@ -63,28 +63,16 @@ namespace ViveSR
 
                     if (eye_callback_registered)
                     {
-                        if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.COMBINE, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData))
-                        {
-                        }
-                        else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.LEFT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData))
-                        {
-                        }
-                        else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.RIGHT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData))
-                        {
-                        }
+                        if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.COMBINE, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData)) { }
+                        else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.LEFT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData)) { }
+                        else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.RIGHT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal, eyeData)) { }
                         else return;
                     }
                     else
                     {
-                        if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.COMBINE, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal))
-                        {
-                        }
-                        else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.LEFT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal))
-                        {
-                        }
-                        else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.RIGHT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal))
-                        {
-                        }
+                        if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.COMBINE, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal)) { }
+                        else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.LEFT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal)) { }
+                        else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.RIGHT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal)) { }
                         else return;
                     }
 

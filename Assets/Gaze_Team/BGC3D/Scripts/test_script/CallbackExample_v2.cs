@@ -57,5 +57,6 @@ public class CallbackExample_v2 : MonoBehaviour
         eyeData = eye_data;
 
         // ˆÈ‰º‚ÉeyeData‚ğ—p‚¢‚½ˆ—‚ğ‹Lq‚·‚é
+        Debug.Log("OK");
     }
 }

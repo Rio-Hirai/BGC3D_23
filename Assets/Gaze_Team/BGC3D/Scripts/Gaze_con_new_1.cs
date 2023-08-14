@@ -95,39 +95,36 @@ namespace ViveSR
 
 
                     // ここの条件を確認する！！（リファクタリング部分）
-                    if (script.BlinkCount > -1)
+                    foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
                     {
-                        foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
+                        Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
+                        Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
+                        cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                        float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
+
+
+                        // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きい値なら
+                        if (nearDistance == 0 || nearDistance > distance)
                         {
-                            Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
-                            Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
-                            cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
-                            float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
+                            nearDistance = distance; // nearDistanceを更新
+                            searchTargetObj = obj; // searchTargetObjを更新
+                            target_size = obj.transform.localScale.x; // 注視しているターゲットの大きさを更新．ターゲットの大きさが全次元で一律のためx次元のみ取得
+                            distance_of_camera_to_target = Vector3.Distance(camera_obj.position, obj.transform.position); // ユーザとターゲット間の距離を更新
 
-
-                            // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きい値なら
-                            if (nearDistance == 0 || nearDistance > distance)
+                            // カーソルの大きさの上限に抵触した場合の処理-------------------
+                            if (nearDistance < cursor_size_limit) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
                             {
-                                nearDistance = distance; // nearDistanceを更新
-                                searchTargetObj = obj; // searchTargetObjを更新
-                                target_size = obj.transform.localScale.x; // 注視しているターゲットの大きさを更新．ターゲットの大きさが全次元で一律のためx次元のみ取得
-                                distance_of_camera_to_target = Vector3.Distance(camera_obj.position, obj.transform.position); // ユーザとターゲット間の距離を更新
-
-                                // カーソルの大きさの上限に抵触した場合の処理-------------------
-                                if (nearDistance < (cursor_size_limit)) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
-                                {
-                                    script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
-                                    script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
-                                }
-                                else
-                                {
-                                    script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
-                                    script.DwellTarget = null; // 注視しているオブジェクトを更新
-                                }
-                                //--------------------------------------------------------------
+                                script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
+                                script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
+                            }
+                            else
+                            {
+                                script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
+                                script.DwellTarget = null; // 注視しているオブジェクトを更新
                             }
                             //--------------------------------------------------------------
                         }
+                        //--------------------------------------------------------------
                     }
 
 
@@ -138,8 +135,6 @@ namespace ViveSR
                         script.same_target = false;
                         script.select_target_id = -1; // 選択状態のターゲットのIDを初期化
                         if (script.total_DwellTime_mode == false) searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
-
-                        script.BlinkFlag = 0; // 連続瞬きを初期化
                     }
                     //--------------------------------------------------------------
 
@@ -147,13 +142,13 @@ namespace ViveSR
                     searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視しているターゲットの累計注視時間を追加
 
 
-                    // 一定時間注視していた場合--------------------------------------
-                    if (((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime || script.BlinkFlag > 0) && nearDistance * 2 + target_size < (cursor_size_limit)) || script.next_step__flag)
-                    {
-                        script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
-                        script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
-                    }
-                    //--------------------------------------------------------------
+                    //// 一定時間注視していた場合--------------------------------------
+                    //if (((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime) && nearDistance * 2 + target_size < (cursor_size_limit)) || script.next_step__flag)
+                    //{
+                    //    script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
+                    //    script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
+                    //}
+                    ////--------------------------------------------------------------
 
 
                     oldNearObj = searchTargetObj; // 注視しているターゲットを更新

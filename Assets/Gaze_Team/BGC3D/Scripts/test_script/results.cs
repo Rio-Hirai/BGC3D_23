@@ -84,6 +84,7 @@ public class results : MonoBehaviour
             csvDatas.Add(line.Split(',')); // , ‹æØ‚è‚ÅƒŠƒXƒg‚É’Ç‰Á
             Debug.Log(csvDatas[i][0] + ", " + csvDatas[i][1] + ", " + csvDatas[i][2] + ", " + csvDatas[i][3] + ", " + csvDatas[i][4] + ", " + csvDatas[i][5]);
             i++;
+            Debug.Log(test_id);
             //if (csvDatas[i][5] != null)
             //{
             //    tasklogs.Add(csvDatas[i++][5]);

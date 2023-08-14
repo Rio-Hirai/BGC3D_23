@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 2
 --- !u!135 &17813295
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 38
 --- !u!135 &26740956
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 26
 --- !u!135 &34782713
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 14
 --- !u!135 &44495306
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 47
 --- !u!135 &82200571
@@ -1903,7 +1903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 42
 --- !u!135 &153671710
@@ -2629,7 +2629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 36
 --- !u!135 &182704607
@@ -3029,7 +3029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 37
 --- !u!135 &215606252
@@ -3623,6 +3623,171 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235936688}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!43 &242124166
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &250864184
 GameObject:
   m_ObjectHideFlags: 0
@@ -5239,7 +5404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 6
 --- !u!135 &332199095
@@ -5481,7 +5646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 18
 --- !u!135 &350591899
@@ -5844,7 +6009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 45
 --- !u!135 &389699922
@@ -6476,7 +6641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 63
 --- !u!135 &444840992
@@ -7473,7 +7638,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Server
       value: 
-      objectReference: {fileID: 2017897884}
+      objectReference: {fileID: 2017897885}
     - target: {fileID: 114366848731431556, guid: 95145ad4fe8448d4ebdcf3760752e2e5,
         type: 3}
       propertyPath: hit_point
@@ -8098,7 +8263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 7
 --- !u!135 &574519349
@@ -8877,7 +9042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 4
 --- !u!135 &607977270
@@ -9119,7 +9284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 32
 --- !u!135 &614233112
@@ -9695,7 +9860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 31
 --- !u!135 &681325830
@@ -9816,7 +9981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 40
 --- !u!135 &684052268
@@ -10343,171 +10508,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706212821}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!43 &707538417
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1 &709517956
 GameObject:
   m_ObjectHideFlags: 0
@@ -10918,7 +10918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 113
 --- !u!135 &730722344
@@ -12349,7 +12349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 28
 --- !u!135 &870040714
@@ -12591,7 +12591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 43
 --- !u!135 &872678409
@@ -13040,6 +13040,46 @@ MonoBehaviour:
   targetpoint: {x: 0, y: 0, z: 0}
   oldcursorpoint: {x: 0, y: 0, z: 0}
   coloralpha: 0
+--- !u!21 &912648442
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &916254788
 GameObject:
   m_ObjectHideFlags: 0
@@ -13710,7 +13750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 22
 --- !u!135 &1002070602
@@ -14120,7 +14160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 21
 --- !u!135 &1021198972
@@ -14362,7 +14402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 34
 --- !u!135 &1028012383
@@ -15209,7 +15249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 44
 --- !u!135 &1061654927
@@ -15693,7 +15733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 23
 --- !u!135 &1096673020
@@ -15919,7 +15959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 12
 --- !u!135 &1115585062
@@ -16613,7 +16653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 13
 --- !u!135 &1136263053
@@ -17001,7 +17041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 1
 --- !u!135 &1152610803
@@ -17243,7 +17283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 10
 --- !u!135 &1171716376
@@ -17519,7 +17559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 38
 --- !u!135 &1217478153
@@ -17761,7 +17801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 9
 --- !u!135 &1226775437
@@ -18729,7 +18769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 30
 --- !u!135 &1285987672
@@ -20091,7 +20131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 8
 --- !u!135 &1355951471
@@ -20696,7 +20736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 20
 --- !u!135 &1382099101
@@ -21549,7 +21589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 24
 --- !u!135 &1454836951
@@ -21791,7 +21831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 16
 --- !u!135 &1457185688
@@ -22033,7 +22073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 46
 --- !u!135 &1466303027
@@ -22158,11 +22198,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2067612475}
+      objectReference: {fileID: 912648442}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 707538417}
+      objectReference: {fileID: 242124166}
     - target: {fileID: 1000014254142504, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_TagString
       value: MainCamera
@@ -22510,7 +22550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 17
 --- !u!135 &1516687098
@@ -24959,7 +24999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 5
 --- !u!135 &1707345837
@@ -25564,7 +25604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 39
 --- !u!135 &1734488621
@@ -26547,7 +26587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 88
 --- !u!135 &1794791582
@@ -26941,7 +26981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnableEye: 1
-  EnableEyeDataCallback: 1
+  EnableEyeDataCallback: 0
   EnableEyeVersion: 0
 --- !u!114 &1816355145
 MonoBehaviour:
@@ -27568,7 +27608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 41
 --- !u!135 &1849175183
@@ -27689,7 +27729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 15
 --- !u!135 &1851497360
@@ -27810,7 +27850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 48
 --- !u!135 &1860753326
@@ -28294,7 +28334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 11
 --- !u!135 &1883964949
@@ -29625,7 +29665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 29
 --- !u!135 &1956653789
@@ -29988,7 +30028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 3
 --- !u!135 &1964174449
@@ -30351,7 +30391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 25
 --- !u!135 &2006032791
@@ -30593,7 +30633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 3
 --- !u!135 &2013384683
@@ -30707,8 +30747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6223bc1e19880664eaef83e8ccdd1195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test_pattern: 0
-  target_pattern: 0
+  test_pattern: 3
+  target_pattern: 5
   tester_id: 0
   tester_name: name_n.n
   set_dtime: 1
@@ -30717,7 +30757,7 @@ MonoBehaviour:
   pointvalue2: 0.75
   Brightness: 0
   total_DwellTime_mode: 0
-  gaze_data_switch: 0
+  gaze_data_switch: 1
   TimeOut_switch: 0
   eye_calibration: 0
   target_pos__calibration: 0
@@ -30727,7 +30767,7 @@ MonoBehaviour:
   controller_switch: 0
   laserswitch: 1
   target_alpha_switch: 1
-  MAverageFilter: 1
+  MAverageFilter: 0
   task_skip: 0
   error_output_flag: 0
   lens_switch: 0
@@ -31009,14 +31049,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017897884}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47613961cde0a8b4aa4f79219b7e523c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EnableEye: 1
-  EnableEyeDataCallback: 1
-  EnableEyeVersion: 0
+  EnableEyeDataCallback: 0
+  EnableEyeVersion: 1
 --- !u!114 &2017897899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31036,7 +31076,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017897884}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0619ee65dd6cc5a4b9745182972e142d, type: 3}
   m_Name: 
@@ -31694,7 +31734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 27
 --- !u!135 &2049366997
@@ -31768,46 +31808,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049366994}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!21 &2067612475
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &2069805033
 GameObject:
   m_ObjectHideFlags: 0
@@ -32218,7 +32218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 19
 --- !u!135 &2082829828
@@ -32460,7 +32460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 35
 --- !u!135 &2095471051
@@ -32874,7 +32874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9603644b6e14e43aa59eddc9b1bbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Server: {fileID: 0}
+  Server: {fileID: 2017897884}
   dtime: 0
   Id: 33
 --- !u!135 &2118337465
