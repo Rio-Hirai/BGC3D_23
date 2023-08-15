@@ -31,7 +31,7 @@ namespace ViveSR.anipal.Eye
         private void Update()
         {
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
-                SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
+                        SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
 
             if (SRanipal_Eye_Framework.Instance.EnableEyeDataCallback == true && eye_callback_registered == false)
             {
@@ -79,7 +79,7 @@ namespace ViveSR.anipal.Eye
                 if (script.total_DwellTime_mode == false) objectName_new.GetComponent<target_para_set>().dtime = 0; //注視時間を初期化
                 //objectName_now.GetComponent<Renderer>().material.color = Color.white;
                 //objectName_new.GetComponent<Renderer>().material.color = Color.yellow;
-                script.selecting_target = objectName_new; //注視しているオブジェクトを更新
+                script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
                 script.lens_flag = true;
                 script.lens_flag2 = true;
             }
@@ -88,12 +88,12 @@ namespace ViveSR.anipal.Eye
             {
                 objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視中のオブジェクトの総連続注視時間を追加．
 
-                if (objectName_new.GetComponent<target_para_set>().dtime >= script.set_dtime || script.next_step__flag) //一定時間注視した＝選択が成立した場合
-                {
-                    script.select_target_id = objectName_new.GetComponent<target_para_set>().Id; //IDを更新
-                    script.next_step__flag = false; //
-                    //objectName_new.GetComponent<Renderer>().material.color = script.target_color;
-                }
+                //if (objectName_new.GetComponent<target_para_set>().dtime >= script.set_dtime || script.next_step__flag) //一定時間注視した＝選択が成立した場合
+                //{
+                //    script.select_target_id = objectName_new.GetComponent<target_para_set>().Id; //IDを更新
+                //    script.next_step__flag = false; //
+                //    //objectName_new.GetComponent<Renderer>().material.color = script.target_color;
+                //}
 
                 objectName_now = objectName_new; //注視しているオブジェクトを更新
 

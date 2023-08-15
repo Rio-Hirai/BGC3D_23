@@ -34,14 +34,17 @@ public class LaserPointerHandler : MonoBehaviour
             GameObject testcube = GameObject.Find(e.target.name);
             Server.same_target = false;
             testcube.GetComponent<Renderer>().material.color = Server.target_color;
+            Debug.Log("OK = ");
 
-            if (this.tag == "Target")
+            if (testcube.tag == "Targets")
             {
                 Server.select_target_id = testcube.GetComponent<target_para_set>().Id;
+                Debug.Log("OK_id");
             }
-            else if (this.tag == "UI")
+            else if (testcube.tag == "UI")
             {
                 testcube.GetComponent<UI_default>().Click_flag = true;
+                Debug.Log("OK_ui");
             }
         }
     }
@@ -51,6 +54,8 @@ public class LaserPointerHandler : MonoBehaviour
     // レーザーポインターがtargetに触れたとき-----------------------
     public void PointerInside(object sender, PointerEventArgs e)
     {
+        GameObject testcube = GameObject.Find(e.target.name);
+        Server.DwellTarget = testcube;
     }
     //--------------------------------------------------------------
 

@@ -15,29 +15,29 @@ using UnityEngine.Rendering.PostProcessing;
 public class receiver : MonoBehaviour
 {
     // 使用手法のリスト---------------------------------------------
-    public enum test_pattern_list       // 新たな手法を追加したい場合はココに名前を追加する
+    public enum test_pattern_list           // 新たな手法を追加したい場合はココに名前を追加する
     {
-        Zero_Cursor,                    // カーソル無し（IDは0）
-        Bubble_Gaze_Cursor1,            // BGC（IDは1）
-        Bubble_Gaze_Cursor2,            // BGC with RayCast（IDは2）
-        Bubble_Gaze_Cursor3,            // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは3）
-        Gaze_Raycast,                   // 視線によるレイキャスト（IDは4）
-        Controller_Raycast              // コントローラによるレイキャスト（IDは5）
+        Zero_Cursor,                        // カーソル無し（IDは0）
+        Bubble_Gaze_Cursor1,                // BGC（IDは1）
+        Bubble_Gaze_Cursor2,                // BGC with RayCast（IDは2）
+        Bubble_Gaze_Cursor3,                // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは3）
+        Gaze_Raycast,                       // 視線によるレイキャスト（IDは4）
+        Controller_Raycast                  // コントローラによるレイキャスト（IDは5）
     }
     public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1;  // 手法切り替え用のリスト構造
     //--------------------------------------------------------------
 
 
     // ターゲット配置条件のリスト-----------------------------------
-    public enum target_pattern_list     // 新たなターゲット配置条件を追加したい場合はココに名前を追加する
+    public enum target_pattern_list         // 新たなターゲット配置条件を追加したい場合はココに名前を追加する
     {
-        Null,                           // ターゲット無し（IDは0）
-        High_Density,                   // 高密度条件（IDは1）
-        High_Occlusion,                 // 高オクルージョン条件（IDは2）
-        Density_and_Occlusion,          // 密度＆オクルージョン条件（IDは3）
-        Density_and_Occlusion2,         // 密度＆オクルージョン条件2（IDは4）
-        TEST,                           // テスト用（IDは98）
-        Random                          // ランダム配置（IDは99）
+        Null,                               // ターゲット無し（IDは0）
+        High_Density,                       // 高密度条件（IDは1）
+        High_Occlusion,                     // 高オクルージョン条件（IDは2）
+        Density_and_Occlusion,              // 密度＆オクルージョン条件（IDは3）
+        Density_and_Occlusion2,             // 密度＆オクルージョン条件2（IDは4）
+        TEST,                               // テスト用（IDは98）
+        Random                              // ランダム配置（IDは99）
     }
     public target_pattern_list target_pattern = target_pattern_list.High_Density;   // 条件切り替え用のリスト構造
     //--------------------------------------------------------------
@@ -71,6 +71,7 @@ public class receiver : MonoBehaviour
     public bool task_skip;              // 現在のタスクをスキップ（フラグを立てた瞬間に１度だけ実行されfalseに戻る）
     public bool error_output_flag;      // 強制中断（フラグを立てた瞬間に現時点での実験結果が出力される）
     public bool lens_switch;            // レンズの表示・非表示（使っていない）
+    public bool free_mode;              // フリーモードのオン・オフ
     //--------------------------------------------------------------
 
 
@@ -103,9 +104,7 @@ public class receiver : MonoBehaviour
 
 
     // 各種スクリプト-----------------------------------------------
-    public gaze_data gaze_data;         // 各種視線情報を取得
-    public gaze_data_v1 gaze_data_v1;   // 各種視線情報を取得
-    public gaze_data_v2 gaze_data_v2;   // 各種視線情報を取得
+    public gaze_data_callback_v2 gaze_data;
     public LightSensor sensor;          // 画面の色彩情報
     //--------------------------------------------------------------
 
@@ -125,7 +124,8 @@ public class receiver : MonoBehaviour
     public int target_amount_count;     // 繰り返し回数
     private string input_start_time;    // アプリケーションを実行した時の時間（ほぼ確実に一意に定まるのでファイル名に使用）
     public int task_num = 0;            // タスクの番号
-    private string filePath;            // 出力用ファイル名
+    [System.NonSerialized]
+    public string filePath;             // 出力用ファイル名
     public float test_time = 0;         // 実験時間
     private float test_time_tmp;        // 前フレームまでの実験時間
     public List<int> tasknums;          // タスクの順番を格納するリスト
@@ -202,8 +202,11 @@ public class receiver : MonoBehaviour
     public bool lens_flag2;             // ？？？
     //--------------------------------------------------------------
 
+    [System.NonSerialized]
+    public StreamWriter streamWriter_gaze; // ファイル出力用
 
-    private StreamWriter streamWriter_gaze; // ファイル出力用
+    [System.NonSerialized]
+    public string gaze_data_v2;
 
 
     void Start()
@@ -351,8 +354,8 @@ public class receiver : MonoBehaviour
         filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv"); // 視線情報用のcsvファイルを作成
 
-        //if (gaze_data_switch) this.GetComponent<gaze_data>().enabled = true;
-        if (gaze_data_switch) this.GetComponent<gaze_data_v1>().enabled = true;
+        // if (gaze_data_switch) this.GetComponent<gaze_data>().enabled = true;
+        // if (gaze_data_switch) this.GetComponent<gaze_data_v2>().enabled = true;
         if (gaze_data_switch) result_output_every ("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
         //--------------------------------------------------------------
 
@@ -367,124 +370,133 @@ public class receiver : MonoBehaviour
 
     void Update()
     {
-        method_change(); // 使用している手法を変更
-
-
-        // ターゲット位置の調整----------------------------------------------
-        grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any);
-        if (grapgrip || target_pos__calibration)
+        if (free_mode == false)
         {
-            if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
-
-            Vector3 forward = head_obj.transform.forward; // ユーザ（カメラ）の前方方向を取得
-            Vector3 newPosition = head_obj.transform.position + forward * Depth; // ユーザ（カメラ）の位置をターゲット群の新しい位置に設定
-            newPosition.y = head_obj.transform.position.y; // ターゲット群とユーザ（カメラ）の高さを同じにする
-            target_set[target_p_id - 1].transform.position = newPosition; // ターゲット群を新しい位置に移動
-            target_set[target_p_id - 1].transform.LookAt(head_obj.transform.position); // ターゲット群をユーザ（カメラ）の方向に向ける
-            Vector3 rotation = target_set[target_p_id - 1].transform.eulerAngles; // ターゲット群が逆を向いてしまうので180度回転させる
-            rotation.y += 180;
-            target_set[target_p_id - 1].transform.eulerAngles = rotation;
-
-            target_pos__calibration = false; // 機能フラグをリセット
-        }
-        //--------------------------------------------------------------
-
-        if (test_id != 0)
-        {
-            test_time += Time.deltaTime; // タスク時間を更新
+            method_change(); // 使用している手法を変更
 
 
-            // タスクの推移管理-------------------------------------------------
-            if (select_target_id == 999 && taskflag == false)
+            // ターゲット位置の調整----------------------------------------------
+            grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any);
+            if (grapgrip || target_pos__calibration)
             {
-                taskflag = true;
-                tasklogs.Add("");
-                task_start_time.Add(test_time);
-                test_time_tmp = test_time;
-                logoutput_count = 0;
-                session_flag = true;
+                if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
+
+                Vector3 forward = head_obj.transform.forward; // ユーザ（カメラ）の前方方向を取得
+                Vector3 newPosition = head_obj.transform.position + forward * Depth; // ユーザ（カメラ）の位置をターゲット群の新しい位置に設定
+                newPosition.y = head_obj.transform.position.y; // ターゲット群とユーザ（カメラ）の高さを同じにする
+                target_set[target_p_id - 1].transform.position = newPosition; // ターゲット群を新しい位置に移動
+                target_set[target_p_id - 1].transform.LookAt(head_obj.transform.position); // ターゲット群をユーザ（カメラ）の方向に向ける
+                Vector3 rotation = target_set[target_p_id - 1].transform.eulerAngles; // ターゲット群が逆を向いてしまうので180度回転させる
+                rotation.y += 180;
+                target_set[target_p_id - 1].transform.eulerAngles = rotation;
+
+                target_pos__calibration = false; // 機能フラグをリセット
             }
             //--------------------------------------------------------------
 
-
-            // タスクの状態チェック----------------------------------------------
-            if (taskflag)
+            if (test_id != 0)
             {
-                // ターゲットの選択が行われた時の処理---------------------
-                if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
+                test_time += Time.deltaTime; // タスク時間を更新
+
+
+                // タスクの推移管理-------------------------------------------------
+                if (select_target_id == 999 && taskflag == false)
                 {
-                    tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
+                    taskflag = true;
+                    tasklogs.Add("");
+                    task_start_time.Add(test_time);
                     test_time_tmp = test_time;
-                    if (test_time - task_start_time[task_num] > 60.0f) TimeOut_switch = true; // 1分以上選択できなかった場合にタスクをスキップ
-
-                    if ((select_target_id == tasknums[task_num]) || task_skip) // 正しいターゲットを選択した時の処理
-                    {
-                        same_target = true;
-                        task_skip = false; // フラグを初期化
-
-                        tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIIDとタスク完了時の時間を追記
-                        tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
-
-                        if (task_num < target_amount_select)
-                        {
-                            task_end_time.Add(test_time); // タスクが終了した時の時間を保存
-                            task_num++; // タスクを次に進める
-                            test_time_tmp = 0; // タスク時間を初期化
-                            audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
-                            taskflag = false; // 非タスク中にする
-                        }
-                    }
-                    else // 間違えたターゲットを選択した時の処理
-                    {
-                        logoutput_count++; // 間違えた数をカウント
-
-                        same_target = true;
-                        tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
-                        audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
-                    }
+                    logoutput_count = 0;
+                    session_flag = true;
                 }
                 //--------------------------------------------------------------
 
 
-                // セッションが終了するか，強制中断を行った時の処理--------------
-                if (task_num == target_amount_select && output_flag == false)
+                // タスクの状態チェック----------------------------------------------
+                if (taskflag)
                 {
-                    output_flag = true; // 出力済みにする
+                    // ターゲットの選択が行われた時の処理---------------------
+                    if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
+                    {
+                        tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
+                        test_time_tmp = test_time;
+                        if (test_time - task_start_time[task_num] > 60.0f) TimeOut_switch = true; // 1分以上選択できなかった場合にタスクをスキップ
+
+                        if ((select_target_id == tasknums[task_num]) || task_skip) // 正しいターゲットを選択した時の処理
+                        {
+                            same_target = true;
+                            task_skip = false; // フラグを初期化
+
+                            tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIIDとタスク完了時の時間を追記
+                            tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
+
+                            if (task_num < target_amount_select)
+                            {
+                                task_end_time.Add(test_time); // タスクが終了した時の時間を保存
+                                task_num++; // タスクを次に進める
+                                test_time_tmp = 0; // タスク時間を初期化
+                                audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
+                                taskflag = false; // 非タスク中にする
+                            }
+                        }
+                        else // 間違えたターゲットを選択した時の処理
+                        {
+                            logoutput_count++; // 間違えた数をカウント
+
+                            same_target = true;
+                            tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
+                            audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
+                        }
+                    }
+                    //--------------------------------------------------------------
+
+
+                    // セッションが終了するか，強制中断を行った時の処理--------------
+                    if (task_num == target_amount_select && output_flag == false)
+                    {
+                        output_flag = true; // 出力済みにする
+                        audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
+                        result_output(); // 実験結果をテキスト形式で出力
+                        result_output_csv(); // 実験結果をcsv形式で出力
+                                             //result_output_csv2(); // 視線情報をcsv形式で出力
+                        result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
+                    }
+                    //--------------------------------------------------------------
+                }
+                //--------------------------------------------------------------
+
+
+                // タスクを中断する際の処理-------------------------------------
+                if (error_output_flag)
+                {
+                    error_output_flag = false; // 出力済みにする
                     audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
-                    result_output(); // 実験結果をテキスト形式で出力
-                    result_output_csv(); // 実験結果をcsv形式で出力
-                                         //result_output_csv2(); // 視線情報をcsv形式で出力
+                    error_output(); // 実験結果をテキスト形式で出力
+                    result_output_csv(); // 視線情報をcsv形式で出力
+                                         //result_output_csv2();
                     result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
                 }
                 //--------------------------------------------------------------
             }
-            //--------------------------------------------------------------
 
 
-            // タスクを中断する際の処理-------------------------------------
-            if (error_output_flag)
-            {
-                error_output_flag = false; // 出力済みにする
-                audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
-                error_output(); // 実験結果をテキスト形式で出力
-                result_output_csv(); // 視線情報をcsv形式で出力
-                                     //result_output_csv2();
-                result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
-            }
-            //--------------------------------------------------------------
+            // Head（ヘッドマウンドディスプレイ）の情報を一時保管-----------
+            Quaternion HMDRotationQ = InputTracking.GetLocalRotation(XRNode.Head); //回転座標をクォータニオンで値を受け取る，旧式らしいので要修正
+            HMDRotation = HMDRotationQ.eulerAngles; // 取得した値をクォータニオン → オイラー角に変換
+                                                    //--------------------------------------------------------------
+
+
+            lightValue = sensor.lightValue; // 画面全体の明度情報を更新
+
+            //if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false); // 視線関係のデータを取得
+            //if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得
+            if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得
         }
-
-
-        // Head（ヘッドマウンドディスプレイ）の情報を一時保管-----------
-        Quaternion HMDRotationQ = InputTracking.GetLocalRotation(XRNode.Head); //回転座標をクォータニオンで値を受け取る，旧式らしいので要修正
-        HMDRotation = HMDRotationQ.eulerAngles; // 取得した値をクォータニオン → オイラー角に変換
-        //--------------------------------------------------------------
-
-
-        lightValue = sensor.lightValue; // 画面全体の明度情報を更新
-
-        //if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false); // 視線関係のデータを取得
-        if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data_v1.get_gaze_data2(), streamWriter_gaze, false); // 視線関係のデータを取得
+        else
+        {
+            // if (gaze_data_switch) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得
+        }
+        
     }
     //--------------------------------------------------------------
 
