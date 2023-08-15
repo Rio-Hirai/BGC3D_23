@@ -64,6 +64,9 @@ public class LaserPointerHandler : MonoBehaviour
     public void PointerOutside(object sender, PointerEventArgs e)
     {
         GameObject testcube = GameObject.Find(e.target.name);
+        Server.DwellTarget = null;
+        Server.select_target_id = -1;
+        Server.selecting_target = null;
         testcube.GetComponent<Renderer>().material.color = Color.white;
     }
     //--------------------------------------------------------------

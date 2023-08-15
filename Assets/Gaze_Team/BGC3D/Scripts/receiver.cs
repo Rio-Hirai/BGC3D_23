@@ -408,6 +408,8 @@ public class receiver : MonoBehaviour
                     test_time_tmp = test_time;
                     logoutput_count = 0;
                     session_flag = true;
+                    selecting_target = null;
+                    select_target_id = -1;
                 }
                 //--------------------------------------------------------------
 
