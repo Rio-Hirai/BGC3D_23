@@ -14,9 +14,8 @@ Windows11(22H2) + Unity 2023.1.8f1 + Vive Pro Eye + SRanipal Runtime 1.3.2.0
 
 ※Windows11(23H2)でも動作可能
 
-
 ## 使用法
-実験環境にあたるシーンは，Assets/Gaze_Team/BGC3D/Scenesの「BGC3D_2023.unity」
+実験環境にあたるシーンは，Assets/Gaze_Team/BGC3D/Scenesの「BGC3D_2023_v2.unity」
 
 serverオブジェクトのinspectorにあるReceiverスクリプトから実験条件を設定する（詳細は該当するScriptのコメントを参照）
 
