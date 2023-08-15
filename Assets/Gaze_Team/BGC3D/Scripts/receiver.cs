@@ -61,13 +61,14 @@ public class receiver : MonoBehaviour
     public bool gaze_data_switch;           // 視線情報出力機能のオン・オフ（実験以外ではオフにしておく）
     public bool TimeOut_switch;             // タスクでタイムアウトを行うか否かのフラグ
     public bool eye_calibration;            // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
-    public bool target_pos__calibration;    // ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
+    public bool target_pos_calibration;     // ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
     public bool cursor_switch;              // バブルカーソルの表示・非表示
     public bool bubblegaze_switch;          // ？？？（要リファクタリング）
     public bool gazeraycast_switch;         // ？？？（要リファクタリング）
     public bool controller_switch;          // コントローラの表示・非表示（まだコントローラを非表示にできない）
     public bool laserswitch;                // コントローラのレイの表示・非表示（まだレイを非表示にできない）
     public bool target_alpha_switch;        // ターゲットの透明化
+    public bool LightSensor_switch;         // 明度計算機能のオン・オフ
     public bool MAverageFilter;             // 動的移動平均フィルタのオン・オフ
     public bool task_skip;                  // 現在のタスクをスキップ（フラグを立てた瞬間に１度だけ実行されfalseに戻る）
     public bool error_output_flag;          // 強制中断（フラグを立てた瞬間に現時点での実験結果が出力される）
@@ -376,9 +377,9 @@ public class receiver : MonoBehaviour
             method_change(); // 使用している手法を変更
 
 
-            // ターゲット位置の調整----------------------------------------------
+            // ターゲット位置の調整-----------------------------------------
             grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any);
-            if (grapgrip || target_pos__calibration)
+            if (grapgrip || target_pos_calibration)
             {
                 if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
@@ -391,7 +392,7 @@ public class receiver : MonoBehaviour
                 rotation.y += 180;
                 target_set[target_p_id - 1].transform.eulerAngles = rotation;
 
-                target_pos__calibration = false; // 機能フラグをリセット
+                target_pos_calibration = false; // 機能フラグをリセット
             }
             //--------------------------------------------------------------
 
@@ -400,7 +401,7 @@ public class receiver : MonoBehaviour
                 test_time += Time.deltaTime; // タスク時間を更新
 
 
-                // タスクの推移管理-------------------------------------------------
+                // タスクの推移管理---------------------------------------------
                 if (select_target_id == 999 && taskflag == false)
                 {
                     taskflag = true;
@@ -415,10 +416,10 @@ public class receiver : MonoBehaviour
                 //--------------------------------------------------------------
 
 
-                // タスクの状態チェック----------------------------------------------
+                // タスクの状態チェック-----------------------------------------
                 if (taskflag)
                 {
-                    // ターゲットの選択が行われた時の処理---------------------
+                    // ターゲットの選択が行われた時の処理-------------------------
                     if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
                     {
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記

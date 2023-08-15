@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Security;
 using UnityEngine;
 
 public class LightSensor : MonoBehaviour
@@ -7,47 +8,44 @@ public class LightSensor : MonoBehaviour
     [SerializeField] private Camera dispCamera;
     private Texture2D targetTexture;
 
+    [SerializeField] private receiver server; // サーバと接続
     [System.NonSerialized] public float lightValue;
 
-    // Use this for initialization
+
     IEnumerator Start()
     {
         var tex = dispCamera.targetTexture;
         targetTexture = new Texture2D(tex.width, tex.height, TextureFormat.ARGB32, false);
 
-        while (true)
+        while (server.LightSensor_switch)
         {
-            // RenderTextureキャプチャ
-            RenderTexture.active = dispCamera.targetTexture;
+            RenderTexture.active = dispCamera.targetTexture;// RenderTextureキャプチャ
 
             yield return new WaitForEndOfFrame();
 
             targetTexture.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
             targetTexture.Apply();
 
+            lightValue = GetLightValue(targetTexture); // 明度を取得
 
-            // 照度を取得する
-            lightValue = GetLightValue(targetTexture);
-
-            // 照度を表示する
-            //Debug.Log(lightValue);
+            //Debug.Log(lightValue); // 明度を表示する
         }
     }
 
-    // 画像全体の照度計算
-    float GetLightValue(Texture2D tex)
+    // 画像全体の明度計算
+    public float GetLightValue(Texture2D tex)
     {
-        var cols = tex.GetPixels();
+        var cols = tex.GetPixels(); // 画面全体のピクセル情報を取得
 
-        // 平均色計算
+        // 平均色計算---------------------------------------------------
         Color avg = new Color(0, 0, 0);
         foreach (var col in cols)
         {
             avg += col;
         }
         avg /= cols.Length;
+        //--------------------------------------------------------------
 
-        // 照度計算
-        return 0.299f * avg.r + 0.587f * avg.g + 0.114f * avg.b;
+        return 0.299f * avg.r + 0.587f * avg.g + 0.114f * avg.b; // 明度を計算して返す
     }
 }
