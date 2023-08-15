@@ -7,13 +7,12 @@ using ViveSR.anipal.Eye;
 
 public class gaze_data_callback_v2 : MonoBehaviour
 {
-    private static EyeData_v2 eyeData = new EyeData_v2();
+    private static EyeData_v2 eyeData = new EyeData_v2(); // 各種視線情報を格納する変数
     private static bool eye_callback_registered = false;
 
-    public receiver server;
+    [SerializeField] private receiver server; // サーバと接続
 
-    private Ray CombineRay;
-    private FocusInfo CombineFocus;
+    private FocusInfo CombineFocus; // 視線方向の情報を格納する変数
 
 
     private void Update()
@@ -34,14 +33,15 @@ public class gaze_data_callback_v2 : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // 視線情報-----------------------------------------------------
+        // 視線方向に関する情報-----------------------------------------
+        Ray CombineRay;
         if (eye_callback_registered)
         {
-            if (SRanipal_Eye_v2.Focus(GazeIndex.COMBINE, out CombineRay, out CombineFocus/*, CombineFocusradius, CombineFocusmaxDistance, CombinefocusableLayer*/)) { }
+            if (SRanipal_Eye_v2.Focus(GazeIndex.COMBINE, out CombineRay, out CombineFocus/*, CombineFocusradius, CombineFocusmaxDistance, CombinefocusableLayer*/)) { } // 視線方向に関する情報を取得
         }
         else
         {
-            if (SRanipal_Eye_v2.Focus(GazeIndex.COMBINE, out CombineRay, out CombineFocus/*, CombineFocusradius, CombineFocusmaxDistance, CombinefocusableLayer*/)) { }
+            if (SRanipal_Eye_v2.Focus(GazeIndex.COMBINE, out CombineRay, out CombineFocus/*, CombineFocusradius, CombineFocusmaxDistance, CombinefocusableLayer*/)) { } // 視線の方向に関する情報を取得
         }
         //--------------------------------------------------------------
     }
@@ -70,14 +70,14 @@ public class gaze_data_callback_v2 : MonoBehaviour
         public MonoPInvokeCallbackAttribute() { }
     }
 
-    public string get_gaze_data()
-    {
-        return (server.test_time + "," + (server.task_num) + "," + (CombineFocus.point.x) + "," + (CombineFocus.point.y) + "," + (eyeData.verbose_data.right.pupil_diameter_mm) + "," + (eyeData.verbose_data.left.pupil_diameter_mm) + "," + (eyeData.verbose_data.right.eye_openness) + "," + (eyeData.verbose_data.left.eye_openness) + "," + (server.HMDRotation.x) + "," + (server.HMDRotation.y) + "," + (server.HMDRotation.z) + "," + (server.lightValue));
-    }
-
     [MonoPInvokeCallback]
     private static void EyeCallback(ref EyeData_v2 eye_data)
     {
-        eyeData = eye_data;
+        eyeData = eye_data; // 各種視線情報を更新
+    }
+
+    public string get_gaze_data() // 各種視線情報をcsv形式の文字列で出力するための関数．このスクリプトがアタッチされているスクリプトであれば使用可能
+    {
+        return (server.test_time + "," + (server.task_num) + "," + (CombineFocus.point.x) + "," + (CombineFocus.point.y) + "," + (eyeData.verbose_data.right.pupil_diameter_mm) + "," + (eyeData.verbose_data.left.pupil_diameter_mm) + "," + (eyeData.verbose_data.right.eye_openness) + "," + (eyeData.verbose_data.left.eye_openness) + "," + (server.HMDRotation.x) + "," + (server.HMDRotation.y) + "," + (server.HMDRotation.z) + "," + (server.lightValue));
     }
 }
