@@ -410,9 +410,13 @@
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/CallbackExample.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/CallbackExample_v2.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/debug.cs"
+<<<<<<< Updated upstream
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/focus.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/Gaze_con_new_1.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/gaze_data_v1.cs"
+=======
+"Assets/Gaze_Team/BGC3D/Scripts/test_script/Gaze_con_new.cs"
+>>>>>>> Stashed changes
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/gaze_dates.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/LookAt.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/nearpoint.cs"
@@ -423,8 +427,12 @@
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/red_result.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/results.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/rev_sub.cs"
+<<<<<<< Updated upstream
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/SRanipal_GazeRay_BGC.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/SRanipal_GazeRay_v1.cs"
+=======
+"Assets/Gaze_Team/BGC3D/Scripts/test_script/SwitchVersion.cs"
+>>>>>>> Stashed changes
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/test.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/test2.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/test_script/UmeEye.cs"

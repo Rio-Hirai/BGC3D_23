@@ -49259,7 +49259,11 @@
       "DisplayName": "Writing Assembly-CSharp.rsp",
       "ActionType": "WriteFile",
       "PayloadOffset": 2171588,
+<<<<<<< Updated upstream
       "PayloadLength": 40071,
+=======
+      "PayloadLength": 39949,
+>>>>>>> Stashed changes
       "PayloadDebugContentSnippet": "-target:library\r\n-out:\"Library",
       "Inputs": [],
       "InputFlags": [],
@@ -49275,7 +49279,11 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.rsp2",
       "DisplayName": "Writing Assembly-CSharp.rsp2",
       "ActionType": "WriteFile",
+<<<<<<< Updated upstream
       "PayloadOffset": 2211746,
+=======
+      "PayloadOffset": 2211624,
+>>>>>>> Stashed changes
       "PayloadLength": 0,
       "PayloadDebugContentSnippet": "",
       "Inputs": [],
@@ -49576,9 +49584,13 @@
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/CallbackExample.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/CallbackExample_v2.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/debug.cs",
+<<<<<<< Updated upstream
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/focus.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/Gaze_con_new_1.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/gaze_data_v1.cs",
+=======
+        "Assets/Gaze_Team/BGC3D/Scripts/test_script/Gaze_con_new.cs",
+>>>>>>> Stashed changes
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/gaze_dates.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/LookAt.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/nearpoint.cs",
@@ -49589,8 +49601,12 @@
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/red_result.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/results.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/rev_sub.cs",
+<<<<<<< Updated upstream
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/SRanipal_GazeRay_BGC.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/SRanipal_GazeRay_v1.cs",
+=======
+        "Assets/Gaze_Team/BGC3D/Scripts/test_script/SwitchVersion.cs",
+>>>>>>> Stashed changes
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/test.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/test2.cs",
         "Assets/Gaze_Team/BGC3D/Scripts/test_script/UmeEye.cs",
@@ -49995,7 +50011,10 @@
         0,
         0,
         0,
+<<<<<<< Updated upstream
         0,
+=======
+>>>>>>> Stashed changes
         8
       ],
       "Outputs": [
@@ -50421,7 +50440,11 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
+<<<<<<< Updated upstream
       "PayloadOffset": 2211842,
+=======
+      "PayloadOffset": 2211720,
+>>>>>>> Stashed changes
       "PayloadLength": 10987,
       "PayloadDebugContentSnippet": "Library\\Bee\\artifacts\\mvdfrm\\U",
       "Inputs": [],
@@ -50841,7 +50864,11 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Assembly-CSharp-Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
+<<<<<<< Updated upstream
       "PayloadOffset": 2222942,
+=======
+      "PayloadOffset": 2222820,
+>>>>>>> Stashed changes
       "PayloadLength": 37,
       "PayloadDebugContentSnippet": "C:\\Users\\riong\\WORKSPACE_M.2\\B",
       "Inputs": [],
@@ -50858,7 +50885,11 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.rsp",
       "DisplayName": "Writing Assembly-CSharp-Editor.rsp",
       "ActionType": "WriteFile",
+<<<<<<< Updated upstream
       "PayloadOffset": 2223072,
+=======
+      "PayloadOffset": 2222950,
+>>>>>>> Stashed changes
       "PayloadLength": 37011,
       "PayloadDebugContentSnippet": "-target:library\r\n-out:\"Library",
       "Inputs": [],
@@ -50875,7 +50906,11 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.rsp2",
       "DisplayName": "Writing Assembly-CSharp-Editor.rsp2",
       "ActionType": "WriteFile",
+<<<<<<< Updated upstream
       "PayloadOffset": 2260177,
+=======
+      "PayloadOffset": 2260055,
+>>>>>>> Stashed changes
       "PayloadLength": 0,
       "PayloadDebugContentSnippet": "",
       "Inputs": [],
@@ -51520,7 +51555,11 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp-Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
+<<<<<<< Updated upstream
       "PayloadOffset": 2260280,
+=======
+      "PayloadOffset": 2260158,
+>>>>>>> Stashed changes
       "PayloadLength": 11672,
       "PayloadDebugContentSnippet": "Library\\Bee\\artifacts\\mvdfrm\\U",
       "Inputs": [],

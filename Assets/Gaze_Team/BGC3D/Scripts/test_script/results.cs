@@ -54,6 +54,8 @@ public class results : MonoBehaviour
 
         }
 
+        Debug.Log(test_id);
+
         // ƒ^ƒXƒNğŒŠÇ—
         switch (target_pattern.ToString())
         {
