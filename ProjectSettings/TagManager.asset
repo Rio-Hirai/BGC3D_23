@@ -8,6 +8,7 @@ TagManager:
   - FxTemporaire
   - Targets
   - UI
+  - Server
   layers:
   - Default
   - TransparentFX

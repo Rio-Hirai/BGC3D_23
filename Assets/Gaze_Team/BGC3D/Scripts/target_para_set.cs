@@ -28,10 +28,7 @@ public class target_para_set : MonoBehaviour
             // 結果表示用の処理---------------------------------------------
             for (int i = 1; i < script2.csvDatas.Count; i++)
             {
-                if (Id == int.Parse(script2.csvDatas[i][2]))
-                {
-                    this.GetComponent<Renderer>().material.color = Color.blue;
-                }
+                if (Id == int.Parse(script2.csvDatas[i][2])) this.GetComponent<Renderer>().material.color = Color.blue;
             }
             //--------------------------------------------------------------
 
@@ -69,30 +66,32 @@ public class target_para_set : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        if (dtime >= script.set_dtime) // 累計注視時間が設定した時間以上の場合，
+        // 注視状態から選択状態への移行---------------------------------
+        if (dtime >= script.set_dtime) // 累計注視時間が設定した時間以上の場合
         {
             script.selecting_target = this.gameObject; // 選択されたターゲットを更新
             script.select_target_id = Id; // 選択されたターゲットのIDを更新
             script.same_target = false; // ？？？
         }
+        //--------------------------------------------------------------
 
 
-        // 色変化の処理（要リファクタリング部分）-----------------------
-        if (script.output_flag || Id == script.select_target_id)
+        // 色変化の処理（リファクタリング済み）-------------------------
+        if (script.output_flag || Id == script.select_target_id) // 実験結果が出力された，また選択状態のターゲットのIDと同じIDを持っている場合
         {
-            this.GetComponent<Renderer>().material.color = script.target_color; //
+            this.GetComponent<Renderer>().material.color = script.target_color; // ターゲットの色を変更
         }
-        else if (Id == 999)
+        else if (Id == 999) // IDが999（＝黒いターゲット）の場合
         {
             this.GetComponent<Renderer>().material.color = Color.black; // ターゲットを黒色に変更
         }
-        else if (script.DwellTarget != null)
+        else if (script.DwellTarget != null) // 注視状態のターゲットが存在しない場合
         {
-            if (script.DwellTarget.name == this.name)
+            if (script.DwellTarget.name == this.name) // 注視状態のターゲットの名前と同じ名前の場合．名前よりもIDの方がまだ一意性を担保できるので要リファクタリング
             {
                 this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
             }
-            else if (Id == script.tasknums[script.task_num] && script.taskflag)
+            else if (Id == script.tasknums[script.task_num] && script.taskflag) // 提示IDと同じIDを持っている場合
             {
                 this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
             }
@@ -101,21 +100,18 @@ public class target_para_set : MonoBehaviour
                 this.GetComponent<Renderer>().material.color = Color.white; // ターゲットを白色に変更
             }
         }
-        else if (Id == script.tasknums[script.task_num] && script.taskflag)
+        else if (Id == script.tasknums[script.task_num] && script.taskflag) // 提示IDと同じIDを持っている場合
         {
             this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
         }
-        else
+        else // 以上の条件に該当しない場合
         {
             this.GetComponent<Renderer>().material.color = Color.white; // ターゲットを白色に変更
         }
+        //--------------------------------------------------------------
 
 
-
-
-
-
-
+        //// 色変化の処理（リファクタリング前）---------------------------
         //if (script.controller_switch)
         //{
         //    if (script.output_flag) // セッション終了時
@@ -200,6 +196,7 @@ public class target_para_set : MonoBehaviour
         //        this.GetComponent<Renderer>().material.color = Color.white; //
         //    }
         //}
+        ////--------------------------------------------------------------
     }
 
     private void OnTriggerEnter(Collider collider)
