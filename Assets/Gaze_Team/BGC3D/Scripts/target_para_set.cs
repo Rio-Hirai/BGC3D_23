@@ -12,8 +12,8 @@ public class target_para_set : MonoBehaviour
     public GameObject Server;
     private receiver script;
     private results script2;
-    public float dtime;
-    public int Id;
+    public float dtime; // 注視時間
+    public int Id; // ターゲットID
 
     void Start()
     {
@@ -197,18 +197,5 @@ public class target_para_set : MonoBehaviour
         //    }
         //}
         ////--------------------------------------------------------------
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-
-    }
-
-    private void OnTriggerExit(Collider collider)
-    {
     }
 }

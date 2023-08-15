@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Assets\ViveSR\Scripts\Lip\Sample\SRanipal_MirrorCameraSample_Lip.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_LipShapeTableDrawer_v2.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\target_posi_set.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\test2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_3.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_AvatarEyeSample_v2.cs" />
@@ -82,7 +83,6 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_GazeRaySample_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\VIVEsample.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_data.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_LineButton.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\Gaze_con_new_1.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_ZoomButton.cs" />
@@ -129,6 +129,7 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\focus.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeShapeTableDrawer_v2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_API.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\gaze_data.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Example\Sample_L.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeDataType_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\EyeCalibrator.cs" />
@@ -148,7 +149,6 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\lesn_pos.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_new_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\debug.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\target_posi_set.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\VIVEsample2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_MirrorCameraSample_Eye.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\results.cs" />
