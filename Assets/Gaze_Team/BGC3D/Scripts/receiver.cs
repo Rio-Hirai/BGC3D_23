@@ -20,9 +20,10 @@ public class receiver : MonoBehaviour
         Zero_Cursor,                        // カーソル無し（IDは0）
         Bubble_Gaze_Cursor1,                // BGC（IDは1）
         Bubble_Gaze_Cursor2,                // BGC with RayCast（IDは2）
-        Bubble_Gaze_Cursor3,                // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは3）
-        Gaze_Raycast,                       // 視線によるレイキャスト（IDは4）
-        Controller_Raycast                  // コントローラによるレイキャスト（IDは5）
+        Bubble_Gaze_Cursor3,                // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは5）
+        Bubble_Gaze_Cursor_with_Gaze_Ray,   // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは6）
+        Gaze_Raycast,                       // 視線によるレイキャスト（IDは3）
+        Controller_Raycast                  // コントローラによるレイキャスト（IDは4）
     }
     public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1;  // 手法切り替え用のリスト構造
     //--------------------------------------------------------------
@@ -229,6 +230,9 @@ public class receiver : MonoBehaviour
             case "Bubble_Gaze_Cursor3":
                 test_id = 5;
                 break;
+            case "Bubble_Gaze_Cursor_with_Gaze_Ray":
+                test_id = 6;
+                break;
             default:
                 test_id = 0;
                 break;
@@ -270,7 +274,7 @@ public class receiver : MonoBehaviour
             controller_R.GetComponent<SteamVR_LaserPointer>().active = true;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = true;
         }
-        else if (test_id == 5)
+        else if (test_id == 5 || test_id == 6)
         {
             gazeraycast2.SetActive(true);
             bubblegaze_switch = false;

@@ -64,7 +64,6 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\test2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_3.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_AvatarEyeSample_v2.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\nearpoint.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\test.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye_Framework.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_AvatarEyeSample.cs" />
@@ -78,13 +77,16 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\red_result.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus_v2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_GazeRaySample.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\SRanipal_GazeRay_v1.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\SRanipal_GazeRay_BGC.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_GazeRaySample_v2.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\SRanipal_GazeRay_BGC.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\VIVEsample.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_data.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_LineButton.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\Gaze_con_new_1.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_ZoomButton.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus_BGC_v2.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Script\DD_CoordinateAxis.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye_API.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeDataType_v1.cs" />
@@ -106,7 +108,9 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\SRanipal_GazeRay_BGC_v2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye_Enums.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\target_size_set.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\nearpoint.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeFocusSample.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\gaze_data_v1.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\UmeEye.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\PlaceInFrontOfCamera.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_v2.cs" />
@@ -120,6 +124,7 @@
     <Compile Include="Assets\ViveSR\Scripts\SRWorks_Enums.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeSettingSample.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\focus.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeShapeTableDrawer_v2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_API.cs" />
     <Compile Include="Assets\Gaze_Team\DataDiagram\Example\Sample_L.cs" />
@@ -128,14 +133,10 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\SRanipal_GazeRay_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\booleanrighttest.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\booleanlefttest.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\SRanipal_GazeRay_v1.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeShapeTableDrawer.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_data_callback_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\LookAt.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\gaze_data_v1.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_new_1.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus_pointer.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\CallbackExample.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_Lip_Framework.cs" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 4___tester_id  = 0___name_n.n___81511636.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 6___target_p_id = 3___tester_id  = 0___name_n.n___815113535.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___81584150.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___849278.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8995240.txt" />
@@ -175,6 +177,7 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 4___tester_id  = 0___name_n.n___81511611.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___81511433.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814103748.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 6___target_p_id = 3___tester_id  = 0___name_n.n___815113824.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___81493424.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814104029.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___81595831.txt" />
@@ -188,6 +191,7 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___8149414.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8491914.txt" />
     <None Include="Assets\ViveSR\Plugins\ViveSR_Client.dll" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 6___target_p_id = 4___tester_id  = 0___name_n.n___815113427.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8493718.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814103431.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 4___tester_id  = 0___name_n.n___815105444.txt" />
@@ -203,6 +207,8 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 4___tester_id  = 0___name_n.n___81510429.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8994210.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814111321.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 6___target_p_id = 3___tester_id  = 0___name_n.n___81511420.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___815114530.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814105748.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814101914.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 4___tester_id  = 0___name_n.n___81511154.txt" />
@@ -210,6 +216,7 @@
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814103146.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___name_n.n___8484413.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814104158.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 6___target_p_id = 4___tester_id  = 0___name_n.n___815113316.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 4___target_p_id = 4___tester_id  = 0___name_n.n___81510370.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 4___tester_id  = 0___name_n.n___814103230.txt" />
   </ItemGroup>
