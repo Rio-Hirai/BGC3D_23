@@ -12,6 +12,7 @@ namespace ViveSR.anipal.Eye
         private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
         private static EyeData eyeData = new EyeData();
         private bool eye_callback_registered = false;
+
         private void Start()
         {
             if (!SRanipal_Eye_Framework.Instance.EnableEye)

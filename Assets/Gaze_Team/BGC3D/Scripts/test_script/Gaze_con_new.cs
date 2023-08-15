@@ -17,7 +17,7 @@ namespace ViveSR
             public class Gaze_con_new : MonoBehaviour
             {
                 public receiver script;                     // サーバと接続
-                public SRanipal_GazeRay_BGC rayset;         // レイキャストのデータを取得
+                public SRanipal_GazeRay_BGC_v1 rayset;         // レイキャストのデータを取得
                 public MovingAverageFilter filter;          // 移動平均フィルタを取得
 
                 [SerializeField]
