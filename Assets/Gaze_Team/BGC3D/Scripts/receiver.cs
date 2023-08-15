@@ -45,68 +45,68 @@ public class receiver : MonoBehaviour
 
 
     // 調整用パラメータ--------------------------------------------
-    public int tester_id;               // 被験者のID
-    public string tester_name;          // 被験者の名前
-    public float set_dtime;             // 注視時間
-    public float Depth;                 // ユーザとターゲット間の距離
-    public float pointvalue;            // サッケード運動に対する閾値
-    public float pointvalue2;           // 同上（ほぼ使っていない）
+    public int tester_id;                   // 被験者のID
+    public string tester_name;              // 被験者の名前
+    public float set_dtime;                 // 注視時間
+    public float Depth;                     // ユーザとターゲット間の距離
+    public float pointvalue;                // サッケード運動に対する閾値
+    public float pointvalue2;               // 同上（ほぼ使っていない）
     [SerializeField, Range(-100, 100)]
-    public int Brightness;              // 画面明度（使用していない）
+    public int Brightness;                  // 画面明度（使用していない）
     //--------------------------------------------------------------
 
 
     // 各種機能切り替え---------------------------------------------
-    public bool total_DwellTime_mode;   // 累積注視時間モードのオン・オフ
-    public bool gaze_data_switch;       // 視線情報出力機能のオン・オフ（実験以外ではオフにしておく）
-    public bool TimeOut_switch;         // タスクでタイムアウトを行うか否かのフラグ
-    public bool eye_calibration;        // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
-    public bool target_pos__calibration;// ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
-    public bool cursor_switch;          // バブルカーソルの表示・非表示
-    public bool bubblegaze_switch;      // ？？？（要リファクタリング）
-    public bool gazeraycast_switch;     // ？？？（要リファクタリング）
-    public bool controller_switch;      // コントローラの表示・非表示（まだコントローラを非表示にできない）
-    public bool laserswitch;            // コントローラのレイの表示・非表示（まだレイを非表示にできない）
-    public bool target_alpha_switch;    // ターゲットの透明化
-    public bool MAverageFilter;         // 動的移動平均フィルタのオン・オフ
-    public bool task_skip;              // 現在のタスクをスキップ（フラグを立てた瞬間に１度だけ実行されfalseに戻る）
-    public bool error_output_flag;      // 強制中断（フラグを立てた瞬間に現時点での実験結果が出力される）
-    public bool lens_switch;            // レンズの表示・非表示（使っていない）
-    public bool free_mode;              // フリーモードのオン・オフ
+    public bool total_DwellTime_mode;       // 累積注視時間モードのオン・オフ
+    public bool gaze_data_switch;           // 視線情報出力機能のオン・オフ（実験以外ではオフにしておく）
+    public bool TimeOut_switch;             // タスクでタイムアウトを行うか否かのフラグ
+    public bool eye_calibration;            // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
+    public bool target_pos__calibration;    // ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
+    public bool cursor_switch;              // バブルカーソルの表示・非表示
+    public bool bubblegaze_switch;          // ？？？（要リファクタリング）
+    public bool gazeraycast_switch;         // ？？？（要リファクタリング）
+    public bool controller_switch;          // コントローラの表示・非表示（まだコントローラを非表示にできない）
+    public bool laserswitch;                // コントローラのレイの表示・非表示（まだレイを非表示にできない）
+    public bool target_alpha_switch;        // ターゲットの透明化
+    public bool MAverageFilter;             // 動的移動平均フィルタのオン・オフ
+    public bool task_skip;                  // 現在のタスクをスキップ（フラグを立てた瞬間に１度だけ実行されfalseに戻る）
+    public bool error_output_flag;          // 強制中断（フラグを立てた瞬間に現時点での実験結果が出力される）
+    public bool lens_switch;                // レンズの表示・非表示（使っていない）
+    public bool free_mode;                  // フリーモードのオン・オフ
     //--------------------------------------------------------------
 
 
     // 色設定-------------------------------------------------------
-    public Color target_color;          // 選択確定時のターゲットの色
-    public Color select_color;          // 注視状態のターゲットの色
-    public Color cursor_color;          // バブルカーソルの色
+    public Color target_color;              // 選択確定時のターゲットの色
+    public Color select_color;              // 注視状態のターゲットの色
+    public Color cursor_color;              // バブルカーソルの色
     //--------------------------------------------------------------
 
 
     // 各種オブジェクト--------------------------------------------------
-    public GameObject head_obj;         // 頭部（カメラ）オブジェクト
-    public GameObject bubblegaze;       // Bubble_Gaze_Cursor1・2のオブジェクト（表示・非表示用）
-    public GameObject gazeraycast;      // Gaze_Raycasのオブジェクト（表示・非表示用）
-    public GameObject gazeraycast2;     // Bubble_Gaze_Cursor3のオブジェクト（表示・非表示用）
-    public GameObject controller_R;     // 右コントローラ（表示・非表示用）
-    public GameObject controller_L;     // 左コントローラ（表示・非表示用）
-    public GameObject controller_Raycast;// コントローラのレイキャスト機能（機能の無効化用）
-    public GameObject Lens_Object;      // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
-    public GameObject[] target_set;     // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
+    public GameObject head_obj;             // 頭部（カメラ）オブジェクト
+    public GameObject bubblegaze;           // Bubble_Gaze_Cursor1・2のオブジェクト（表示・非表示用）
+    public GameObject gazeraycast;          // Gaze_Raycasのオブジェクト（表示・非表示用）
+    public GameObject gazeraycast2;         // Bubble_Gaze_Cursor3のオブジェクト（表示・非表示用）
+    public GameObject controller_R;         // 右コントローラ（表示・非表示用）
+    public GameObject controller_L;         // 左コントローラ（表示・非表示用）
+    public GameObject controller_Raycast;   // コントローラのレイキャスト機能（機能の無効化用）
+    public GameObject Lens_Object;          // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
+    public GameObject[] target_set;         // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
     //--------------------------------------------------------------
 
 
     // 効果音-------------------------------------------------------
-    public AudioSource audioSource;     // 音響設定
-    public AudioClip sound_OK;          // 指示通りのターゲットを選択できた時の音
-    public AudioClip sound_NG;          // エラーした時の音
-    public AudioClip sound_END;         // タスクが終了した時の音
+    public AudioSource audioSource;         // 音響設定
+    public AudioClip sound_OK;              // 指示通りのターゲットを選択できた時の音
+    public AudioClip sound_NG;              // エラーした時の音
+    public AudioClip sound_END;             // タスクが終了した時の音
     //--------------------------------------------------------------
 
 
     // 各種スクリプト-----------------------------------------------
-    public gaze_data_callback_v2 gaze_data;
-    public LightSensor sensor;          // 画面の色彩情報
+    public gaze_data_callback_v2 gaze_data; // 視線情報
+    public LightSensor sensor;              // 画面の色彩情報
     //--------------------------------------------------------------
 
 
@@ -117,97 +117,94 @@ public class receiver : MonoBehaviour
 
     // モニタ用変数-------------------------------------------------
     [System.NonSerialized]
-    public int test_id;                 // 使用手法のID
+    public int test_id;                     // 使用手法のID
     [System.NonSerialized]
-    public int target_p_id;             // 配置条件のID
-    public int target_amount_all;       // ターゲットの総数
-    public int target_amount_select;    // 選択する数
-    public int target_amount_count;     // 繰り返し回数
-    private string input_start_time;    // アプリケーションを実行した時の時間（ほぼ確実に一意に定まるのでファイル名に使用）
-    public int task_num = 0;            // タスクの番号
+    public int target_p_id;                 // 配置条件のID
+    public int target_amount_all;           // ターゲットの総数
+    public int target_amount_select;        // 選択する数
+    public int target_amount_count;         // 繰り返し回数
+    private string input_start_time;        // アプリケーションを実行した時の時間（ほぼ確実に一意に定まるのでファイル名に使用）
+    public int task_num = 0;                // タスクの番号
     [System.NonSerialized]
-    public string filePath;             // 出力用ファイル名
-    public float test_time = 0;         // 実験時間
-    private float test_time_tmp;        // 前フレームまでの実験時間
-    public List<int> tasknums;          // タスクの順番を格納するリスト
-    private List<string> tasklogs;      // 実験結果を格納するリスト1（人間が見るため用で分析には殆ど使っていないので消してもいい）
-    public List<string> tasklogs2;      // 実験結果を格納するリスト2
-    private List<string> tasklogs3;     // 視線情報を格納するリスト
-    private List<float> task_start_time;// タスクが開始した時の時間（タスク間に休憩時間があるため必要性が低い）
-    private List<float> task_end_time;  // タスクが終了した時の時間（タスク間に休憩時間があるため必要性が低い）
-    private int logoutput_count = 0;    // そのタスク中のエラー数
-    private string now_test_pattern;    // 現在の使用手法のパターン
-    private string now_target_pattern;  // 現在のターゲット配置のパターン
-    public float lightValue;            // 画面全体の明度
+    public string filePath;                 // 出力用ファイル名
+    public float test_time = 0;             // 実験時間
+    private float test_time_tmp;            // 前フレームまでの実験時間
+    public List<int> tasknums;              // タスクの順番を格納するリスト
+    private List<string> tasklogs;          // 実験結果を格納するリスト1（人間が見るため用で分析には殆ど使っていないので消してもいい）
+    public List<string> tasklogs2;          // 実験結果を格納するリスト2
+    private List<string> tasklogs3;         // 視線情報を格納するリスト
+    private List<float> task_start_time;    // タスクが開始した時の時間（タスク間に休憩時間があるため必要性が低い）
+    private List<float> task_end_time;      // タスクが終了した時の時間（タスク間に休憩時間があるため必要性が低い）
+    private int logoutput_count = 0;        // そのタスク中のエラー数
+    private string now_test_pattern;        // 現在の使用手法のパターン
+    private string now_target_pattern;      // 現在のターゲット配置のパターン
+    public float lightValue;                // 画面全体の明度
     [System.NonSerialized]
-    public Vector3 HMDRotation;         // HMDの角度
+    public Vector3 HMDRotation;             // HMDの角度
     //--------------------------------------------------------------
 
 
     // ターゲット選択関係-----------------------------------------------
-    public GameObject selecting_target; // 選択状態のターゲット（主にinspectorでのモニタ用で無くても問題なし）
-    public GameObject DwellTarget;      // 注視状態のターゲット（主に注視状態のターゲットの色の変更に使用）
-    public GameObject RayTarget;        // レイキャストによって注視されているターゲット（Bubble Gaze Cursor with Raycastで使用）
-    public int select_target_id = 0;    // 選択されたターゲットのID
+    public GameObject selecting_target;     // 選択状態のターゲット（主にinspectorでのモニタ用で無くても問題なし）
+    public GameObject DwellTarget;          // 注視状態のターゲット（主に注視状態のターゲットの色の変更に使用）
+    public GameObject RayTarget;            // レイキャストによって注視されているターゲット（Bubble Gaze Cursor with Raycastで使用）
+    public int select_target_id = 0;        // 選択されたターゲットのID
     //--------------------------------------------------------------
 
 
     // その他フラグ----------------------------------------------------
-    public bool same_target;            // ？？？
-    public bool session_flag;           // セッション中か否かを示す変数（trueだとセッション中）
-    public bool taskflag;               // タスク中か否かを示す変数（trueだとタスク中）
-    public bool next_step__flag;        // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
-    public bool output_flag;            // タスクが全て完了したか否かを示す変数（trueだと完了）
-    public Boolean grapgrip;            // 結果の格納用Boolean型関数grapgrip
-    public Boolean trackpad;            // ？？？
-    private int switch_flag = 0;        // ？？？
+    public bool same_target;                // ？？？
+    public bool session_flag;               // セッション中か否かを示す変数（trueだとセッション中）
+    public bool taskflag;                   // タスク中か否かを示す変数（trueだとタスク中）
+    public bool next_step__flag;            // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
+    public bool output_flag;                // タスクが全て完了したか否かを示す変数（trueだと完了）
+    public Boolean grapgrip;                // 結果の格納用Boolean型関数grapgrip
+    public Boolean trackpad;                // ？？？
+    private int switch_flag = 0;            // ？？？
     //--------------------------------------------------------------
 
 
     // ランダム配置関係------------------------------------------------
-    public GameObject target_objects;   // クローンするターゲット
-    public int target_id;               // クローンターゲットのID
-    public float target_size;           // 注視状態のターゲットの大きさ
-    public float target_distance;       // クローンターゲットとユーザ間の距離
-    public int target_amount;           // クローンするターゲットの数
+    public GameObject target_objects;       // クローンするターゲット
+    public int target_id;                   // クローンターゲットのID
+    public float target_size;               // 注視状態のターゲットの大きさ
+    public float target_distance;           // クローンターゲットとユーザ間の距離
+    public int target_amount;               // クローンするターゲットの数
     //--------------------------------------------------------------
 
 
     // 瞬き関係-------------------------------------------------------
-    public float LeftBlink;             // 左のまぶたの開き具合格納用関数
-    public float RightBlink;            // 右のまぶたの開き具合格納用関数
-    public int BlinkFlag;               // これがTrueになった瞬間にターゲット選択を確定させるように実装してあるので，瞬き関係はこれを弄るだけで十分．
-    public int BlinkCount;              // 瞬きの回数
-    public int BlinkSwitch;             // ？？？
-    public float BlinkTime;             // 瞬きの時間
-    public float LeftPupiltDiameter;    // ？？？
-    public float RightPupiltDiameter;   // ？？？
-    public int LeftPupiltDiameter_flag; // ？？？
-    public int RightPupiltDiameter_flag;// ？？？
+    public float LeftBlink;                 // 左のまぶたの開き具合格納用関数
+    public float RightBlink;                // 右のまぶたの開き具合格納用関数
+    public int BlinkFlag;                   // これがTrueになった瞬間にターゲット選択を確定させるように実装してあるので，瞬き関係はこれを弄るだけで十分．
+    public int BlinkCount;                  // 瞬きの回数
+    public int BlinkSwitch;                 // ？？？
+    public float BlinkTime;                 // 瞬きの時間
+    public float LeftPupiltDiameter;        // ？？？
+    public float RightPupiltDiameter;       // ？？？
+    public int LeftPupiltDiameter_flag;     // ？？？
+    public int RightPupiltDiameter_flag;    // ？？？
     //--------------------------------------------------------------
 
 
     // ターゲットのパラメータ---------------------------------------------
-    public float cursor_radious;        // バブルカーソルの大きさ
-    public int select_flag_2;           // ？？？
-    public int cursor_count;            // バブルカーソル内に存在するターゲットの数
+    public float cursor_radious;            // バブルカーソルの大きさ
+    public int select_flag_2;               // ？？？
+    public int cursor_count;                // バブルカーソル内に存在するターゲットの数
     [System.NonSerialized]
-    public Vector3 old_eye_position;    // 以前の視線座標（瞬き選択用）
+    public Vector3 old_eye_position;        // 以前の視線座標（瞬き選択用）
     [System.NonSerialized]
-    public Vector3 new_eye_position;    // 新しい視線座標（瞬き選択用）
+    public Vector3 new_eye_position;        // 新しい視線座標（瞬き選択用）
     //--------------------------------------------------------------
 
 
     // Bubble Gaze Lens関係------------------------------------------
-    public bool lens_flag;              // ？？？
-    public bool lens_flag2;             // ？？？
+    public bool lens_flag;                  // ？？？
+    public bool lens_flag2;                 // ？？？
     //--------------------------------------------------------------
 
     [System.NonSerialized]
-    public StreamWriter streamWriter_gaze; // ファイル出力用
-
-    [System.NonSerialized]
-    public string gaze_data_v2;
+    public StreamWriter streamWriter_gaze;  // ファイル出力用
 
 
     void Start()
@@ -502,7 +499,7 @@ public class receiver : MonoBehaviour
         {
             // if (gaze_data_switch) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得
         }
-        
+
     }
     //--------------------------------------------------------------
 
