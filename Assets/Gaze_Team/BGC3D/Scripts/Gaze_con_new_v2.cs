@@ -72,7 +72,7 @@ namespace ViveSR
 
                 private GameObject Serch()
                 {
-                    float nearDistance = 0; // 最も近いオブジェクトの距離を代入するための変数
+                    float nearDistance = 999; // 最も近いオブジェクトの距離を代入するための変数
                     float cursor_size_limit = distance_of_camera_to_target / 8; // カーソルの大きさの上限を設定するための変数（でないと無限に大きくなる）
                     GameObject searchTargetObj = null; // 検索された最も近いゲームオブジェクトを代入するための変数
                     script.cursor_count = 0; // バブルカーソル内に存在するターゲットの数を初期化
@@ -93,7 +93,7 @@ namespace ViveSR
                             float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
 
 
-                            // 移動平均フィルタを実行時に処理を軽くするプログラム（要テスト）
+                            // 移動平均フィルタを実行時に処理を軽くするプログラム①（要テスト）
                             if (distance < cursor_size_limit)
                             {
                                 obj.GetComponent<target_para_set>().neartarget = true; // ？？？
@@ -131,35 +131,48 @@ namespace ViveSR
                         Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
                         cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
                         float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
+                        float target_size_tmp = obj.transform.lossyScale.x; // ？？？
 
 
-                        // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きい値なら
-                        if (nearDistance == 0 || nearDistance > distance)
+                        // 移動平均フィルタを実行時に処理を軽くするプログラム②---------
+                        if (distance < (cursor_size_limit / 2)) continue; // 視線の周囲にないターゲットの場合に処理をスキップ
+                        //--------------------------------------------------------------
+
+
+                        // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きいなら
+                        if (nearDistance == 999 || nearDistance > distance)
                         {
-                            nearDistance = distance; // nearDistanceを更新
-                            searchTargetObj = obj; // searchTargetObjを更新
-                            target_size = obj.transform.lossyScale.x; // 注視しているターゲットの大きさを更新．ターゲットの大きさが全次元で一律のためx次元のみ取得
-                            distance_of_camera_to_target = Vector3.Distance(camera_obj.position, obj.transform.position); // ユーザとターゲット間の距離を更新
-
-
-                            // カーソルの大きさの上限に抵触した場合の処理-------------------
-                            if (nearDistance < (cursor_size_limit)) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
+                            if (nearDistance == 999 || distance < (cursor_size_limit / 2))
                             {
-                                script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
-                                script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
+                                nearDistance = distance; // nearDistanceを更新
+                                searchTargetObj = obj; // searchTargetObjを更新
+                                target_size = obj.transform.localScale.x; // 注視しているターゲットの大きさを更新．ターゲットの大きさが全次元で一律のためx次元のみ取得
+                                distance_of_camera_to_target = Vector3.Distance(camera_obj.position, obj.transform.position); // ユーザとターゲット間の距離を更新
+
+
+                                // カーソルの大きさの上限に抵触した場合の処理-------------------
+                                if (nearDistance < (cursor_size_limit)) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
+                                {
+                                    script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
+                                    script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
+                                }
+                                else
+                                {
+                                    script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
+                                    script.DwellTarget = null; // 注視しているオブジェクトを更新
+                                }
+                                //--------------------------------------------------------------
                             }
                             else
                             {
-                                script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
-                                script.DwellTarget = null; // 注視しているオブジェクトを更新
+
                             }
-                            //--------------------------------------------------------------
                         }
                         //--------------------------------------------------------------
 
 
                         // 移動平均フィルタを実行時に処理を軽くするプログラム②---------
-                        if (distance < (target_size / 20)) break; // 視線とターゲットの距離がほぼ0ならループを終了
+                        if (distance < (target_size_tmp / 20)) break; // 視線とターゲットの距離がほぼ0ならループを終了
                         //--------------------------------------------------------------
                     }
                     // foreach (GameObject obj in objs) 終了------------------------
@@ -191,7 +204,7 @@ namespace ViveSR
 
 
                     oldNearObj = searchTargetObj; // 注視しているターゲットを更新
-                    script.cursor_radious = nearDistance * 2 + target_size; // カーソルの大きさを更新
+                    script.cursor_radious = (nearDistance) + (target_size / 2); // カーソルの大きさを更新
 
                     return searchTargetObj; // 最も近いオブジェクトを返す
                 }
