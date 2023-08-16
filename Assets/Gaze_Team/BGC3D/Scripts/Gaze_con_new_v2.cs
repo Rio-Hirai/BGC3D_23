@@ -17,7 +17,7 @@ namespace ViveSR
             public class Gaze_con_new_v2 : MonoBehaviour
             {
                 public receiver script;                     // サーバと接続
-                public SRanipal_GazeRay_BGC_v2 rayset;         // レイキャストのデータを取得
+                public SRanipal_GazeRay_BGC_v2 rayset;      // レイキャストのデータを取得
                 public MovingAverageFilter filter;          // 移動平均フィルタを取得
 
                 [SerializeField]
@@ -26,7 +26,7 @@ namespace ViveSR
                 public GameObject searchNearObj;            // 最も近いオブジェクト(public修飾子にすることで外部のクラスから参照できる)
                 public GameObject oldNearObj;               // 前フレームに注視していたターゲット
                 public Transform camera_obj;                // ユーザの位置
-                private float searchWaitTime = 1 / 60;        // 検索の待機時間
+                private float searchWaitTime = 1 / 60;      // 検索の待機時間
 
                 private float timer = 0f;                   // 検索までの待機時間計測用
                 private Vector3 cursor_point;               // カーソルの位置
@@ -42,7 +42,7 @@ namespace ViveSR
 
                 void Update()
                 {
-                    // カーソルの位置と半径と色を更新
+                    // カーソルの位置と半径と色を更新-------------------------------
                     if (script.cursor_switch) // カーソル表示・非常時スイッチの有無
                     {
                         this.GetComponent<Renderer>().material.color = script.cursor_color; // 透明度を0より大きくしてカーソルを表示
@@ -52,17 +52,22 @@ namespace ViveSR
                         script.cursor_color.a = 0f; // カーソルを透明化（＝非表示化）
                         this.GetComponent<Renderer>().material.color = script.cursor_color; // 透明度を0にしてカーソルを非表示
                     }
+                    //--------------------------------------------------------------
+
+
                     this.transform.position = cursor_point; // カーソルの位置を更新
                     this.transform.localScale = new Vector3(script.cursor_radious, script.cursor_radious, script.cursor_radious); // カーソルの大きさを更新
 
                     timer += Time.deltaTime; // 時間を計測
+
+
                     // 検索の待機時間を経過したら（処理が重くならないための処理なため場合によってはリファクタリング対象）
                     if (timer >= searchWaitTime)
                     {
                         searchNearObj = Serch(); // 指定したタグを持つオブジェクトのうち，このオブジェクトに最も近いゲームオブジェクトを取得
-
                         timer = 0; // 計測時間を初期化して再検索
                     }
+                    //--------------------------------------------------------------
                 }
 
                 private GameObject Serch()
@@ -76,7 +81,8 @@ namespace ViveSR
 
                     if (objs.Length == 0) return searchTargetObj; // 取得したゲームオブジェクトが0ならnullを返す(nullでもエラーにならないように処理)
 
-                    // 移動平均フィルタの処理
+
+                    // 移動平均フィルタの処理--------------------------------------
                     if (script.MAverageFilter) // 移動平均フィルタの機能がオンの場合
                     {
                         foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
@@ -86,6 +92,19 @@ namespace ViveSR
                             cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
                             float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
 
+
+                            // 移動平均フィルタを実行時に処理を軽くするプログラム（要テスト）
+                            if (distance < cursor_size_limit)
+                            {
+                                obj.GetComponent<target_para_set>().neartarget = true; // ？？？
+                            }
+                            else
+                            {
+                                obj.GetComponent<target_para_set>().neartarget = false; // ？？？
+                            }
+                            //--------------------------------------------------------------
+
+
                             if (distance < cursor_size_limit / 2) script.cursor_count++; // カーソル内に存在するターゲットをカウント
                         }
 
@@ -94,41 +113,56 @@ namespace ViveSR
                     //--------------------------------------------------------------
 
 
-                    // ここの条件を確認する！！（リファクタリング部分）
-                    if (script.BlinkCount > -1)
+                    // Bubble Cursor------------------------------------------------
+                    foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
                     {
-                        foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
+                        // 移動平均フィルタを実行時に処理を軽くするプログラム①（要テスト．breakではないので処理の軽減にはそこまで寄与していない）
+                        if (script.MAverageFilter)
                         {
-                            Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
-                            Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
-                            cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
-                            float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
-
-
-                            // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きい値なら
-                            if (nearDistance == 0 || nearDistance > distance)
+                            if (script.cursor_count > 2) // 視線の周囲に何らかのターゲットが存在する場合
                             {
-                                nearDistance = distance; // nearDistanceを更新
-                                searchTargetObj = obj; // searchTargetObjを更新
-                                target_size = obj.transform.localScale.x; // 注視しているターゲットの大きさを更新．ターゲットの大きさが全次元で一律のためx次元のみ取得
-                                distance_of_camera_to_target = Vector3.Distance(camera_obj.position, obj.transform.position); // ユーザとターゲット間の距離を更新
+                                if (obj.GetComponent<target_para_set>().neartarget == false) continue; // 視線の周囲にないターゲットの場合に処理をスキップ
+                            }
+                        }
+                        //--------------------------------------------------------------
 
-                                // カーソルの大きさの上限に抵触した場合の処理-------------------
-                                if (nearDistance < (cursor_size_limit)) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
-                                {
-                                    script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
-                                    script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
-                                }
-                                else
-                                {
-                                    script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
-                                    script.DwellTarget = null; // 注視しているオブジェクトを更新
-                                }
-                                //--------------------------------------------------------------
+
+                        Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
+                        Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
+                        cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                        float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
+
+
+                        // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きい値なら
+                        if (nearDistance == 0 || nearDistance > distance)
+                        {
+                            nearDistance = distance; // nearDistanceを更新
+                            searchTargetObj = obj; // searchTargetObjを更新
+                            target_size = obj.transform.lossyScale.x; // 注視しているターゲットの大きさを更新．ターゲットの大きさが全次元で一律のためx次元のみ取得
+                            distance_of_camera_to_target = Vector3.Distance(camera_obj.position, obj.transform.position); // ユーザとターゲット間の距離を更新
+
+
+                            // カーソルの大きさの上限に抵触した場合の処理-------------------
+                            if (nearDistance < (cursor_size_limit)) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
+                            {
+                                script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
+                                script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
+                            }
+                            else
+                            {
+                                script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
+                                script.DwellTarget = null; // 注視しているオブジェクトを更新
                             }
                             //--------------------------------------------------------------
                         }
+                        //--------------------------------------------------------------
+
+
+                        // 移動平均フィルタを実行時に処理を軽くするプログラム②---------
+                        if (distance < (target_size / 20)) break; // 視線とターゲットの距離がほぼ0ならループを終了
+                        //--------------------------------------------------------------
                     }
+                    // foreach (GameObject obj in objs) 終了------------------------
 
 
                     // 最も近かったオブジェクトを返す

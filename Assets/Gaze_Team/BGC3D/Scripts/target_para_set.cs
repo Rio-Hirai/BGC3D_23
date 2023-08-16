@@ -9,16 +9,18 @@ using Valve.VR.Extras;
 
 public class target_para_set : MonoBehaviour
 {
-    public GameObject Server;
-    private receiver script;
-    private results script2;
-    public float dtime; // 注視時間
-    public int Id; // ターゲットID
+    public GameObject Server;   // ？？？
+    private receiver script;    // ？？？
+    private results script2;    // ？？？
+    public float dtime;         // 注視時間
+    public int Id;              // ターゲットID
+
+    [System.NonSerialized]
+    public bool neartarget;     // ？？？
 
     void Start()
     {
         script = Server.GetComponent<receiver>();
-        script2 = Server.GetComponent<results>();
     }
 
     void Update()
