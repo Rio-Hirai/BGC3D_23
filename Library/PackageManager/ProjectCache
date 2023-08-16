@@ -13,8 +13,8 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638265825961032530
-    m_Hash: 3598697924
+      ticks: 638278152423391557
+    m_Hash: 925017050
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -34,7 +34,7 @@ m_LocalPackages:
       ticks: 638258020229274531
     m_Hash: 2919789393
 m_ProjectPath: C:/Users/riong/WORKSPACE_M.2/BGC3D_23/Packages
-m_EditorVersion: 2023.1.8f1 (ab88ac34d80c)
+m_EditorVersion: 2023.1.9f1 (f3f94c8cdc49)
 m_ResolvedPackages:
 - packageId: com.unity.ai.navigation@1.1.4
   testable: 0
@@ -204,7 +204,6 @@ m_ResolvedPackages:
     - 2.1.0-preview.5
     - 2.1.0-preview.6
     compatible:
-    - 2.0.5
     - 2.0.7
     - 2.1.0-preview.3
     - 2.1.0-preview.5
@@ -249,7 +248,7 @@ m_ResolvedPackages:
     revision: 13a0e74f47307a1b20a57747cea59891ce36a647
     path: 
   unityLifecycle:
-    version: 2.0.5
+    version: 2.0.7
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -1376,7 +1375,7 @@ m_ResolvedPackages:
   - name: com.unity.modules.imgui
     version: 1.0.0
   - name: com.unity.xr.core-utils
-    version: 2.2.2
+    version: 2.2.3
   keywords:
   - openxr
   - xr
@@ -3854,8 +3853,10 @@ m_ResolvedPackages:
     - 1.5.1
     - 1.6.1
     - 1.6.3
+    - 1.7.0
     compatible:
     - 1.6.3
+    - 1.7.0
     recommended: 1.6.3
     deprecated: []
   dependencies:
@@ -3913,12 +3914,12 @@ m_ResolvedPackages:
   upmReserved: '{"changelog":"### Fixed\n- Fixed warning in USS file"}'
   assetStore:
     productId: 
-- packageId: com.unity.xr.core-utils@2.2.2
+- packageId: com.unity.xr.core-utils@2.2.3
   testable: 0
   isDirectDependency: 0
-  version: 2.2.2
+  version: 2.2.3
   source: 1
-  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.xr.core-utils@2.2.2
+  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.xr.core-utils@2.2.3
   assetPath: Packages/com.unity.xr.core-utils
   name: com.unity.xr.core-utils
   displayName: XR Core Utilities
@@ -3956,7 +3957,6 @@ m_ResolvedPackages:
     - 2.2.3
     - 2.4.0-exp.1
     compatible:
-    - 2.2.2
     - 2.2.3
     - 2.4.0-exp.1
     recommended: 2.2.3
@@ -3993,16 +3993,16 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638252782650000000
+  datePublishedTicks: 638269927990000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.xr.core-utils@2.2/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.xr.core-utils.git
-    revision: 90abac9940e57d3a7e04d00761ee4787e76aed4c
+    revision: 334e8977dc25f14d394655c8e77354e4888c35d1
     path: 
   unityLifecycle:
-    version: 2.2.2
+    version: 2.2.3
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -4012,8 +4012,10 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"### Changed\n\n- Fixed bug with Datum property editor
-    incorrectly reporting the height of datum properties in the inspector."}'
+  upmReserved: '{"changelog":"### Fixed\n\n- Fixed [`TransformExtensions`](xref:Unity.XR.CoreUtils.TransformExtensions)
+    methods to use `Transform.GetPositionAndRotation`/`Transform.GetLocalPositionAndRotation`
+    and `Transform.SetPositionAndRotation`/`Transform.SetLocalPositionAndRotation`
+    when available to improve performance."}'
   assetStore:
     productId: 
 - packageId: com.unity.ext.nunit@2.0.3
