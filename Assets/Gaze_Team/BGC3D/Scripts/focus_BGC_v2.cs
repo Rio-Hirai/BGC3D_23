@@ -13,9 +13,9 @@ public class focus_BGC_v2 : MonoBehaviour
     private bool eye_callback_registered = false;
 
     public receiver script; // サーバー接続
-    public GameObject pointer;
-    public GameObject objectName_now;
-    public GameObject objectName_new;
+    public GameObject pointer; // ポインタ
+    public GameObject objectName_now; // 現在のターゲット
+    public GameObject objectName_new; // 新しいターゲット
 
     private void Start()
     {
