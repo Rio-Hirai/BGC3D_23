@@ -7,31 +7,35 @@ namespace ViveSR.anipal.Eye
 {
     public class focus_v2 : MonoBehaviour
     {
-        private FocusInfo FocusInfo;
-        private readonly float MaxDistance = 20;
+        private FocusInfo FocusInfo;                            // レイ（視線）と衝突したターゲットの情報を格納する変数
+        private readonly float MaxDistance = 20;                // ？？？
         private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
-        private static EyeData_v2 eyeData = new EyeData_v2();
-        private bool eye_callback_registered = false;
+        private static EyeData_v2 eyeData = new EyeData_v2();   // ？？？
+        private bool eye_callback_registered = false;           // ？？？
 
-        public receiver script; // サーバー接続
-        public GameObject pointer;
-        public GameObject objectName_now;
-        public GameObject objectName_new;
-        public GameObject Lens_camera;
+        public receiver script;                                 // サーバー接続
+        public GameObject pointer;                              // ？？？
+        public GameObject objectName_now;                       // ？？？
+        public GameObject objectName_new;                       // ？？？
+        public GameObject Lens_camera;                          // ？？？
+        [SerializeField]
+        private string tagName = "Targets";                     // 注視可能対象の選定．インスペクターで変更可能
 
         private void Start()
         {
+            // SRanipal_Eye_Frameworkが正常に動いていない場合の処理---------
             if (!SRanipal_Eye_Framework.Instance.EnableEye)
             {
                 enabled = false;
                 return;
             }
+            //--------------------------------------------------------------
         }
 
         private void Update()
         {
-            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
-                        SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
+            // 視線情報を取得-----------------------------------------------
+            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING && SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
 
             if (SRanipal_Eye_Framework.Instance.EnableEyeDataCallback == true && eye_callback_registered == false)
             {
@@ -43,67 +47,68 @@ namespace ViveSR.anipal.Eye
                 SRanipal_Eye_v2.WrapperUnRegisterEyeDataCallback(Marshal.GetFunctionPointerForDelegate((SRanipal_Eye_v2.CallbackBasic)EyeCallback));
                 eye_callback_registered = false;
             }
+            //--------------------------------------------------------------
 
+
+            // オブジェクト選択---------------------------------------------
             foreach (GazeIndex index in GazePriority)
             {
-                Ray GazeRay;
-                int dart_board_layer_id = LayerMask.NameToLayer("Targets");
-                bool eye_focus;
+                Ray GazeRay; // レイの情報
+                bool eye_focus; // レイと衝突しているターゲットの有無
+                int dart_board_layer_id = LayerMask.NameToLayer(tagName); // 指定したレイヤの番号を取得
+
+
+                // 視線の方向情報を取得-----------------------------------------
                 if (eye_callback_registered)
+                {
                     eye_focus = SRanipal_Eye_v2.Focus(index, out GazeRay, out FocusInfo, 0, MaxDistance, (1 << dart_board_layer_id), eyeData);
+                }
                 else
+                {
                     eye_focus = SRanipal_Eye_v2.Focus(index, out GazeRay, out FocusInfo, 0, MaxDistance, (1 << dart_board_layer_id));
+                }
+                //--------------------------------------------------------------
 
-                if (eye_focus)
+
+                // レイとターゲットの衝突処理-----------------------------------
+                if (eye_focus) // レイに衝突しているターゲットが存在する場合
                 {
-                    pointer.transform.position = FocusInfo.point;
-                    if (FocusInfo.collider.gameObject != null)
+                    pointer.transform.position = FocusInfo.point; // ポインタオブジェクトの位置を更新
+
+                    if (FocusInfo.collider.gameObject != null) // レイに衝突しているターゲットが存在しない場合
                     {
-                        objectName_new = FocusInfo.collider.gameObject;
-                        script.RayTarget = objectName_new;
-                        //objectName_new.GetComponent<Renderer>().material.color = Color.blue;
+                        objectName_new = FocusInfo.collider.gameObject; // レイと衝突しているターゲットを変数に格納
+                        script.RayTarget = objectName_new; // レイと衝突しているターゲットを更新
                     }
-                    break;
+                    break; // foreachから脱出（レイと衝突しているターゲットを見つけたため．複数のターゲットを見つける場合は除外する）
                 }
                 else
                 {
-                    pointer.transform.position = new Vector3(0, 0, 0);
+                    pointer.transform.position = new Vector3(0, 0, 0); // ポインタオブジェクトの位置を初期化
                 }
+                //--------------------------------------------------------------
             }
+            //--------------------------------------------------------------
 
-            // オブジェクト選択
+
+            // オブジェクト選択---------------------------------------------
             if ((objectName_now != objectName_new) && (script.test_id == 3)) // 注視しているオブジェクトが異なり，かつ視線レイキャストモードの場合
             {
-                script.same_target = false;
-                script.select_target_id = -1;
-                if (script.total_DwellTime_mode == false) objectName_new.GetComponent<target_para_set>().dtime = 0; //注視時間を初期化
-                //objectName_now.GetComponent<Renderer>().material.color = Color.white;
-                //objectName_new.GetComponent<Renderer>().material.color = Color.yellow;
+                script.same_target = false; // ？？？
+                script.selecting_target = null; // 選択されているターゲットを初期化
+                script.select_target_id = -1; // 選択されているターゲットのIDを初期化
+                if (script.total_DwellTime_mode == false) objectName_new.GetComponent<target_para_set>().dtime = 0; // 注視時間を初期化
                 script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
-                script.lens_flag = true;
-                script.lens_flag2 = true;
             }
 
             if ((objectName_new != null) && (script.test_id == 3)) // オブジェクトが空でなく，かつ視線レイキャストモードの場合
             {
-                objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視中のオブジェクトの総連続注視時間を追加．
-
-                //if (objectName_new.GetComponent<target_para_set>().dtime >= script.set_dtime || script.next_step__flag) //一定時間注視した＝選択が成立した場合
-                //{
-                //    script.select_target_id = objectName_new.GetComponent<target_para_set>().Id; //IDを更新
-                //    script.next_step__flag = false; //
-                //    //objectName_new.GetComponent<Renderer>().material.color = script.target_color;
-                //}
-
+                objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視中のオブジェクトの総連続注視時間を追加
                 objectName_now = objectName_new; //注視しているオブジェクトを更新
-
-                if (Vector3.Distance(pointer.transform.position, objectName_now.transform.position) > 0.2f)
-                {
-                    script.lens_flag = false;
-                    script.lens_flag2 = false;
-                }
             }
+            //--------------------------------------------------------------
         }
+
         private void Release()
         {
             if (eye_callback_registered == true)
@@ -112,6 +117,7 @@ namespace ViveSR.anipal.Eye
                 eye_callback_registered = false;
             }
         }
+
         private static void EyeCallback(ref EyeData_v2 eye_data)
         {
             eyeData = eye_data;
