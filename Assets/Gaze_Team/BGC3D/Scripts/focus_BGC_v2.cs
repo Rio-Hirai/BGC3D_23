@@ -6,19 +6,17 @@ using ViveSR.anipal.Eye;
 
 public class focus_BGC_v2 : MonoBehaviour
 {
-    private FocusInfo FocusInfo;                        // レイ（視線）と衝突したターゲットの情報を格納する変数
-    private readonly float MaxDistance = 20;            // レイの最大長
+    private FocusInfo FocusInfo;                            // レイ（視線）と衝突したターゲットの情報を格納する変数
+    private readonly float MaxDistance = 20;                // レイの最大長
+    private static EyeData_v2 eyeData = new EyeData_v2();   // 各種視線情報を格納する変数
+    private bool eye_callback_registered = false;           // callback関係
     private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };// ？？？
-    private static EyeData_v2 eyeData = new EyeData_v2();// 各種視線情報を格納する変数
-    private bool eye_callback_registered = false;       // callback関係
 
-    public receiver script;                             // サーバ接続
-    public GameObject pointer;                          // ポインタ
-    public GameObject objectName_now;                   // 現在のターゲット
-    public GameObject objectName_new;                   // 新しいターゲット
-
-    [SerializeField]
-    private string tagName = "Targets";                 // 注視可能対象の選定．インスペクタで変更可能
+    public receiver script;                                 // サーバ接続
+    public GameObject pointer;                              // ポインタ
+    public GameObject objectName_now;                       // 現在のターゲット
+    public GameObject objectName_new;                       // 新しいターゲット
+    [SerializeField] private string tagName = "Targets";    // 注視可能対象の選定．インスペクタで変更可能
 
     private void Start()
     {

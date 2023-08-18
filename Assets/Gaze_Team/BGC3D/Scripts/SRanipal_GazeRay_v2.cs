@@ -22,7 +22,7 @@ namespace ViveSR
                 public GameObject hit_point;                            // ポインタ
                 public GameObject objectName_now;                       // 現在のターゲット
                 public GameObject objectName_new;                       // 新しいターゲット
-                [SerializeField] private receiver script;               // サーバー接続
+                [SerializeField] private receiver script;               // サーバ接続
 
 
                 // レイ算出用---------------------------------------------------

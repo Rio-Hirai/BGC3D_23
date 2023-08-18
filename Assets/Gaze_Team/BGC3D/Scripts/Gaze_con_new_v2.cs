@@ -28,11 +28,12 @@ namespace ViveSR
                 public Transform camera_obj;                // ユーザの位置
                 private float searchWaitTime = 1 / 60;      // 検索の待機時間
 
-                private float timer = 0f;                   // 検索までの待機時間計測用
+                private float timer = 0.0f;                 // 検索までの待機時間計測用
                 private Vector3 cursor_point;               // カーソルの位置
                 private float target_size;                  // 注視しているターゲットの大きさ
                 private float distance_of_camera_to_target; // ユーザとターゲット間の距離
                 private float color_alpha = 0.45f;          // カーソルの透明度
+
 
                 void Start()
                 {

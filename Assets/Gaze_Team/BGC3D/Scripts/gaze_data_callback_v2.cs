@@ -9,10 +9,9 @@ public class gaze_data_callback_v2 : MonoBehaviour
 {
     private static EyeData_v2 eyeData = new EyeData_v2();   // Šeí‹üî•ñ‚ğŠi”[‚·‚é•Ï”
     private static bool eye_callback_registered = false;    // callbackŠÖŒW
+    private FocusInfo CombineFocus;                         // ‹ü•ûŒü‚Ìî•ñ‚ğŠi”[‚·‚é•Ï”
 
     [SerializeField] private receiver server;               // ƒT[ƒo‚ÆÚ‘±
-
-    private FocusInfo CombineFocus;                         // ‹ü•ûŒü‚Ìî•ñ‚ğŠi”[‚·‚é•Ï”
 
 
     private void Update()
