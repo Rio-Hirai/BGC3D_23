@@ -31,11 +31,13 @@ namespace ViveSR
 
                 private void Start()
                 {
+                    // SRanipal_Eye_Framework‚ª³í‚É“®‚¢‚Ä‚¢‚È‚¢ê‡‚Ìˆ—---------
                     if (!SRanipal_Eye_Framework.Instance.EnableEye)
                     {
                         enabled = false;
                         return;
                     }
+                    //--------------------------------------------------------------
 
                     Assert.IsNotNull(GazeRayRenderer);
 
@@ -45,6 +47,7 @@ namespace ViveSR
 
                 private void Update()
                 {
+                    // ‹üî•ñ‚ğæ“¾-----------------------------------------------
                     if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
                         SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
 
@@ -58,7 +61,10 @@ namespace ViveSR
                         SRanipal_Eye_v2.WrapperUnRegisterEyeDataCallback(Marshal.GetFunctionPointerForDelegate((SRanipal_Eye_v2.CallbackBasic)EyeCallback));
                         eye_callback_registered = false;
                     }
+                    //--------------------------------------------------------------
 
+
+                    // ‹ü‚Ì•ûŒüî•ñ‚ğæ“¾-----------------------------------------
                     Vector3 GazeOriginCombinedLocal, GazeDirectionCombinedLocal;
 
                     if (eye_callback_registered)
@@ -75,13 +81,17 @@ namespace ViveSR
                         else if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.RIGHT, out GazeOriginCombinedLocal, out GazeDirectionCombinedLocal)) { }
                         else return;
                     }
+                    //--------------------------------------------------------------
 
+
+                    // ƒŒƒC‚Ì•`‰æ---------------------------------------------------
                     Vector3 GazeDirectionCombined = Camera.main.transform.TransformDirection(GazeDirectionCombinedLocal);
                     GazeRayRenderer.SetPosition(0, Camera.main.transform.position - Camera.main.transform.up * 0.05f);
                     GazeRayRenderer.SetPosition(1, Camera.main.transform.position + GazeDirectionCombined * LengthOfRay);
 
                     ray0 = Camera.main.transform.position - Camera.main.transform.up * 0.05f;
                     ray1 = GazeDirectionCombined;
+                    //--------------------------------------------------------------
                 }
 
                 private void Release()

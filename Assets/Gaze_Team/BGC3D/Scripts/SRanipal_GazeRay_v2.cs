@@ -43,11 +43,13 @@ namespace ViveSR
 
                 private void Start()
                 {
+                    // SRanipal_Eye_Framework‚ª³í‚É“®‚¢‚Ä‚¢‚È‚¢ê‡‚Ìˆ—---------
                     if (!SRanipal_Eye_Framework.Instance.EnableEye)
                     {
                         enabled = false;
                         return;
                     }
+                    //--------------------------------------------------------------
 
                     Assert.IsNotNull(GazeRayRenderer);
 
