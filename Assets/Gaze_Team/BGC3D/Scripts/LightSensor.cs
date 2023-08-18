@@ -9,7 +9,7 @@ public class LightSensor : MonoBehaviour
     private Texture2D targetTexture;
 
     [SerializeField] private receiver server; // サーバと接続
-    [System.NonSerialized] public float lightValue;
+    [System.NonSerialized] public float lightValue; // 画面の明度を格納するための変数
 
 
     IEnumerator Start()
@@ -23,7 +23,7 @@ public class LightSensor : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
 
-            targetTexture.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
+            targetTexture.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0); // カメラのピクセル情報を取得
             targetTexture.Apply();
 
             lightValue = GetLightValue(targetTexture); // 明度を取得

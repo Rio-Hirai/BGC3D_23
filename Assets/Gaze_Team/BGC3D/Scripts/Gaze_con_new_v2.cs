@@ -142,7 +142,7 @@ namespace ViveSR
                         // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きいなら
                         if (nearDistance == 999 || nearDistance > distance)
                         {
-                            if (nearDistance == 999 || distance < (cursor_size_limit / 2))
+                            if (nearDistance == 999 || distance < cursor_size_limit)
                             {
                                 nearDistance = distance; // nearDistanceを更新
                                 searchTargetObj = obj; // searchTargetObjを更新
@@ -151,7 +151,7 @@ namespace ViveSR
 
 
                                 // カーソルの大きさの上限に抵触した場合の処理-------------------
-                                if (nearDistance < (cursor_size_limit)) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
+                                if (nearDistance < cursor_size_limit) // オブジェクト間の距離が一定未満＝カーソルの大きさが最大未満の場合
                                 {
                                     script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
                                     script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
@@ -165,7 +165,7 @@ namespace ViveSR
                             }
                             else
                             {
-
+                                searchTargetObj = null; // ？？？
                             }
                         }
                         //--------------------------------------------------------------
@@ -190,16 +190,21 @@ namespace ViveSR
                     }
                     //--------------------------------------------------------------
 
-
-                    searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視しているターゲットの累計注視時間を追加
+                    if (searchNearObj != null) searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視しているターゲットの累計注視時間を追加
 
 
                     // 一定時間注視していた場合--------------------------------------
-                    if (((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime || script.BlinkFlag > 0) && nearDistance * 2 + target_size < (cursor_size_limit)) || script.next_step__flag)
+                    if ((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime) || script.next_step__flag)
                     {
                         script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
                         script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
                     }
+
+                    //if (((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime || script.BlinkFlag > 0) && nearDistance * 2 + target_size < (cursor_size_limit)) || script.next_step__flag)
+                    //{
+                    //    script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
+                    //    script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
+                    //}
                     //--------------------------------------------------------------
 
 
