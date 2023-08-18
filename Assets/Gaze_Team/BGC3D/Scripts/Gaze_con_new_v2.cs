@@ -16,12 +16,12 @@ namespace ViveSR
 
             public class Gaze_con_new_v2 : MonoBehaviour
             {
-                public receiver script;                     // サーバと接続
+                [SerializeField] private receiver script;   // サーバと接続
                 public SRanipal_GazeRay_BGC_v2 rayset;      // レイキャストのデータを取得
                 public MovingAverageFilter filter;          // 移動平均フィルタを取得
 
                 [SerializeField]
-                private string tagName = "Targets";         // 注視可能対象の選定．インスペクターで変更可能
+                private string tagName = "Targets";         // 注視可能対象の選定．インスペクタで変更可能
 
                 public GameObject searchNearObj;            // 最も近いオブジェクト(public修飾子にすることで外部のクラスから参照できる)
                 public GameObject oldNearObj;               // 前フレームに注視していたターゲット

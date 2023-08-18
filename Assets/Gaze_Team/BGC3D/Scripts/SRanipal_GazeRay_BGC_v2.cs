@@ -22,7 +22,7 @@ namespace ViveSR
                 [SerializeField, Range(0.0f, 25.0f)] public float radius = 5.0f;    // Bubble Cursorの半径
                 [SerializeField, Range(0.0f, 25.0f)] public float maxradius = 5.0f; // Bubble Cursorの最大半径
 
-                public receiver script;                                             // サーバー接続
+                [SerializeField] private receiver script;                           // サーバ接続
 
                 // レイ算出用---------------------------------------------------
                 [System.NonSerialized] public Vector3 ray0;                         // 視線の始点ベクトル
@@ -105,7 +105,7 @@ namespace ViveSR
 
                 private static void EyeCallback(ref EyeData_v2 eye_data)
                 {
-                    eyeData = eye_data;
+                    eyeData = eye_data; // 各種視線情報を更新
                 }
             }
         }

@@ -19,19 +19,15 @@ namespace ViveSR
                 private static EyeData_v2 eyeData = new EyeData_v2();   // 各種視線情報を格納する変数
                 private bool eye_callback_registered = false;           // callback関係
 
-                public float radius = 5.0f;                             // ？？？
-                public float maxradius = 5.0f;                          // ？？？
-                public GameObject hit_point;                            // ？？？
-                public GameObject objectName_now;                       // ？？？
-                public GameObject objectName_new;                       // ？？？
-                public GameObject Lens_camera;                          // ？？？
-                public GameObject Lens_rotation;                        // ？？？
+                public GameObject hit_point;                            // ポインタ
+                public GameObject objectName_now;                       // 現在のターゲット
+                public GameObject objectName_new;                       // 新しいターゲット
                 [SerializeField] private receiver script;               // サーバー接続
 
 
                 // レイ算出用---------------------------------------------------
-                [System.NonSerialized] public Vector3 ray0;             // ？？？
-                [System.NonSerialized] public Vector3 ray1;             // ？？？
+                [System.NonSerialized] public Vector3 ray0;             // 視線の始点ベクトル
+                [System.NonSerialized] public Vector3 ray1;             // 視線の方向ベクトル
                 //--------------------------------------------------------------
 
 
@@ -123,7 +119,7 @@ namespace ViveSR
 
                 private static void EyeCallback(ref EyeData_v2 eye_data)
                 {
-                    eyeData = eye_data;
+                    eyeData = eye_data; // 各種視線情報を更新
                 }
             }
         }

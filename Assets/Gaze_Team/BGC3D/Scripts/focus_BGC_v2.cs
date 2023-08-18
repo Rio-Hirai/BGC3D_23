@@ -12,12 +12,13 @@ public class focus_BGC_v2 : MonoBehaviour
     private static EyeData_v2 eyeData = new EyeData_v2();// 各種視線情報を格納する変数
     private bool eye_callback_registered = false;       // callback関係
 
-    public receiver script;                             // サーバー接続
+    public receiver script;                             // サーバ接続
     public GameObject pointer;                          // ポインタ
     public GameObject objectName_now;                   // 現在のターゲット
     public GameObject objectName_new;                   // 新しいターゲット
+
     [SerializeField]
-    private string tagName = "Targets";                     // 注視可能対象の選定．インスペクターで変更可能
+    private string tagName = "Targets";                 // 注視可能対象の選定．インスペクタで変更可能
 
     private void Start()
     {
@@ -116,6 +117,6 @@ public class focus_BGC_v2 : MonoBehaviour
 
     private static void EyeCallback(ref EyeData_v2 eye_data)
     {
-        eyeData = eye_data;
+        eyeData = eye_data; // 各種視線情報を更新
     }
 }
