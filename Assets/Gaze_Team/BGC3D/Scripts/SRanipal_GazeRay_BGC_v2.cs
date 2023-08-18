@@ -16,7 +16,7 @@ namespace ViveSR
                 [SerializeField, Range(0, 30)] public int LengthOfRay = 25;         // ƒŒƒC‚ÌÅ‘å’·
                 [SerializeField] private LineRenderer GazeRayRenderer;              // ƒŒƒC‚ÌF
                 [SerializeField] private Gradient _gradient;                        // ƒŒƒC‚ÌF
-                private static EyeData_v2 eyeData = new EyeData_v2();               // ‹üî•ñ
+                private static EyeData_v2 eyeData = new EyeData_v2();               // Šeí‹üî•ñ‚ğŠi”[‚·‚é•Ï”
                 private bool eye_callback_registered = false;                       // callbackŠÖŒW
 
                 [SerializeField, Range(0.0f, 25.0f)] public float radius = 5.0f;    // Bubble Cursor‚Ì”¼Œa

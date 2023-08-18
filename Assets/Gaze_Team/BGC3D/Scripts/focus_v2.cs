@@ -8,10 +8,10 @@ namespace ViveSR.anipal.Eye
     public class focus_v2 : MonoBehaviour
     {
         private FocusInfo FocusInfo;                            // レイ（視線）と衝突したターゲットの情報を格納する変数
-        private readonly float MaxDistance = 20;                // ？？？
+        private readonly float MaxDistance = 20;                // レイの最大長
         private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
-        private static EyeData_v2 eyeData = new EyeData_v2();   // ？？？
-        private bool eye_callback_registered = false;           // ？？？
+        private static EyeData_v2 eyeData = new EyeData_v2();   // 視線情報
+        private bool eye_callback_registered = false;           // callback関係
 
         public receiver script;                                 // サーバー接続
         public GameObject pointer;                              // ？？？

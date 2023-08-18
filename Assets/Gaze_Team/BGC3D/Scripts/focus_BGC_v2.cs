@@ -6,16 +6,18 @@ using ViveSR.anipal.Eye;
 
 public class focus_BGC_v2 : MonoBehaviour
 {
-    private FocusInfo FocusInfo;
-    private readonly float MaxDistance = 20;
-    private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
-    private static EyeData_v2 eyeData = new EyeData_v2();
-    private bool eye_callback_registered = false;
+    private FocusInfo FocusInfo;                        // レイ（視線）と衝突したターゲットの情報を格納する変数
+    private readonly float MaxDistance = 20;            // レイの最大長
+    private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };// ？？？
+    private static EyeData_v2 eyeData = new EyeData_v2();// 各種視線情報を格納する変数
+    private bool eye_callback_registered = false;       // callback関係
 
-    public receiver script; // サーバー接続
-    public GameObject pointer; // ポインタ
-    public GameObject objectName_now; // 現在のターゲット
-    public GameObject objectName_new; // 新しいターゲット
+    public receiver script;                             // サーバー接続
+    public GameObject pointer;                          // ポインタ
+    public GameObject objectName_now;                   // 現在のターゲット
+    public GameObject objectName_new;                   // 新しいターゲット
+    [SerializeField]
+    private string tagName = "Targets";                     // 注視可能対象の選定．インスペクターで変更可能
 
     private void Start()
     {
@@ -53,7 +55,7 @@ public class focus_BGC_v2 : MonoBehaviour
             {
                 Ray GazeRay; // レイの情報
                 bool eye_focus; // レイと衝突しているターゲットの有無
-                int dart_board_layer_id = LayerMask.NameToLayer("Targets"); // 指定したレイヤの番号を取得
+                int dart_board_layer_id = LayerMask.NameToLayer(tagName); // 指定したレイヤの番号を取得
 
 
                 // 視線の方向情報を取得-----------------------------------------

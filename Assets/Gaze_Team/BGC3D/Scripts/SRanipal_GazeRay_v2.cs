@@ -13,11 +13,11 @@ namespace ViveSR
         {
             public class SRanipal_GazeRay_v2 : MonoBehaviour
             {
-                public int LengthOfRay = 25;                            // ？？？
-                [SerializeField] private LineRenderer GazeRayRenderer;  // ？？？
-                [SerializeField] private Gradient _gradient;            // ？？？
-                private static EyeData_v2 eyeData = new EyeData_v2();   // ？？？
-                private bool eye_callback_registered = false;           // ？？？
+                public int LengthOfRay = 25;                            // レイの最大長
+                [SerializeField] private LineRenderer GazeRayRenderer;  // レイの色
+                [SerializeField] private Gradient _gradient;            // レイの色
+                private static EyeData_v2 eyeData = new EyeData_v2();   // 各種視線情報を格納する変数
+                private bool eye_callback_registered = false;           // callback関係
 
                 public float radius = 5.0f;                             // ？？？
                 public float maxradius = 5.0f;                          // ？？？
@@ -28,12 +28,6 @@ namespace ViveSR
                 public GameObject Lens_rotation;                        // ？？？
                 [SerializeField] private receiver script;               // サーバー接続
 
-                // 移動平均フィルター関係---------------------------------------
-                private int window = 25;                                // 窓の大きさ
-                private int[] count = new int[5];                       // 新しい値の格納場所
-                private Vector3[,] hit_position = new Vector3[5, 25];   // ？？？
-                private Vector3 hit_position_fil;                       // ？？？
-                //--------------------------------------------------------------
 
                 // レイ算出用---------------------------------------------------
                 [System.NonSerialized] public Vector3 ray0;             // ？？？

@@ -7,12 +7,12 @@ using ViveSR.anipal.Eye;
 
 public class gaze_data_callback_v2 : MonoBehaviour
 {
-    private static EyeData_v2 eyeData = new EyeData_v2(); // Šeí‹üî•ñ‚ğŠi”[‚·‚é•Ï”
-    private static bool eye_callback_registered = false;
+    private static EyeData_v2 eyeData = new EyeData_v2();   // Šeí‹üî•ñ‚ğŠi”[‚·‚é•Ï”
+    private static bool eye_callback_registered = false;    // callbackŠÖŒW
 
-    [SerializeField] private receiver server; // ƒT[ƒo‚ÆÚ‘±
+    [SerializeField] private receiver server;               // ƒT[ƒo‚ÆÚ‘±
 
-    private FocusInfo CombineFocus; // ‹ü•ûŒü‚Ìî•ñ‚ğŠi”[‚·‚é•Ï”
+    private FocusInfo CombineFocus;                         // ‹ü•ûŒü‚Ìî•ñ‚ğŠi”[‚·‚é•Ï”
 
 
     private void Update()
