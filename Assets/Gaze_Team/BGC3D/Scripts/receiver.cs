@@ -337,7 +337,7 @@ public class receiver : MonoBehaviour
         for (int i = 0; i < target_set.Length; i++) target_set[i].SetActive(false); // 表示されているターゲット群を全て非表示
 
 
-        // ランダム配置条件の場合の処理--------------------------------------
+        // ランダム配置条件の場合の処理---------------------------------
         if (target_p_id == 99)
         {
             random_target_set(); // ランダムにターゲットを配置
@@ -349,7 +349,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        //ファイル名作成---------------------------------------------------
+        //ファイル名作成------------------------------------------------
         DateTime dt = DateTime.Now; // 時間を保存
 
         input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString(); // ファイル名に使用する月日時分を保存
@@ -396,7 +396,7 @@ public class receiver : MonoBehaviour
             }
             //--------------------------------------------------------------
 
-            if (test_id != 0)
+            if (test_id != 0) // 何らかの手法が選択されている場合
             {
                 test_time += Time.deltaTime; // タスク時間を更新
 
@@ -417,7 +417,7 @@ public class receiver : MonoBehaviour
 
 
                 // タスクの状態チェック-----------------------------------------
-                if (taskflag)
+                if (taskflag) // タスク中の場合
                 {
                     // ターゲットの選択が行われた時の処理-------------------------
                     if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
@@ -484,17 +484,10 @@ public class receiver : MonoBehaviour
             }
 
 
-            // Head（ヘッドマウンドディスプレイ）の情報を一時保管-----------
             Quaternion HMDRotationQ = InputTracking.GetLocalRotation(XRNode.Head); //回転座標をクォータニオンで値を受け取る，旧式らしいので要修正
             HMDRotation = HMDRotationQ.eulerAngles; // 取得した値をクォータニオン → オイラー角に変換
-                                                    //--------------------------------------------------------------
-
-
             lightValue = sensor.lightValue; // 画面全体の明度情報を更新
-
-            //if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data2(), streamWriter_gaze, false); // 視線関係のデータを取得
-            //if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得
-            if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得
+            if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得＆書き出し
         }
         else
         {
@@ -644,7 +637,7 @@ public class receiver : MonoBehaviour
         }
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    // private void method_change() 終了-------------------------------
 
 
     // 結果を出力する関数----------------------------------------------
@@ -716,7 +709,7 @@ public class receiver : MonoBehaviour
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    // public void result_output() 終了-----------------------------
 
 
     // 実験結果をcsv形式で出力する関数------------------------------
@@ -738,7 +731,7 @@ public class receiver : MonoBehaviour
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    // public void result_output_csv() 終了--------------------------
 
 
     // 視線情報をcsv形式で出力する関数（処理が重いので使っていない）-
@@ -760,7 +753,7 @@ public class receiver : MonoBehaviour
         Debug.Log("data_output_end2!!"); // 確認メッセージを出力
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    // public void result_output_csv2() 終了------------------------
 
 
     // 引数をファイルに出力する関数---------------------------------
@@ -777,7 +770,7 @@ public class receiver : MonoBehaviour
         }
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    // public void result_output_every() 終了-----------------------
 
 
     // 実験を途中で中断した場合にログを出力するための関数-----------
@@ -847,7 +840,7 @@ public class receiver : MonoBehaviour
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    // public void error_output() 終了------------------------------
 
 
     // タスク（選択するターゲット）を生成する関数-------------------
@@ -890,7 +883,7 @@ public class receiver : MonoBehaviour
             }
         }
     }
-    //--------------------------------------------------------------
+    // void set_testpattern() 終了----------------------------------
 
 
     // ランダム配置条件のためのターゲット生成と配置を行う関数-------
@@ -910,7 +903,7 @@ public class receiver : MonoBehaviour
         }
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    //private void random_target_set() 終了-------------------------
 
 
     // アプリケーション終了時の処理を行う関数-----------------------
@@ -919,7 +912,7 @@ public class receiver : MonoBehaviour
         result_output_every("", streamWriter_gaze, true);   // 視線データを保存したファイルを閉じる
         Debug.Log("data_output_every!!");                   // 確認メッセージを出力
     }
-    //--------------------------------------------------------------
+    // private void OnApplicationQuit() 終了------------------------
 
 
     // 瞬き3回で選択行為を行う関数----------------------------------
@@ -970,7 +963,7 @@ public class receiver : MonoBehaviour
         }
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    // public void Blink3() 終了------------------------------------
 
 
     // 瞬きを3回行うと選択になる関数--------------------------------
@@ -1017,5 +1010,5 @@ public class receiver : MonoBehaviour
         }
         //--------------------------------------------------------------
     }
-    //--------------------------------------------------------------
+    // public void Blink() 終了-------------------------------------
 }
