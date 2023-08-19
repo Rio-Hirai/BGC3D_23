@@ -31,7 +31,7 @@ public class focus_BGC_v2 : MonoBehaviour
 
     private void Update()
     {
-        if (script.test_id == 6)
+        if (script.test_id == 6) // 使用手法が「Bubble_Gaze_Cursor_with_Gaze_Ray」の場合
         {
             // 視線情報を取得-----------------------------------------------
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING && SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
@@ -86,7 +86,7 @@ public class focus_BGC_v2 : MonoBehaviour
                 }
                 //--------------------------------------------------------------
             }
-            //--------------------------------------------------------------
+            //if (script.test_id == 6) 終了---------------------------------
 
 
             // オブジェクト選択---------------------------------------------

@@ -90,7 +90,7 @@ namespace ViveSR.anipal.Eye
 
 
             // オブジェクト選択---------------------------------------------
-            if ((objectName_now != objectName_new) && (script.test_id == 3)) // 注視しているオブジェクトが異なり，かつ視線レイキャストモードの場合
+            if ((objectName_now != objectName_new) && (script.test_id == 3)) // 注視しているオブジェクトが異なり，かつ使用手法が「Gaze_Raycast」の場合
             {
                 script.same_target = false; // ？？？
                 script.selecting_target = null; // 選択されているターゲットを初期化
@@ -99,7 +99,7 @@ namespace ViveSR.anipal.Eye
                 script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
             }
 
-            if ((objectName_new != null) && (script.test_id == 3)) // オブジェクトが空でなく，かつ視線レイキャストモードの場合
+            if ((objectName_new != null) && (script.test_id == 3)) // オブジェクトが空でなく，かつ使用手法が「Gaze_Raycast」の場合
             {
                 objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視中のオブジェクトの総連続注視時間を追加
                 objectName_now = objectName_new; //注視しているオブジェクトを更新
