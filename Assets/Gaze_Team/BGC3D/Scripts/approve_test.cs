@@ -13,9 +13,10 @@ public class approve_test : MonoBehaviour
 
     void Start()
     {
-        // 初期化
+        // 初期化-------------------------------------------------------
         lastRotationX = head.rotation.eulerAngles.x;
         timer = 0;
+        //--------------------------------------------------------------
     }
 
     void Update()
@@ -25,24 +26,25 @@ public class approve_test : MonoBehaviour
         // 指定した時間が経過したら、x軸の回転をチェック
         if (timer >= timeThreshold)
         {
-            // 現在のx軸の回転を取得
-            float currentRotationX = head.rotation.eulerAngles.x;
+            float currentRotationX = head.rotation.eulerAngles.x; // 現在のx軸の回転を取得
 
-            // 前回の回転からの変化を計算
-            float rotationChange = Mathf.Abs(currentRotationX - lastRotationX);
+            float rotationChange = Mathf.Abs(currentRotationX - lastRotationX); // 前回の回転からの変化を計算
 
-            // 必要に応じて360度減らす（360度以上の回転を避けるため）
-            if (rotationChange > 180) rotationChange -= 360;
+            if (rotationChange > 180) rotationChange -= 360; // 必要に応じて360度減らす（360度以上の回転を避けるため）
 
-            // 回転が閾値を超えている場合、メッセージを出力
+
+            // 回転が閾値を超えている場合、メッセージを出力-----------------
             if (Mathf.Abs(rotationChange) > rotationThreshold)
             {
                 Debug.Log("The x rotation changed by more than " + rotationThreshold + " degrees in " + timeThreshold + " seconds.");
             }
+            //--------------------------------------------------------------
 
-            // 前回の回転と時間を更新
+
+            // 前回の回転と時間を更新---------------------------------------
             lastRotationX = currentRotationX;
             timer = 0;
+            //--------------------------------------------------------------
         }
     }
 }
