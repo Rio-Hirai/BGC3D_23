@@ -9,6 +9,7 @@ TagManager:
   - Targets
   - UI
   - Server
+  - near
   layers:
   - Default
   - TransparentFX

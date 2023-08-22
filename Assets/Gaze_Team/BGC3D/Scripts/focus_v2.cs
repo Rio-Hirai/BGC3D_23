@@ -98,6 +98,10 @@ namespace ViveSR.anipal.Eye
                 if (script.total_DwellTime_mode == false) objectName_new.GetComponent<target_para_set>().dtime = 0; // 注視時間を初期化
                 script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
             }
+            else if (objectName_new == null)
+            {
+                script.DwellTarget = objectName_new;
+            }
 
             if ((objectName_new != null) && (script.test_id == 3)) // オブジェクトが空でなく，かつ使用手法が「Gaze_Raycast」の場合
             {

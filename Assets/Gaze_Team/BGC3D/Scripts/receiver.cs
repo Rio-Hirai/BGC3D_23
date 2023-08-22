@@ -450,6 +450,7 @@ public class receiver : MonoBehaviour
                             same_target = true;
                             tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
                             audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
+                            selecting_target.GetComponent<target_para_set>().dtime = 0;
                         }
                     }
                     //--------------------------------------------------------------

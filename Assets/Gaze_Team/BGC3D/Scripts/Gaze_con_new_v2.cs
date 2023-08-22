@@ -92,22 +92,14 @@ namespace ViveSR
                             Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
                             cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
                             float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
+                            // obj.tag = tagName;  // 次回の処理のためにタグを初期化
 
-
-                            // 移動平均フィルタを実行時に処理を軽くするプログラム①（要テスト）
-                            if (distance < cursor_size_limit)
-                            {
-                                obj.GetComponent<target_para_set>().neartarget = true; // ？？？
-                            }
-                            else
-                            {
-                                obj.GetComponent<target_para_set>().neartarget = false; // ？？？
-                            }
-                            //--------------------------------------------------------------
-
+                            if (distance < cursor_size_limit) obj.tag = "near"; // 視線の周辺にあるターゲットのタグを変更
 
                             if (distance < cursor_size_limit / 2) script.cursor_count++; // カーソル内に存在するターゲットをカウント
                         }
+
+                        if (script.cursor_count > 0) objs = GameObject.FindGameObjectsWithTag("near"); // ターゲットリストを更新したタグを持つターゲットのみに更新
 
                         ray1 = filter.filter(rayset.ray1, script.cursor_count); // 視線の方向ベクトルに動的移動平均フィルタを適用（第一引数がフィルタリングする値，第二引数が窓の大きさ）
                     }
@@ -117,17 +109,6 @@ namespace ViveSR
                     // Bubble Cursor------------------------------------------------
                     foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
                     {
-                        // 移動平均フィルタを実行時に処理を軽くするプログラム①（要テスト．breakではないので処理の軽減にはそこまで寄与していない）
-                        if (script.MAverageFilter)
-                        {
-                            if (script.cursor_count > 2) // 視線の周囲に何らかのターゲットが存在する場合
-                            {
-                                if (obj.GetComponent<target_para_set>().neartarget == false) continue; // 視線の周囲にないターゲットの場合に処理をスキップ
-                            }
-                        }
-                        //--------------------------------------------------------------
-
-
                         Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
                         Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
                         cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
@@ -135,9 +116,9 @@ namespace ViveSR
                         float target_size_tmp = obj.transform.lossyScale.x; // ？？？
 
 
-                        // 移動平均フィルタを実行時に処理を軽くするプログラム②---------
-                        if (distance < (cursor_size_limit / 2)) continue; // 視線の周囲にないターゲットの場合に処理をスキップ
-                        //--------------------------------------------------------------
+                        //// 移動平均フィルタを実行時に処理を軽くするプログラム②---------
+                        //if (distance < (cursor_size_limit / 2)) continue; // 視線の周囲にないターゲットの場合に処理をスキップ
+                        ////--------------------------------------------------------------
 
 
                         // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きいなら
@@ -171,10 +152,7 @@ namespace ViveSR
                         }
                         //--------------------------------------------------------------
 
-
-                        // 移動平均フィルタを実行時に処理を軽くするプログラム②---------
-                        if (distance < (target_size_tmp / 20)) break; // 視線とターゲットの距離がほぼ0ならループを終了
-                        //--------------------------------------------------------------
+                        if (distance < (target_size_tmp / 10)) break; // 視線とターゲットの距離がほぼ0ならループを終了
                     }
                     // foreach (GameObject obj in objs) 終了------------------------
 
@@ -185,17 +163,20 @@ namespace ViveSR
                     {
                         script.same_target = false;
                         script.select_target_id = -1; // 選択状態のターゲットのIDを初期化
-                        if (script.total_DwellTime_mode == false) searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
+                        if (searchTargetObj != null)
+                        {
+                            if (script.total_DwellTime_mode == false) searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
+                        }
 
                         script.BlinkFlag = 0; // 連続瞬きを初期化
                     }
                     //--------------------------------------------------------------
 
-                    if (searchNearObj != null) searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視しているターゲットの累計注視時間を追加
+                    if (searchTargetObj != null) searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視しているターゲットの累計注視時間を追加
 
 
                     // 一定時間注視していた場合--------------------------------------
-                    if ((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime) || script.next_step__flag)
+                    if (searchTargetObj != null && ((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime) || script.next_step__flag))
                     {
                         script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
                         script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
@@ -211,6 +192,14 @@ namespace ViveSR
 
                     oldNearObj = searchTargetObj; // 注視しているターゲットを更新
                     script.cursor_radious = (nearDistance) + (target_size / 2); // カーソルの大きさを更新
+
+                    if (script.MAverageFilter)
+                    {
+                        foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
+                        {
+                            obj.tag = tagName;
+                        }
+                    }
 
                     return searchTargetObj; // 最も近いオブジェクトを返す
                 }
