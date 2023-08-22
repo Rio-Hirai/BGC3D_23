@@ -85,7 +85,14 @@ public class target_para_set : MonoBehaviour
         }
         else if (Id == 999) // IDが999（＝黒いターゲット）の場合
         {
-            this.GetComponent<Renderer>().material.color = Color.black; // ターゲットを黒色に変更
+            if (script.DwellTarget.name == this.name)
+            {
+                this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
+            }
+            else
+            {
+                this.GetComponent<Renderer>().material.color = Color.black; // ターゲットを黒色に変更
+            }
         }
         else if (script.DwellTarget != null) // 注視状態のターゲットが存在しない場合
         {

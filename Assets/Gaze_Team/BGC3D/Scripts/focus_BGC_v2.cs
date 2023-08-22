@@ -72,17 +72,19 @@ public class focus_BGC_v2 : MonoBehaviour
                 // レイとターゲットの衝突処理-----------------------------------
                 if (eye_focus) // レイに衝突しているターゲットが存在する場合
                 {
-                    pointer.transform.position = FocusInfo.point; // ポインタオブジェクトの位置を更新
-                    if (FocusInfo.collider.gameObject != null) // レイに衝突しているターゲットが存在しない場合
-                    {
-                        objectName_new = FocusInfo.collider.gameObject; // レイと衝突しているターゲットを変数に格納
-                        script.RayTarget = objectName_new; // レイと衝突しているターゲットを更新
-                    }
-                    break; // foreachから脱出（レイと衝突しているターゲットを見つけたため．複数のターゲットを見つける場合は除外する）
+                    // pointer.transform.position = FocusInfo.point; // ポインタオブジェクトの位置を更新
+
+                    objectName_new = FocusInfo.collider.gameObject; // レイと衝突しているターゲットを変数に格納
+                    script.RayTarget = objectName_new; // レイと衝突しているターゲットを更新
+
+                    //if (FocusInfo.collider.gameObject != null) // レイに衝突しているターゲットが存在しない場合
+                    //{
+                    //}
+                    // break; // foreachから脱出（レイと衝突しているターゲットを見つけたため．複数のターゲットを見つける場合は除外する）
                 }
                 else
                 {
-                    pointer.transform.position = new Vector3(0, 0, 0); // ポインタオブジェクトの位置を初期化
+                    // pointer.transform.position = new Vector3(0, 0, 0); // ポインタオブジェクトの位置を初期化
                 }
                 //--------------------------------------------------------------
             }
@@ -96,7 +98,7 @@ public class focus_BGC_v2 : MonoBehaviour
             {
                 if (script.DwellTarget == objectName_new)
                 {
-                    objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視中のオブジェクトの総連続注視時間を追加
+                    objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime * (objectName_new.GetComponent<target_para_set>().dtime * objectName_new.GetComponent<target_para_set>().dtime + 1.0f); // 注視中のオブジェクトの総連続注視時間を追加
                     objectName_now = objectName_new; //注視しているオブジェクトを更新
                 }
             }

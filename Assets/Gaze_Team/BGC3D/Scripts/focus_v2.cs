@@ -72,17 +72,13 @@ namespace ViveSR.anipal.Eye
                 if (eye_focus) // レイに衝突しているターゲットが存在する場合
                 {
                     pointer.transform.position = FocusInfo.point; // ポインタオブジェクトの位置を更新
-
-                    if (FocusInfo.collider.gameObject != null) // レイに衝突しているターゲットが存在しない場合
-                    {
-                        objectName_new = FocusInfo.collider.gameObject; // レイと衝突しているターゲットを変数に格納
-                        script.RayTarget = objectName_new; // レイと衝突しているターゲットを更新
-                    }
-                    break; // foreachから脱出（レイと衝突しているターゲットを見つけたため．複数のターゲットを見つける場合は除外する）
+                    objectName_new = FocusInfo.collider.gameObject; // レイと衝突しているターゲットを変数に格納
+                    script.RayTarget = objectName_new; // レイと衝突しているターゲットを更新
                 }
                 else
                 {
                     pointer.transform.position = new Vector3(0, 0, 0); // ポインタオブジェクトの位置を初期化
+                    objectName_new = null;
                 }
                 //--------------------------------------------------------------
             }
@@ -90,17 +86,13 @@ namespace ViveSR.anipal.Eye
 
 
             // オブジェクト選択---------------------------------------------
-            if ((objectName_now != objectName_new) && (script.test_id == 3)) // 注視しているオブジェクトが異なり，かつ使用手法が「Gaze_Raycast」の場合
+            if ((objectName_new != null) && (objectName_now != objectName_new) && (script.test_id == 3)) // 注視しているオブジェクトが異なり，かつ使用手法が「Gaze_Raycast」の場合
             {
                 script.same_target = false; // ？？？
                 script.selecting_target = null; // 選択されているターゲットを初期化
                 script.select_target_id = -1; // 選択されているターゲットのIDを初期化
                 if (script.total_DwellTime_mode == false) objectName_new.GetComponent<target_para_set>().dtime = 0; // 注視時間を初期化
                 script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
-            }
-            else if (objectName_new == null)
-            {
-                script.DwellTarget = objectName_new;
             }
 
             if ((objectName_new != null) && (script.test_id == 3)) // オブジェクトが空でなく，かつ使用手法が「Gaze_Raycast」の場合
