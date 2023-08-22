@@ -174,12 +174,15 @@ namespace ViveSR
 
                     if (searchTargetObj != null) searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視しているターゲットの累計注視時間を追加
 
+                    if ((searchTargetObj != null) && (script.approve_switch == true)) searchTargetObj.GetComponent<target_para_set>().dtime = 0f;
+
 
                     // 一定時間注視していた場合--------------------------------------
-                    if (searchTargetObj != null && ((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime) || script.next_step__flag))
+                    if (searchTargetObj != null && ((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime) || script.next_step__flag) || script.select_flag)
                     {
                         script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
                         script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
+                        script.select_flag = false;
                     }
 
                     //if (((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime || script.BlinkFlag > 0) && nearDistance * 2 + target_size < (cursor_size_limit)) || script.next_step__flag)

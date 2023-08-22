@@ -63,6 +63,8 @@ public class receiver : MonoBehaviour
     public bool eye_calibration;            // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
     public bool target_pos_calibration;     // ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
     public bool cursor_switch;              // バブルカーソルの表示・非表示
+    public bool raycast_switch;             // レイキャストの表示・非表示
+    public bool approve_switch;             // 頷き選択機能のオン・オフ
     public bool bubblegaze_switch;          // ？？？（要リファクタリング）
     public bool gazeraycast_switch;         // ？？？（要リファクタリング）
     public bool controller_switch;          // コントローラの表示・非表示（まだコントローラを非表示にできない）
@@ -70,6 +72,7 @@ public class receiver : MonoBehaviour
     public bool target_alpha_switch;        // ターゲットの透明化
     public bool LightSensor_switch;         // 明度計算機能のオン・オフ
     public bool MAverageFilter;             // 動的移動平均フィルタのオン・オフ
+    public bool select_flag;                // レンズの表示・非表示（使っていない）
     public bool task_skip;                  // 現在のタスクをスキップ（フラグを立てた瞬間に１度だけ実行されfalseに戻る）
     public bool error_output_flag;          // 強制中断（フラグを立てた瞬間に現時点での実験結果が出力される）
     public bool lens_switch;                // レンズの表示・非表示（使っていない）
@@ -461,6 +464,7 @@ public class receiver : MonoBehaviour
                     {
                         output_flag = true; // 出力済みにする
                         audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
+                        taskflag = false;
                         result_output(); // 実験結果をテキスト形式で出力
                         result_output_csv(); // 実験結果をcsv形式で出力
                                              //result_output_csv2(); // 視線情報をcsv形式で出力
