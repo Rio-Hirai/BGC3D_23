@@ -25,15 +25,18 @@ serverオブジェクトのinspectorにあるreceiverスクリプトから実験
 
 ## 使用手法
 ### 一覧
-- Bubble Gaze Cursor with FocusPoint
-- Bubble Gaze Cursor with FocusPoint + Raycast with Gaze
-- Bubble Gaze Cursor 3D
-- Bubble Gaze Cursor 3D + Raycast with Gaze
-- Raycast with Gaze
-- Raycast with Controller
+- Bubble Gaze Cursor with FocusPoint（Bubble_Gaze_Cursor1）
+- Bubble Gaze Cursor with FocusPoint + Raycast with Gaze（Bubble_Gaze_Cursor2）
+- Bubble Gaze Cursor 3D（Bubble_Gaze_Cursor3）
+- Bubble Gaze Cursor 3D + Raycast with Gaze（Bubble_Gaze_Cursor_with_Gaze_Ray）
+- Bubble Gaze Cursor 3D + nod（未実装）
+- Raycast with Gaze（Gaze_Raycast）
+- Bubble Gaze Cursor 3D + nod（未実装）
+- Raycast with Controller（Controller_Raycast）
 
 ### Bubble Gaze Cursor with FocusPoint
 3次元焦点座標を用いたBubble Gaze Cursor<br>
+3次元焦点に最も近いターゲットが注視・選択される<br>
 デフォルトの連続注視時間は1.0秒<br>
 ※正常に動かない可能性あり<br>
 
@@ -45,6 +48,7 @@ serverオブジェクトのinspectorにあるreceiverスクリプトから実験
 
 ### Bubble Gaze Cursor 3D
 視線を用いたBubble Gaze Cursor<br>
+視線のレイに最も近いターゲットが注視・選択される<br>
 デフォルトの連続注視時間は1.0秒<br>
 ※本命手法<br>
 
