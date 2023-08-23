@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638266162608964580
-    m_Hash: 3130168057
+      ticks: 638284313224936287
+    m_Hash: 3947237827
   m_LockFileStatus:
     m_FilePath: C:/Users/riong/VR_projects/BGC3D_23/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638282543960074671
-    m_Hash: 2852733768
+      ticks: 638284313224981409
+    m_Hash: 680194469
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -432,7 +432,7 @@ m_ResolvedPackages:
     version: 1.1.9
   resolvedDependencies:
   - name: com.unity.test-framework
-    version: 1.3.8
+    version: 1.3.9
   - name: com.unity.ext.nunit
     version: 2.0.3
   - name: com.unity.modules.imgui
@@ -581,12 +581,12 @@ m_ResolvedPackages:
     OpenGL ES 2.0 in Unity 2023.1 or newer"}'
   assetStore:
     productId: 
-- packageId: com.unity.test-framework@1.3.8
+- packageId: com.unity.test-framework@1.3.9
   testable: 0
   isDirectDependency: 1
-  version: 1.3.8
+  version: 1.3.9
   source: 1
-  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.test-framework@1.3.8
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.test-framework@1.3.9
   assetPath: Packages/com.unity.test-framework
   name: com.unity.test-framework
   displayName: Test Framework
@@ -643,6 +643,7 @@ m_ResolvedPackages:
     - 1.3.5
     - 1.3.7
     - 1.3.8
+    - 1.3.9
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -650,11 +651,12 @@ m_ResolvedPackages:
     compatible:
     - 1.3.7
     - 1.3.8
+    - 1.3.9
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
     - 2.0.1-pre.18
-    recommended: 1.3.8
+    recommended: 1.3.9
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
@@ -685,13 +687,13 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638245936380000000
+  datePublishedTicks: 638283169810000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.test-framework@1.3/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.com/Unity-Technologies/com.unity.test-framework.git
-    revision: 3c71367fe3a376f1a5a60b775ad2d3fb862af3ac
+    revision: 5c8a1448cee4d7607be0d60dceb66703b0cfe016
     path: 
   unityLifecycle:
     version: 1.3.7
@@ -3853,8 +3855,10 @@ m_ResolvedPackages:
     - 1.5.1
     - 1.6.1
     - 1.6.3
+    - 1.7.0
     compatible:
     - 1.6.3
+    - 1.7.0
     recommended: 1.6.3
     deprecated: []
   dependencies:
@@ -3953,10 +3957,14 @@ m_ResolvedPackages:
     - 2.2.1
     - 2.2.2
     - 2.2.3
+    - 2.3.0-pre.1
     - 2.4.0-exp.1
+    - 2.4.0-exp.2
     compatible:
     - 2.2.3
+    - 2.3.0-pre.1
     - 2.4.0-exp.1
+    - 2.4.0-exp.2
     recommended: 2.2.3
     deprecated: []
   dependencies:
