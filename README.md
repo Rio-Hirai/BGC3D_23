@@ -70,3 +70,12 @@ Bubble Gaze Cursorで注視状態になったターゲットに対して視線�
 
 ### Raycast with Controller
 コントローラを用いたRaycast<br>
+
+## 配置条件
+### 一覧
+- 高密度条件（High_Density）
+- 高オクルージョン条件（High_Occlusion）
+- 密度＆オクルージョン（Density_and_Occlusion）
+- 通常条件（Density_and_Occlusion2）
+- テスト条件（TEST）
+- ランダム条件（Random）
