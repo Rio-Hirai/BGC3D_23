@@ -37,7 +37,8 @@ public class receiver : MonoBehaviour
         High_Occlusion,                     // 高オクルージョン条件（IDは2）
         Density_and_Occlusion,              // 密度＆オクルージョン条件（IDは3）
         Density_and_Occlusion2,             // 密度＆オクルージョン条件2（IDは4）
-        TEST,                               // テスト用（IDは98）
+        Density_and_Occlusion3,             // 密度＆オクルージョン条件2（IDは5）
+        TEST,                               // テスト用（IDは4）
         Random                              // ランダム配置（IDは99）
     }
     public target_pattern_list target_pattern = target_pattern_list.High_Density;   // 条件切り替え用のリスト構造
@@ -313,6 +314,13 @@ public class receiver : MonoBehaviour
             case "Density_and_Occlusion2":  // 密度＆オクルージョン条件2
                 target_p_id = 4;            // 密度＆オクルージョン条件2のID
                 target_amount_all = 48;     // ターゲットの総数
+                target_amount_select = 25;  // 選択（タスク）回数
+                target_amount_count = 1;    // 繰り返し回数
+                Depth = 3.5f;               // 奥行き距離
+                break;
+            case "Density_and_Occlusion3":  // 密度＆オクルージョン条件
+                target_p_id = 5;            // 密度＆オクルージョン条件のID
+                target_amount_all = 124;    // ターゲットの総数
                 target_amount_select = 25;  // 選択（タスク）回数
                 target_amount_count = 1;    // 繰り返し回数
                 Depth = 3.5f;               // 奥行き距離

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MovingAverageFilter : MonoBehaviour
 {
-    private int windowSize = 10;                        // 移動平均のウィンドウサイズ
-    private int windowMaxium = 24;                      // 最大ウィンドウサイズ
+    private int windowSize = 15;                        // 移動平均のウィンドウサイズ
+    private int windowMaxium = 48;                      // 最大ウィンドウサイズ
     private Vector3 sum = Vector3.zero;                 // ウィンドウ内の値の合計
-    private Vector3[] stock_values = new Vector3[25];   // 移動平均フィルタ用の座標を格納するための変数
+    private Vector3[] stock_values = new Vector3[49];   // 移動平均フィルタ用の座標を格納するための変数
     private int index = 0;                              // stock_valuesの参照位置
 
     public Vector3 filter(Vector3 newvalue, int NowWindowSize)
@@ -24,7 +24,7 @@ public class MovingAverageFilter : MonoBehaviour
 
         int index2 = index;
 
-        for (int i = 0; i < windowSize * 2; i++)
+        for (int i = 0; i < windowSize * 3; i++)
         {
             if (index2 < 0) index2 = stock_values.Length - 1;
             sum += stock_values[index2];

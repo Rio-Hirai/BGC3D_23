@@ -85,7 +85,7 @@ public class target_para_set : MonoBehaviour
         }
         else if (Id == 999) // IDが999（＝黒いターゲット）の場合
         {
-            if (script.DwellTarget.name == this.name)
+            if (script.DwellTarget != null && script.DwellTarget.name == this.name)
             {
                 this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
             }
@@ -100,7 +100,7 @@ public class target_para_set : MonoBehaviour
             {
                 this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
             }
-            else if (Id == script.tasknums[script.task_num] && script.taskflag) // 提示IDと同じIDを持っている場合
+            else if (script.target_p_id != 99 && Id == script.tasknums[script.task_num] && script.taskflag) // 提示IDと同じIDを持っている場合
             {
                 this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
             }
@@ -109,7 +109,7 @@ public class target_para_set : MonoBehaviour
                 this.GetComponent<Renderer>().material.color = Color.white; // ターゲットを白色に変更
             }
         }
-        else if (Id == script.tasknums[script.task_num] && script.taskflag) // 提示IDと同じIDを持っている場合
+        else if (script.target_p_id != 99 && Id == script.tasknums[script.task_num] && script.taskflag) // 提示IDと同じIDを持っている場合
         {
             this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
         }
