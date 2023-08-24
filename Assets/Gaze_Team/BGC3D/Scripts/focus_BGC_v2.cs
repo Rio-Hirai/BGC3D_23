@@ -76,15 +76,9 @@ public class focus_BGC_v2 : MonoBehaviour
 
                     objectName_new = FocusInfo.collider.gameObject; // レイと衝突しているターゲットを変数に格納
                     script.RayTarget = objectName_new; // レイと衝突しているターゲットを更新
-
-                    //if (FocusInfo.collider.gameObject != null) // レイに衝突しているターゲットが存在しない場合
-                    //{
-                    //}
-                    // break; // foreachから脱出（レイと衝突しているターゲットを見つけたため．複数のターゲットを見つける場合は除外する）
                 }
                 else
                 {
-                    // pointer.transform.position = new Vector3(0, 0, 0); // ポインタオブジェクトの位置を初期化
                 }
                 //--------------------------------------------------------------
             }
@@ -94,7 +88,7 @@ public class focus_BGC_v2 : MonoBehaviour
             // オブジェクト選択---------------------------------------------
             if (objectName_now != objectName_new) script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
 
-            if (objectName_new != null) // オブジェクトが空でなく，かつ視線レイキャストモードの場合
+            if (objectName_new != null) // オブジェクトが空でない場合
             {
                 if (script.DwellTarget == objectName_new)
                 {

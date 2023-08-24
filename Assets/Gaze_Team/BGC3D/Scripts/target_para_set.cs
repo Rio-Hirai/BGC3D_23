@@ -57,6 +57,10 @@ public class target_para_set : MonoBehaviour
             {
                 dtime = 0; // 累計注視時間を0にする．この処理のせいで非タスク中に練習を行えないため，要改良部分
             }
+            else if (Id == 999 && script.taskflag == true)
+            {
+                dtime = 0;
+            }
         }
         else
         {

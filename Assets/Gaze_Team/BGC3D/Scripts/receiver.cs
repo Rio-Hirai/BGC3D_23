@@ -25,6 +25,7 @@ public class receiver : MonoBehaviour
         Gaze_Raycast,                       // 視線によるレイキャスト（IDは3）
         Controller_Raycast                  // コントローラによるレイキャスト（IDは4）
     }
+    [Tooltip("使用手法")]
     public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1;  // 手法切り替え用のリスト構造
     //--------------------------------------------------------------
 
@@ -41,61 +42,91 @@ public class receiver : MonoBehaviour
         TEST,                               // テスト用（IDは4）
         Random                              // ランダム配置（IDは99）
     }
+    [Tooltip("ターゲット配置条件")]
     public target_pattern_list target_pattern = target_pattern_list.High_Density;   // 条件切り替え用のリスト構造
     //--------------------------------------------------------------
 
 
-    // ターゲット配置条件のリスト-----------------------------------
-    public enum parameter_setting_templates // 新たなターゲット配置条件を追加したい場合はココに名前を追加する
+    // パラメータテンプレートのリスト-----------------------------------
+    public enum parameter_setting_templates // 新たなパラメータテンプレートを追加したい場合はココに名前を追加する
     {
         Null,                               // テンプレート未使用
         Study,                              // 実験時のパラメータ
+        All_UI_Aweik,                       // 実験時のパラメータ
         Debug                               // デバッグ時のパラメータ
     }
+    [Tooltip("パラメータテンプレート")]
     public parameter_setting_templates parameter_setting = parameter_setting_templates.Null;   // 条件切り替え用のリスト構造
     //--------------------------------------------------------------
 
 
     // 調整用パラメータ--------------------------------------------
+    [Tooltip("被験者のID")]
     public int tester_id;                   // 被験者のID
+    [Tooltip("被験者の名前")]
     public string tester_name;              // 被験者の名前
+    [Tooltip("注視時間")]
     public float set_dtime;                 // 注視時間
+    [Tooltip("ユーザとターゲット間の距離")]
     public float Depth;                     // ユーザとターゲット間の距離
+    [Tooltip("サッケード運動に対する閾値1")]
     public float pointvalue;                // サッケード運動に対する閾値
+    [Tooltip("サッケード運動に対する閾値2")]
     public float pointvalue2;               // 同上（ほぼ使っていない）
+    [Tooltip("画面明度")]
     [SerializeField, Range(-100, 100)]
     public int Brightness;                  // 画面明度（使用していない）
     //--------------------------------------------------------------
 
 
     // 各種機能切り替え---------------------------------------------
+    [Tooltip("累積注視時間モードのオン・オフ")]
     public bool total_DwellTime_mode;       // 累積注視時間モードのオン・オフ
+    [Tooltip("視線情報出力機能のオン・オフ")]
     public bool gaze_data_switch;           // 視線情報出力機能のオン・オフ（実験以外ではオフにしておく）
+    [Tooltip("タスクのタイムアウトのオン・オフ")]
     public bool TimeOut_switch;             // タスクでタイムアウトを行うか否かのフラグ
+    [Tooltip("視線キャリブレーション")]
     public bool eye_calibration;            // キャリブレーションを行うためのフラグ（立てた瞬間にキャリブレーションが行われる）
+    [Tooltip("ターゲット群の位置調整")]
     public bool target_pos_calibration;     // ターゲット群の位置調整を行うためのフラグ（立てた瞬間に位置調整が行われる）
+    [Tooltip("バブルカーソルの表示・非表示")]
     public bool cursor_switch;              // バブルカーソルの表示・非表示
+    [Tooltip("レイキャストの表示・非表示")]
     public bool raycast_switch;             // レイキャストの表示・非表示
+    [Tooltip("頷き選択機能のオン・オフ")]
     public bool approve_switch;             // 頷き選択機能のオン・オフ
-    public bool head_rot_switch;            // 頷き選択機能のオン・オフ
-    public bool bubblegaze_switch;          // ？？？（要リファクタリング）
-    public bool gazeraycast_switch;         // ？？？（要リファクタリング）
-    public bool controller_switch;          // コントローラの表示・非表示（まだコントローラを非表示にできない）
+    [Tooltip("コントローラの表示・非表示")]
+    public bool controller_switch;          // コントローラの表示・非表示
+    [Tooltip("コントローラのレイの表示・非表示")]
     public bool laserswitch;                // コントローラのレイの表示・非表示（まだレイを非表示にできない）
+    [Tooltip("ターゲットの透明化")]
     public bool target_alpha_switch;        // ターゲットの透明化
+    [Tooltip("明度計算機能のオン・オフ")]
     public bool LightSensor_switch;         // 明度計算機能のオン・オフ
+    [Tooltip("動的移動平均フィルタのオン・オフ")]
     public bool MAverageFilter;             // 動的移動平均フィルタのオン・オフ
-    public bool select_flag;                // レンズの表示・非表示（使っていない）
+    [Tooltip("現在のタスクをスキップ")]
     public bool task_skip;                  // 現在のタスクをスキップ（フラグを立てた瞬間に１度だけ実行されfalseに戻る）
+    [Tooltip("強制中断")]
     public bool error_output_flag;          // 強制中断（フラグを立てた瞬間に現時点での実験結果が出力される）
+    [Tooltip("レンズの表示・非表示")]
     public bool lens_switch;                // レンズの表示・非表示（使っていない）
+    [Tooltip("フリーモードのオン・オフ")]
     public bool free_mode;                  // フリーモードのオン・オフ
+    [Tooltip("要リファクタリング")]
+    public bool bubblegaze_switch;          // ？？？（要リファクタリング）
+    [Tooltip("要リファクタリング")]
+    public bool gazeraycast_switch;         // ？？？（要リファクタリング）
     //--------------------------------------------------------------
 
 
     // 色設定-------------------------------------------------------
+    [Tooltip("選択確定時のターゲットの色")]
     public Color target_color;              // 選択確定時のターゲットの色
+    [Tooltip("注視状態のターゲットの色")]
     public Color select_color;              // 注視状態のターゲットの色
+    [Tooltip("バブルカーソルの色")]
     public Color cursor_color;              // バブルカーソルの色
     //--------------------------------------------------------------
 
@@ -175,6 +206,8 @@ public class receiver : MonoBehaviour
     public bool taskflag;                   // タスク中か否かを示す変数（trueだとタスク中）
     public bool next_step__flag;            // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
     public bool output_flag;                // タスクが全て完了したか否かを示す変数（trueだと完了）
+    public bool head_rot_switch;            // ？？？
+    public bool select_flag;                // ？？？
     public Boolean grapgrip;                // 結果の格納用Boolean型関数grapgrip
     public Boolean trackpad;                // ？？？
     private int switch_flag = 0;            // ？？？
@@ -357,8 +390,8 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
         
         
-        // タスク条件管理-----------------------------------------------
-        switch (parameter_setting.ToString()) // ココで条件毎にIDを割り振りつつ，条件のパラメータを入力
+        // パラメータ条件管理-----------------------------------------------
+        switch (parameter_setting.ToString()) // ココでパラメータ条件を毎にパラメータを調整
         {
             case "Study":                   // 実験時
                 gaze_data_switch = true;    // 視線情報を取得
@@ -370,17 +403,23 @@ public class receiver : MonoBehaviour
                 TimeOut_switch = false;     // タイムアウトは無し
                 LightSensor_switch = false; // 画面明度の取得は無し
                 break;
+            case "All_UI_Aweik":
+                cursor_switch = true;
+                raycast_switch = true;
+                break;
             default:                        // テンプレート未使用時（Inspectorの設定をそのまま使用）
                 break;
         }
         //--------------------------------------------------------------
 
+
+        // 頷きジェスチャモードがオンの場合（後に使用手法に統合予定）-------
         if (approve_switch)
         {
             set_dtime = 999;
             total_DwellTime_mode = false;
         }
-        
+        //--------------------------------------------------------------
 
 
         for (int i = 0; i < target_set.Length; i++) target_set[i].SetActive(false); // 表示されているターゲット群を全て非表示
