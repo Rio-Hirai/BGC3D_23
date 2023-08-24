@@ -222,8 +222,6 @@ public class receiver : MonoBehaviour
     [System.NonSerialized]
     public StreamWriter streamWriter_gaze;  // ファイル出力用
 
-    public float distance_camera;
-
 
     void Start()
     {
@@ -439,8 +437,7 @@ public class receiver : MonoBehaviour
             {
                 if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
-                //Vector3 forward = head_obj.transform.forward; // ユーザ（カメラ）の前方方向を取得
-                Vector3 forward = Vector3.Scale(head_obj.transform.forward, new Vector3(1, 0, 1)).normalized;
+                Vector3 forward = Vector3.Scale(head_obj.transform.forward, new Vector3(1, 0, 1)).normalized; // ユーザ（カメラ）の前方方向を取得
                 Vector3 newPosition = head_obj.transform.position + forward * Depth; // ユーザ（カメラ）の位置をターゲット群の新しい位置に設定
                 newPosition.y = head_obj.transform.position.y; // ターゲット群とユーザ（カメラ）の高さを同じにする
                 target_set[target_p_id - 1].transform.position = newPosition; // ターゲット群を新しい位置に移動
@@ -453,8 +450,6 @@ public class receiver : MonoBehaviour
             }
             //--------------------------------------------------------------
 
-
-            distance_camera = Vector3.Distance(head_obj.transform.position, target_set[target_p_id - 1].transform.position);
 
             if (test_id != 0) // 何らかの手法が選択されている場合
             {
