@@ -9,8 +9,8 @@ public class approve_test : MonoBehaviour
 
     private float lastRotationX;                // 前回のx軸の回転
     private float timer;                        // タイマー
-    private float rotationThreshold = 10f;      // 回転閾値（度）
-    private float timeThreshold_min = 0.25f;    // 時間閾値（秒）
+    private float rotationThreshold = 9.0f;      // 回転閾値（度）
+    private float timeThreshold_min = 0.20f;    // 時間閾値（秒）
     private float timeThreshold_max = 0.40f;    // 時間閾値（秒）
 
 
@@ -49,7 +49,7 @@ public class approve_test : MonoBehaviour
 
 
                 // audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
-                Server.select_flag = false;
+                Server.select_flag = true;
             }
             else if (timer >= timeThreshold_max)
             {

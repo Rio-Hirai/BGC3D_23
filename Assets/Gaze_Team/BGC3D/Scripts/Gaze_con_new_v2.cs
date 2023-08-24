@@ -83,6 +83,37 @@ namespace ViveSR
                     if (objs.Length == 0) return searchTargetObj; // 取得したゲームオブジェクトが0ならnullを返す(nullでもエラーにならないように処理)
 
 
+                    // 頷き選択ジェスチャの場合の処理----------------------------------
+                    if (script.approve_switch == true && script.head_rot_switch == true)
+                    {
+                        // 一定時間注視していた場合--------------------------------------
+                        if (searchNearObj != null && script.select_flag)
+                        {
+                            script.select_target_id = searchNearObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
+                            script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
+                            script.select_flag = false;
+                            script.same_target = false;
+                        }
+
+
+                        //Bubble Cursorを表示-------------------------------------------
+                        if (searchNearObj != null && script.cursor_switch)
+                        {
+                            Vector3 toObject = searchNearObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
+                            Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
+                            cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                        }
+                        //--------------------------------------------------------------
+
+
+                        oldNearObj = searchNearObj; // 注視しているターゲットを更新
+                        script.cursor_radious = (nearDistance * 2) + (target_size); // カーソルの大きさを更新
+
+                        return searchNearObj;
+                    }
+                    //--------------------------------------------------------------
+
+
                     // 移動平均フィルタの処理--------------------------------------
                     if (script.MAverageFilter) // 移動平均フィルタの機能がオンの場合
                     {
@@ -178,7 +209,7 @@ namespace ViveSR
 
 
                     // 一定時間注視していた場合--------------------------------------
-                    if (searchTargetObj != null && ((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime) || script.next_step__flag) || script.select_flag)
+                    if ((searchTargetObj != null) && (searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime))
                     {
                         script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
                         script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新

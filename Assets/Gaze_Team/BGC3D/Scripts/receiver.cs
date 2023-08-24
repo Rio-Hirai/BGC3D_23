@@ -77,6 +77,7 @@ public class receiver : MonoBehaviour
     public bool cursor_switch;              // バブルカーソルの表示・非表示
     public bool raycast_switch;             // レイキャストの表示・非表示
     public bool approve_switch;             // 頷き選択機能のオン・オフ
+    public bool head_rot_switch;            // 頷き選択機能のオン・オフ
     public bool bubblegaze_switch;          // ？？？（要リファクタリング）
     public bool gazeraycast_switch;         // ？？？（要リファクタリング）
     public bool controller_switch;          // コントローラの表示・非表示（まだコントローラを非表示にできない）
@@ -373,6 +374,12 @@ public class receiver : MonoBehaviour
                 break;
         }
         //--------------------------------------------------------------
+
+        if (approve_switch)
+        {
+            set_dtime = 999;
+            total_DwellTime_mode = false;
+        }
         
 
 
@@ -505,7 +512,7 @@ public class receiver : MonoBehaviour
                             same_target = true;
                             tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
                             audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
-                            selecting_target.GetComponent<target_para_set>().dtime = 0;
+                            if (selecting_target) selecting_target.GetComponent<target_para_set>().dtime = 0;
                         }
                     }
                     //--------------------------------------------------------------
