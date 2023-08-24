@@ -54,7 +54,8 @@ public class receiver : MonoBehaviour
     {
         Null,                               // テンプレート未使用
         Study,                              // 実験時のパラメータ
-        All_UI_Aweik,                       // 実験時のパラメータ
+        All_UI_Awake,                       // UIを表示したい時のパラメータ
+        All_UI_Asleep,                      // UIを非表示したい時のパラメータ
         Debug                               // デバッグ時のパラメータ
     }
     [Tooltip("パラメータテンプレート")]
@@ -419,9 +420,13 @@ public class receiver : MonoBehaviour
                 TimeOut_switch = false;     // タイムアウトは無し
                 LightSensor_switch = false; // 画面明度の取得は無し
                 break;
-            case "All_UI_Aweik":
-                cursor_switch = true;
-                raycast_switch = true;
+            case "All_UI_Awake":            // UI系を全て表示する場合
+                cursor_switch = true;       // カーソルを表示
+                raycast_switch = true;      // レイを表示
+                break;
+            case "All_UI_Asleep":           // UI系を全て非表示する場合
+                cursor_switch = false;      // カーソルを非表示
+                raycast_switch = false;     // レイを非表示
                 break;
             default:                        // テンプレート未使用時（Inspectorの設定をそのまま使用）
                 break;
