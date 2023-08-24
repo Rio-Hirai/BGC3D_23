@@ -461,7 +461,7 @@ public class receiver : MonoBehaviour
 
         // if (gaze_data_switch) this.GetComponent<gaze_data>().enabled = true;
         // if (gaze_data_switch) this.GetComponent<gaze_data_v2>().enabled = true;
-        if (gaze_data_switch) result_output_every ("timestamp,taskNo,target_x,target_y,target_z,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue,center", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
+        if (gaze_data_switch) result_output_every ("timestamp,taskNo,target_id,target_x,target_y,target_z,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue,center", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
         //--------------------------------------------------------------
 
 
