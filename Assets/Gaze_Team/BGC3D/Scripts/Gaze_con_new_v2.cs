@@ -90,8 +90,8 @@ namespace ViveSR
                         {
                             Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
                             Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
-                            cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
-                            float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
+                            Vector3 closestPointOnRay = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                            float distance = Vector3.Distance(obj.transform.position, closestPointOnRay); // ターゲットと直線上の最も近い点との距離を計算
                             // obj.tag = tagName;  // 次回の処理のためにタグを初期化
 
                             if (distance < cursor_size_limit) obj.tag = "near"; // 視線の周辺にあるターゲットのタグを変更
@@ -111,8 +111,8 @@ namespace ViveSR
                     {
                         Vector3 toObject = obj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
                         Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
-                        cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
-                        float distance = Vector3.Distance(obj.transform.position, cursor_point); // ターゲットと直線上の最も近い点との距離を計算
+                        Vector3 closestPointOnRay = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                        float distance = Vector3.Distance(obj.transform.position, closestPointOnRay); // ターゲットと直線上の最も近い点との距離を計算
                         float target_size_tmp = obj.transform.lossyScale.x; // ？？？
 
 
@@ -193,9 +193,21 @@ namespace ViveSR
                     //--------------------------------------------------------------
 
 
-                    oldNearObj = searchTargetObj; // 注視しているターゲットを更新
-                    script.cursor_radious = (nearDistance) + (target_size / 2); // カーソルの大きさを更新
+                    //Bubble Cursorを表示-------------------------------------------
+                    if (searchTargetObj != null && script.cursor_switch)
+                    {
+                        Vector3 toObject = searchTargetObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
+                        Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
+                        cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                    }
+                    //--------------------------------------------------------------
 
+
+                    oldNearObj = searchTargetObj; // 注視しているターゲットを更新
+                    script.cursor_radious = (nearDistance * 2) + (target_size); // カーソルの大きさを更新
+
+
+                    //ターゲットのタグを初期化----------------------------------------
                     if (script.MAverageFilter)
                     {
                         foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
@@ -203,6 +215,7 @@ namespace ViveSR
                             obj.tag = tagName;
                         }
                     }
+                    //--------------------------------------------------------------
 
                     return searchTargetObj; // 最も近いオブジェクトを返す
                 }

@@ -222,6 +222,8 @@ public class receiver : MonoBehaviour
     [System.NonSerialized]
     public StreamWriter streamWriter_gaze;  // ファイル出力用
 
+    public float distance_camera;
+
 
     void Start()
     {
@@ -354,9 +356,9 @@ public class receiver : MonoBehaviour
                 break;
         }
         //--------------------------------------------------------------
-
-
-// タスク条件管理-----------------------------------------------
+        
+        
+        // タスク条件管理-----------------------------------------------
         switch (parameter_setting.ToString()) // ココで条件毎にIDを割り振りつつ，条件のパラメータを入力
         {
             case "Study":                   // 実験時
@@ -419,13 +421,26 @@ public class receiver : MonoBehaviour
             method_change(); // 使用している手法を変更
 
 
+            if (controller_switch)
+            {
+                controller_R.gameObject.SetActive(true);
+                controller_L.gameObject.SetActive(true);
+            }
+            else
+            {
+                controller_R.gameObject.SetActive(false);
+                controller_L.gameObject.SetActive(false);
+            }
+
+
             // ターゲット位置の調整-----------------------------------------
             grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any);
             if (grapgrip || target_pos_calibration)
             {
                 if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
-                Vector3 forward = head_obj.transform.forward; // ユーザ（カメラ）の前方方向を取得
+                //Vector3 forward = head_obj.transform.forward; // ユーザ（カメラ）の前方方向を取得
+                Vector3 forward = Vector3.Scale(head_obj.transform.forward, new Vector3(1, 0, 1)).normalized;
                 Vector3 newPosition = head_obj.transform.position + forward * Depth; // ユーザ（カメラ）の位置をターゲット群の新しい位置に設定
                 newPosition.y = head_obj.transform.position.y; // ターゲット群とユーザ（カメラ）の高さを同じにする
                 target_set[target_p_id - 1].transform.position = newPosition; // ターゲット群を新しい位置に移動
@@ -437,6 +452,9 @@ public class receiver : MonoBehaviour
                 target_pos_calibration = false; // 機能フラグをリセット
             }
             //--------------------------------------------------------------
+
+
+            distance_camera = Vector3.Distance(head_obj.transform.position, target_set[target_p_id - 1].transform.position);
 
             if (test_id != 0) // 何らかの手法が選択されている場合
             {
