@@ -82,6 +82,17 @@ public class target_para_set : MonoBehaviour
         //--------------------------------------------------------------
 
 
+        //--------------------------------------------------------------
+        if (script.gaze_data_switch)
+        {
+            if (script.tasknums[script.task_num] == Id)
+            {
+                script.taskObject = this.gameObject;
+            }
+        }
+        //--------------------------------------------------------------
+
+
         // 色変化の処理（リファクタリング済み）-------------------------
         if (script.output_flag || Id == script.select_target_id) // 実験結果が出力された，また選択状態のターゲットのIDと同じIDを持っている場合
         {

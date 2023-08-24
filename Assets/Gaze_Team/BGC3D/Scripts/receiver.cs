@@ -259,6 +259,9 @@ public class receiver : MonoBehaviour
     [System.NonSerialized]
     public StreamWriter streamWriter_gaze;  // ファイル出力用
 
+    public GameObject taskObject;
+    public string center_flag = "true";
+
 
     void Start()
     {
@@ -405,8 +408,8 @@ public class receiver : MonoBehaviour
                 break;
         }
         //--------------------------------------------------------------
-        
-        
+
+
         // パラメータ条件管理-----------------------------------------------
         switch (parameter_setting.ToString()) // ココでパラメータ条件を毎にパラメータを調整
         {
@@ -458,7 +461,7 @@ public class receiver : MonoBehaviour
 
         // if (gaze_data_switch) this.GetComponent<gaze_data>().enabled = true;
         // if (gaze_data_switch) this.GetComponent<gaze_data_v2>().enabled = true;
-        if (gaze_data_switch) result_output_every ("timestamp,taskNo,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
+        if (gaze_data_switch) result_output_every ("timestamp,taskNo,target_x,target_y,target_z,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue,center", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
         //--------------------------------------------------------------
 
 
@@ -525,6 +528,21 @@ public class receiver : MonoBehaviour
                     session_flag = true;
                     selecting_target = null;
                     select_target_id = -1;
+                }
+                //--------------------------------------------------------------
+
+
+                //--------------------------------------------------------------
+                if (gaze_data_switch)
+                {
+                    if (DwellTarget != null && DwellTarget.GetComponent<target_para_set>().Id ==999)
+                    {
+                        center_flag = "false";
+                    }
+                    else
+                    {
+                        center_flag = "true";
+                    }
                 }
                 //--------------------------------------------------------------
 
