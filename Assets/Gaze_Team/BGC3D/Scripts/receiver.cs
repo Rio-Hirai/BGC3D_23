@@ -27,6 +27,7 @@ public class receiver : MonoBehaviour
         Gaze_Raycast_with_nod,              // 視線によるレイキャスト（IDは8）
         Controller_Raycast                  // コントローラによるレイキャスト（IDは4）
     }
+    [Header("実験条件_入力部分")]
     [Tooltip("使用手法")]
     public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1;  // 手法切り替え用のリスト構造
     //--------------------------------------------------------------
@@ -118,8 +119,10 @@ public class receiver : MonoBehaviour
     [Tooltip("フリーモードのオン・オフ")]
     public bool free_mode;                  // フリーモードのオン・オフ
     [Tooltip("要リファクタリング")]
+    [System.NonSerialized]
     public bool bubblegaze_switch;          // ？？？（要リファクタリング）
     [Tooltip("要リファクタリング")]
+    [System.NonSerialized]
     public bool gazeraycast_switch;         // ？？？（要リファクタリング）
     //--------------------------------------------------------------
 
@@ -135,6 +138,7 @@ public class receiver : MonoBehaviour
 
 
     // 各種オブジェクト--------------------------------------------------
+    [Header("各種オブジェクト・スクリプト")]
     public GameObject head_obj;             // 頭部（カメラ）オブジェクト
     public GameObject bubblegaze;           // Bubble_Gaze_Cursor1・2のオブジェクト（表示・非表示用）
     public GameObject gazeraycast;          // Gaze_Raycasのオブジェクト（表示・非表示用）
@@ -166,11 +170,22 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
+    // データ出力関係------------------------------------------------
+    [System.NonSerialized]
+    public StreamWriter streamWriter_gaze;  // ファイル出力用
+    [System.NonSerialized]
+    public GameObject taskObject;           // ？？？
+    [System.NonSerialized]
+    public string center_flag = "true";     // ？？？
+    //--------------------------------------------------------------
+
+
     // モニタ用変数-------------------------------------------------
     [System.NonSerialized]
     public int test_id;                     // 使用手法のID
     [System.NonSerialized]
     public int target_p_id;                 // 配置条件のID
+    [Header("状況モニタ")]
     public int target_amount_all;           // ターゲットの総数
     public int target_amount_select;        // 選択する数
     public int target_amount_count;         // 繰り返し回数
@@ -203,30 +218,52 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
+    // ターゲットのパラメータ---------------------------------------------
+    [Tooltip("バブルカーソルの大きさ")]
+    [System.NonSerialized]
+    public float cursor_radious;            // バブルカーソルの大きさ
+    [System.NonSerialized]
+    public int select_flag_2;               // ？？？
+    [Tooltip("バブルカーソルの最大半径内に存在するターゲットの数")]
+    public int cursor_count;                // バブルカーソル内に存在するターゲットの数
+    [System.NonSerialized]
+    public Vector3 old_eye_position;        // 以前の視線座標（瞬き選択用）
+    [System.NonSerialized]
+    public Vector3 new_eye_position;        // 新しい視線座標（瞬き選択用）
+    //--------------------------------------------------------------
+
+
     // その他フラグ----------------------------------------------------
     public bool same_target;                // ？？？
     public bool session_flag;               // セッション中か否かを示す変数（trueだとセッション中）
     public bool taskflag;                   // タスク中か否かを示す変数（trueだとタスク中）
     public bool next_step__flag;            // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
-    public bool output_flag;                // タスクが全て完了したか否かを示す変数（trueだと完了）
     public bool head_rot_switch;            // ？？？
     public bool select_flag;                // ？？？
+    private int switch_flag = 0;            // ？？？
+    public bool output_flag;                // タスクが全て完了したか否かを示す変数（trueだと完了）
     public Boolean grapgrip;                // 結果の格納用Boolean型関数grapgrip
     public Boolean trackpad;                // ？？？
-    private int switch_flag = 0;            // ？？？
     //--------------------------------------------------------------
 
 
     // ランダム配置関係------------------------------------------------
+    [Header("ランダム配置条件のパラメータ")]
+    [Tooltip("クローンするターゲット")]
     public GameObject target_objects;       // クローンするターゲット
+    [System.NonSerialized]
     public int target_id;                   // クローンターゲットのID
+    [Tooltip("注視状態のターゲットの大きさ")]
     public float target_size;               // 注視状態のターゲットの大きさ
+    [Tooltip("クローンターゲットとユーザ間の距離")]
     public float target_distance;           // クローンターゲットとユーザ間の距離
+    [Tooltip("クローンするターゲットの数")]
     public int target_amount;               // クローンするターゲットの数
     //--------------------------------------------------------------
 
 
     // 瞬き関係-------------------------------------------------------
+    [Header("瞬き関係")]
     public float LeftBlink;                 // 左のまぶたの開き具合格納用関数
     public float RightBlink;                // 右のまぶたの開き具合格納用関数
     public int BlinkFlag;                   // これがTrueになった瞬間にターゲット選択を確定させるように実装してあるので，瞬き関係はこれを弄るだけで十分．
@@ -240,27 +277,11 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // ターゲットのパラメータ---------------------------------------------
-    public float cursor_radious;            // バブルカーソルの大きさ
-    public int select_flag_2;               // ？？？
-    public int cursor_count;                // バブルカーソル内に存在するターゲットの数
-    [System.NonSerialized]
-    public Vector3 old_eye_position;        // 以前の視線座標（瞬き選択用）
-    [System.NonSerialized]
-    public Vector3 new_eye_position;        // 新しい視線座標（瞬き選択用）
-    //--------------------------------------------------------------
-
-
     // Bubble Gaze Lens関係------------------------------------------
+    [Header("Bubble Lens関係")]
     public bool lens_flag;                  // ？？？
     public bool lens_flag2;                 // ？？？
     //--------------------------------------------------------------
-
-    [System.NonSerialized]
-    public StreamWriter streamWriter_gaze;  // ファイル出力用
-
-    public GameObject taskObject;
-    public string center_flag = "true";
 
 
     void Start()
