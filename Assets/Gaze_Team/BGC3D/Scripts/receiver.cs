@@ -45,6 +45,17 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
+    // ターゲット配置条件のリスト-----------------------------------
+    public enum parameter_setting_templates // 新たなターゲット配置条件を追加したい場合はココに名前を追加する
+    {
+        Null,                               // テンプレート未使用
+        Study,                              // 実験時のパラメータ
+        Debug                               // デバッグ時のパラメータ
+    }
+    public parameter_setting_templates parameter_setting = parameter_setting_templates.Null;   // 条件切り替え用のリスト構造
+    //--------------------------------------------------------------
+
+
     // 調整用パラメータ--------------------------------------------
     public int tester_id;                   // 被験者のID
     public string tester_name;              // 被験者の名前
@@ -343,6 +354,26 @@ public class receiver : MonoBehaviour
                 break;
         }
         //--------------------------------------------------------------
+
+
+// タスク条件管理-----------------------------------------------
+        switch (parameter_setting.ToString()) // ココで条件毎にIDを割り振りつつ，条件のパラメータを入力
+        {
+            case "Study":                   // 実験時
+                gaze_data_switch = true;    // 視線情報を取得
+                TimeOut_switch = true;      // 長引いたタスクをタイムアウト
+                LightSensor_switch = true;  // 画面明度を取得
+                break;
+            case "Debug":                   // デバッグ時
+                gaze_data_switch = false;   // 視線情報の取得は無し
+                TimeOut_switch = false;     // タイムアウトは無し
+                LightSensor_switch = false; // 画面明度の取得は無し
+                break;
+            default:                        // テンプレート未使用時（Inspectorの設定をそのまま使用）
+                break;
+        }
+        //--------------------------------------------------------------
+        
 
 
         for (int i = 0; i < target_set.Length; i++) target_set[i].SetActive(false); // 表示されているターゲット群を全て非表示
