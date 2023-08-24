@@ -22,7 +22,9 @@ public class receiver : MonoBehaviour
         Bubble_Gaze_Cursor2,                // BGC with RayCast（IDは2）
         Bubble_Gaze_Cursor3,                // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは5）
         Bubble_Gaze_Cursor_with_Gaze_Ray,   // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは6）
+        Bubble_Gaze_Cursor_with_nod,        // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは7）
         Gaze_Raycast,                       // 視線によるレイキャスト（IDは3）
+        Gaze_Raycast_with_nod,              // 視線によるレイキャスト（IDは8）
         Controller_Raycast                  // コントローラによるレイキャスト（IDは4）
     }
     [Tooltip("使用手法")]
@@ -280,6 +282,12 @@ public class receiver : MonoBehaviour
             case "Bubble_Gaze_Cursor_with_Gaze_Ray":
                 test_id = 6;
                 break;
+            case "Bubble_Gaze_Cursor_with_nod":
+                test_id = 7;
+                break;
+            case "Gaze_Raycast_with_nod":
+                test_id = 8;
+                break;
             default:
                 test_id = 0;
                 break;
@@ -321,12 +329,20 @@ public class receiver : MonoBehaviour
             controller_R.GetComponent<SteamVR_LaserPointer>().active = true;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = true;
         }
-        else if (test_id == 5 || test_id == 6)
+        else if (test_id == 5 || test_id == 6 || test_id == 7)
         {
             gazeraycast2.SetActive(true);
             bubblegaze_switch = false;
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+
+        }
+
+        if (test_id == 7 || test_id == 8)
+        {
+            approve_switch = true;
+            set_dtime = 999;
+            total_DwellTime_mode = false;
         }
         //--------------------------------------------------------------
         //--------------------------------------------------------------
@@ -409,15 +425,6 @@ public class receiver : MonoBehaviour
                 break;
             default:                        // テンプレート未使用時（Inspectorの設定をそのまま使用）
                 break;
-        }
-        //--------------------------------------------------------------
-
-
-        // 頷きジェスチャモードがオンの場合（後に使用手法に統合予定）-------
-        if (approve_switch)
-        {
-            set_dtime = 999;
-            total_DwellTime_mode = false;
         }
         //--------------------------------------------------------------
 
