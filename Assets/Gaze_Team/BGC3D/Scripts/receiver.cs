@@ -595,6 +595,23 @@ public class receiver : MonoBehaviour
                                 taskflag = false; // 非タスク中にする
                             }
                         }
+                        else if (task_skip)
+                        {
+                            same_target = true;
+                            task_skip = false; // フラグを初期化
+
+                            tasklogs[task_num] += ("select_target = " + "skip" + ": " + test_time + "\n"); // 選択したターゲットのIDとタスク完了時の時間を追記
+                            tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count + ",skip"); // そのタスクの総時間とエラー数を追記
+
+                            if (task_num < target_amount_select)
+                            {
+                                task_end_time.Add(test_time); // タスクが終了した時の時間を保存
+                                task_num++; // タスクを次に進める
+                                test_time_tmp = 0; // タスク時間を初期化
+                                audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
+                                taskflag = false; // 非タスク中にする
+                            }
+                        }
                         else // 間違えたターゲットを選択した時の処理
                         {
                             logoutput_count++; // 間違えた数をカウント
