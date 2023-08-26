@@ -471,8 +471,6 @@ public class receiver : MonoBehaviour
         filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv"); // 視線情報用のcsvファイルを作成
 
-        // if (gaze_data_switch) this.GetComponent<gaze_data>().enabled = true;
-        // if (gaze_data_switch) this.GetComponent<gaze_data_v2>().enabled = true;
         if (gaze_data_switch) result_output_every ("timestamp,taskNo,target_id,target_x,target_y,target_z,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue,center", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
         //--------------------------------------------------------------
 
@@ -562,12 +560,13 @@ public class receiver : MonoBehaviour
                 // タスクの状態チェック-----------------------------------------
                 if (taskflag) // タスク中の場合
                 {
+                    if (TimeOut_switch == true && test_time - task_start_time[task_num] > 60.0f) task_skip = true; // 1分以上選択できなかった場合にタスクをスキップ
+
                     // ターゲットの選択が行われた時の処理-------------------------
                     if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
                     {
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
                         test_time_tmp = test_time;
-                        if (TimeOut_switch == true && test_time - task_start_time[task_num] > 60.0f) task_skip = true; // 1分以上選択できなかった場合にタスクをスキップ
 
                         if ((select_target_id == tasknums[task_num])) // 正しいターゲットを選択した時の処理
                         {

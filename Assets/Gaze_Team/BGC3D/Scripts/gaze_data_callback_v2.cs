@@ -74,7 +74,6 @@ public class gaze_data_callback_v2 : MonoBehaviour
     private static void EyeCallback(ref EyeData_v2 eye_data)
     {
         eyeData = eye_data; // 各種視線情報を更新
-        
     }
 
     public string get_gaze_data() // 各種視線情報をcsv形式の文字列で出力するための関数．このスクリプトがアタッチされているスクリプトであれば使用可能
