@@ -118,12 +118,6 @@ public class receiver : MonoBehaviour
     public bool lens_switch;                // レンズの表示・非表示（使っていない）
     [Tooltip("フリーモードのオン・オフ")]
     public bool free_mode;                  // フリーモードのオン・オフ
-    [Tooltip("要リファクタリング")]
-    [System.NonSerialized]
-    public bool bubblegaze_switch;          // ？？？（要リファクタリング）
-    [Tooltip("要リファクタリング")]
-    [System.NonSerialized]
-    public bool gazeraycast_switch;         // ？？？（要リファクタリング）
     //--------------------------------------------------------------
 
 
@@ -333,7 +327,6 @@ public class receiver : MonoBehaviour
         }
         else if (test_id < 3)
         {
-            bubblegaze_switch = true; // Bubble Gaze Cursorの機能をオン
             bubblegaze.SetActive(true); // Bubble Gaze Cursorを表示
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
@@ -342,7 +335,6 @@ public class receiver : MonoBehaviour
         }
         else if (test_id == 3)
         {
-            gazeraycast_switch = true; // 視線レイキャストの機能をオン
             gazeraycast.SetActive(true); // 視線レイキャストを表示
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
@@ -357,7 +349,6 @@ public class receiver : MonoBehaviour
         else if (test_id == 5 || test_id == 6 || test_id == 7)
         {
             gazeraycast2.SetActive(true);
-            bubblegaze_switch = false;
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
 
@@ -576,9 +567,9 @@ public class receiver : MonoBehaviour
                     {
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
                         test_time_tmp = test_time;
-                        if (test_time - task_start_time[task_num] > 60.0f) TimeOut_switch = true; // 1分以上選択できなかった場合にタスクをスキップ
+                        if (TimeOut_switch == true && test_time - task_start_time[task_num] > 60.0f) task_skip = true; // 1分以上選択できなかった場合にタスクをスキップ
 
-                        if ((select_target_id == tasknums[task_num]) || task_skip) // 正しいターゲットを選択した時の処理
+                        if ((select_target_id == tasknums[task_num])) // 正しいターゲットを選択した時の処理
                         {
                             same_target = true;
                             task_skip = false; // フラグを初期化
@@ -724,8 +715,6 @@ public class receiver : MonoBehaviour
 
 
             // パラメータ初期化-------------------------------------------------
-            bubblegaze_switch = false;
-            gazeraycast_switch = false;
             controller_switch = false;
             bubblegaze.SetActive(false);
             gazeraycast.SetActive(false);
@@ -742,7 +731,6 @@ public class receiver : MonoBehaviour
             }
             else if (test_id < 3)
             {
-                bubblegaze_switch = true;
                 bubblegaze.SetActive(true);
                 controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
                 controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
@@ -754,7 +742,6 @@ public class receiver : MonoBehaviour
             }
             else if (test_id == 3)
             {
-                gazeraycast_switch = true;
                 gazeraycast.SetActive(true);
                 controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
                 controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
@@ -768,7 +755,6 @@ public class receiver : MonoBehaviour
             else if (test_id == 5)
             {
                 gazeraycast2.SetActive(true);
-                bubblegaze_switch = false;
                 controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
                 controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
             }
