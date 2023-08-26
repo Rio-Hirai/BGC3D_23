@@ -10,7 +10,7 @@ IPLAB視線班の3次元Bubble Gaze Cursorの実験アプリケーション（�
 - Sources：各種効果音が入っている
 
 ## 環境
-Windows11(22H2) + Unity 2023.1.9f1 + Vive Pro Eye + SRanipal Runtime 1.3.2.0<br>
+Windows11(22H2) + Unity 2023.1.10f1 + Vive Pro Eye + SRanipal Runtime 1.3.2.0<br>
 ※Windows11(23H2)でも動作可能
 
 ## 使用法
