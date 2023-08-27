@@ -168,9 +168,9 @@ public class receiver : MonoBehaviour
     [System.NonSerialized]
     public StreamWriter streamWriter_gaze;  // ファイル出力用
     [System.NonSerialized]
-    public GameObject taskObject;           // ？？？
+    public GameObject taskObject;           // 現在提示されているターゲット
     [System.NonSerialized]
-    public string center_flag = "true";     // ？？？
+    public string center_flag = "true";     // 黒いターゲットを注視している時の状態
     //--------------------------------------------------------------
 
 
@@ -638,7 +638,6 @@ public class receiver : MonoBehaviour
                     audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
                     error_output(); // 実験結果をテキスト形式で出力
                     result_output_csv(); // 視線情報をcsv形式で出力
-                                         //result_output_csv2();
                     result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
                 }
                 //--------------------------------------------------------------
