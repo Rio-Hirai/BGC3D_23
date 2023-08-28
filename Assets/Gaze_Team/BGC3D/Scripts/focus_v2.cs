@@ -79,6 +79,8 @@ namespace ViveSR.anipal.Eye
                 {
                     pointer.transform.position = new Vector3(0, 0, 0); // ポインタオブジェクトの位置を初期化
                     objectName_new = null;
+                    script.RayTarget = null;
+                    script.DwellTarget = null;
                 }
                 //--------------------------------------------------------------
             }
@@ -99,6 +101,18 @@ namespace ViveSR.anipal.Eye
             {
                 objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視中のオブジェクトの総連続注視時間を追加
                 objectName_now = objectName_new; //注視しているオブジェクトを更新
+            }
+            //--------------------------------------------------------------
+
+
+            //--------------------------------------------------------------
+            if (script.pointer_switch)
+            {
+                pointer.SetActive(true);
+            }
+            else
+            {
+                pointer.SetActive(false);
             }
             //--------------------------------------------------------------
         }

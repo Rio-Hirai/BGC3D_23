@@ -98,6 +98,8 @@ public class receiver : MonoBehaviour
     public bool cursor_switch;              // バブルカーソルの表示・非表示
     [Tooltip("レイキャストの表示・非表示")]
     public bool raycast_switch;             // レイキャストの表示・非表示
+    [Tooltip("ポインターの表示・非表示")]
+    public bool pointer_switch;             // ポインターの表示・非表示
     [Tooltip("頷き選択機能のオン・オフ")]
     public bool approve_switch;             // 頷き選択機能のオン・オフ
     [Tooltip("コントローラの表示・非表示")]
@@ -449,7 +451,7 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        for (int i = 0; i < target_set.Length; i++) target_set[i].SetActive(false); // 表示されているターゲット群を全て非表示
+        for (int i = 0; i < target_set.Length; i++) target_set[i].SetActive(false); // 表示されているターゲット群を全て非表示;
 
 
         // ランダム配置条件の場合の処理---------------------------------
