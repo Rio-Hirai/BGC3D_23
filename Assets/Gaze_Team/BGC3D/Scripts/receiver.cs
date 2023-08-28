@@ -314,6 +314,7 @@ public class receiver : MonoBehaviour
                 break;
         }
 
+
         // 各種手法のオブジェクトを非表示（以降の条件分岐で該当する手法のみ表示するため）
         bubblegaze.SetActive(false);
         gazeraycast.SetActive(false);
@@ -321,46 +322,49 @@ public class receiver : MonoBehaviour
         gazeraycast2.SetActive(false);
         //--------------------------------------------------------------
 
+
         // 該当する手法のオブジェクトを表示-----------------------------
-        if (test_id == 0)
+        if (test_id == 0) // ？？？
         {
-            controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-            controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+            controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+            controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
         }
-        else if (test_id < 3)
+        else if (test_id < 3) // ？？？
         {
             bubblegaze.SetActive(true); // Bubble Gaze Cursorを表示
-            controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-            controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+            controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+            controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
 
             if (test_id == 2) gazeraycast.SetActive(true); // 視線レイキャストを表示
         }
-        else if (test_id == 3)
+        else if (test_id == 3) // ？？？
         {
+            pointer_switch = true; // ？？？
             gazeraycast.SetActive(true); // 視線レイキャストを表示
-            controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-            controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+            controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+            controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
         }
-        else if (test_id == 4)
+        else if (test_id == 4) // ？？？
         {
             controller_switch = true; // コントローラの機能をオン
-            controller_Raycast.SetActive(true);
-            controller_R.GetComponent<SteamVR_LaserPointer>().active = true;
-            controller_L.GetComponent<SteamVR_LaserPointer>().active = true;
+            controller_Raycast.SetActive(true); // ？？？
+            controller_R.GetComponent<SteamVR_LaserPointer>().active = true; // ？？？
+            controller_L.GetComponent<SteamVR_LaserPointer>().active = true; // ？？？
         }
-        else if (test_id == 5 || test_id == 6 || test_id == 7)
+        else if (test_id == 5 || test_id == 6 || test_id == 7) // ？？？
         {
-            gazeraycast2.SetActive(true);
-            controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-            controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+            pointer_switch = true; // ？？？
+            gazeraycast2.SetActive(true); // ？？？
+            controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+            controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
 
         }
 
-        if (test_id == 7 || test_id == 8)
+        if (test_id == 7 || test_id == 8) // ？？？
         {
-            approve_switch = true;
-            set_dtime = 999;
-            total_DwellTime_mode = false;
+            set_dtime = 999; // ？？？
+            approve_switch = true; // ？？？
+            total_DwellTime_mode = false; // ？？？
         }
         //--------------------------------------------------------------
         //--------------------------------------------------------------
