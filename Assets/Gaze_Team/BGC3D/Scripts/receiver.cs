@@ -86,6 +86,8 @@ public class receiver : MonoBehaviour
     // 各種機能切り替え---------------------------------------------
     [Tooltip("累積注視時間モードのオン・オフ")]
     public bool total_DwellTime_mode;       // 累積注視時間モードのオン・オフ
+    [Tooltip("注視時間補正モードのオン・オフ")]
+    public bool dtime_correction_mode;      // 注視時間補正モードのオン・オフ
     [Tooltip("視線情報出力機能のオン・オフ")]
     public bool gaze_data_switch;           // 視線情報出力機能のオン・オフ（実験以外ではオフにしておく）
     [Tooltip("タスクのタイムアウトのオン・オフ")]

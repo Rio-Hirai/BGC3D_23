@@ -150,7 +150,10 @@ namespace ViveSR
                         //// 移動平均フィルタを実行時に処理を軽くするプログラム②---------
                         //if (distance < (cursor_size_limit / 2)) continue; // 視線の周囲にないターゲットの場合に処理をスキップ
                         ////--------------------------------------------------------------
+                        ///
 
+
+                        if (script.dtime_correction_mode == true && script.MAverageFilter == false && distance < cursor_size_limit / 2) script.cursor_count++; // カーソル内に存在するターゲットをカウント
 
                         // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きいなら
                         if (nearDistance == 999 || nearDistance > distance)
@@ -203,7 +206,25 @@ namespace ViveSR
                     }
                     //--------------------------------------------------------------
 
-                    if (searchTargetObj != null) searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視しているターゲットの累計注視時間を追加
+
+                    if (searchTargetObj != null)
+                    {
+                        float gain;
+                        int maxsize = 21;
+
+                        if (script.cursor_count > maxsize) script.cursor_count = maxsize;
+
+                        if (script.dtime_correction_mode)
+                        {
+                            gain = 2 - ((script.cursor_count - 1) * 0.1f);
+                        }
+                        else
+                        {
+                            gain = 1;
+                        }
+
+                        searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime * gain; // 注視しているターゲットの累計注視時間を追加
+                    }
 
                     if ((searchTargetObj != null) && (script.approve_switch == true)) searchTargetObj.GetComponent<target_para_set>().dtime = 0f;
 
