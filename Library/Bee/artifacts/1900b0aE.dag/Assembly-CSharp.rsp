@@ -386,6 +386,7 @@
 "Assets/Gaze_Team/BGC3D/Scripts/approve_test.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/booleanlefttest.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/booleanrighttest.cs"
+"Assets/Gaze_Team/BGC3D/Scripts/dtime_output.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/EyeCalibrator.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/focus_BGC_v2.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/focus_pointer.cs"
@@ -493,7 +494,7 @@
 /nowarn:1701
 /nowarn:1702
 /utf8output
-/preferreduilang:en-US
+/preferreduilang:ja
 
 
 
