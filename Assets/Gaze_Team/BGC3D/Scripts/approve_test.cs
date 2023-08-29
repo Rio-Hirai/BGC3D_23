@@ -48,7 +48,7 @@ public class approve_test : MonoBehaviour
                 //--------------------------------------------------------------
 
 
-                // audioSource.PlayOneShot(sound_OK); // ³‰ð‚µ‚½Žž‚ÌŒø‰Ê‰¹‚ð–Â‚ç‚·
+                audioSource.PlayOneShot(sound_OK); // ³‰ð‚µ‚½Žž‚ÌŒø‰Ê‰¹‚ð–Â‚ç‚·
                 Server.select_flag = true;
             }
             else if (timer >= timeThreshold_max)
