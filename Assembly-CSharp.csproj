@@ -165,9 +165,12 @@
     <None Include="Assets\ViveSR\Plugins\libHTC_License.dll" />
     <None Include="Assets\ViveSR\Plugins\ViveSR_Client.dll" />
     <None Include="Assets\ViveSR\Shaders\DartBoardShader.shader" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 4___tester_id  = 0___hirai___829125235.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 5___target_p_id = 3___tester_id  = 0___hirai___829115231.txt" />
     <None Include="Assets\ViveSR\Plugins\nanomsg.dll" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\TESTtest_id = 3___target_p_id = 4___tester_id  = 0___hirai___829125529.txt" />
     <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 4___tester_id  = 0___hirai___829115726.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\test_id = 3___target_p_id = 3___tester_id  = 0___hirai___829122752.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

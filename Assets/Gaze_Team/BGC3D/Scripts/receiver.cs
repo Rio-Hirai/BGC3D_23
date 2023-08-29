@@ -42,6 +42,8 @@ public class receiver : MonoBehaviour
         Density_and_Occlusion,              // 密度＆オクルージョン条件（IDは3）
         Density_and_Occlusion2,             // 密度＆オクルージョン条件2（IDは4）
         Density_and_Occlusion3,             // 密度＆オクルージョン条件2（IDは5）
+        Density_and_Occlusion4,             // 密度＆オクルージョン条件2（IDは6）
+        Density_and_Occlusion5,             // 密度＆オクルージョン条件2（IDは6）
         TEST,                               // テスト用（IDは4）
         Random                              // ランダム配置（IDは99）
     }
@@ -110,6 +112,8 @@ public class receiver : MonoBehaviour
     public bool laserswitch;                // コントローラのレイの表示・非表示（まだレイを非表示にできない）
     [Tooltip("ターゲットの透明化")]
     public bool target_alpha_switch;        // ターゲットの透明化
+    [Tooltip("ターゲットの縮小化")]
+    public bool target_size_mini_switch;    // ターゲットの縮小化
     [Tooltip("明度計算機能のオン・オフ")]
     public bool LightSensor_switch;         // 明度計算機能のオン・オフ
     [Tooltip("動的移動平均フィルタのオン・オフ")]
@@ -343,7 +347,7 @@ public class receiver : MonoBehaviour
         }
         else if (test_id == 3) // ？？？
         {
-            pointer_switch = true; // ？？？
+            raycast_switch = true; // ？？？
             gazeraycast.SetActive(true); // 視線レイキャストを表示
             controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
             controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
@@ -412,9 +416,25 @@ public class receiver : MonoBehaviour
                 target_amount_count = 1;    // 繰り返し回数
                 Depth = 3.5f;               // 奥行き距離
                 break;
+            case "Density_and_Occlusion4":  // 密度＆オクルージョン条件
+                target_p_id = 4;            // 密度＆オクルージョン条件2のID
+                target_amount_all = 47;     // ターゲットの総数
+                target_amount_select = 25;  // 選択（タスク）回数
+                target_amount_count = 1;    // 繰り返し回数
+                Depth = 3.5f;               // 奥行き距離
+                target_size_mini_switch = true;
+                break;
+            case "Density_and_Occlusion5":  // 密度＆オクルージョン条件
+                target_p_id = 6;            // 密度＆オクルージョン条件2のID
+                target_amount_all = 74;     // ターゲットの総数
+                target_amount_select = 25;  // 選択（タスク）回数
+                target_amount_count = 1;    // 繰り返し回数
+                Depth = 3.5f;               // 奥行き距離
+                target_size_mini_switch = true;
+                break;
             case "TEST":                    // テスト用条件
                 target_p_id = 4;            // 密度＆オクルージョン条件2のID
-                target_amount_all = 48;     // ターゲットの総数
+                target_amount_all = 47;     // ターゲットの総数
                 target_amount_select = 3;  // 選択（タスク）回数
                 target_amount_count = 1;    // 繰り返し回数
                 Depth = 3.5f;               // 奥行き距離
@@ -478,7 +498,7 @@ public class receiver : MonoBehaviour
         DateTime dt = DateTime.Now; // 時間を保存
 
         input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString(); // ファイル名に使用する月日時分を保存
-        filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + "test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
+        filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + target_pattern + "_test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv"); // 視線情報用のcsvファイルを作成
 
         if (gaze_data_switch) result_output_every ("timestamp,taskNo,target_id,target_x,target_y,target_z,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue,center", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
@@ -1039,7 +1059,7 @@ public class receiver : MonoBehaviour
                         {
                             if (ransu != 113)
                             {
-                                if (!(ransu == 13 && target_p_id == 3))
+                                if (!(ransu == 13 && (target_p_id == 3 && target_p_id == 6)))
                                 {
                                     tasknums.Add(ransu);
                                 }

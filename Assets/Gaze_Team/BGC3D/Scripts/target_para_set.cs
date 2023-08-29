@@ -21,6 +21,14 @@ public class target_para_set : MonoBehaviour
     void Start()
     {
         script = Server.GetComponent<receiver>();
+
+        if (script.target_size_mini_switch)
+        {
+            float distance_of_camera_to_target = Vector3.Distance(script.head_obj.transform.position, this.transform.position);
+            float angleRadians = 1.0f * Mathf.Deg2Rad;
+            float height = (Mathf.Tan(angleRadians) * distance_of_camera_to_target);
+            this.transform.localScale = new Vector3(height, height, height);
+        }
     }
 
     void Update()
