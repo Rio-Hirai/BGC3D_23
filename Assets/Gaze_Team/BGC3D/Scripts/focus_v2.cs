@@ -74,6 +74,7 @@ namespace ViveSR.anipal.Eye
                     pointer.transform.position = FocusInfo.point; // ポインタオブジェクトの位置を更新
                     objectName_new = FocusInfo.collider.gameObject; // レイと衝突しているターゲットを変数に格納
                     script.RayTarget = objectName_new; // レイと衝突しているターゲットを更新
+                    script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
                 }
                 else
                 {

@@ -122,6 +122,8 @@ public class receiver : MonoBehaviour
     public bool lens_switch;                // レンズの表示・非表示（使っていない）
     [Tooltip("フリーモードのオン・オフ")]
     public bool free_mode;                  // フリーモードのオン・オフ
+    [Tooltip("注視時間表示のオン・オフ")]
+    public bool dtime_monitor;              // 注視時間表示のオン・オフ
     //--------------------------------------------------------------
 
 
@@ -571,7 +573,7 @@ public class receiver : MonoBehaviour
                     if (TimeOut_switch == true && test_time - task_start_time[task_num] > 60.0f) task_skip = true; // 1分以上選択できなかった場合にタスクをスキップ
 
                     // ターゲットの選択が行われた時の処理-------------------------
-                    if ((select_target_id != -1 && select_target_id != 999 && same_target == false) || task_skip)
+                    if ((select_target_id != -1 && select_target_id != 999 && same_target == false))
                     {
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
                         test_time_tmp = test_time;
@@ -593,24 +595,7 @@ public class receiver : MonoBehaviour
                                 taskflag = false; // 非タスク中にする
                             }
                         }
-                        else if (task_skip)
-                        {
-                            same_target = true;
-                            task_skip = false; // フラグを初期化
-
-                            tasklogs[task_num] += ("select_target = " + "skip" + ": " + test_time + "\n"); // 選択したターゲットのIDとタスク完了時の時間を追記
-                            tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count + ",skip"); // そのタスクの総時間とエラー数を追記
-
-                            if (task_num < target_amount_select)
-                            {
-                                task_end_time.Add(test_time); // タスクが終了した時の時間を保存
-                                task_num++; // タスクを次に進める
-                                test_time_tmp = 0; // タスク時間を初期化
-                                audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
-                                taskflag = false; // 非タスク中にする
-                            }
-                        }
-                        else // 間違えたターゲットを選択した時の処理
+                        else if (output_flag == false)// 間違えたターゲットを選択した時の処理
                         {
                             logoutput_count++; // 間違えた数をカウント
 
@@ -618,6 +603,26 @@ public class receiver : MonoBehaviour
                             tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
                             audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
                             if (selecting_target) selecting_target.GetComponent<target_para_set>().dtime = 0;
+                        }
+                    }
+                    else if (task_skip)
+                    {
+                        tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
+                        test_time_tmp = test_time;
+
+                        same_target = true;
+                        task_skip = false; // フラグを初期化
+
+                        tasklogs[task_num] += ("select_target = " + "skip" + ": " + test_time + "\n"); // 選択したターゲットのIDとタスク完了時の時間を追記
+                        tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count + ",skip"); // そのタスクの総時間とエラー数を追記
+
+                        if (task_num < target_amount_select)
+                        {
+                            task_end_time.Add(test_time); // タスクが終了した時の時間を保存
+                            task_num++; // タスクを次に進める
+                            test_time_tmp = 0; // タスク時間を初期化
+                            audioSource.PlayOneShot(sound_NG); // 正解した時の効果音を鳴らす
+                            taskflag = false; // 非タスク中にする
                         }
                     }
                     //--------------------------------------------------------------

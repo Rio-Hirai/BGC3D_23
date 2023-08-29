@@ -10,6 +10,10 @@ public class dtime_output : MonoBehaviour
 
     public receiver server;
 
+    private float dtime = 0;
+
+    private string monitor = "";
+
     // 初期化
     void Start()
     {
@@ -21,11 +25,32 @@ public class dtime_output : MonoBehaviour
         // オブジェクトからTextコンポーネントを取得
         Text score_text = score_object.GetComponent<Text>();
 
-        float dtime = 0;
+        if (server.dtime_monitor)
+        {
+            if (server.DwellTarget)
+            {
+                if (server.DwellTarget.GetComponent<target_para_set>().dtime > 0)
+                {
+                    if (server.DwellTarget.GetComponent<target_para_set>().dtime <= server.set_dtime)
+                    {
+                        dtime = server.DwellTarget.GetComponent<target_para_set>().dtime;
+                        score_object.GetComponent<Text>().color = Color.white;
+                    }
+                    else
+                    {
+                        score_object.GetComponent<Text>().color = server.target_color;
+                    }
+                }
 
-        if (server.DwellTarget) dtime = server.DwellTarget.GetComponent<target_para_set>().dtime;
+                monitor = dtime.ToString();
+            }
+            else
+            {
+                monitor = "";
+            }
+        }
 
         // テキストの表示を入れ替える
-        score_text.text = dtime.ToString();
+        score_text.text = monitor;
     }
 }
