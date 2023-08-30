@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class approve_test : MonoBehaviour
 {
-    [SerializeField] private Transform head;// ユーザの頭部位置
-    [SerializeField] private receiver Server;
+    [SerializeField] private Transform head;    // ユーザの頭部位置
+    [SerializeField] private receiver Server;   // ？？？
 
     private float lastRotationX;                // 前回のx軸の回転
     private float timer;                        // タイマー
-    private float rotationThreshold = 9.0f;      // 回転閾値（度）
+    private float rotationThreshold = 9.0f;     // 回転閾値（度）
     private float timeThreshold_min = 0.20f;    // 時間閾値（秒）
     private float timeThreshold_max = 0.40f;    // 時間閾値（秒）
 
 
     // 効果音-------------------------------------------------------
-    public AudioSource audioSource;         // 音響設定
-    public AudioClip sound_OK;              // 指示通りのターゲットを選択できた時の音
+    public AudioSource audioSource;             // 音響設定
+    public AudioClip sound_OK;                  // 指示通りのターゲットを選択できた時の音
     //--------------------------------------------------------------
 
     void Start()

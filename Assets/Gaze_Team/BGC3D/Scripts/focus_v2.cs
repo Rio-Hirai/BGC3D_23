@@ -11,7 +11,7 @@ namespace ViveSR.anipal.Eye
         private readonly float MaxDistance = 20;                // レイの最大長
         private static EyeData_v2 eyeData = new EyeData_v2();   // 各種視線情報を格納する変数
         private bool eye_callback_registered = false;           // callback関係
-        private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };// ？？？
+        private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT }; // ？？？
 
         public receiver script;                                 // サーバ接続
         public GameObject pointer;                              // ポインタ
@@ -24,8 +24,8 @@ namespace ViveSR.anipal.Eye
             // SRanipal_Eye_Frameworkが正常に動いていない場合の処理---------
             if (!SRanipal_Eye_Framework.Instance.EnableEye)
             {
-                enabled = false;
-                return;
+                enabled = false; // ？？？
+                return; // ？？？
             }
             //--------------------------------------------------------------
         }
@@ -109,11 +109,11 @@ namespace ViveSR.anipal.Eye
             //--------------------------------------------------------------
             if (script.pointer_switch)
             {
-                pointer.SetActive(true);
+                pointer.SetActive(true); // ？？？
             }
             else
             {
-                pointer.SetActive(false);
+                pointer.SetActive(false); // ？？？
             }
             //--------------------------------------------------------------
         }

@@ -147,13 +147,8 @@ namespace ViveSR
                         float target_size_tmp = obj.transform.lossyScale.x; // ？？？
 
 
-                        //// 移動平均フィルタを実行時に処理を軽くするプログラム②---------
-                        //if (distance < (cursor_size_limit / 2)) continue; // 視線の周囲にないターゲットの場合に処理をスキップ
-                        ////--------------------------------------------------------------
-                        ///
-
-
                         if (script.dtime_correction_mode == true && script.MAverageFilter == false && distance < cursor_size_limit / 2) script.cursor_count++; // カーソル内に存在するターゲットをカウント
+
 
                         // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きいなら
                         if (nearDistance == 999 || nearDistance > distance)
@@ -204,9 +199,10 @@ namespace ViveSR
 
                         script.BlinkFlag = 0; // 連続瞬きを初期化
                     }
+                    // if (oldNearObj != searchTargetObj || nearDistance > cursor_size_limit) 終了
+
+
                     //--------------------------------------------------------------
-
-
                     if (searchTargetObj != null)
                     {
                         float gain;
@@ -225,8 +221,10 @@ namespace ViveSR
 
                         searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime * gain; // 注視しているターゲットの累計注視時間を追加
                     }
+                    // if (searchTargetObj != null) 終了-----------------------------
 
-                    if ((searchTargetObj != null) && (script.approve_switch == true)) searchTargetObj.GetComponent<target_para_set>().dtime = 0f;
+
+                    if ((searchTargetObj != null) && (script.approve_switch == true)) searchTargetObj.GetComponent<target_para_set>().dtime = 0f; // 注視しているターゲットの累計注視時間を追加
 
 
                     // 一定時間注視していた場合--------------------------------------
@@ -236,12 +234,6 @@ namespace ViveSR
                         script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
                         script.select_flag = false;
                     }
-
-                    //if (((searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime || script.BlinkFlag > 0) && nearDistance * 2 + target_size < (cursor_size_limit)) || script.next_step__flag)
-                    //{
-                    //    script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
-                    //    script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
-                    //}
                     //--------------------------------------------------------------
 
 

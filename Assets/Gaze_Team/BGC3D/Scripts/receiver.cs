@@ -321,6 +321,7 @@ public class receiver : MonoBehaviour
                 test_id = 0;
                 break;
         }
+        //--------------------------------------------------------------
 
 
         // 各種手法のオブジェクトを非表示（以降の条件分岐で該当する手法のみ表示するため）
@@ -328,6 +329,7 @@ public class receiver : MonoBehaviour
         gazeraycast.SetActive(false);
         controller_Raycast.SetActive(false);
         gazeraycast2.SetActive(false);
+        //--------------------------------------------------------------
         //--------------------------------------------------------------
 
 
@@ -515,26 +517,27 @@ public class receiver : MonoBehaviour
 
     void Update()
     {
-        if (free_mode == false)
+        if (free_mode == false) // ？？？
         {
             method_change(); // 使用している手法を変更
 
 
-            if (controller_switch)
+            if (controller_switch) // ？？？
             {
-                controller_R.gameObject.SetActive(true);
-                controller_L.gameObject.SetActive(true);
+                controller_R.gameObject.SetActive(true); // ？？？
+                controller_L.gameObject.SetActive(true); // ？？？
             }
             else
             {
-                controller_R.gameObject.SetActive(false);
-                controller_L.gameObject.SetActive(false);
+                controller_R.gameObject.SetActive(false); // ？？？
+                controller_L.gameObject.SetActive(false); // ？？？
             }
 
 
             // ターゲット位置の調整-----------------------------------------
-            grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any);
-            if (grapgrip || target_pos_calibration)
+            grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any); // ？？？
+
+            if (grapgrip || target_pos_calibration) // ？？？
             {
                 if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
@@ -544,8 +547,8 @@ public class receiver : MonoBehaviour
                 target_set[target_p_id - 1].transform.position = newPosition; // ターゲット群を新しい位置に移動
                 target_set[target_p_id - 1].transform.LookAt(head_obj.transform.position); // ターゲット群をユーザ（カメラ）の方向に向ける
                 Vector3 rotation = target_set[target_p_id - 1].transform.eulerAngles; // ターゲット群が逆を向いてしまうので180度回転させる
-                rotation.y += 180;
-                target_set[target_p_id - 1].transform.eulerAngles = rotation;
+                rotation.y += 180; // ？？？
+                target_set[target_p_id - 1].transform.eulerAngles = rotation; // ？？？
 
                 target_pos_calibration = false; // 機能フラグをリセット
             }
@@ -558,30 +561,30 @@ public class receiver : MonoBehaviour
 
 
                 // タスクの推移管理---------------------------------------------
-                if (select_target_id == 999 && taskflag == false)
+                if (select_target_id == 999 && taskflag == false) // ？？？
                 {
-                    taskflag = true;
-                    tasklogs.Add("");
-                    task_start_time.Add(test_time);
-                    test_time_tmp = test_time;
-                    logoutput_count = 0;
-                    session_flag = true;
-                    selecting_target = null;
-                    select_target_id = -1;
+                    taskflag = true; // ？？？
+                    tasklogs.Add(""); // ？？？
+                    task_start_time.Add(test_time); // ？？？
+                    test_time_tmp = test_time; // ？？？
+                    logoutput_count = 0; // ？？？
+                    session_flag = true; // ？？？
+                    selecting_target = null; // ？？？
+                    select_target_id = -1; // ？？？
                 }
                 //--------------------------------------------------------------
 
 
                 //--------------------------------------------------------------
-                if (gaze_data_switch)
+                if (gaze_data_switch) // ？？？
                 {
-                    if (DwellTarget != null && DwellTarget.GetComponent<target_para_set>().Id ==999)
+                    if (DwellTarget != null && DwellTarget.GetComponent<target_para_set>().Id ==999) // ？？？
                     {
-                        center_flag = "false";
+                        center_flag = "false"; // ？？？
                     }
                     else
                     {
-                        center_flag = "true";
+                        center_flag = "true"; // ？？？
                     }
                 }
                 //--------------------------------------------------------------
@@ -600,7 +603,7 @@ public class receiver : MonoBehaviour
 
                         if ((select_target_id == tasknums[task_num])) // 正しいターゲットを選択した時の処理
                         {
-                            same_target = true;
+                            same_target = true; // ？？？
                             task_skip = false; // フラグを初期化
 
                             tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIIDとタスク完了時の時間を追記
@@ -619,18 +622,18 @@ public class receiver : MonoBehaviour
                         {
                             logoutput_count++; // 間違えた数をカウント
 
-                            same_target = true;
-                            tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n");
+                            same_target = true; // ？？？
+                            tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // ？？？
                             audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
-                            if (selecting_target) selecting_target.GetComponent<target_para_set>().dtime = 0;
+                            if (selecting_target) selecting_target.GetComponent<target_para_set>().dtime = 0; // ？？？
                         }
                     }
                     else if (task_skip)
                     {
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
-                        test_time_tmp = test_time;
+                        test_time_tmp = test_time; // ？？？
 
-                        same_target = true;
+                        same_target = true; // ？？？
                         task_skip = false; // フラグを初期化
 
                         tasklogs[task_num] += ("select_target = " + "skip" + ": " + test_time + "\n"); // 選択したターゲットのIDとタスク完了時の時間を追記
@@ -649,14 +652,13 @@ public class receiver : MonoBehaviour
 
 
                     // セッションが終了するか，強制中断を行った時の処理--------------
-                    if (task_num == target_amount_select && output_flag == false)
+                    if (task_num == target_amount_select && output_flag == false) // ？？？
                     {
                         output_flag = true; // 出力済みにする
                         audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
-                        taskflag = false;
+                        taskflag = false; // ？？？
                         result_output(); // 実験結果をテキスト形式で出力
                         result_output_csv(); // 実験結果をcsv形式で出力
-                                             //result_output_csv2(); // 視線情報をcsv形式で出力
                         result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
                     }
                     //--------------------------------------------------------------
@@ -665,7 +667,7 @@ public class receiver : MonoBehaviour
 
 
                 // タスクを中断する際の処理-------------------------------------
-                if (error_output_flag)
+                if (error_output_flag) // ？？？
                 {
                     error_output_flag = false; // 出力済みにする
                     audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
