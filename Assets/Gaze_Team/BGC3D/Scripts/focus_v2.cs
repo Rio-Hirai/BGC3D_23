@@ -94,13 +94,19 @@ namespace ViveSR.anipal.Eye
                 script.same_target = false; // ？？？
                 script.selecting_target = null; // 選択されているターゲットを初期化
                 script.select_target_id = -1; // 選択されているターゲットのIDを初期化
-                if (script.total_DwellTime_mode == false) objectName_new.GetComponent<target_para_set>().dtime = 0; // 注視時間を初期化
+                if (script.total_DwellTime_mode == false)
+                {
+                    objectName_new.GetComponent<target_para_set>().dtime = 0; // 注視時間を初期化
+                    script.ab_dtime = 0;
+                }
                 script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
             }
 
             if ((objectName_new != null) && (script.test_id == 3)) // オブジェクトが空でなく，かつ使用手法が「Gaze_Raycast」の場合
             {
-                objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime; // 注視中のオブジェクトの総連続注視時間を追加
+                float deltime = Time.deltaTime;
+                objectName_new.GetComponent<target_para_set>().dtime += deltime; // 注視中のオブジェクトの総連続注視時間を追加
+                script.ab_dtime += deltime;
                 objectName_now = objectName_new; //注視しているオブジェクトを更新
             }
             //--------------------------------------------------------------

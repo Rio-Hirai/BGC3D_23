@@ -194,7 +194,11 @@ namespace ViveSR
                         script.select_target_id = -1; // 選択状態のターゲットのIDを初期化
                         if (searchTargetObj != null)
                         {
-                            if (script.total_DwellTime_mode == false) searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
+                            if (script.total_DwellTime_mode == false)
+                            {
+                                searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
+                                script.ab_dtime = 0;
+                            }
                         }
 
                         script.BlinkFlag = 0; // 連続瞬きを初期化
@@ -219,7 +223,9 @@ namespace ViveSR
                             gain = 1;
                         }
 
-                        searchTargetObj.GetComponent<target_para_set>().dtime += Time.deltaTime * gain; // 注視しているターゲットの累計注視時間を追加
+                        float deltime = Time.deltaTime;
+                        searchTargetObj.GetComponent<target_para_set>().dtime += deltime * gain; // 注視しているターゲットの累計注視時間を追加
+                        script.ab_dtime += deltime;
                     }
                     // if (searchTargetObj != null) 終了-----------------------------
 

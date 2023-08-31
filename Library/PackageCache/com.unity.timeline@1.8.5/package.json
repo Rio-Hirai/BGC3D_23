@@ -1,0 +1,47 @@
+{
+  "name": "com.unity.timeline",
+  "displayName": "Timeline",
+  "version": "1.8.5",
+  "unity": "2019.3",
+  "keywords": [
+    "unity",
+    "animation",
+    "editor",
+    "timeline",
+    "tools"
+  ],
+  "description": "Use Unity Timeline to create cinematic content, game-play sequences, audio sequences, and complex particle effects.",
+  "dependencies": {
+    "com.unity.modules.director": "1.0.0",
+    "com.unity.modules.animation": "1.0.0",
+    "com.unity.modules.audio": "1.0.0",
+    "com.unity.modules.particlesystem": "1.0.0"
+  },
+  "relatedPackages": {
+    "com.unity.timeline.tests": "1.8.5"
+  },
+  "_upm": {
+    "changelog": "### Added\n\n- Added two new workflows to the Timeline Workflows documentation:\n- The `Use markers and signals for footsteps` workflow demonstrates how to use Timeline markers, Signal assets, and Signal Receiver components to play audio sources for footsteps.\n- The `Create a Sub-Timeline instance` workflow demonstrates how to create a single cut-scene by nesting a Timeline instance within another Timeline instance.\n\n### Fixed\n\n- Fixed playback and recording when Timeline is linked with the Animation Window."
+  },
+  "upmCi": {
+    "footprint": "1a3ecab2efef5629f35dc81d52f8bc1ce7f739c0"
+  },
+  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.timeline@1.8/manual/index.html",
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git",
+    "type": "git",
+    "revision": "adf26616812f0b35ad32a28597af1213199265c2"
+  },
+  "samples": [
+    {
+      "displayName": "Customization Samples",
+      "description": "This sample demonstrates how to create custom timeline tracks, clips, markers and actions.",
+      "path": "Samples~/Customization"
+    },
+    {
+      "displayName": "Gameplay Sequence Demo",
+      "description": "This sample demonstrates how Timeline can be used to create a small in-game moment, using built-in Timeline tracks.",
+      "path": "Samples~/GameplaySequenceDemo"
+    }
+  ]
+}

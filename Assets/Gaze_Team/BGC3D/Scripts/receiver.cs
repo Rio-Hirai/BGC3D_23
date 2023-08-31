@@ -211,6 +211,7 @@ public class receiver : MonoBehaviour
     public float lightValue;                // 画面全体の明度
     [System.NonSerialized]
     public Vector3 HMDRotation;             // HMDの角度
+    public float ab_dtime;                  // 絶対的な注視時間
     //--------------------------------------------------------------
 
 

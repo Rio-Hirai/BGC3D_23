@@ -17,28 +17,28 @@ public class dtime_output : MonoBehaviour
         Text score_text = score_object.GetComponent<Text>(); // オブジェクトからTextコンポーネントを取得
 
 
-        //--------------------------------------------------------------
-        if (server.DwellTarget) // 注視しているターゲットが存在する場合
-        {
-            //--------------------------------------------------------------
-            if (server.DwellTarget.GetComponent<target_para_set>().dtime > 0) // ターゲットの注視時間が0以上の場合
-            {
-                if (server.DwellTarget.GetComponent<target_para_set>().dtime <= server.set_dtime) // ターゲットの注視時間が設定した注視時間以下の場合
-                {
-                    dtime = server.DwellTarget.GetComponent<target_para_set>().dtime; // 表示する注視時間を更新
-                    score_object.GetComponent<Text>().color = Color.white; // 出力文字列を白色に変更
-                }
-                else
-                {
-                    score_object.GetComponent<Text>().color = server.target_color; // 出力文字列を緑色に変更
-                }
-            }
-            //--------------------------------------------------------------
+        ////--------------------------------------------------------------
+        //if (server.DwellTarget) // 注視しているターゲットが存在する場合
+        //{
+        //    //--------------------------------------------------------------
+        //    if (server.DwellTarget.GetComponent<target_para_set>().dtime > 0) // ターゲットの注視時間が0以上の場合
+        //    {
+        //        if (server.DwellTarget.GetComponent<target_para_set>().dtime <= server.set_dtime) // ターゲットの注視時間が設定した注視時間以下の場合
+        //        {
+        //            dtime = server.DwellTarget.GetComponent<target_para_set>().dtime; // 表示する注視時間を更新
+        //            score_object.GetComponent<Text>().color = Color.white; // 出力文字列を白色に変更
+        //        }
+        //        else
+        //        {
+        //            score_object.GetComponent<Text>().color = server.target_color; // 出力文字列を緑色に変更
+        //        }
+        //    }
+        //    //--------------------------------------------------------------
 
 
-            monitor = dtime.ToString(); // 注視時間を文字列に変更
-        }
-        //--------------------------------------------------------------
+        //    monitor = dtime.ToString(); // 注視時間を文字列に変更
+        //}
+        ////--------------------------------------------------------------
 
 
         //--------------------------------------------------------------
@@ -49,6 +49,30 @@ public class dtime_output : MonoBehaviour
         else // 注視時間表示がオフの場合
         {
             score_object.SetActive(false); // テキストオブジェクトを非表示
+        }
+        //--------------------------------------------------------------
+
+
+        //--------------------------------------------------------------
+        if (server.DwellTarget) // 注視しているターゲットが存在する場合
+        {
+            //--------------------------------------------------------------
+            if (server.DwellTarget.GetComponent<target_para_set>().dtime > 0) // ターゲットの注視時間が0以上の場合
+            {
+                score_object.GetComponent<Text>().color = server.DwellTarget.GetComponent<Renderer>().material.color;
+
+                if (score_object.GetComponent<Text>().color == server.target_color)
+                {
+
+                } else
+                {
+                    dtime = server.ab_dtime;
+                }
+            }
+            //--------------------------------------------------------------
+
+
+            monitor = dtime.ToString(); // 注視時間を文字列に変更
         }
         //--------------------------------------------------------------
 
