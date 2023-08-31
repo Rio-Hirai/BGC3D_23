@@ -18,18 +18,18 @@ public class receiver : MonoBehaviour
     public enum test_pattern_list           // 新たな手法を追加したい場合はココに名前を追加する
     {
         Zero_Cursor,                        // カーソル無し（IDは0）
-        Bubble_Gaze_Cursor1,                // BGC（IDは1）
-        Bubble_Gaze_Cursor2,                // BGC with RayCast（IDは2）
-        Bubble_Gaze_Cursor3,                // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは5）
-        Bubble_Gaze_Cursor_with_Gaze_Ray,   // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは6）
-        Bubble_Gaze_Cursor_with_nod,        // BGC_new（コレがBubble Gaze Cursor内で一番性能高い．IDは7）
+        Bubble_Gaze_Cursor_old,             // 旧BGC（IDは1）
+        Bubble_Gaze_Cursor2_old,            // 旧BGC with RayCast（IDは2）
+        Bubble_Gaze_Cursor_new,             // 新BGC（IDは5）
+        Bubble_Gaze_Cursor_with_Gaze_Ray,   // 新BGC with 視線によるレイキャスト（IDは6）
+        Bubble_Gaze_Cursor_with_nod,        // 新BGC with nod（IDは7）
         Gaze_Raycast,                       // 視線によるレイキャスト（IDは3）
-        Gaze_Raycast_with_nod,              // 視線によるレイキャスト（IDは8）
+        Gaze_Raycast_with_nod,              // 視線によるレイキャスト with nod（IDは8）
         Controller_Raycast                  // コントローラによるレイキャスト（IDは4）
     }
     [Header("実験条件_入力部分")]
     [Tooltip("使用手法")]
-    public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor1;  // 手法切り替え用のリスト構造
+    public test_pattern_list test_pattern = test_pattern_list.Bubble_Gaze_Cursor_old;  // 手法切り替え用のリスト構造
     //--------------------------------------------------------------
 
 
@@ -39,13 +39,14 @@ public class receiver : MonoBehaviour
         Null,                               // ターゲット無し（IDは0）
         High_Density,                       // 高密度条件（IDは1）
         High_Occlusion,                     // 高オクルージョン条件（IDは2）
-        Density_and_Occlusion,              // 密度＆オクルージョン条件（IDは3）
-        Density_and_Occlusion2,             // 密度＆オクルージョン条件2（IDは4）
-        Density_and_Occlusion3,             // 密度＆オクルージョン条件2（IDは5）
-        Density_and_Occlusion4,             // 密度＆オクルージョン条件2（IDは6）
-        Density_and_Occlusion5,             // 密度＆オクルージョン条件2（IDは6）
-        TEST,                               // テスト用（IDは4）
-        Random                              // ランダム配置（IDは99）
+        Density_and_Occlusion_5x5x5,        // 密度＆オクルージョン条件（IDは3）
+        Density_and_Occlusion_5x5x3,        // 密度＆オクルージョン条件（IDは4）
+        Small_5x5x5,                        // 密度＆オクルージョン条件（IDは5）
+        Small_5x5x3,                        // 密度＆オクルージョン条件（IDは6）
+        TEST_16x3,                          // テスト用（IDは97）
+        TEST_small_16x3,                    // テスト用（IDは98）
+        Random,                             // ランダム配置（IDは99）
+        Random_small                        // ランダム配置（IDは99）
     }
     [Tooltip("ターゲット配置条件")]
     public target_pattern_list target_pattern = target_pattern_list.High_Density;   // 条件切り替え用のリスト構造
@@ -75,10 +76,6 @@ public class receiver : MonoBehaviour
     public float set_dtime;                 // 注視時間
     [Tooltip("ユーザとターゲット間の距離")]
     public float Depth;                     // ユーザとターゲット間の距離
-    [Tooltip("サッケード運動に対する閾値1")]
-    public float pointvalue;                // サッケード運動に対する閾値
-    [Tooltip("サッケード運動に対する閾値2")]
-    public float pointvalue2;               // 同上（ほぼ使っていない）
     [Tooltip("画面明度")]
     [SerializeField, Range(-100, 100)]
     public int Brightness;                  // 画面明度（使用していない）
@@ -150,7 +147,6 @@ public class receiver : MonoBehaviour
     public GameObject controller_R;         // 右コントローラ（表示・非表示用）
     public GameObject controller_L;         // 左コントローラ（表示・非表示用）
     public GameObject controller_Raycast;   // コントローラのレイキャスト機能（機能の無効化用）
-    public GameObject Lens_Object;          // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
     public GameObject[] target_set;         // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
     //--------------------------------------------------------------
 
@@ -188,6 +184,8 @@ public class receiver : MonoBehaviour
     [System.NonSerialized]
     public int test_id;                     // 使用手法のID
     [System.NonSerialized]
+    public int target_a_id;                 // 配置条件のID
+    [System.NonSerialized]
     public int target_p_id;                 // 配置条件のID
     [Header("状況モニタ")]
     public int target_amount_all;           // ターゲットの総数
@@ -208,6 +206,7 @@ public class receiver : MonoBehaviour
     private int logoutput_count = 0;        // そのタスク中のエラー数
     private string now_test_pattern;        // 現在の使用手法のパターン
     private string now_target_pattern;      // 現在のターゲット配置のパターン
+    [System.NonSerialized]
     public float lightValue;                // 画面全体の明度
     [System.NonSerialized]
     public Vector3 HMDRotation;             // HMDの角度
@@ -265,6 +264,15 @@ public class receiver : MonoBehaviour
     public float target_distance;           // クローンターゲットとユーザ間の距離
     [Tooltip("クローンするターゲットの数")]
     public int target_amount;               // クローンするターゲットの数
+                                            //--------------------------------------------------------------
+
+
+    // 調整用パラメータ②--------------------------------------------
+    [Header("調整用パラメータ②")]
+    [Tooltip("サッケード運動に対する閾値1")]
+    public float pointvalue;                // サッケード運動に対する閾値
+    [Tooltip("サッケード運動に対する閾値2")]
+    public float pointvalue2;               // 同上（ほぼ使っていない）
     //--------------------------------------------------------------
 
 
@@ -284,7 +292,8 @@ public class receiver : MonoBehaviour
 
 
     // Bubble Gaze Lens関係------------------------------------------
-    [Header("Bubble Lens関係")]
+    [Header("Bubble Gaze Lens関係")]
+    public GameObject Lens_Object;          // Bubble Gaze Lensのレンズオブジェクト（表示・非表示用，Bubble Gaze Lensが未実装なため使っていない）
     public bool lens_flag;                  // ？？？
     public bool lens_flag2;                 // ？？？
     //--------------------------------------------------------------
@@ -295,10 +304,10 @@ public class receiver : MonoBehaviour
         // 手法管理---------------------------------------------------
         switch (test_pattern.ToString()) // ココで手法毎にIDを割り振る（IDの順番とリスト構造の順番には関係がないため気にせず順番にIDを振ればいい）
         {
-            case "Bubble_Gaze_Cursor1":
+            case "Bubble_Gaze_Cursor_old":
                 test_id = 1;
                 break;
-            case "Bubble_Gaze_Cursor2":
+            case "Bubble_Gaze_Cursor2_old":
                 test_id = 2;
                 break;
             case "Gaze_Raycast":
@@ -307,7 +316,7 @@ public class receiver : MonoBehaviour
             case "Controller_Raycast":
                 test_id = 4;
                 break;
-            case "Bubble_Gaze_Cursor3":
+            case "Bubble_Gaze_Cursor_new":
                 test_id = 5;
                 break;
             case "Bubble_Gaze_Cursor_with_Gaze_Ray":
@@ -383,74 +392,90 @@ public class receiver : MonoBehaviour
 
 
         // タスク条件管理-----------------------------------------------
-        switch (target_pattern.ToString()) // ココで条件毎にIDを割り振りつつ，条件のパラメータを入力
+        switch (target_pattern.ToString())      // ココで条件毎にIDを割り振りつつ，条件のパラメータを入力
         {
-            case "High_Density":            // 高密度条件
-                target_p_id = 1;            // 高密度条件のID
-                target_amount_all = 25;     // ターゲットの総数
-                target_amount_select = 25;  // 選択（タスク）回数
-                target_amount_count = 1;    // 繰り返し回数
-                Depth = 5.0f;               // 奥行き距離
+            case "High_Density":                // 高密度条件
+                target_a_id = 1;                // 高密度条件のID
+                target_p_id = 1;                // 高密度条件のID
+                target_amount_all = 25;         // ターゲットの総数
+                target_amount_select = 25;      // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 5.0f;                   // 奥行き距離
                 break;
-            case "High_Occlusion":          // 高オクルージョン条件
-                target_p_id = 2;            // 高オクルージョン条件のID
-                target_amount_all = 4;      // ターゲットの総数
-                target_amount_select = 24;  // 選択（タスク）回数
-                target_amount_count = 6;    // 繰り返し回数（ターゲットの総数が選択回数より少ない場合に使用する）
-                Depth = 5.0f;               // 奥行き距離
+            case "High_Occlusion":              // 高オクルージョン条件
+                target_a_id = 2;                // 高オクルージョン条件のID
+                target_p_id = 2;                // 高オクルージョン条件のID
+                target_amount_all = 4;          // ターゲットの総数
+                target_amount_select = 24;      // 選択（タスク）回数
+                target_amount_count = 6;        // 繰り返し回数（ターゲットの総数が選択回数より少ない場合に使用する）
+                Depth = 5.0f;                   // 奥行き距離
                 break;
-            case "Density_and_Occlusion":   // 密度＆オクルージョン条件
-                target_p_id = 3;            // 密度＆オクルージョン条件のID
-                target_amount_all = 124;    // ターゲットの総数
-                target_amount_select = 25;  // 選択（タスク）回数
-                target_amount_count = 1;    // 繰り返し回数
-                Depth = 3.5f;               // 奥行き距離
+            case "Density_and_Occlusion_5x5x5": // 密度＆オクルージョン条件
+                target_a_id = 3;                // 密度＆オクルージョン条件のID
+                target_p_id = 3;                // 密度＆オクルージョン条件のID
+                target_amount_all = 124;        // ターゲットの総数
+                target_amount_select = 25;      // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
                 break;
-            case "Density_and_Occlusion2":  // 密度＆オクルージョン条件2
-                target_p_id = 4;            // 密度＆オクルージョン条件2のID
-                target_amount_all = 48;     // ターゲットの総数
-                target_amount_select = 25;  // 選択（タスク）回数
-                target_amount_count = 1;    // 繰り返し回数
-                Depth = 3.5f;               // 奥行き距離
+            case "Density_and_Occlusion_5x5x3": // 密度＆オクルージョン条件2
+                target_a_id = 5;                // 密度＆オクルージョン条件のID
+                target_p_id = 4;                // 密度＆オクルージョン条件2のID
+                target_amount_all = 74;         // ターゲットの総数
+                target_amount_select = 25;      // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
                 break;
-            case "Density_and_Occlusion3":  // 密度＆オクルージョン条件
-                target_p_id = 5;            // 密度＆オクルージョン条件のID
-                target_amount_all = 124;    // ターゲットの総数
-                target_amount_select = 25;  // 選択（タスク）回数
-                target_amount_count = 1;    // 繰り返し回数
-                Depth = 3.5f;               // 奥行き距離
-                break;
-            case "Density_and_Occlusion4":  // 密度＆オクルージョン条件
-                target_p_id = 4;            // 密度＆オクルージョン条件2のID
-                target_amount_all = 47;     // ターゲットの総数
-                target_amount_select = 25;  // 選択（タスク）回数
-                target_amount_count = 1;    // 繰り返し回数
-                Depth = 3.5f;               // 奥行き距離
+            case "Small_5x5x5":                 // 密度＆オクルージョン条件
+                target_a_id = 3;                // 高密度条件のID
+                target_p_id = 5;                // 密度＆オクルージョン条件のID
+                target_amount_all = 124;        // ターゲットの総数
+                target_amount_select = 25;      // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
                 target_size_mini_switch = true;
                 break;
-            case "Density_and_Occlusion5":  // 密度＆オクルージョン条件
-                target_p_id = 6;            // 密度＆オクルージョン条件2のID
-                target_amount_all = 74;     // ターゲットの総数
-                target_amount_select = 25;  // 選択（タスク）回数
-                target_amount_count = 1;    // 繰り返し回数
-                Depth = 3.5f;               // 奥行き距離
+            case "Small_5x5x3":                 // 密度＆オクルージョン条件
+                target_a_id = 5;                // 密度＆オクルージョン条件2のID
+                target_p_id = 6;                // 密度＆オクルージョン条件2のID
+                target_amount_all = 74;         // ターゲットの総数
+                target_amount_select = 25;      // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
                 target_size_mini_switch = true;
                 break;
-            case "TEST":                    // テスト用条件
-                target_p_id = 4;            // 密度＆オクルージョン条件2のID
-                target_amount_all = 47;     // ターゲットの総数
-                target_amount_select = 3;  // 選択（タスク）回数
-                target_amount_count = 1;    // 繰り返し回数
-                Depth = 3.5f;               // 奥行き距離
+            case "TEST_16x3":                   // テスト用条件
+                target_a_id = 4;                // 高密度条件のID
+                target_p_id = 97;               // 密度＆オクルージョン条件2のID
+                target_amount_all = 47;         // ターゲットの総数
+                target_amount_select = 3;       // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
                 break;
-            case "Random":                  // ランダム配置条件
-                target_p_id = 99;           // ランダム配置条件のID（配置条件を追加できるように99にしている）
+            case "TEST_small_16x3":             // テスト用条件
+                target_a_id = 4;                // 高密度条件のID
+                target_p_id = 98;               // 密度＆オクルージョン条件2のID
+                target_amount_all = 47;         // ターゲットの総数
+                target_amount_select = 3;       // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
+                target_size_mini_switch = true;
+                break;
+            case "Random":                      // ランダム配置条件
+                target_a_id = 99;               // 高密度条件のID
+                target_p_id = 99;               // ランダム配置条件のID（配置条件を追加できるように99にしている）
+                break;
+            case "Random_small":                // ランダム配置条件
+                target_a_id = 99;               // 高密度条件のID
+                target_p_id = 99;               // ランダム配置条件のID（配置条件を追加できるように99にしている）
+                target_size_mini_switch = true; // ？？？
                 break;
             default:
-                target_p_id = 0;            // ？？？
-                target_amount_all = 0;      // ？？？
-                target_amount_select = 0;   // ？？？
-                target_amount_count = 0;    // ？？？
+                target_a_id = 0;                // 高密度条件のID
+                target_p_id = 0;                // ？？？
+                target_amount_all = 0;          // ？？？
+                target_amount_select = 0;       // ？？？
+                target_amount_count = 0;        // ？？？
                 break;
         }
         //--------------------------------------------------------------
@@ -541,16 +566,16 @@ public class receiver : MonoBehaviour
 
             if (grapgrip || target_pos_calibration) // ？？？
             {
-                if (target_p_id != 99) target_set[target_p_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
+                if (target_p_id != 99) target_set[target_a_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
                 Vector3 forward = Vector3.Scale(head_obj.transform.forward, new Vector3(1, 0, 1)).normalized; // ユーザ（カメラ）の前方方向を取得
                 Vector3 newPosition = head_obj.transform.position + forward * Depth; // ユーザ（カメラ）の位置をターゲット群の新しい位置に設定
                 newPosition.y = head_obj.transform.position.y; // ターゲット群とユーザ（カメラ）の高さを同じにする
-                target_set[target_p_id - 1].transform.position = newPosition; // ターゲット群を新しい位置に移動
-                target_set[target_p_id - 1].transform.LookAt(head_obj.transform.position); // ターゲット群をユーザ（カメラ）の方向に向ける
-                Vector3 rotation = target_set[target_p_id - 1].transform.eulerAngles; // ターゲット群が逆を向いてしまうので180度回転させる
+                target_set[target_a_id - 1].transform.position = newPosition; // ターゲット群を新しい位置に移動
+                target_set[target_a_id - 1].transform.LookAt(head_obj.transform.position); // ターゲット群をユーザ（カメラ）の方向に向ける
+                Vector3 rotation = target_set[target_a_id - 1].transform.eulerAngles; // ターゲット群が逆を向いてしまうので180度回転させる
                 rotation.y += 180; // ？？？
-                target_set[target_p_id - 1].transform.eulerAngles = rotation; // ？？？
+                target_set[target_a_id - 1].transform.eulerAngles = rotation; // ？？？
 
                 target_pos_calibration = false; // 機能フラグをリセット
             }
@@ -1063,7 +1088,7 @@ public class receiver : MonoBehaviour
                         {
                             if (ransu != 113)
                             {
-                                if (!(ransu == 13 && (target_p_id == 3 && target_p_id == 6)))
+                                if (!(ransu == 13 && (target_a_id == 3 || target_a_id == 4 || target_a_id == 5)))
                                 {
                                     tasknums.Add(ransu);
                                 }

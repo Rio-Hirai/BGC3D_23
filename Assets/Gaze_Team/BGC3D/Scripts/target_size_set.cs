@@ -10,7 +10,18 @@ public class target_size_set : MonoBehaviour
 
     void Start()
     {
-        this.transform.localScale = new Vector3(Server.target_size, Server.target_size, Server.target_size); // ターゲットの大きさを初期化
+        if (Server.target_size_mini_switch)
+        {
+            float distance_of_camera_to_target = Vector3.Distance(Server.head_obj.transform.position, this.transform.position);
+            float angleRadians = 1.0f * Mathf.Deg2Rad;
+            float height = (Mathf.Tan(angleRadians) * distance_of_camera_to_target);
+            this.transform.localScale = new Vector3(height, height, height); // ターゲットの大きさを初期化
+        }
+        else
+        {
+            this.transform.localScale = new Vector3(Server.target_size, Server.target_size, Server.target_size); // ターゲットの大きさを初期化
+        }
+
         this.name = "target_" + Server.target_id; // ターゲットの名前を初期化
         this.GetComponent<target_para_set>().Id = Server.target_id; // ターゲットのIDを初期化
         Server.target_id++; // ターゲットのIDを連番にするために加算
