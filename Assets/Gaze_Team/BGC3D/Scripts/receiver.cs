@@ -211,6 +211,7 @@ public class receiver : MonoBehaviour
     public float lightValue;                // 画面全体の明度
     [System.NonSerialized]
     public Vector3 HMDRotation;             // HMDの角度
+    [System.NonSerialized]
     public float ab_dtime;                  // 絶対的な注視時間
     //--------------------------------------------------------------
 
@@ -446,10 +447,10 @@ public class receiver : MonoBehaviour
                 target_p_id = 99;           // ランダム配置条件のID（配置条件を追加できるように99にしている）
                 break;
             default:
-                target_p_id = 0;
-                target_amount_all = 0;
-                target_amount_select = 0;
-                target_amount_count = 0;
+                target_p_id = 0;            // ？？？
+                target_amount_all = 0;      // ？？？
+                target_amount_select = 0;   // ？？？
+                target_amount_count = 0;    // ？？？
                 break;
         }
         //--------------------------------------------------------------
@@ -610,7 +611,7 @@ public class receiver : MonoBehaviour
                             tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIIDとタスク完了時の時間を追記
                             tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
 
-                            if (task_num < target_amount_select)
+                            if (task_num < target_amount_select) // ？？？
                             {
                                 task_end_time.Add(test_time); // タスクが終了した時の時間を保存
                                 task_num++; // タスクを次に進める
@@ -629,7 +630,7 @@ public class receiver : MonoBehaviour
                             if (selecting_target) selecting_target.GetComponent<target_para_set>().dtime = 0; // ？？？
                         }
                     }
-                    else if (task_skip)
+                    else if (task_skip) // ？？？
                     {
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
                         test_time_tmp = test_time; // ？？？
@@ -640,7 +641,7 @@ public class receiver : MonoBehaviour
                         tasklogs[task_num] += ("select_target = " + "skip" + ": " + test_time + "\n"); // 選択したターゲットのIDとタスク完了時の時間を追記
                         tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count + ",skip"); // そのタスクの総時間とエラー数を追記
 
-                        if (task_num < target_amount_select)
+                        if (task_num < target_amount_select) // ？？？
                         {
                             task_end_time.Add(test_time); // タスクが終了した時の時間を保存
                             task_num++; // タスクを次に進める

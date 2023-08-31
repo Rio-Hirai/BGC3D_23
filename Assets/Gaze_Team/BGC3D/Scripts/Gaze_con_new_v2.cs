@@ -48,7 +48,7 @@ namespace ViveSR
                     {
                         this.GetComponent<Renderer>().material.color = script.cursor_color; // 透明度を0より大きくしてカーソルを表示
                     }
-                    else
+                    else // ？？？
                     {
                         script.cursor_color.a = 0f; // カーソルを透明化（＝非表示化）
                         this.GetComponent<Renderer>().material.color = script.cursor_color; // 透明度を0にしてカーソルを非表示
@@ -84,20 +84,20 @@ namespace ViveSR
 
 
                     // 頷き選択ジェスチャの場合の処理----------------------------------
-                    if (script.approve_switch == true && script.head_rot_switch == true)
+                    if (script.approve_switch == true && script.head_rot_switch == true) // ？？？
                     {
                         // 一定時間注視していた場合--------------------------------------
-                        if (searchNearObj != null && script.select_flag)
+                        if (searchNearObj != null && script.select_flag) // ？？？
                         {
                             script.select_target_id = searchNearObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
                             script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
-                            script.select_flag = false;
-                            script.same_target = false;
+                            script.select_flag = false; // ？？？
+                            script.same_target = false; // ？？？
                         }
 
 
                         //Bubble Cursorを表示-------------------------------------------
-                        if (searchNearObj != null && script.cursor_switch)
+                        if (searchNearObj != null && script.cursor_switch) // ？？？
                         {
                             Vector3 toObject = searchNearObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
                             Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
@@ -109,7 +109,7 @@ namespace ViveSR
                         oldNearObj = searchNearObj; // 注視しているターゲットを更新
                         script.cursor_radious = (nearDistance * 2) + (target_size); // カーソルの大きさを更新
 
-                        return searchNearObj;
+                        return searchNearObj; // ？？？
                     }
                     //--------------------------------------------------------------
 
@@ -151,9 +151,9 @@ namespace ViveSR
 
 
                         // nearDistanceが0(最初はこちら)、あるいはnearDistanceがdistanceよりも大きいなら
-                        if (nearDistance == 999 || nearDistance > distance)
+                        if (nearDistance == 999 || nearDistance > distance) // ？？？
                         {
-                            if (nearDistance == 999 || distance < cursor_size_limit)
+                            if (nearDistance == 999 || distance < cursor_size_limit) // ？？？
                             {
                                 nearDistance = distance; // nearDistanceを更新
                                 searchTargetObj = obj; // searchTargetObjを更新
@@ -167,14 +167,14 @@ namespace ViveSR
                                     script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
                                     script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
                                 }
-                                else
+                                else // ？？？
                                 {
                                     script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
                                     script.DwellTarget = null; // 注視しているオブジェクトを更新
                                 }
                                 //--------------------------------------------------------------
                             }
-                            else
+                            else // ？？？
                             {
                                 searchTargetObj = null; // ？？？
                             }
@@ -188,16 +188,16 @@ namespace ViveSR
 
                     // 最も近かったオブジェクトを返す
                     // 注視していたターゲットが変わった（連続注視が途切れた）場合---
-                    if (oldNearObj != searchTargetObj || nearDistance > cursor_size_limit)
+                    if (oldNearObj != searchTargetObj || nearDistance > cursor_size_limit) // ？？？
                     {
                         script.same_target = false;
                         script.select_target_id = -1; // 選択状態のターゲットのIDを初期化
-                        if (searchTargetObj != null)
+                        if (searchTargetObj != null) // ？？？
                         {
-                            if (script.total_DwellTime_mode == false)
+                            if (script.total_DwellTime_mode == false) // ？？？
                             {
                                 searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
-                                script.ab_dtime = 0;
+                                script.ab_dtime = 0; // ？？？
                             }
                         }
 
@@ -207,44 +207,46 @@ namespace ViveSR
 
 
                     //--------------------------------------------------------------
-                    if (searchTargetObj != null)
+                    if (searchTargetObj != null) // ？？？
                     {
-                        float gain;
-                        int maxsize = 21;
+                        float gain; // ？？？
+                        int maxsize = 21; // ？？？
 
-                        if (script.cursor_count > maxsize) script.cursor_count = maxsize;
+                        if (script.cursor_count > maxsize) script.cursor_count = maxsize; // ？？？
 
-                        if (script.dtime_correction_mode)
+                        if (script.dtime_correction_mode) // ？？？
                         {
-                            gain = 2 - ((script.cursor_count - 1) * 0.1f);
+                            gain = 2 - ((script.cursor_count - 1) * (1 / 7)); // ？？？
                         }
-                        else
+                        else // ？？？
                         {
-                            gain = 1;
+                            gain = 1; // ？？？
                         }
 
-                        float deltime = Time.deltaTime;
+                        //--------------------------------------------------------------
+                        float deltime = Time.deltaTime; // ？？？
                         searchTargetObj.GetComponent<target_para_set>().dtime += deltime * gain; // 注視しているターゲットの累計注視時間を追加
-                        script.ab_dtime += deltime;
+                        script.ab_dtime += deltime; // ？？？
+                        //--------------------------------------------------------------
                     }
                     // if (searchTargetObj != null) 終了-----------------------------
 
 
-                    if ((searchTargetObj != null) && (script.approve_switch == true)) searchTargetObj.GetComponent<target_para_set>().dtime = 0f; // 注視しているターゲットの累計注視時間を追加
+                    if ((searchTargetObj != null) && (script.approve_switch == true)) searchTargetObj.GetComponent<target_para_set>().dtime = 0.0f; // 注視しているターゲットの累計注視時間を追加
 
 
                     // 一定時間注視していた場合--------------------------------------
-                    if ((searchTargetObj != null) && (searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime))
+                    if ((searchTargetObj != null) && (searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime)) // ？？？
                     {
                         script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
                         script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
-                        script.select_flag = false;
+                        script.select_flag = false; // ？？？
                     }
                     //--------------------------------------------------------------
 
 
                     //Bubble Cursorを表示-------------------------------------------
-                    if (searchTargetObj != null && script.cursor_switch)
+                    if (searchTargetObj != null && script.cursor_switch) // ？？？
                     {
                         Vector3 toObject = searchTargetObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
                         Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
@@ -258,11 +260,11 @@ namespace ViveSR
 
 
                     //ターゲットのタグを初期化----------------------------------------
-                    if (script.MAverageFilter)
+                    if (script.MAverageFilter) // ？？？
                     {
                         foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
                         {
-                            obj.tag = tagName;
+                            obj.tag = tagName; // ？？？
                         }
                     }
                     //--------------------------------------------------------------

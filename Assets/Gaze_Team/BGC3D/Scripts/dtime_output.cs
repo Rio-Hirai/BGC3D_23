@@ -59,14 +59,15 @@ public class dtime_output : MonoBehaviour
             //--------------------------------------------------------------
             if (server.DwellTarget.GetComponent<target_para_set>().dtime > 0) // ターゲットの注視時間が0以上の場合
             {
-                score_object.GetComponent<Text>().color = server.DwellTarget.GetComponent<Renderer>().material.color;
+                score_object.GetComponent<Text>().color = server.DwellTarget.GetComponent<Renderer>().material.color; // ？？？
 
-                if (score_object.GetComponent<Text>().color == server.target_color)
+                if (score_object.GetComponent<Text>().color == server.target_color) // ？？？
                 {
 
-                } else
+                }
+                else // ？？？
                 {
-                    dtime = server.ab_dtime;
+                    dtime = server.ab_dtime; // ？？？
                 }
             }
             //--------------------------------------------------------------

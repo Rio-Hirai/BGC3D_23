@@ -90,7 +90,7 @@ public class focus_BGC_v2 : MonoBehaviour
 
             if (objectName_new != null) // オブジェクトが空でない場合
             {
-                if (script.DwellTarget == objectName_new)
+                if (script.DwellTarget == objectName_new) // ？？？
                 {
                     objectName_new.GetComponent<target_para_set>().dtime += Time.deltaTime * (objectName_new.GetComponent<target_para_set>().dtime * objectName_new.GetComponent<target_para_set>().dtime + 1.0f); // 注視中のオブジェクトの総連続注視時間を追加
                     objectName_now = objectName_new; //注視しているオブジェクトを更新
@@ -100,13 +100,13 @@ public class focus_BGC_v2 : MonoBehaviour
 
 
             //--------------------------------------------------------------
-            if (script.pointer_switch)
+            if (script.pointer_switch) // ？？？
             {
-                pointer.SetActive(true);
+                pointer.SetActive(true); // ？？？
             }
-            else
+            else // ？？？
             {
-                pointer.SetActive(false);
+                pointer.SetActive(false); // ？？？
             }
             //--------------------------------------------------------------
         }
