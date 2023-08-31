@@ -22,27 +22,35 @@ public class target_para_set : MonoBehaviour
     {
         script = Server.GetComponent<receiver>();
 
-        if (script.target_size_mini_switch)
+        if (script.target_size_mini_switch) // ？？？
         {
-            float distance_of_camera_to_target = Vector3.Distance(script.head_obj.transform.position, this.transform.position);
-            float angleRadians = 1.0f * Mathf.Deg2Rad;
-            float height = (Mathf.Tan(angleRadians) * distance_of_camera_to_target);
-            this.transform.localScale = new Vector3(height, height, height);
+            float distance_of_camera_to_target = Vector3.Distance(script.head_obj.transform.position, this.transform.position); // ？？？
+            float angleRadians = 1.0f * Mathf.Deg2Rad; // ？？？
+            float height = (Mathf.Tan(angleRadians) * distance_of_camera_to_target); // ？？？
+            this.transform.localScale = new Vector3(height, height, height); // ？？？
+        }
+
+        if (script.target_a_id != 99) // ？？？
+        {
+            if (this.GetComponent<target_size_set>()) // ？？？
+            {
+                this.GetComponent<target_size_set>().enabled = false; // ？？？
+            }
         }
     }
 
     void Update()
     {
-        if (Server.GetComponent<receiver>().enabled == false)
+        if (Server.GetComponent<receiver>().enabled == false) // ？？？
         {
             // 結果表示用の処理---------------------------------------------
-            for (int i = 1; i < script2.csvDatas.Count; i++)
+            for (int i = 1; i < script2.csvDatas.Count; i++) // ？？？
             {
-                if (Id == int.Parse(script2.csvDatas[i][2])) this.GetComponent<Renderer>().material.color = Color.blue;
+                if (Id == int.Parse(script2.csvDatas[i][2])) this.GetComponent<Renderer>().material.color = Color.blue; // ？？？
             }
             //--------------------------------------------------------------
 
-            return;
+            return; // ？？？
         }
 
 

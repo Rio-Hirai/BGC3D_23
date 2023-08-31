@@ -29,36 +29,40 @@ public class approve_test : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime; // 時間を更新
-
-        // 指定した時間が経過したら、x軸の回転をチェック
-        if (timer >= timeThreshold_min)
+        if (Server.approve_switch)
         {
-            float currentRotationX = head.rotation.eulerAngles.x; // 現在のx軸の回転を取得
-            float rotationChange = Mathf.Abs(Mathf.Abs(currentRotationX) - Mathf.Abs(lastRotationX)); // 前回の回転からの変化を計算
-            if (rotationChange > 180) rotationChange -= 360; // 必要に応じて360度減らす（360度以上の回転を避けるため）
+            timer += Time.deltaTime; // 時間を更新
 
-
-            // 回転が閾値を超えている場合、メッセージを出力-----------------
-            if ((Mathf.Abs(rotationChange) > rotationThreshold) && (lastRotationX < currentRotationX))
+            // 指定した時間が経過したら、x軸の回転をチェック
+            if (timer >= timeThreshold_min)
             {
-                // 前回の回転と時間を更新---------------------------------------
-                lastRotationX = currentRotationX;
-                timer = 0f;
-                //--------------------------------------------------------------
+                float currentRotationX = head.rotation.eulerAngles.x; // 現在のx軸の回転を取得
+                float rotationChange = Mathf.Abs(Mathf.Abs(currentRotationX) - Mathf.Abs(lastRotationX)); // 前回の回転からの変化を計算
+                if (rotationChange > 180) rotationChange -= 360; // 必要に応じて360度減らす（360度以上の回転を避けるため）
 
 
-                // audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
-                Server.select_flag = true;
-            }
-            else if (timer >= timeThreshold_max)
-            {
-                // 前回の回転と時間を更新---------------------------------------
-                lastRotationX = currentRotationX;
-                timer = 0f;
+                // 回転が閾値を超えている場合、メッセージを出力-----------------
+                if ((Mathf.Abs(rotationChange) > rotationThreshold) && (lastRotationX < currentRotationX))
+                {
+                    // 前回の回転と時間を更新---------------------------------------
+                    lastRotationX = currentRotationX;
+                    timer = 0f;
+                    //--------------------------------------------------------------
+
+
+                    // audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
+                    Server.select_flag = true;
+                }
+                else if (timer >= timeThreshold_max)
+                {
+                    // 前回の回転と時間を更新---------------------------------------
+                    lastRotationX = currentRotationX;
+                    timer = 0f;
+                    //--------------------------------------------------------------
+                }
                 //--------------------------------------------------------------
             }
-            //--------------------------------------------------------------
         }
+        
     }
 }

@@ -124,7 +124,7 @@ public class receiver : MonoBehaviour
     [Tooltip("フリーモードのオン・オフ")]
     public bool free_mode;                  // フリーモードのオン・オフ
     [Tooltip("注視時間表示のオン・オフ")]
-    public bool dtime_monitor;              // 注視時間表示のオン・オフ
+    public bool dtime_monitor_switch;       // 注視時間表示のオン・オフ
     //--------------------------------------------------------------
 
 
@@ -147,6 +147,7 @@ public class receiver : MonoBehaviour
     public GameObject controller_R;         // 右コントローラ（表示・非表示用）
     public GameObject controller_L;         // 左コントローラ（表示・非表示用）
     public GameObject controller_Raycast;   // コントローラのレイキャスト機能（機能の無効化用）
+    public GameObject dtime_monitor;        // コントローラのレイキャスト機能（機能の無効化用）
     public GameObject[] target_set;         // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
     //--------------------------------------------------------------
 
@@ -267,8 +268,8 @@ public class receiver : MonoBehaviour
                                             //--------------------------------------------------------------
 
 
-    // 調整用パラメータ②--------------------------------------------
-    [Header("調整用パラメータ②")]
+    // 調整用パラメータ2--------------------------------------------
+    [Header("調整用パラメータ2")]
     [Tooltip("サッケード運動に対する閾値1")]
     public float pointvalue;                // サッケード運動に対する閾値
     [Tooltip("サッケード運動に対する閾値2")]
@@ -563,10 +564,11 @@ public class receiver : MonoBehaviour
 
             // ターゲット位置の調整-----------------------------------------
             grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any); // ？？？
+            if (target_a_id == 0 || target_a_id == 99) grapgrip = false; // ？？？
 
             if (grapgrip || target_pos_calibration) // ？？？
             {
-                if (target_p_id != 99) target_set[target_a_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
+                target_set[target_a_id - 1].SetActive(true); // 指定した配置条件のターゲット群を表示する
 
                 Vector3 forward = Vector3.Scale(head_obj.transform.forward, new Vector3(1, 0, 1)).normalized; // ユーザ（カメラ）の前方方向を取得
                 Vector3 newPosition = head_obj.transform.position + forward * Depth; // ユーザ（カメラ）の位置をターゲット群の新しい位置に設定
@@ -709,7 +711,7 @@ public class receiver : MonoBehaviour
             Quaternion HMDRotationQ = InputTracking.GetLocalRotation(XRNode.Head); //回転座標をクォータニオンで値を受け取る，旧式らしいので要修正
             HMDRotation = HMDRotationQ.eulerAngles; // 取得した値をクォータニオン → オイラー角に変換
             lightValue = sensor.lightValue; // 画面全体の明度情報を更新
-            if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得＆書き出し
+            // if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得＆書き出し
         }
         else
         {

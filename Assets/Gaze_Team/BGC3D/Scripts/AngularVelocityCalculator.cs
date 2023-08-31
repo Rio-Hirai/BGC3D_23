@@ -17,30 +17,27 @@ public class AngularVelocityCalculator : MonoBehaviour
 
     private void Update()
     {
-        if (Server.approve_switch) // ？？？
+        var rotation = transform.rotation; // 現在フレームの姿勢を取得
+        var diffRotation = Quaternion.Inverse(_prevRotation) * rotation; // 前フレームからの回転量を求める
+        diffRotation.ToAngleAxis(out var angle, out var axis); // 回転した角度と軸（ローカル空間）を求める
+
+        AngularVelocity = angle / Time.deltaTime; // 回転角度から角速度を計算
+        IsRotating = !Mathf.Approximately(angle, 0); // 回転角度が0以外なら回転しているとみなす
+        Axis = rotation * axis; // ローカル空間の回転軸をワールド空間に変換
+
+
+        //--------------------------------------------------------------
+        if (AngularVelocity > 7.0f)
         {
-            var rotation = transform.rotation; // 現在フレームの姿勢を取得
-            var diffRotation = Quaternion.Inverse(_prevRotation) * rotation; // 前フレームからの回転量を求める
-            diffRotation.ToAngleAxis(out var angle, out var axis); // 回転した角度と軸（ローカル空間）を求める
-
-            IsRotating = !Mathf.Approximately(angle, 0); // 回転角度が0以外なら回転しているとみなす
-            AngularVelocity = angle / Time.deltaTime; // 回転角度から角速度を計算
-            Axis = rotation * axis; // ローカル空間の回転軸をワールド空間に変換
-
-
-            //--------------------------------------------------------------
-            if (AngularVelocity > 7.0f)
-            {
-                Server.head_rot_switch = true;
-            }
-            else
-            {
-                Server.head_rot_switch = false;
-            }
-            //--------------------------------------------------------------
-
-
-            _prevRotation = rotation; // 前フレームの姿勢を更新
+            Server.head_rot_switch = true;
         }
+        else
+        {
+            Server.head_rot_switch = false;
+        }
+        //--------------------------------------------------------------
+
+
+        _prevRotation = rotation; // 前フレームの姿勢を更新
     }
 }
