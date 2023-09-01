@@ -44,11 +44,11 @@ namespace ViveSR
                 void Update()
                 {
                     // カーソルの位置と半径と色を更新-------------------------------
-                    if (script.cursor_switch) // カーソル表示・非常時スイッチの有無
+                    if (script.cursor_switch) // カーソル表示機能がオンの場合
                     {
                         this.GetComponent<Renderer>().material.color = script.cursor_color; // 透明度を0より大きくしてカーソルを表示
                     }
-                    else // ？？？
+                    else // カーソル表示機能がオフの場合
                     {
                         script.cursor_color.a = 0f; // カーソルを透明化（＝非表示化）
                         this.GetComponent<Renderer>().material.color = script.cursor_color; // 透明度を0にしてカーソルを非表示
@@ -71,7 +71,8 @@ namespace ViveSR
                     // if (timer >= searchWaitTime)------------------------------------
                 }
 
-                //
+
+                // ターゲット検索------------------------------------------
                 private GameObject Serch()
                 {
                     float nearDistance = 999; // 最も近いオブジェクトの距離を代入するための変数
@@ -98,19 +99,19 @@ namespace ViveSR
 
 
                         //Bubble Cursorを表示-------------------------------------------
-                        if (searchNearObj != null && script.cursor_switch) // ？？？
+                        if (searchNearObj != null && script.cursor_switch) // ターゲットが見つかっていて，かつカーソル表示機能がオンの場合
                         {
                             Vector3 toObject = searchNearObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
                             Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
                             cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
                         }
-                        //--------------------------------------------------------------
+                        //-----------------------------------------------------------------------
 
 
                         oldNearObj = searchNearObj; // 注視しているターゲットを更新
                         script.cursor_radious = (nearDistance * 2) + (target_size); // カーソルの大きさを更新
 
-                        return searchNearObj; // ？？？
+                        return searchNearObj; // 検索して発見したターゲットを返す
                     }
                     //----------------------------------------------------------------------
 
@@ -168,7 +169,7 @@ namespace ViveSR
                                     script.cursor_color.a = color_alpha; // カーソルの透明度を調整して表示
                                     script.DwellTarget = searchTargetObj; // 注視しているオブジェクトを更新
                                 }
-                                else // ？？？
+                                else // カーソルの大きさが上限より大きい場合
                                 {
                                     script.cursor_color.a = 0; // カーソルの透明度を調整して非表示
                                     script.DwellTarget = null; // 注視しているオブジェクトを更新
@@ -189,16 +190,16 @@ namespace ViveSR
 
                     // 最も近かったオブジェクトを返す
                     // 注視していたターゲットが変わった（連続注視が途切れた）場合---
-                    if (oldNearObj != searchTargetObj || nearDistance > cursor_size_limit) // ？？？
+                    if (oldNearObj != searchTargetObj || nearDistance > cursor_size_limit) // 前フレームで取得したターゲットと同一，またカーソルの大きさが上限より大きい場合
                     {
-                        script.same_target = false;
+                        script.same_target = false; // ？？？
                         script.select_target_id = -1; // 選択状態のターゲットのIDを初期化
-                        if (searchTargetObj != null) // ？？？
+                        if (searchTargetObj != null) // ターゲットが見つかっている場合
                         {
-                            if (script.total_DwellTime_mode == false) // ？？？
+                            if (script.total_DwellTime_mode == false) // 累計注視時間モードがオンの場合
                             {
                                 searchTargetObj.GetComponent<target_para_set>().dtime = 0; // 累計注視時間を初期化
-                                script.ab_dtime = 0; // ？？？
+                                script.ab_dtime = 0; // 累計注視時間を初期化
                             }
                         }
 
@@ -219,15 +220,15 @@ namespace ViveSR
                         {
                             gain = 2 - ((script.cursor_count - 1) * (1 / (maxsize - 1))); // ？？？
                         }
-                        else // ？？？
+                        else // 注視時間の補正機能がオフの場合
                         {
                             gain = 1; // ？？？
                         }
 
                         //--------------------------------------------------------------
-                        float deltime = Time.deltaTime; // ？？？
+                        float deltime = Time.deltaTime; // 前フレームからの経過時間を取得
                         searchTargetObj.GetComponent<target_para_set>().dtime += deltime * gain; // 注視しているターゲットの累計注視時間を追加
-                        script.ab_dtime += deltime; // ？？？
+                        script.ab_dtime += deltime; // 累計注視時間を初期化
                         //--------------------------------------------------------------
                     }
                     // if (searchTargetObj != null) 終了-------------------
