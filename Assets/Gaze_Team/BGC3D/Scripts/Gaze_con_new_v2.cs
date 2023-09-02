@@ -88,22 +88,27 @@ namespace ViveSR
                     // 頷き選択ジェスチャの場合の処理----------------------------------
                     if (script.approve_switch == true && script.head_rot_switch == true) // ？？？
                     {
-                        // 一定時間注視していた場合--------------------------------------
-                        if (searchNearObj != null && script.select_flag) // ？？？
+                        if (searchNearObj != null)
                         {
-                            script.select_target_id = searchNearObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
-                            script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
-                            script.select_flag = false; // ？？？
-                            script.same_target = false; // ？？？
-                        }
+                            // 一定時間注視していた場合----------------------------------------------
+                            if (script.select_flag) // ？？？
+                            {
+                                script.select_target_id = searchNearObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
+                                script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
+                                script.select_flag = false; // ？？？
+                                script.same_target = false; // ？？？
+                            }
+                            //-----------------------------------------------------------------------
 
 
-                        //Bubble Cursorを表示-------------------------------------------
-                        if (searchNearObj != null && script.cursor_switch) // ターゲットが見つかっていて，かつカーソル表示機能がオンの場合
-                        {
-                            Vector3 toObject = searchNearObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
-                            Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
-                            cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                            //Bubble Cursorを表示----------------------------------------------------
+                            if (script.cursor_switch) // ？？？
+                            {
+                                Vector3 toObject = searchNearObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
+                                Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
+                                cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                            }
+                            //-----------------------------------------------------------------------
                         }
                         //-----------------------------------------------------------------------
 
@@ -194,6 +199,7 @@ namespace ViveSR
                     {
                         script.same_target = false; // ？？？
                         script.select_target_id = -1; // 選択状態のターゲットのIDを初期化
+
                         if (searchTargetObj != null) // ターゲットが見つかっている場合
                         {
                             if (script.total_DwellTime_mode == false) // 累計注視時間モードがオンの場合
@@ -208,12 +214,14 @@ namespace ViveSR
                     // if (oldNearObj != searchTargetObj || nearDistance > cursor_size_limit) 終了---
 
 
-                    // ターゲットの密集度合いによる注視時間の補正---
+                    // ターゲットの密集度合いによる注視時間の補正-------------------
                     if (searchTargetObj != null) // ターゲットが見つかっている場合
                     {
                         float gain; // 加算する注視時間にかける係数
                         int maxsize = 15; // 周囲に存在するターゲットの上限
 
+
+                        //--------------------------------------------------------------
                         if (script.cursor_count > maxsize) script.cursor_count = maxsize; // ターゲット数が上限に達している場合は上限に固定
 
                         if (script.dtime_correction_mode) // 注視時間の補正機能がオンの場合
@@ -225,43 +233,42 @@ namespace ViveSR
                             gain = 1; // ？？？
                         }
 
-                        //--------------------------------------------------------------
                         float deltime = Time.deltaTime; // 前フレームからの経過時間を取得
                         searchTargetObj.GetComponent<target_para_set>().dtime += deltime * gain; // 注視しているターゲットの累計注視時間を追加
                         script.ab_dtime += deltime; // 累計注視時間を初期化
                         //--------------------------------------------------------------
+
+
+                        if (script.approve_switch == true) searchTargetObj.GetComponent<target_para_set>().dtime = 0.0f; // 注視しているターゲットの累計注視時間を追加
+
+
+                        // 一定時間注視していた場合--------------------------------------
+                        if (searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime) // ？？？
+                        {
+                            script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
+                            script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
+                            script.select_flag = false; // ？？？
+                        }
+                        //---------------------------------------------------------------
+
+
+                        // Bubble Cursorを表示-------------------------------------------
+                        if (script.cursor_switch) // カーソル表示がオンの場合
+                        {
+                            Vector3 toObject = searchTargetObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
+                            Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
+                            cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
+                        }
+                        //---------------------------------------------------------------
                     }
-                    // if (searchTargetObj != null) 終了-------------------
-
-
-                    if ((searchTargetObj != null) && (script.approve_switch == true)) searchTargetObj.GetComponent<target_para_set>().dtime = 0.0f; // 注視しているターゲットの累計注視時間を追加
-
-
-                    // 一定時間注視していた場合----------------------------
-                    if ((searchTargetObj != null) && (searchTargetObj.GetComponent<target_para_set>().dtime >= script.set_dtime)) // ？？？
-                    {
-                        script.select_target_id = searchTargetObj.GetComponent<target_para_set>().Id; // 選択したターゲットのIDを更新（このIDが結果として出力される）
-                        script.next_step__flag = false; // タスク間の休憩状態に遷移するためのフラグを更新
-                        script.select_flag = false; // ？？？
-                    }
-                    //---------------------------------------------------------------
-
-
-                    //Bubble Cursorを表示-----------------------------------
-                    if (searchTargetObj != null && script.cursor_switch) // ターゲットが見つかっていて，かつカーソル表示がオンの場合
-                    {
-                        Vector3 toObject = searchTargetObj.transform.position - rayset.ray0; // 直線の始点からオブジェクトまでのベクトルを計算
-                        Vector3 projection = Vector3.Project(toObject, ray1.normalized); // 直線に対するオブジェクトの投影点を計算
-                        cursor_point = rayset.ray0 + projection; // 投影点を元に直線上の最も近い点を計算
-                    }
-                    //--------------------------------------------------------------
+                    // if (searchTargetObj != null) 終了----------------------------------
 
 
                     oldNearObj = searchTargetObj; // 注視しているターゲットを更新
                     script.cursor_radious = (nearDistance * 2) + (target_size); // カーソルの大きさを更新
 
 
-                    //ターゲットのタグを初期化-----------------------------
+                    //ターゲットのタグを初期化--------------------------------------
                     if (script.MAverageFilter) // 移動平均フィルタがオンの場合
                     {
                         foreach (GameObject obj in objs) // objsから1つずつobjに取り出す
