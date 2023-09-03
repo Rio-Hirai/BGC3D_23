@@ -77,7 +77,7 @@ public class receiver : MonoBehaviour
     [Tooltip("ユーザとターゲット間の距離")]
     public float Depth;                     // ユーザとターゲット間の距離
     [Tooltip("画面明度")]
-    [SerializeField, Range(-100, 100)]
+    [SerializeField, Range(-100.0f, 100.0f)]
     public int Brightness;                  // 画面明度（使用していない）
     //--------------------------------------------------------------
 
@@ -298,6 +298,9 @@ public class receiver : MonoBehaviour
     public bool lens_flag;                  // ？？？
     public bool lens_flag2;                 // ？？？
     //--------------------------------------------------------------
+
+    public PostProcessVolume _postProcess;
+    public ColorGrading _colorGrading;
 
 
     void Start()
@@ -540,6 +543,18 @@ public class receiver : MonoBehaviour
         task_start_time = new List<float>(); // タスクが開始された時の時間を保存するリストを初期化
         task_end_time = new List<float>(); // タスクが終了した時の時間を保存するリストを初期化（データ分析をする分には消してもいい）
         //--------------------------------------------------------------
+        
+
+        //--------------------------------------------------------------
+        _postProcess = this.GetComponent<PostProcessVolume>();
+        foreach (PostProcessEffectSettings item in _postProcess.profile.settings)
+        {
+            if (item as ColorGrading)
+            {
+                _colorGrading = item as ColorGrading;
+            };
+        }
+        //--------------------------------------------------------------
     }
 
 
@@ -584,6 +599,10 @@ public class receiver : MonoBehaviour
             //--------------------------------------------------------------
 
 
+            if(_colorGrading) _colorGrading.brightness.value = Brightness; // 明度を更新
+
+
+            //--------------------------------------------------------------
             if (test_id != 0) // 何らかの手法が選択されている場合
             {
                 test_time += Time.deltaTime; // タスク時間を更新
@@ -715,7 +734,6 @@ public class receiver : MonoBehaviour
         }
         else
         {
-            // if (gaze_data_switch) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得
         }
 
     }
