@@ -163,6 +163,8 @@ public class receiver : MonoBehaviour
     // 各種スクリプト-----------------------------------------------
     public gaze_data_callback_v2 gaze_data; // 視線情報
     public LightSensor sensor;              // 画面の色彩情報
+    private PostProcessVolume _postProcess; // ？？？
+    private ColorGrading _colorGrading;     // ？？？
     //--------------------------------------------------------------
 
 
@@ -265,7 +267,7 @@ public class receiver : MonoBehaviour
     public float target_distance;           // クローンターゲットとユーザ間の距離
     [Tooltip("クローンするターゲットの数")]
     public int target_amount;               // クローンするターゲットの数
-                                            //--------------------------------------------------------------
+    //--------------------------------------------------------------
 
 
     // 調整用パラメータ2--------------------------------------------
@@ -298,9 +300,6 @@ public class receiver : MonoBehaviour
     public bool lens_flag;                  // ？？？
     public bool lens_flag2;                 // ？？？
     //--------------------------------------------------------------
-
-    public PostProcessVolume _postProcess;
-    public ColorGrading _colorGrading;
 
 
     void Start()
