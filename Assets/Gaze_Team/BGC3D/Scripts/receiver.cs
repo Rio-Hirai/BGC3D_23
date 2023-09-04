@@ -77,7 +77,7 @@ public class receiver : MonoBehaviour
     [Tooltip("ユーザとターゲット間の距離")]
     public float Depth;                     // ユーザとターゲット間の距離
     [Tooltip("画面明度")]
-    [SerializeField, Range(-100.0f, 100.0f)]
+    [SerializeField, Range(-100.0f, 150.0f)]
     public int Brightness;                  // 画面明度（使用していない）
     //--------------------------------------------------------------
 
@@ -113,6 +113,8 @@ public class receiver : MonoBehaviour
     public bool target_size_mini_switch;    // ターゲットの縮小化
     [Tooltip("明度計算機能のオン・オフ")]
     public bool LightSensor_switch;         // 明度計算機能のオン・オフ
+    [Tooltip("明度補正のオン・オフ")]
+    public bool bright_correction_mode;     // 明度補正のオン・オフ
     [Tooltip("動的移動平均フィルタのオン・オフ")]
     public bool MAverageFilter;             // 動的移動平均フィルタのオン・オフ
     [Tooltip("現在のタスクをスキップ")]

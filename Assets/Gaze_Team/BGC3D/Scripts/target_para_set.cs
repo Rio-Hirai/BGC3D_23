@@ -109,31 +109,39 @@ public class target_para_set : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        // 色変化の処理（リファクタリング済み）-------------------------
+        // 色変化の処理（リファクタリング済み）----------------------------
+        float color_correction = 0.0f;
+        if (script.bright_correction_mode) color_correction = script.Brightness / 160.0f;
+
         if (script.output_flag || Id == script.select_target_id) // 実験結果が出力された，また選択状態のターゲットのIDと同じIDを持っている場合
         {
-            this.GetComponent<Renderer>().material.color = script.target_color; // ターゲットの色を変更
+            // this.GetComponent<Renderer>().material.color = script.target_color; // ターゲットの色を変更
+            this.GetComponent<Renderer>().material.color = new Color(color_correction, 1, color_correction); // ターゲットの色を変更
         }
         else if (Id == 999) // IDが999（＝黒いターゲット）の場合
         {
             if (script.DwellTarget != null && script.DwellTarget.name == this.name)
             {
-                this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
+                // this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
+                this.GetComponent<Renderer>().material.color = new Color(script.select_color.r, script.select_color.g + color_correction * (1.0f - script.select_color.g), color_correction); // ターゲットの色を変更
             }
             else
             {
-                this.GetComponent<Renderer>().material.color = Color.black; // ターゲットを黒色に変更
+                // this.GetComponent<Renderer>().material.color = Color.black; // ターゲットを黒色に変更
+                this.GetComponent<Renderer>().material.color = new Color(color_correction, color_correction, color_correction); // ターゲットの色を変更
             }
         }
         else if (script.DwellTarget != null) // 注視状態のターゲットが存在しない場合
         {
             if (script.DwellTarget.name == this.name) // 注視状態のターゲットの名前と同じ名前の場合．名前よりもIDの方がまだ一意性を担保できるので要リファクタリング
             {
-                this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
+                // this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
+                this.GetComponent<Renderer>().material.color = new Color(script.select_color.r, script.select_color.g + color_correction * (1.0f - script.select_color.g), color_correction); // ターゲットの色を変更
             }
             else if (script.target_p_id != 99 && Id == script.tasknums[script.task_num] && script.taskflag) // 提示IDと同じIDを持っている場合
             {
-                this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
+                // this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
+                this.GetComponent<Renderer>().material.color = new Color(color_correction, color_correction, 1); // ターゲットの色を変更
             }
             else
             {
@@ -142,7 +150,8 @@ public class target_para_set : MonoBehaviour
         }
         else if (script.target_p_id != 99 && Id == script.tasknums[script.task_num] && script.taskflag) // 提示IDと同じIDを持っている場合
         {
-            this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
+            // this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
+            this.GetComponent<Renderer>().material.color = new Color(color_correction, color_correction, 1); // ターゲットの色を変更
         }
         else // 以上の条件に該当しない場合
         {
