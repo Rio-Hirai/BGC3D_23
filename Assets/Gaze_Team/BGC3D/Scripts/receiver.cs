@@ -544,16 +544,13 @@ public class receiver : MonoBehaviour
         task_start_time = new List<float>(); // タスクが開始された時の時間を保存するリストを初期化
         task_end_time = new List<float>(); // タスクが終了した時の時間を保存するリストを初期化（データ分析をする分には消してもいい）
         //--------------------------------------------------------------
-        
 
-        //--------------------------------------------------------------
-        _postProcess = this.GetComponent<PostProcessVolume>();
-        foreach (PostProcessEffectSettings item in _postProcess.profile.settings)
+
+        // 明度操作------------------------------------------------------
+        _postProcess = this.GetComponent<PostProcessVolume>(); // PostProcessVolumeを取得
+        foreach (PostProcessEffectSettings item in _postProcess.profile.settings) // PostProcessVolume内のエフェクトを検索
         {
-            if (item as ColorGrading)
-            {
-                _colorGrading = item as ColorGrading;
-            };
+            if (item as ColorGrading) _colorGrading = item as ColorGrading; // PostProcessVolume内のエフェクトからColor Gradingを検索して取得
         }
         //--------------------------------------------------------------
     }
@@ -563,22 +560,24 @@ public class receiver : MonoBehaviour
     {
         if (free_mode == false) // ？？？
         {
-            method_change(); // 使用している手法を変更
+            // method_change(); // 使用している手法を変更
 
 
-            if (controller_switch) // ？？？
+            // コントローラの表示・非表示について-----------------------------
+            if (controller_switch) // controller_switchがオンの場合
             {
-                controller_R.gameObject.SetActive(true); // ？？？
-                controller_L.gameObject.SetActive(true); // ？？？
+                controller_R.gameObject.SetActive(true); // 右コントローラを表示
+                controller_L.gameObject.SetActive(true); // 左コントローラを表示
             }
-            else
+            else // controller_switchがオフの場合
             {
-                controller_R.gameObject.SetActive(false); // ？？？
-                controller_L.gameObject.SetActive(false); // ？？？
+                controller_R.gameObject.SetActive(false); // 右コントローラを非表示
+                controller_L.gameObject.SetActive(false); // 左コントローラを非表示
             }
+            //--------------------------------------------------------------
 
 
-            // ターゲット位置の調整-----------------------------------------
+            // ターゲット位置の調整------------------------------------------
             grapgrip = GrabG.GetState(SteamVR_Input_Sources.Any); // ？？？
             if (target_a_id == 0 || target_a_id == 99) grapgrip = false; // ？？？
 
@@ -658,7 +657,7 @@ public class receiver : MonoBehaviour
                             tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIIDとタスク完了時の時間を追記
                             tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
 
-                            if (task_num < target_amount_select) // ？？？
+                            if (task_num < target_amount_select) // まだタスクが残っている場合
                             {
                                 task_end_time.Add(test_time); // タスクが終了した時の時間を保存
                                 task_num++; // タスクを次に進める
@@ -672,15 +671,15 @@ public class receiver : MonoBehaviour
                             logoutput_count++; // 間違えた数をカウント
 
                             same_target = true; // ？？？
-                            tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // ？？？
+                            tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // ログを出力
                             audioSource.PlayOneShot(sound_NG); // 間違えた時の効果音を鳴らす
                             if (selecting_target) selecting_target.GetComponent<target_para_set>().dtime = 0; // ？？？
                         }
                     }
-                    else if (task_skip) // ？？？
+                    else if (task_skip) // タスクをスキップした場合
                     {
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
-                        test_time_tmp = test_time; // ？？？
+                        test_time_tmp = test_time; // 経過時間を更新
 
                         same_target = true; // ？？？
                         task_skip = false; // フラグを初期化
@@ -688,7 +687,7 @@ public class receiver : MonoBehaviour
                         tasklogs[task_num] += ("select_target = " + "skip" + ": " + test_time + "\n"); // 選択したターゲットのIDとタスク完了時の時間を追記
                         tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count + ",skip"); // そのタスクの総時間とエラー数を追記
 
-                        if (task_num < target_amount_select) // ？？？
+                        if (task_num < target_amount_select) // まだタスクが残っている場合
                         {
                             task_end_time.Add(test_time); // タスクが終了した時の時間を保存
                             task_num++; // タスクを次に進める
@@ -701,11 +700,12 @@ public class receiver : MonoBehaviour
 
 
                     // セッションが終了するか，強制中断を行った時の処理--------------
-                    if (task_num == target_amount_select && output_flag == false) // ？？？
+                    if (task_num == target_amount_select && output_flag == false) // セッションが終了するか，強制中断を行った場合
                     {
                         output_flag = true; // 出力済みにする
                         audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
                         taskflag = false; // ？？？
+                        free_mode = true; // フリーモードをオン
                         result_output(); // 実験結果をテキスト形式で出力
                         result_output_csv(); // 実験結果をcsv形式で出力
                         result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
@@ -716,7 +716,7 @@ public class receiver : MonoBehaviour
 
 
                 // タスクを中断する際の処理-------------------------------------
-                if (error_output_flag) // ？？？
+                if (error_output_flag) // 強制中断した場合
                 {
                     error_output_flag = false; // 出力済みにする
                     audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
@@ -731,10 +731,13 @@ public class receiver : MonoBehaviour
             Quaternion HMDRotationQ = InputTracking.GetLocalRotation(XRNode.Head); //回転座標をクォータニオンで値を受け取る，旧式らしいので要修正
             HMDRotation = HMDRotationQ.eulerAngles; // 取得した値をクォータニオン → オイラー角に変換
             lightValue = sensor.lightValue; // 画面全体の明度情報を更新
-            // if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得＆書き出し
+            if (gaze_data_switch) if (output_flag == false && taskflag == true) result_output_every(gaze_data.get_gaze_data(), streamWriter_gaze, false); // 視線関係のデータを取得＆書き出し
         }
         else
         {
+            // フリーモードの場合の処理を記述するスペース----------------------
+
+            //--------------------------------------------------------------
         }
 
     }
@@ -748,6 +751,7 @@ public class receiver : MonoBehaviour
         if (SteamVR_Actions.default_SnapTurnLeft.GetStateDown(SteamVR_Input_Sources.Any) && switch_flag == 0)
         {
             Debug.Log("LEFT");
+
             if (test_id > 1)
             {
                 test_id -= 1;
@@ -761,6 +765,7 @@ public class receiver : MonoBehaviour
         else if (SteamVR_Actions.default_SnapTurnRight.GetStateDown(SteamVR_Input_Sources.Any) && switch_flag == 0)
         {
             Debug.Log("RIGHT");
+
             if (test_id < 5)
             {
                 test_id += 1;
@@ -782,95 +787,95 @@ public class receiver : MonoBehaviour
 
 
         // ？？？-------------------------------------------------------
-        if (now_test_pattern != test_pattern.ToString() || switch_flag == 1)
+        if (now_test_pattern != test_pattern.ToString() || switch_flag == 1) // ？？？
         {
-            now_test_pattern = test_pattern.ToString();
+            now_test_pattern = test_pattern.ToString(); // ？？？
 
 
             // ？？？----------------------------------------------------------
-            if (DwellTarget != null)
+            if (DwellTarget != null) // ？？？
             {
-                DwellTarget.GetComponent<Renderer>().material.color = Color.white;
+                DwellTarget.GetComponent<Renderer>().material.color = Color.white; // ？？？
             }
             //--------------------------------------------------------------
 
 
             // パラメータ初期化-------------------------------------------------
-            controller_switch = false;
-            bubblegaze.SetActive(false);
-            gazeraycast.SetActive(false);
-            controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-            controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+            controller_switch = false; // ？？？
+            bubblegaze.SetActive(false); // ？？？
+            gazeraycast.SetActive(false); // ？？？
+            controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+            controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
             //--------------------------------------------------------------
 
 
             // パラメータ更新---------------------------------------------------
-            if (test_id == 0)
+            if (test_id == 0) // ？？？
             {
-                controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-                controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+                controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+                controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
             }
-            else if (test_id < 3)
+            else if (test_id < 3) // ？？？
             {
-                bubblegaze.SetActive(true);
-                controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-                controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+                bubblegaze.SetActive(true); // ？？？
+                controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+                controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
 
-                if (test_id == 2)
+                if (test_id == 2) // ？？？
                 {
-                    gazeraycast.SetActive(true);
+                    gazeraycast.SetActive(true); // ？？？
                 }
             }
-            else if (test_id == 3)
+            else if (test_id == 3) // ？？？
             {
-                gazeraycast.SetActive(true);
-                controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-                controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+                gazeraycast.SetActive(true); // ？？？
+                controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+                controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
             }
-            else if (test_id == 4)
+            else if (test_id == 4) // ？？？
             {
-                controller_switch = true;
-                controller_R.GetComponent<SteamVR_LaserPointer>().active = true;
-                controller_L.GetComponent<SteamVR_LaserPointer>().active = true;
+                controller_switch = true; // ？？？
+                controller_R.GetComponent<SteamVR_LaserPointer>().active = true; // ？？？
+                controller_L.GetComponent<SteamVR_LaserPointer>().active = true; // ？？？
             }
-            else if (test_id == 5)
+            else if (test_id == 5) // ？？？
             {
-                gazeraycast2.SetActive(true);
-                controller_R.GetComponent<SteamVR_LaserPointer>().active = false;
-                controller_L.GetComponent<SteamVR_LaserPointer>().active = false;
+                gazeraycast2.SetActive(true); // ？？？
+                controller_R.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
+                controller_L.GetComponent<SteamVR_LaserPointer>().active = false; // ？？？
             }
 
-            if (test_id == 2)
+            if (test_id == 2) // ？？？
             {
-                bubblegaze.GetComponent<Collider>().enabled = false;
+                bubblegaze.GetComponent<Collider>().enabled = false; // ？？？
             }
             else
             {
-                bubblegaze.GetComponent<Collider>().enabled = true;
+                bubblegaze.GetComponent<Collider>().enabled = true; // ？？？
             }
             //--------------------------------------------------------------
         }
         //--------------------------------------------------------------
 
 
-        // ？？？----------------------------------------------------------
-        if (now_target_pattern != target_pattern.ToString())
+        // ？？？--------------------------------------------------------
+        if (now_target_pattern != target_pattern.ToString()) // ？？？
         {
-            now_target_pattern = target_pattern.ToString();
+            now_target_pattern = target_pattern.ToString(); // ？？？
         }
         //--------------------------------------------------------------
 
 
-        // ？？？----------------------------------------------------------
-        if (lens_switch)
+        // ？？？--------------------------------------------------------
+        if (lens_switch) // ？？？
         {
-            if (lens_flag)
+            if (lens_flag) // ？？？
             {
-                Lens_Object.SetActive(true);
+                Lens_Object.SetActive(true); // ？？？
             }
-            else
+            else // ？？？
             {
-                Lens_Object.SetActive(false);
+                Lens_Object.SetActive(false); // ？？？
             }
         }
         //--------------------------------------------------------------
@@ -885,43 +890,42 @@ public class receiver : MonoBehaviour
 
 
         //ファイル生成-------------------------------------------------
-        StreamWriter streamWriter = File.AppendText(filePath + ".txt");
-        streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
-        streamWriter.WriteLine("target_pattorn:");
+        StreamWriter streamWriter = File.AppendText(filePath + ".txt"); // ？？？
+        streamWriter.WriteLine("-----------------------------------------------------------------------------------------"); // ？？？
+        streamWriter.WriteLine("target_pattorn:"); // ？？？
         //--------------------------------------------------------------
 
 
         // ？？？----------------------------------------------------------
-        for (int i = 0; i < target_amount_all - 5; i++)
+        for (int i = 0; i < target_amount_all - 5; i++) // ？？？
         {
-            streamWriter.WriteLine(tasknums[i]);
+            streamWriter.WriteLine(tasknums[i]); // ？？？
             //streamWriter.WriteLine(" ");
         }
-        streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
-        streamWriter.WriteLine("target_pattorn:");
-        for (int i = 0; i < target_amount_select; i++)
+        streamWriter.WriteLine("-----------------------------------------------------------------------------------------"); // ？？？
+        streamWriter.WriteLine("target_pattorn:"); // ？？？
+        for (int i = 0; i < target_amount_select; i++) // ？？？
         {
-            streamWriter.WriteLine(tasknums[i]);
-            //streamWriter.WriteLine(" ");
+            streamWriter.WriteLine(tasknums[i]); // ？？？
         }
-        streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
+        streamWriter.WriteLine("-----------------------------------------------------------------------------------------"); // ？？？
         //--------------------------------------------------------------
 
 
         // 開始時間-----------------------------------------------------
-        streamWriter.WriteLine("test_start_time: " + task_start_time[0]);
-        streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
+        streamWriter.WriteLine("test_start_time: " + task_start_time[0]); // ？？？
+        streamWriter.WriteLine("-----------------------------------------------------------------------------------------"); // ？？？
         //--------------------------------------------------------------
 
 
         // 各タスクの計測を追記-----------------------------------------
-        for (int i = 0; i < target_amount_select; i++)
+        for (int i = 0; i < target_amount_select; i++) // ？？？
         {
-            streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n");
-            streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_start: " + task_start_time[i]);
-            streamWriter.WriteLine(tasklogs[i]);
-            streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_end: " + task_end_time[i]);
-            streamWriter.WriteLine("task_time: " + ( task_end_time[i] - task_start_time[i]));
+            streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n"); // ？？？
+            streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_start: " + task_start_time[i]); // ？？？
+            streamWriter.WriteLine(tasklogs[i]); // ？？？
+            streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_end: " + task_end_time[i]); // ？？？
+            streamWriter.WriteLine("task_time: " + ( task_end_time[i] - task_start_time[i])); // ？？？
         }
         //--------------------------------------------------------------
 
@@ -936,13 +940,13 @@ public class receiver : MonoBehaviour
 
 
         // 終了時間-----------------------------------------------------
-        streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
-        streamWriter.WriteLine("test_end_time: " + task_end_time[target_amount_select-1]);
+        streamWriter.WriteLine("-----------------------------------------------------------------------------------------"); // ？？？
+        streamWriter.WriteLine("test_end_time: " + task_end_time[target_amount_select-1]); // ？？？
         //--------------------------------------------------------------
 
 
         // 後処理-------------------------------------------------------
-        streamWriter.Flush();
+        streamWriter.Flush(); // ？？？
         streamWriter.Close(); // ファイルを閉じる
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
         //--------------------------------------------------------------

@@ -15,8 +15,6 @@ public class target_para_set : MonoBehaviour
     public float dtime;         // 注視時間
     public int Id;              // ターゲットID
 
-    [System.NonSerialized]
-    public bool neartarget;     // ？？？
 
     void Start()
     {
