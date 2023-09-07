@@ -97,19 +97,19 @@ public class target_para_set : MonoBehaviour
 
 
         //--------------------------------------------------------------
-        if (script.gaze_data_switch)
+        if (script.gaze_data_switch) // 視線データの出力機能がオンの場合
         {
-            if (script.tasknums[script.task_num] == Id)
+            if (script.tasknums[script.task_num] == Id) // タスクで提示されているターゲットのIDをイコールの場合
             {
-                script.taskObject = this.gameObject;
+                script.taskObject = this.gameObject; // タスクで提示されているターゲットを更新
             }
         }
         //--------------------------------------------------------------
 
 
         // 色変化の処理（リファクタリング済み）----------------------------
-        float color_correction = 0.0f;
-        if (script.bright_correction_mode) color_correction = script.Brightness / 160.0f;
+        float color_correction = 0.0f; // 明度補正用の変数を定義
+        if (script.bright_correction_mode) color_correction = script.Brightness / 160.0f; // 明度補正モードがオンなら明度補正用のゲインを格納
 
         if (script.output_flag || Id == script.select_target_id) // 実験結果が出力された，また選択状態のターゲットのIDと同じIDを持っている場合
         {
