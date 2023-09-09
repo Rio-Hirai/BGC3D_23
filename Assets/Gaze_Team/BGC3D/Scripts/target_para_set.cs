@@ -22,17 +22,17 @@ public class target_para_set : MonoBehaviour
 
         if (script.target_size_mini_switch) // ターゲットの縮小化機能がオンの場合
         {
-            float distance_of_camera_to_target = Vector3.Distance(script.head_obj.transform.position, this.transform.position); // ？？？
-            float angleRadians = 1.0f * Mathf.Deg2Rad; // ？？？
-            float height = (Mathf.Tan(angleRadians) * distance_of_camera_to_target); // ？？？
-            this.transform.localScale = new Vector3(height, height, height); // ？？？
+            float distance_of_camera_to_target = Vector3.Distance(script.head_obj.transform.position, this.transform.position); // ユーザとターゲット間の距離を計算
+            float angleRadians = 1.0f * Mathf.Deg2Rad; // 角度をラジアンに変換
+            float height = (Mathf.Tan(angleRadians) * distance_of_camera_to_target); // ターゲットの最小サイズを計算
+            this.transform.localScale = new Vector3(height, height, height); // ターゲットのサイズを変更
         }
 
-        if (script.target_a_id != 99) // ？？？
+        if (script.target_a_id != 99) // ターゲットパターンが「ランダム」の場合
         {
-            if (this.GetComponent<target_size_set>()) // ？？？
+            if (this.GetComponent<target_size_set>()) // ターゲットがtarget_size_setを持っている場合
             {
-                this.GetComponent<target_size_set>().enabled = false; // ？？？
+                this.GetComponent<target_size_set>().enabled = false; // target_size_setをオフ
             }
         }
     }
