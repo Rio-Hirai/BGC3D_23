@@ -9,9 +9,9 @@ using Valve.VR.Extras;
 
 public class target_para_set : MonoBehaviour
 {
-    public GameObject Server;   // ？？？
-    private receiver script;    // ？？？
-    private results script2;    // ？？？
+    public GameObject Server;   // サーバと接続
+    private receiver script;    // サーバと接続
+    private results script2;    // サーバと接続
     public float dtime;         // 注視時間
     public int Id;              // ターゲットID
 
@@ -39,7 +39,7 @@ public class target_para_set : MonoBehaviour
 
     void Update()
     {
-        if (Server.GetComponent<receiver>().enabled == false) // ？？？
+        if (Server.GetComponent<receiver>().enabled == false) // サーバがオフの場合
         {
             // 結果表示用の処理---------------------------------------------
             for (int i = 1; i < script2.csvDatas.Count; i++) // ？？？
@@ -48,7 +48,7 @@ public class target_para_set : MonoBehaviour
             }
             //--------------------------------------------------------------
 
-            return; // ？？？
+            return; // 終了
         }
 
 
@@ -73,14 +73,14 @@ public class target_para_set : MonoBehaviour
             }
             else if (Id == 999 && script.taskflag == true) // ？？？
             {
-                dtime = 0; // ？？？
+                dtime = 0; // 累計注視時間を0に更新
             }
         }
         else
         {
             if (script.DwellTarget != this.gameObject) // このターゲットと注視中のターゲットが異なる場合
             {
-                dtime = 0; // 累計注視時間を0にする
+                dtime = 0; // 累計注視時間を0に更新
             }
         }
         //--------------------------------------------------------------
