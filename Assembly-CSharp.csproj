@@ -165,9 +165,7 @@
     <None Include="Assets\ViveSR\Shaders\Unlit-Alpha2Gray.shader" />
     <None Include="Assets\ViveSR\Plugins\SRWorks_Log.dll" />
     <None Include="Assets\ViveSR\Plugins\libHTC_License.dll" />
-    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\TEST_16x3_test_id = 5___target_p_id = 97___tester_id  = 1___test___831125312.txt" />
     <None Include="Assets\ViveSR\Plugins\ViveSR_Client.dll" />
-    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\TEST_16x3_test_id = 5___target_p_id = 97___tester_id  = 1___test___831125046.txt" />
     <None Include="Assets\ViveSR\Shaders\DartBoardShader.shader" />
     <None Include="Assets\ViveSR\Plugins\nanomsg.dll" />
   </ItemGroup>

@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638290359083302147
-    m_Hash: 1787745249
+      ticks: 638299860329311580
+    m_Hash: 4039344965
   m_LockFileStatus:
     m_FilePath: C:/Users/riong/VR_projects/BGC3D_23/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638290359083458016
-    m_Hash: 3899676196
+      ticks: 638299860329311580
+    m_Hash: 1918877701
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -31,7 +31,7 @@ m_LocalPackages:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638290354823258625
+      ticks: 638299860246116058
     m_Hash: 2919789393
 m_ProjectPath: C:/Users/riong/VR_projects/BGC3D_23/Packages
 m_EditorVersion: 2023.1.10f1 (661833f8c66c)
@@ -3863,8 +3863,10 @@ m_ResolvedPackages:
     - 1.6.1
     - 1.6.3
     - 1.7.0
+    - 1.8.0-pre.1
     compatible:
     - 1.7.0
+    - 1.8.0-pre.1
     recommended: 1.7.0
     deprecated: []
   dependencies:
