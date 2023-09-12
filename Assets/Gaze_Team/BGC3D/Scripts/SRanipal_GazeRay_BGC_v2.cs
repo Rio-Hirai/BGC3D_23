@@ -96,7 +96,7 @@ namespace ViveSR
                     // ƒŒƒC‚Ì•`‰æ---------------------------------------------------
                     Vector3 GazeDirectionCombined = Camera.main.transform.TransformDirection(GazeDirectionCombinedLocal);
                     GazeRayRenderer.SetPosition(0, Camera.main.transform.position - Camera.main.transform.up * 0.05f);
-                    GazeRayRenderer.SetPosition(1, Camera.main.transform.position + GazeDirectionCombined * LengthOfRay);
+                    GazeRayRenderer.SetPosition(1, (Camera.main.transform.position + Camera.main.transform.up * 0.085f) + GazeDirectionCombined * LengthOfRay);
 
                     ray0 = Camera.main.transform.position - Camera.main.transform.up * 0.05f;
                     ray1 = GazeDirectionCombined;

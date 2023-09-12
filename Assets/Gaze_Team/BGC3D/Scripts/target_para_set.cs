@@ -96,10 +96,10 @@ public class target_para_set : MonoBehaviour
         //--------------------------------------------------------------
 
 
-        //--------------------------------------------------------------
+        // タスクで選択したターゲットの情報を取得する処理---------------------
         if (script.gaze_data_switch) // 視線データの出力機能がオンの場合
         {
-            if (script.tasknums[script.task_num] == Id) // タスクで提示されているターゲットのIDをイコールの場合
+            if (script.tasknums[script.task_num] == Id) // タスクで提示されているターゲットのIDと同じIDを持っている場合
             {
                 script.taskObject = this.gameObject; // タスクで提示されているターゲットを更新
             }
@@ -156,93 +156,5 @@ public class target_para_set : MonoBehaviour
             this.GetComponent<Renderer>().material.color = Color.white; // ターゲットを白色に変更
         }
         //--------------------------------------------------------------
-
-
-        //// 色変化の処理（リファクタリング前）---------------------------
-        //if (script.controller_switch)
-        //{
-        //    if (script.output_flag) // セッション終了時
-        //    {
-        //        this.GetComponent<Renderer>().material.color = script.target_color;
-        //    }
-        //    else if (Id == script.tasknums[script.task_num] && script.taskflag) // 提示したターゲットとIDが同じ，かつタスク中の場合
-        //    {
-        //        this.GetComponent<Renderer>().material.color = Color.blue; // ターゲットを青色に変更
-        //    }
-        //    else if (Id == 999) // ターゲットが黒色のIDを持つ場合
-        //    {
-        //        this.GetComponent<Renderer>().material.color = Color.black; // ターゲットを黒色に変更
-        //    }
-        //    else if (script.DwellTarget != null) // 注視中のターゲットが無い場合
-        //    {
-        //        if (script.DwellTarget.GetComponent<target_para_set>().Id == Id) // 注視中のターゲットのIDを更新
-        //        {
-        //            this.GetComponent<Renderer>().material.color = script.select_color; // ターゲットの色を変更
-        //        }
-        //    }
-        //    else
-        //    {
-        //        this.GetComponent<Renderer>().material.color = Color.white; // ターゲットを白色に変更
-        //    }
-        //}
-        //else
-        //{
-        //    if (script.output_flag) //
-        //    {
-        //        this.GetComponent<Renderer>().material.color = script.target_color; //
-        //    }
-        //    else if (Id == script.select_target_id) //
-        //    {
-        //        this.GetComponent<Renderer>().material.color = script.target_color; //
-        //    }
-        //    else if (script.DwellTarget == null) //
-        //    {
-        //        if (script.taskflag == false && Id != 999) //
-        //        {
-        //            this.GetComponent<Renderer>().material.color = Color.white; //
-        //        }
-        //        else if (Id == script.select_target_id) //
-        //        {
-        //            this.GetComponent<Renderer>().material.color = script.target_color; //
-        //        }
-        //        else if (Id == script.tasknums[script.task_num]) //
-        //        {
-        //            this.GetComponent<Renderer>().material.color = Color.blue; //
-        //        }
-        //        else if (Id == 999) //
-        //        {
-        //            this.GetComponent<Renderer>().material.color = Color.black; //
-        //        }
-        //        else
-        //        {
-        //            this.GetComponent<Renderer>().material.color = Color.white; //
-        //        }
-        //    }
-        //    else if (script.DwellTarget.GetComponent<target_para_set>().Id == Id) //
-        //    {
-        //        this.GetComponent<Renderer>().material.color = script.select_color; //
-        //    }
-        //    else if (script.taskflag == false && Id != 999) //
-        //    {
-        //        this.GetComponent<Renderer>().material.color = Color.white; //
-        //    }
-        //    else if (Id == script.select_target_id) //
-        //    {
-        //        this.GetComponent<Renderer>().material.color = script.target_color; //
-        //    }
-        //    else if (Id == script.tasknums[script.task_num]) //
-        //    {
-        //        this.GetComponent<Renderer>().material.color = Color.blue; //
-        //    }
-        //    else if (Id == 999) //
-        //    {
-        //        this.GetComponent<Renderer>().material.color = Color.black; //
-        //    }
-        //    else
-        //    {
-        //        this.GetComponent<Renderer>().material.color = Color.white; //
-        //    }
-        //}
-        ////--------------------------------------------------------------
     }
 }
