@@ -16,7 +16,7 @@ namespace ViveSR
                 public int LengthOfRay = 25;                            // レイの最大長
                 [SerializeField] private LineRenderer GazeRayRenderer;  // レイの色
                 [SerializeField] private Gradient _gradient;            // レイの色
-                [SerializeField] private Gradient _gradient0;           // レイの色
+                [SerializeField] private Gradient _gradient0;           // レイの色（透明）
                 private static EyeData_v2 eyeData = new EyeData_v2();   // 各種視線情報を格納する変数
                 private bool eye_callback_registered = false;           // callback関係
 
@@ -46,14 +46,17 @@ namespace ViveSR
 
                     GazeRayRenderer.material = new Material(Shader.Find("Sprites/Default"));
 
+
+                    // レイの表示処理------------------------------------------------
                     if (script.raycast_switch)
                     {
-                        GazeRayRenderer.colorGradient = _gradient;
+                        GazeRayRenderer.colorGradient = _gradient; // レイの色を白に変更
                     }
                     else
                     {
-                        GazeRayRenderer.colorGradient = _gradient0;
+                        GazeRayRenderer.colorGradient = _gradient0; // レイの色を透明に変更
                     }
+                    //--------------------------------------------------------------
                 }
 
                 private void Update()
