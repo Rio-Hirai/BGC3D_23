@@ -43,6 +43,8 @@ public class receiver : MonoBehaviour
         Density_and_Occlusion_5x5x3,        // 密度＆オクルージョン条件（IDは4）
         Small_5x5x5,                        // 密度＆オクルージョン条件（IDは5）
         Small_5x5x3,                        // 密度＆オクルージョン条件（IDは6）
+        Study_1,                            // 
+        Flat_1,                             // 
         TEST_16x3,                          // テスト用（IDは97）
         TEST_small_16x3,                    // テスト用（IDは98）
         Random,                             // ランダム配置（IDは99）
@@ -449,6 +451,22 @@ public class receiver : MonoBehaviour
                 Depth = 3.5f;                   // 奥行き距離
                 target_size_mini_switch = true;
                 break;
+            case "Study_1":                     // 高密度条件
+                target_a_id = 1;                // 高密度条件のID
+                target_p_id = 1;                // 高密度条件のID
+                target_amount_all = 25;         // ターゲットの総数
+                target_amount_select = 25;      // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
+                break;
+            case "Flat_1":                      // 高密度条件
+                target_a_id = 6;                // 高密度条件のID
+                target_p_id = 1;                // 高密度条件のID
+                target_amount_all = 25;         // ターゲットの総数
+                target_amount_select = 25;      // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
+                break;
             case "TEST_16x3":                   // テスト用条件
                 target_a_id = 4;                // 高密度条件のID
                 target_p_id = 97;               // 密度＆オクルージョン条件2のID
@@ -532,7 +550,7 @@ public class receiver : MonoBehaviour
         DateTime dt = DateTime.Now; // 時間を保存
 
         input_start_time = dt.Month.ToString() + dt.Day.ToString() + dt.Hour.ToString() + dt.Minute.ToString() + dt.Second.ToString(); // ファイル名に使用する月日時分を保存
-        filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + target_pattern + "_test_id = " + test_id + "___" + "target_p_id = " + target_p_id + "___" + "tester_id  = " + tester_id + "___" + tester_name + "___" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
+        filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + target_pattern + "__test_id = " + test_id + "__" + "target_p_id = " + target_p_id + "__" + "tester_id  = " + tester_id + "__" + tester_name + "__" + Brightness + "__" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv"); // 視線情報用のcsvファイルを作成
 
         if (gaze_data_switch) result_output_every ("timestamp,taskNo,target_id,target_x,target_y,target_z,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue,center", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．

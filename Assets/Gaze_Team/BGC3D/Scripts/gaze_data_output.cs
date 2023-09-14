@@ -11,9 +11,9 @@ public class gaze_data_output : MonoBehaviour
 
     void Update()
     {
-        if (server.output_flag == false && server.taskflag == true)
-        {
-            server.result_output_every(data.get_gaze_data(), server.streamWriter_gaze, false); // 視線関係のデータを取得＆書き出し
-        }
+        //if (server.output_flag == false && server.taskflag == true)
+        //{
+        //    server.result_output_every(data.get_gaze_data(), server.streamWriter_gaze, false); // 視線関係のデータを取得＆書き出し
+        //}
     }
 }

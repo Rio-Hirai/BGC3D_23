@@ -448,6 +448,7 @@
 "Assets/Gaze_Team/DataDiagram/Script/DD_LineButtonsContent.cs"
 "Assets/Gaze_Team/DataDiagram/Script/DD_Lines.cs"
 "Assets/Gaze_Team/DataDiagram/Script/DD_ZoomButton.cs"
+"Assets/reverse.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/DartBoard.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/SRanipal_AvatarEyeSample.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/SRanipal_AvatarEyeSample_v2.cs"

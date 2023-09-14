@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638299860329311580
-    m_Hash: 4039344965
+      ticks: 638302449458642239
+    m_Hash: 3971469468
   m_LockFileStatus:
     m_FilePath: C:/Users/riong/VR_projects/BGC3D_23/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638299860329311580
-    m_Hash: 1918877701
+      ticks: 638302449458676947
+    m_Hash: 3733518878
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -203,11 +203,13 @@ m_ResolvedPackages:
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
+    - 2.1.0
     compatible:
     - 2.0.7
     - 2.1.0-preview.3
     - 2.1.0-preview.5
     - 2.1.0-preview.6
+    - 2.1.0
     recommended: 2.0.7
     deprecated: []
   dependencies: []
@@ -272,12 +274,12 @@ m_ResolvedPackages:
     changes."}'
   assetStore:
     productId: 
-- packageId: com.unity.ide.rider@3.0.24
+- packageId: com.unity.ide.rider@3.0.25
   testable: 0
   isDirectDependency: 1
-  version: 3.0.24
+  version: 3.0.25
   source: 1
-  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.ide.rider@3.0.24
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.ide.rider@3.0.25
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -332,9 +334,11 @@ m_ResolvedPackages:
     - 3.0.21
     - 3.0.22
     - 3.0.24
+    - 3.0.25
     compatible:
     - 3.0.24
-    recommended: 3.0.24
+    - 3.0.25
+    recommended: 3.0.25
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
@@ -355,13 +359,13 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638221653400000000
+  datePublishedTicks: 638300315270000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.rider@3.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-    revision: f5decc642e3618ce1c6827d47318260e61d64714
+    revision: e103b4771a884e656407e1b7219e5e3c20222552
     path: 
   unityLifecycle:
     version: 3.0.24
@@ -374,16 +378,16 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"- fix [RIDER-91705](https://youtrack.jetbrains.com/issue/RIDER-91705).
-    Improve UnitTesting support\n - support JetBrains Toolbox App 2.0"}'
+  upmReserved: '{"changelog":"- unification of functionality to  search JetBrains
+    installations and open solution and file in Rider"}'
   assetStore:
     productId: 
-- packageId: com.unity.ide.visualstudio@2.0.20
+- packageId: com.unity.ide.visualstudio@2.0.21
   testable: 0
   isDirectDependency: 1
-  version: 2.0.20
+  version: 2.0.21
   source: 1
-  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.ide.visualstudio@2.0.20
+  resolvedPath: C:\Users\riong\VR_projects\BGC3D_23\Library\PackageCache\com.unity.ide.visualstudio@2.0.21
   assetPath: Packages/com.unity.ide.visualstudio
   name: com.unity.ide.visualstudio
   displayName: Visual Studio Editor
@@ -422,10 +426,12 @@ m_ResolvedPackages:
     - 2.0.17
     - 2.0.18
     - 2.0.20
+    - 2.0.21
     compatible:
     - 2.0.18
     - 2.0.20
-    recommended: 2.0.20
+    - 2.0.21
+    recommended: 2.0.21
     deprecated: []
   dependencies:
   - name: com.unity.test-framework
@@ -452,13 +458,13 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638265007710000000
+  datePublishedTicks: 638300315250000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ide.visualstudio@2.0/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.visualstudio.git
-    revision: b7bf23d23806ac75645bfa12acadcfc11468a383
+    revision: eb2b500b99f6429d3d9dcb8acbcbd366dfbb42be
     path: 
   unityLifecycle:
     version: 2.0.18
@@ -471,7 +477,14 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"Integration:\n\n- Internal API refactoring."}'
+  upmReserved: '{"changelog":"Integration:\n\n- Only disable the legacy `com.unity.ide.vscode`
+    package going forward.\n- Fix json parsing issues with specific non-UTF code
+    pages.\n\nProject generation:\n\n- Target `netstandard2.1` instead of `netstandard2.0`.\n-
+    Set `defaultSolution` in `settings.json`.\n- Remove `files.exclude` entries for
+    root `csproj` and `sln` files in `settings.json` when needed.\n- Add `vstuc`
+    launch configuration to `launch.json` when needed.\n- Add `visualstudiotoolsforunity.vstuc`
+    entry to `extensions.json` when needed.\n- You can prevent the package from patching
+    those configuration files by creating a `.vscode/.vstupatchdisable` file."}'
   assetStore:
     productId: 
 - packageId: com.unity.postprocessing@3.3.0
@@ -3989,11 +4002,13 @@ m_ResolvedPackages:
     - 2.3.0-pre.1
     - 2.4.0-exp.1
     - 2.4.0-exp.2
+    - 2.4.0-exp.3
     compatible:
     - 2.2.3
     - 2.3.0-pre.1
     - 2.4.0-exp.1
     - 2.4.0-exp.2
+    - 2.4.0-exp.3
     recommended: 2.2.3
     deprecated: []
   dependencies:

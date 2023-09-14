@@ -99,10 +99,14 @@ public class target_para_set : MonoBehaviour
         // タスクで選択したターゲットの情報を取得する処理---------------------
         if (script.gaze_data_switch) // 視線データの出力機能がオンの場合
         {
-            if (script.tasknums[script.task_num] == Id) // タスクで提示されているターゲットのIDと同じIDを持っている場合
+            if (script.task_num < script.target_amount_select)
             {
-                script.taskObject = this.gameObject; // タスクで提示されているターゲットを更新
+                if (script.tasknums[script.task_num] == Id) // タスクで提示されているターゲットのIDと同じIDを持っている場合
+                {
+                    script.taskObject = this.gameObject; // タスクで提示されているターゲットを更新
+                }
             }
+            
         }
         //--------------------------------------------------------------
 
