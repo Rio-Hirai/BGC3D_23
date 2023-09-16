@@ -43,8 +43,8 @@ public class receiver : MonoBehaviour
         Density_and_Occlusion_5x5x3,        // 密度＆オクルージョン条件（IDは4）
         Small_5x5x5,                        // 密度＆オクルージョン条件（IDは5）
         Small_5x5x3,                        // 密度＆オクルージョン条件（IDは6）
-        Study_1,                            // 
-        Flat_1,                             // 
+        Study_1,                            //
+        Flat_1,                             //
         TEST_16x3,                          // テスト用（IDは97）
         TEST_small_16x3,                    // テスト用（IDは98）
         Random,                             // ランダム配置（IDは99）
@@ -641,16 +641,16 @@ public class receiver : MonoBehaviour
                 //--------------------------------------------------------------
 
 
-                //--------------------------------------------------------------
-                if (gaze_data_switch) // ？？？
+                // 視線情報を取得する場合に視線が中央に存在するか否かを取得する処理-----
+                if (gaze_data_switch) // 視線情報を取得する場合
                 {
-                    if (DwellTarget != null && DwellTarget.GetComponent<target_para_set>().Id ==999) // ？？？
+                    if (DwellTarget != null && DwellTarget.GetComponent<target_para_set>().Id ==999) // 注視しているターゲットが存在し，かつそれが黒いターゲットでない場合
                     {
-                        center_flag = "false"; // ？？？
+                        center_flag = "false"; // center_flagを"false"に更新
                     }
                     else
                     {
-                        center_flag = "true"; // ？？？
+                        center_flag = "true"; // center_flagを"true"に更新
                     }
                 }
                 //--------------------------------------------------------------
@@ -754,7 +754,9 @@ public class receiver : MonoBehaviour
         else
         {
             // フリーモードの場合の処理を記述するスペース----------------------
-
+            // hogehoge
+            // hogehoge
+            // hogehoge
             //--------------------------------------------------------------
         }
 
@@ -762,10 +764,10 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // 手法を変更する関数-------------------------------------------
+    // 手法を変更する関数---------------------------------------------
     private void method_change()
     {
-        // ？？？-------------------------------------------------------
+        // コントローラのタッチパッドで使用手法を変更する処理-------------------
         if (SteamVR_Actions.default_SnapTurnLeft.GetStateDown(SteamVR_Input_Sources.Any) && switch_flag == 0)
         {
             Debug.Log("LEFT");
