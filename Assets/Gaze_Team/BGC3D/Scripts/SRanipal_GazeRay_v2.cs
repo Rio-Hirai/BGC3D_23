@@ -35,10 +35,10 @@ namespace ViveSR
                 private void Start()
                 {
                     // SRanipal_Eye_Frameworkが正常に動いていない場合の処理---------
-                    if (!SRanipal_Eye_Framework.Instance.EnableEye)
+                    if (!SRanipal_Eye_Framework.Instance.EnableEye) // SRanipal_Eye_Frameworkが正常に動いていない場合
                     {
-                        enabled = false;
-                        return;
+                        enabled = false; // このスクリプトをオフに
+                        return; // 終了
                     }
                     //--------------------------------------------------------------
 

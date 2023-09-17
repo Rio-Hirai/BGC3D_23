@@ -988,7 +988,7 @@ public class receiver : MonoBehaviour
 
 
         // 後処理-------------------------------------------------------
-        streamWriter.Flush();
+        streamWriter.Flush(); // ？？？
         streamWriter.Close(); // ファイルを閉じる
         Debug.Log("data_input_end!!"); // 確認メッセージを出力
         //--------------------------------------------------------------
@@ -1010,7 +1010,7 @@ public class receiver : MonoBehaviour
 
 
         // 後処理-------------------------------------------------------
-        streamWriter.Flush();
+        streamWriter.Flush(); // ？？？
         streamWriter.Close(); // ファイルを閉じる
         Debug.Log("data_output_end2!!"); // 確認メッセージを出力
         //--------------------------------------------------------------

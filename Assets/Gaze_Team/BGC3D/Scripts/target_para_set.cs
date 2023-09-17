@@ -106,7 +106,6 @@ public class target_para_set : MonoBehaviour
                     script.taskObject = this.gameObject; // タスクで提示されているターゲットを更新
                 }
             }
-            
         }
         //--------------------------------------------------------------
 

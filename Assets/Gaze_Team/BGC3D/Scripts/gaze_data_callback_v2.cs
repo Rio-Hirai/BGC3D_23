@@ -34,12 +34,12 @@ public class gaze_data_callback_v2 : MonoBehaviour
 
 
         // 視線方向に関する情報-----------------------------------------
-        Ray CombineRay;
-        if (eye_callback_registered)
+        Ray CombineRay; // レイ情報を格納する変数を定義
+        if (eye_callback_registered) // ？？？
         {
             if (SRanipal_Eye_v2.Focus(GazeIndex.COMBINE, out CombineRay, out CombineFocus/*, CombineFocusradius, CombineFocusmaxDistance, CombinefocusableLayer*/)) { } // 視線方向に関する情報を取得
         }
-        else
+        else // ？？？
         {
             if (SRanipal_Eye_v2.Focus(GazeIndex.COMBINE, out CombineRay, out CombineFocus/*, CombineFocusradius, CombineFocusmaxDistance, CombinefocusableLayer*/)) { } // 視線の方向に関する情報を取得
         }
