@@ -21,10 +21,10 @@ public class LightSensor : MonoBehaviour
         {
             RenderTexture.active = dispCamera.targetTexture;// RenderTextureキャプチャ
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame(); // ？？？
 
             targetTexture.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0); // カメラのピクセル情報を取得
-            targetTexture.Apply();
+            targetTexture.Apply(); // ？？？
 
             lightValue = GetLightValue(targetTexture); // 明度を取得
 
@@ -38,12 +38,12 @@ public class LightSensor : MonoBehaviour
         var cols = tex.GetPixels(); // 画面全体のピクセル情報を取得
 
         // 平均色計算---------------------------------------------------
-        Color avg = new Color(0, 0, 0);
-        foreach (var col in cols)
+        Color avg = new Color(0, 0, 0); // ？？？
+        foreach (var col in cols) // ？？？
         {
-            avg += col;
+            avg += col; // ？？？
         }
-        avg /= cols.Length;
+        avg /= cols.Length; // ？？？
         //--------------------------------------------------------------
 
         return 0.299f * avg.r + 0.587f * avg.g + 0.114f * avg.b; // 明度を計算して返す

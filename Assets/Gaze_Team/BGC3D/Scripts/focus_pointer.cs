@@ -6,28 +6,28 @@ using ViveSR.anipal.Eye;
 
 public class focus_pointer : MonoBehaviour
 {
-    private FocusInfo FocusInfo;
-    private readonly float MaxDistance = 20;
+    private FocusInfo FocusInfo;                     // ？？？
+    private readonly float MaxDistance = 20;         // ？？？
     private readonly GazeIndex[] GazePriority = new GazeIndex[] { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
-    private static EyeData eyeData = new EyeData();
-    private bool eye_callback_registered = false;
+    private static EyeData eyeData = new EyeData();  // ？？？
+    private bool eye_callback_registered = false;    // ？？？
 
-    public GameObject pointer;
+    public GameObject pointer;                       // ？？？
 
     // サーバー接続
-    public GameObject Server;
+    public GameObject Server;                        // ？？？
     //public GameObject EyePoint_sub;
-    private receiver script;
+    private receiver script;                         // ？？？
 
     private void Start()
     {
-        if (!SRanipal_Eye_Framework.Instance.EnableEye)
+        if (!SRanipal_Eye_Framework.Instance.EnableEye) // ？？？
         {
-            enabled = false;
-            return;
+            enabled = false; // ？？？
+            return; // ？？？
         }
 
-        script = Server.GetComponent<receiver>();
+        script = Server.GetComponent<receiver>(); // ？？？
     }
 
     private void Update()
@@ -48,9 +48,10 @@ public class focus_pointer : MonoBehaviour
 
         foreach (GazeIndex index in GazePriority)
         {
-            Ray GazeRay;
-            int dart_board_layer_id = LayerMask.NameToLayer("Targets");
-            bool eye_focus;
+            Ray GazeRay; // ？？？
+            int dart_board_layer_id = LayerMask.NameToLayer("Targets"); // ？？？
+            bool eye_focus; // ？？？
+
             if (eye_callback_registered)
                 eye_focus = SRanipal_Eye.Focus(index, out GazeRay, out FocusInfo, 0, MaxDistance, (1 << dart_board_layer_id), eyeData);
             else
@@ -58,12 +59,12 @@ public class focus_pointer : MonoBehaviour
 
             if (eye_focus)
             {
-                pointer.transform.position = FocusInfo.point;
+                pointer.transform.position = FocusInfo.point; // ？？？
                 break;
             }
             else
             {
-                pointer.transform.position = new Vector3(0, 0, 0);
+                pointer.transform.position = new Vector3(0, 0, 0); // ？？？
             }
         }
     }
@@ -79,6 +80,6 @@ public class focus_pointer : MonoBehaviour
 
     private static void EyeCallback(ref EyeData eye_data)
     {
-        eyeData = eye_data;
+        eyeData = eye_data; // 各種視線情報を更新
     }
 }
