@@ -76,6 +76,8 @@ public class receiver : MonoBehaviour
     public string tester_name;              // 被験者の名前
     [Tooltip("注視時間")]
     public float set_dtime;                 // 注視時間
+    [Tooltip("最大タスク時間")]
+    public float TaskTime;                  // 最大タスク時間
     [Tooltip("ユーザとターゲット間の距離")]
     public float Depth;                     // ユーザとターゲット間の距離
     [Tooltip("画面明度")]
@@ -190,9 +192,7 @@ public class receiver : MonoBehaviour
     // モニタ用変数-------------------------------------------------
     [System.NonSerialized]
     public int test_id;                     // 使用手法のID
-    [System.NonSerialized]
     public int target_a_id;                 // 配置条件のID
-    [System.NonSerialized]
     public int target_p_id;                 // 配置条件のID
     [Header("状況モニタ")]
     public int target_amount_all;           // ターゲットの総数
@@ -408,6 +408,7 @@ public class receiver : MonoBehaviour
                 target_amount_select = 25;      // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 5.0f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 break;
             case "High_Occlusion":              // 高オクルージョン条件
                 target_a_id = 2;                // 高オクルージョン条件のID
@@ -416,6 +417,7 @@ public class receiver : MonoBehaviour
                 target_amount_select = 24;      // 選択（タスク）回数
                 target_amount_count = 6;        // 繰り返し回数（ターゲットの総数が選択回数より少ない場合に使用する）
                 Depth = 5.0f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 break;
             case "Density_and_Occlusion_5x5x5": // 密度＆オクルージョン条件
                 target_a_id = 3;                // 密度＆オクルージョン条件のID
@@ -424,6 +426,7 @@ public class receiver : MonoBehaviour
                 target_amount_select = 25;      // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 break;
             case "Density_and_Occlusion_5x5x3": // 密度＆オクルージョン条件2
                 target_a_id = 5;                // 密度＆オクルージョン条件のID
@@ -432,6 +435,7 @@ public class receiver : MonoBehaviour
                 target_amount_select = 25;      // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 break;
             case "Small_5x5x5":                 // 密度＆オクルージョン条件
                 target_a_id = 3;                // 高密度条件のID
@@ -440,6 +444,7 @@ public class receiver : MonoBehaviour
                 target_amount_select = 25;      // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 target_size_mini_switch = true;
                 break;
             case "Small_5x5x3":                 // 密度＆オクルージョン条件
@@ -449,6 +454,7 @@ public class receiver : MonoBehaviour
                 target_amount_select = 25;      // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 target_size_mini_switch = true;
                 break;
             case "Study_1":                     // 高密度条件
@@ -458,14 +464,16 @@ public class receiver : MonoBehaviour
                 target_amount_select = 25;      // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 break;
             case "Flat_1":                      // 高密度条件
                 target_a_id = 6;                // 高密度条件のID
-                target_p_id = 1;                // 高密度条件のID
+                target_p_id = 97;                // 高密度条件のID
                 target_amount_all = 25;         // ターゲットの総数
                 target_amount_select = 25;      // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
+                pointer_switch = false;         // ？？？
                 break;
             case "TEST_16x3":                   // テスト用条件
                 target_a_id = 4;                // 高密度条件のID
@@ -474,6 +482,7 @@ public class receiver : MonoBehaviour
                 target_amount_select = 3;       // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 break;
             case "TEST_small_16x3":             // テスト用条件
                 target_a_id = 4;                // 高密度条件のID
@@ -482,6 +491,7 @@ public class receiver : MonoBehaviour
                 target_amount_select = 3;       // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
                 target_size_mini_switch = true;
                 break;
             case "Random":                      // ランダム配置条件
@@ -644,7 +654,7 @@ public class receiver : MonoBehaviour
                 // 視線情報を取得する場合に視線が中央に存在するか否かを取得する処理-----
                 if (gaze_data_switch) // 視線情報を取得する場合
                 {
-                    if (DwellTarget != null && DwellTarget.GetComponent<target_para_set>().Id ==999) // 注視しているターゲットが存在し，かつそれが黒いターゲットでない場合
+                    if (DwellTarget != null && DwellTarget.name != "ScreenSphere" && DwellTarget.GetComponent<target_para_set>().Id ==999) // 注視しているターゲットが存在し，かつそれが黒いターゲットでない場合
                     {
                         center_flag = "false"; // center_flagを"false"に更新
                     }
@@ -657,7 +667,7 @@ public class receiver : MonoBehaviour
 
 
                 // タスクの状態チェック-----------------------------------------
-                if (taskflag) // タスク中の場合
+                if (taskflag ==true && target_p_id != 97) // タスク中の場合
                 {
                     if (TimeOut_switch == true && test_time - task_start_time[task_num] > 60.0f) task_skip = true; // 1分以上選択できなかった場合にタスクをスキップ
 
@@ -694,7 +704,7 @@ public class receiver : MonoBehaviour
                             if (selecting_target) selecting_target.GetComponent<target_para_set>().dtime = 0; // ？？？
                         }
                     }
-                    else if (task_skip) // タスクをスキップした場合
+                    else if (task_skip && target_p_id != 97) // タスクをスキップした場合
                     {
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
                         test_time_tmp = test_time; // 経過時間を更新
@@ -711,6 +721,47 @@ public class receiver : MonoBehaviour
                             task_num++; // タスクを次に進める
                             test_time_tmp = 0; // タスク時間を初期化
                             audioSource.PlayOneShot(sound_NG); // 正解した時の効果音を鳴らす
+                            taskflag = false; // 非タスク中にする
+                        }
+                    }
+                    //--------------------------------------------------------------
+
+
+                    // セッションが終了するか，強制中断を行った時の処理--------------
+                    if (task_num == target_amount_select && output_flag == false) // セッションが終了するか，強制中断を行った場合
+                    {
+                        output_flag = true; // 出力済みにする
+                        audioSource.PlayOneShot(sound_END); // セッション終了時の音を鳴らす
+                        taskflag = false; // ？？？
+                        free_mode = true; // フリーモードをオン
+                        result_output(); // 実験結果をテキスト形式で出力
+                        result_output_csv(); // 実験結果をcsv形式で出力
+                        result_output_every("", streamWriter_gaze, true); // 視線情報をcsv形式で出力
+                    }
+                    //--------------------------------------------------------------
+                }
+                else if (taskflag == true && target_p_id == 97)
+                {
+                    if (test_time - task_start_time[task_num] > TaskTime) task_skip = true; // 1分以上選択できなかった場合にタスクをスキップ
+
+                    // ターゲットの選択が行われた時の処理-------------------------
+                    if (task_skip) // タスクをスキップした場合
+                    {
+                        tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
+                        test_time_tmp = test_time; // 経過時間を更新
+
+                        same_target = true; // ？？？
+                        task_skip = false; // フラグを初期化
+
+                        tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIDとタスク完了時の時間を追記
+                        tasklogs2[tasklogs2.Count - 1] += ("," + (test_time - task_start_time[task_num]) + "," + logoutput_count); // そのタスクの総時間とエラー数を追記
+
+                        if (task_num < target_amount_select) // まだタスクが残っている場合
+                        {
+                            task_end_time.Add(test_time); // タスクが終了した時の時間を保存
+                            task_num++; // タスクを次に進める
+                            test_time_tmp = 0; // タスク時間を初期化
+                            audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
                             taskflag = false; // 非タスク中にする
                         }
                     }

@@ -1465,9 +1465,9 @@ GameObject:
   - component: {fileID: 37382373}
   - component: {fileID: 37382372}
   - component: {fileID: 37382371}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (6)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1828,9 +1828,9 @@ GameObject:
   - component: {fileID: 43247812}
   - component: {fileID: 43247811}
   - component: {fileID: 43247810}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (5)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2191,9 +2191,9 @@ GameObject:
   - component: {fileID: 53908873}
   - component: {fileID: 53908872}
   - component: {fileID: 53908871}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (24)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2796,9 +2796,9 @@ GameObject:
   - component: {fileID: 80568078}
   - component: {fileID: 80568077}
   - component: {fileID: 80568076}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (28)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3280,9 +3280,9 @@ GameObject:
   - component: {fileID: 87057248}
   - component: {fileID: 87057247}
   - component: {fileID: 87057246}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (26)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3764,9 +3764,9 @@ GameObject:
   - component: {fileID: 102280289}
   - component: {fileID: 102280288}
   - component: {fileID: 102280287}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (47)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4127,9 +4127,9 @@ GameObject:
   - component: {fileID: 118438026}
   - component: {fileID: 118438025}
   - component: {fileID: 118438024}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (41)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6705,9 +6705,9 @@ GameObject:
   - component: {fileID: 223964393}
   - component: {fileID: 223964392}
   - component: {fileID: 223964391}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (7)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6826,9 +6826,9 @@ GameObject:
   - component: {fileID: 228764762}
   - component: {fileID: 228764761}
   - component: {fileID: 228764760}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (39)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7709,9 +7709,9 @@ GameObject:
   - component: {fileID: 251375902}
   - component: {fileID: 251375901}
   - component: {fileID: 251375900}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (14)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8314,9 +8314,9 @@ GameObject:
   - component: {fileID: 270997230}
   - component: {fileID: 270997229}
   - component: {fileID: 270997228}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (18)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10464,9 +10464,9 @@ GameObject:
   - component: {fileID: 364443254}
   - component: {fileID: 364443253}
   - component: {fileID: 364443252}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (38)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10814,46 +10814,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371490262}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!21 &383765532
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &387606703
 GameObject:
   m_ObjectHideFlags: 0
@@ -11956,9 +11916,9 @@ GameObject:
   - component: {fileID: 430087582}
   - component: {fileID: 430087581}
   - component: {fileID: 430087580}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (33)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12440,9 +12400,9 @@ GameObject:
   - component: {fileID: 438522195}
   - component: {fileID: 438522194}
   - component: {fileID: 438522193}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (9)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12924,9 +12884,9 @@ GameObject:
   - component: {fileID: 447240377}
   - component: {fileID: 447240376}
   - component: {fileID: 447240375}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (17)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13707,9 +13667,9 @@ GameObject:
   - component: {fileID: 454547168}
   - component: {fileID: 454547167}
   - component: {fileID: 454547166}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (34)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14191,9 +14151,9 @@ GameObject:
   - component: {fileID: 481065480}
   - component: {fileID: 481065479}
   - component: {fileID: 481065478}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (45)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19167,9 +19127,9 @@ GameObject:
   - component: {fileID: 650343282}
   - component: {fileID: 650343281}
   - component: {fileID: 650343280}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (15)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21999,9 +21959,9 @@ GameObject:
   - component: {fileID: 763124172}
   - component: {fileID: 763124171}
   - component: {fileID: 763124170}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (43)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22399,9 +22359,9 @@ GameObject:
   - component: {fileID: 786139140}
   - component: {fileID: 786139139}
   - component: {fileID: 786139138}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (48)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24191,9 +24151,9 @@ GameObject:
   - component: {fileID: 853612893}
   - component: {fileID: 853612892}
   - component: {fileID: 853612891}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (3)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27971,6 +27931,46 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978047622}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!21 &985488460
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &990141398
 GameObject:
   m_ObjectHideFlags: 0
@@ -29816,9 +29816,9 @@ GameObject:
   - component: {fileID: 1034307930}
   - component: {fileID: 1034307929}
   - component: {fileID: 1034307928}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (10)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29937,13 +29937,14 @@ GameObject:
   - component: {fileID: 1035820903}
   - component: {fileID: 1035820902}
   - component: {fileID: 1035820905}
+  - component: {fileID: 1035820906}
   m_Layer: 10
-  m_Name: Sphere
+  m_Name: ScreenSphere
   m_TagString: Targets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1035820901
 Transform:
   m_ObjectHideFlags: 0
@@ -29954,8 +29955,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1474170598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -30037,12 +30038,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035820900}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dc264e86b3e4ed4f9cabe05774b1938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   removeExistingColliders: 1
+--- !u!114 &1035820906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035820900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79c574f84b76134c856b1923eb2ef7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  removeExistingColliders: 1
+  server: {fileID: 2017897885}
 --- !u!1 &1045211884
 GameObject:
   m_ObjectHideFlags: 0
@@ -31510,7 +31525,7 @@ GameObject:
   - component: {fileID: 1095297885}
   m_Layer: 10
   m_Name: targets (0)
-  m_TagString: Untagged
+  m_TagString: Targets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31525,7 +31540,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.75, z: -0.236}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1631140445}
@@ -31871,9 +31886,9 @@ GameObject:
   - component: {fileID: 1108952835}
   - component: {fileID: 1108952834}
   - component: {fileID: 1108952833}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (23)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32097,9 +32112,9 @@ GameObject:
   - component: {fileID: 1113526224}
   - component: {fileID: 1113526223}
   - component: {fileID: 1113526222}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (40)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33154,9 +33169,9 @@ GameObject:
   - component: {fileID: 1144387431}
   - component: {fileID: 1144387430}
   - component: {fileID: 1144387429}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (22)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33618,9 +33633,9 @@ GameObject:
   - component: {fileID: 1154075014}
   - component: {fileID: 1154075013}
   - component: {fileID: 1154075012}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (21)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34102,9 +34117,9 @@ GameObject:
   - component: {fileID: 1192721474}
   - component: {fileID: 1192721473}
   - component: {fileID: 1192721472}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (31)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35709,9 +35724,9 @@ GameObject:
   - component: {fileID: 1238282997}
   - component: {fileID: 1238282996}
   - component: {fileID: 1238282995}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (35)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36422,6 +36437,171 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249424401}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!43 &1252166926
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &1254254513
 GameObject:
   m_ObjectHideFlags: 0
@@ -36919,9 +37099,9 @@ GameObject:
   - component: {fileID: 1264830682}
   - component: {fileID: 1264830681}
   - component: {fileID: 1264830680}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (46)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38507,9 +38687,9 @@ GameObject:
   - component: {fileID: 1319723073}
   - component: {fileID: 1319723072}
   - component: {fileID: 1319723071}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (16)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39838,9 +40018,9 @@ GameObject:
   - component: {fileID: 1360422045}
   - component: {fileID: 1360422044}
   - component: {fileID: 1360422043}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (36)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40322,9 +40502,9 @@ GameObject:
   - component: {fileID: 1370814724}
   - component: {fileID: 1370814723}
   - component: {fileID: 1370814722}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (8)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41286,9 +41466,9 @@ GameObject:
   - component: {fileID: 1407391744}
   - component: {fileID: 1407391743}
   - component: {fileID: 1407391742}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (12)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42411,9 +42591,9 @@ GameObject:
   - component: {fileID: 1447964036}
   - component: {fileID: 1447964035}
   - component: {fileID: 1447964034}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (13)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43417,11 +43597,11 @@ PrefabInstance:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 383765532}
+      objectReference: {fileID: 985488460}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1945519147}
+      objectReference: {fileID: 1252166926}
     - target: {fileID: 1000014254142504, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_TagString
       value: MainCamera
@@ -46942,7 +47122,7 @@ Transform:
   m_GameObject: {fileID: 1631140444}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.57, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47738,9 +47918,9 @@ GameObject:
   - component: {fileID: 1653863226}
   - component: {fileID: 1653863225}
   - component: {fileID: 1653863224}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (30)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48222,9 +48402,9 @@ GameObject:
   - component: {fileID: 1665991304}
   - component: {fileID: 1665991303}
   - component: {fileID: 1665991302}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (2)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52107,9 +52287,9 @@ GameObject:
   - component: {fileID: 1804416847}
   - component: {fileID: 1804416846}
   - component: {fileID: 1804416845}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (37)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53043,9 +53223,9 @@ GameObject:
   - component: {fileID: 1844294209}
   - component: {fileID: 1844294208}
   - component: {fileID: 1844294207}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (25)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53164,9 +53344,9 @@ GameObject:
   - component: {fileID: 1845909233}
   - component: {fileID: 1845909232}
   - component: {fileID: 1845909231}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (11)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53648,9 +53828,9 @@ GameObject:
   - component: {fileID: 1850047005}
   - component: {fileID: 1850047004}
   - component: {fileID: 1850047003}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (44)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54616,9 +54796,9 @@ GameObject:
   - component: {fileID: 1875963063}
   - component: {fileID: 1875963062}
   - component: {fileID: 1875963061}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (29)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57399,9 +57579,9 @@ GameObject:
   - component: {fileID: 1944380967}
   - component: {fileID: 1944380966}
   - component: {fileID: 1944380965}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (20)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57628,171 +57808,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945460493}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!43 &1945519147
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  'm_MeshMetrics[0]': 1
-  'm_MeshMetrics[1]': 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1 &1946730760
 GameObject:
   m_ObjectHideFlags: 0
@@ -58169,9 +58184,9 @@ GameObject:
   - component: {fileID: 1956212079}
   - component: {fileID: 1956212078}
   - component: {fileID: 1956212077}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (4)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58774,9 +58789,9 @@ GameObject:
   - component: {fileID: 1967414161}
   - component: {fileID: 1967414160}
   - component: {fileID: 1967414159}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (49)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60011,10 +60026,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   test_pattern: 6
   target_pattern: 8
-  parameter_setting: 0
+  parameter_setting: 1
   tester_id: 1
   tester_name: hirai
   set_dtime: 1
+  TaskTime: 3
   Depth: 3.5
   Brightness: 0
   total_DwellTime_mode: 0
@@ -60025,7 +60041,7 @@ MonoBehaviour:
   target_pos_calibration: 0
   cursor_switch: 0
   raycast_switch: 1
-  pointer_switch: 1
+  pointer_switch: 0
   approve_switch: 0
   controller_switch: 0
   laserswitch: 0
@@ -60066,6 +60082,8 @@ MonoBehaviour:
   GrabG:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
+  target_a_id: 0
+  target_p_id: 0
   target_amount_all: 0
   target_amount_select: 0
   target_amount_count: 0
@@ -60343,9 +60361,9 @@ GameObject:
   - component: {fileID: 2017932581}
   - component: {fileID: 2017932580}
   - component: {fileID: 2017932579}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (27)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60464,9 +60482,9 @@ GameObject:
   - component: {fileID: 2022445517}
   - component: {fileID: 2022445516}
   - component: {fileID: 2022445515}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (42)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62037,9 +62055,9 @@ GameObject:
   - component: {fileID: 2071068831}
   - component: {fileID: 2071068830}
   - component: {fileID: 2071068829}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (32)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62279,9 +62297,9 @@ GameObject:
   - component: {fileID: 2076338210}
   - component: {fileID: 2076338209}
   - component: {fileID: 2076338208}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (19)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63352,9 +63370,9 @@ GameObject:
   - component: {fileID: 2114266057}
   - component: {fileID: 2114266056}
   - component: {fileID: 2114266055}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: targets (1)
-  m_TagString: Targets
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

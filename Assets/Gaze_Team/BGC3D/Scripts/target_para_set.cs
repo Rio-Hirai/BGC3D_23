@@ -118,6 +118,11 @@ public class target_para_set : MonoBehaviour
         {
             // this.GetComponent<Renderer>().material.color = script.target_color; // ターゲットの色を変更
             this.GetComponent<Renderer>().material.color = new Color(color_correction, 1, color_correction); // ターゲットの色を変更
+
+            if (script.taskflag == true && Id == 999)
+            {
+                this.GetComponent<Renderer>().material.color = new Color(script.select_color.r, script.select_color.g + color_correction * (1.0f - script.select_color.g), color_correction); // ターゲットの色を変更
+            }
         }
         else if (Id == 999) // IDが999（＝黒いターゲット）の場合
         {
@@ -130,6 +135,11 @@ public class target_para_set : MonoBehaviour
             {
                 // this.GetComponent<Renderer>().material.color = Color.black; // ターゲットを黒色に変更
                 this.GetComponent<Renderer>().material.color = new Color(color_correction, color_correction, color_correction); // ターゲットの色を変更
+            }
+
+            if (script.taskflag == true && Id == 999)
+            {
+                this.GetComponent<Renderer>().material.color = new Color(script.select_color.r, script.select_color.g + color_correction * (1.0f - script.select_color.g), color_correction); // ターゲットの色を変更
             }
         }
         else if (script.DwellTarget != null) // 注視状態のターゲットが存在しない場合

@@ -449,6 +449,7 @@
 "Assets/Gaze_Team/DataDiagram/Script/DD_LineButtonsContent.cs"
 "Assets/Gaze_Team/DataDiagram/Script/DD_Lines.cs"
 "Assets/Gaze_Team/DataDiagram/Script/DD_ZoomButton.cs"
+"Assets/ScreenSphere.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/DartBoard.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/SRanipal_AvatarEyeSample.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/SRanipal_AvatarEyeSample_v2.cs"
@@ -497,7 +498,7 @@
 /nowarn:1701
 /nowarn:1702
 /utf8output
-/preferreduilang:ja
+/preferreduilang:en-US
 
 
 

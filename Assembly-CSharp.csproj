@@ -77,6 +77,7 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\LightSensor.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_LipData_v1.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\Sample\SRanipal_AvatarLipSample.cs" />
+    <Compile Include="Assets\ScreenSphere.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\red_result.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\focus_v2.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_GazeRaySample.cs" />
@@ -162,13 +163,31 @@
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai_80___914124313.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\3.5\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai_-40___914124747.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__hirai__0__9198583.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\5.0\High_Density__test_id = 3__target_p_id = 1__tester_id  = 1__hirai__-80__91413653.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai_-80___91485554.txt" />
     <None Include="Assets\ViveSR\Plugins\SRanipal.dll" />
     <None Include="Assets\ViveSR\Shaders\Unlit-Alpha2Gray.shader" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai_-80___91485216.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\5.0\High_Density__test_id = 3__target_p_id = 1__tester_id  = 1__hirai__0__91413348.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\3.5\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai___914124553.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__hirai__0__91983854.txt" />
     <None Include="Assets\ViveSR\Plugins\SRWorks_Log.dll" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\5.0\High_Density__test_id = 3__target_p_id = 1__tester_id  = 1__hirai__-40__914131314.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\3.5\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai_-80___91412508.txt" />
     <None Include="Assets\ViveSR\Plugins\libHTC_License.dll" />
     <None Include="Assets\ViveSR\Plugins\ViveSR_Client.dll" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\5.0\High_Density__test_id = 3__target_p_id = 1__tester_id  = 1__hirai__-60__91413194.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai_-80___9148495.txt" />
     <None Include="Assets\ViveSR\Shaders\DartBoardShader.shader" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\3.5\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai_80___914125759.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\5.0\High_Density__test_id = 3__target_p_id = 1__tester_id  = 1__hirai__40__914131049.txt" />
     <None Include="Assets\ViveSR\Plugins\nanomsg.dll" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__hirai__0__91984939.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\5.0\High_Density__test_id = 3__target_p_id = 1__tester_id  = 1__hirai__80__914131630.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\3.5\Study_1_test_id = 3___target_p_id = 1___tester_id  = 1___hirai_40___914125552.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

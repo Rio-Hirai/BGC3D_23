@@ -89,7 +89,7 @@ namespace ViveSR.anipal.Eye
 
 
             // オブジェクト選択---------------------------------------------
-            if ((objectName_new != null) && (objectName_now != objectName_new) && (script.test_id == 3)) // 注視しているオブジェクトが異なり，かつ使用手法が「Gaze_Raycast」の場合
+            if ((script.target_p_id != 97) && (objectName_new != null) && (objectName_now != objectName_new) && (script.test_id == 3)) // 注視しているオブジェクトが異なり，かつ使用手法が「Gaze_Raycast」の場合
             {
                 script.same_target = false; // ？？？
                 script.selecting_target = null; // 選択されているターゲットを初期化
@@ -102,12 +102,26 @@ namespace ViveSR.anipal.Eye
                 script.DwellTarget = objectName_new; //注視しているオブジェクトを更新
             }
 
-            if ((objectName_new != null) && (script.test_id == 3)) // オブジェクトが空でなく，かつ使用手法が「Gaze_Raycast」の場合
+            if ((script.target_p_id != 97) && (objectName_new != null) && (script.test_id == 3)) // オブジェクトが空でなく，かつ使用手法が「Gaze_Raycast」の場合
             {
                 float deltime = Time.deltaTime; // ？？？
                 objectName_new.GetComponent<target_para_set>().dtime += deltime; // 注視中のオブジェクトの総連続注視時間を追加
                 script.ab_dtime += deltime; // ？？？
                 objectName_now = objectName_new; //注視しているオブジェクトを更新
+            }
+
+            if ((script.target_p_id == 97))
+            {
+                if ((objectName_new != null) && (objectName_new.name != "ScreenSphere"))
+                {
+                    if ((objectName_new.GetComponent<target_para_set>().Id == 999) && (script.test_id == 3))
+                    {
+                        float deltime = Time.deltaTime; // ？？？
+                        objectName_new.GetComponent<target_para_set>().dtime += deltime; // 注視中のオブジェクトの総連続注視時間を追加
+                        script.ab_dtime += deltime; // ？？？
+                        objectName_now = objectName_new; //注視しているオブジェクトを更新
+                    }
+                }
             }
             //--------------------------------------------------------------
 
