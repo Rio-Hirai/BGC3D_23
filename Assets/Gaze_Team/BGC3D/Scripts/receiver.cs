@@ -186,6 +186,8 @@ public class receiver : MonoBehaviour
     public GameObject taskObject;           // 現在提示されているターゲット
     [System.NonSerialized]
     public string center_flag = "true";     // 黒いターゲットを注視している時の状態
+    [System.NonSerialized]
+    public string interval_flag = "true";   // 黒いターゲットを注視している時の状態
     //--------------------------------------------------------------
 
 
@@ -563,7 +565,7 @@ public class receiver : MonoBehaviour
         filePath = Application.dataPath + "/Gaze_Team/BGC3D/Scripts/test_results/" + target_pattern + "__test_id = " + test_id + "__" + "target_p_id = " + target_p_id + "__" + "tester_id  = " + tester_id + "__" + tester_name + "__" + Brightness + "__" + input_start_time; // ファイル名を作成．秒単位の時間をファイル名に入れているため重複・上書きの可能性はほぼない
         streamWriter_gaze = File.AppendText(filePath + "_gaze_data.csv"); // 視線情報用のcsvファイルを作成
 
-        if (gaze_data_switch) result_output_every ("timestamp,taskNo,target_id,target_x,target_y,target_z,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue,center", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
+        if (gaze_data_switch) result_output_every ("timestamp,taskNo,target_id,target_x,target_y,target_z,gaze_x,gaze_y,pupil_r,pupil_l,blink_r,blink_l,hmd_x,hmd_y,hmd_z,LightValue,center,interval", streamWriter_gaze, false); // gaze_data_switchがtrue＝視線情報保存状態の場合はファイルを生成して書き込む．視線情報に先立って表のタイトルを追記．
         //--------------------------------------------------------------
 
 
@@ -742,7 +744,16 @@ public class receiver : MonoBehaviour
                 }
                 else if (taskflag == true && target_p_id == 97)
                 {
-                    if (test_time - task_start_time[task_num] > TaskTime) task_skip = true; // 1分以上選択できなかった場合にタスクをスキップ
+                    if (test_time - task_start_time[task_num] > TaskTime + 1.0f) task_skip = true; // 1分以上選択できなかった場合にタスクをスキップ
+
+                    if (test_time - task_start_time[task_num] > 1.0f)
+                    {
+                        interval_flag = "false";
+                    }
+                    else
+                    {
+                        interval_flag = "true";
+                    }
 
                     // ターゲットの選択が行われた時の処理-------------------------
                     if (task_skip) // タスクをスキップした場合
@@ -758,11 +769,19 @@ public class receiver : MonoBehaviour
 
                         if (task_num < target_amount_select) // まだタスクが残っている場合
                         {
+                            taskflag = true; // ？？？
+                            tasklogs.Add(""); // ？？？
+                            task_start_time.Add(test_time); // ？？？
+                            test_time_tmp = test_time; // ？？？
+                            logoutput_count = 0; // ？？？
+                            session_flag = true; // ？？？
+                            selecting_target = null; // ？？？
+                            select_target_id = -1; // ？？？
+
                             task_end_time.Add(test_time); // タスクが終了した時の時間を保存
                             task_num++; // タスクを次に進める
                             test_time_tmp = 0; // タスク時間を初期化
                             audioSource.PlayOneShot(sound_OK); // 正解した時の効果音を鳴らす
-                            taskflag = false; // 非タスク中にする
                         }
                     }
                     //--------------------------------------------------------------
