@@ -750,7 +750,7 @@ public class receiver : MonoBehaviour
                         tasklogs2.Add((task_num + 1) + "," + tasknums[task_num] + "," + select_target_id + "," + (test_time - test_time_tmp)); // タスク番号・選択すべきだったターゲット・選択されたターゲット・その選択に要した時間を追記
                         test_time_tmp = test_time; // 経過時間を更新
 
-                        same_target = true; // ？？？
+                        same_target = true; // よくわからないフラグをTrueに更新
                         task_skip = false; // フラグを初期化
 
                         tasklogs[task_num] += ("select_target = " + select_target_id + ": " + test_time + "\n"); // 選択したターゲットのIDとタスク完了時の時間を追記
