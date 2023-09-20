@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{4ABDC324-2BB6-BBF7-7515-D411E3E0DD21}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -75,7 +76,7 @@
     <Compile Include="Assets\Gaze_Team\DataDiagram\Example\Sample.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\receiver.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\LightSensor.cs" />
-    <Compile Include="Assets\ScreenSphere.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\ScreenSphere.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_LipData_v1.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\Sample\SRanipal_AvatarLipSample.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\red_result.cs" />
