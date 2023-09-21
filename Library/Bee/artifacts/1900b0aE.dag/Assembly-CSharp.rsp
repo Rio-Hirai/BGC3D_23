@@ -410,6 +410,7 @@
 "Assets/Gaze_Team/BGC3D/Scripts/reverse.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/ScreenSphere.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/ScriptSwitch.cs"
+"Assets/Gaze_Team/BGC3D/Scripts/SpherePlacer.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/SRanipal_GazeRay_BGC_v2.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/SRanipal_GazeRay_v2.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/target_para_set.cs"
