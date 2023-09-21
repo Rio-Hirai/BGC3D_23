@@ -9,8 +9,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{4ABDC324-2BB6-BBF7-7515-D411E3E0DD21}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -64,6 +63,7 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\version1\gaze_data_v1.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_LipShapeTableDrawer_v2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\target_posi_set.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\DistributeOnSphereSurface.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\test2.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_3.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_AvatarEyeSample_v2.cs" />
@@ -76,7 +76,6 @@
     <Compile Include="Assets\Gaze_Team\DataDiagram\Example\Sample.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\receiver.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\LightSensor.cs" />
-    <Compile Include="Assets\Gaze_Team\BGC3D\ScreenSphere.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\SRanipal_LipData_v1.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Lip\Sample\SRanipal_AvatarLipSample.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\test_script\red_result.cs" />
@@ -131,6 +130,7 @@
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\Gaze_con_0.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\booleanlefttest.cs" />
     <Compile Include="Assets\ViveSR\Scripts\SRWorks_Enums.cs" />
+    <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\ScreenSphere.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\Sample\SRanipal_EyeSettingSample.cs" />
     <Compile Include="Assets\Gaze_Team\BGC3D\Scripts\version1\Gaze_con_new_v1.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye.cs" />
@@ -164,10 +164,8 @@
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__hirai__0__919142650.txt" />
     <None Include="Assets\ViveSR\Plugins\SRanipal.dll" />
     <None Include="Assets\ViveSR\Shaders\Unlit-Alpha2Gray.shader" />
-    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__hirai__0__919141925.txt" />
     <None Include="Assets\ViveSR\Plugins\SRWorks_Log.dll" />
     <None Include="Assets\ViveSR\Plugins\libHTC_License.dll" />
     <None Include="Assets\ViveSR\Plugins\ViveSR_Client.dll" />

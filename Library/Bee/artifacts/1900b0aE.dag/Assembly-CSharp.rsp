@@ -386,6 +386,7 @@
 "Assets/Gaze_Team/BGC3D/Scripts/approve_test.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/booleanlefttest.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/booleanrighttest.cs"
+"Assets/Gaze_Team/BGC3D/Scripts/DistributeOnSphereSurface.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/dtime_output.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/EyeCalibrator.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/focus_BGC_v2.cs"
@@ -407,6 +408,7 @@
 "Assets/Gaze_Team/BGC3D/Scripts/reserve/receiver_sub0815.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/reserve/rev_sub.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/reverse.cs"
+"Assets/Gaze_Team/BGC3D/Scripts/ScreenSphere.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/ScriptSwitch.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/SRanipal_GazeRay_BGC_v2.cs"
 "Assets/Gaze_Team/BGC3D/Scripts/SRanipal_GazeRay_v2.cs"
@@ -449,7 +451,6 @@
 "Assets/Gaze_Team/DataDiagram/Script/DD_LineButtonsContent.cs"
 "Assets/Gaze_Team/DataDiagram/Script/DD_Lines.cs"
 "Assets/Gaze_Team/DataDiagram/Script/DD_ZoomButton.cs"
-"Assets/ScreenSphere.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/DartBoard.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/SRanipal_AvatarEyeSample.cs"
 "Assets/ViveSR/Scripts/Eye/Sample/SRanipal_AvatarEyeSample_v2.cs"
@@ -498,7 +499,7 @@
 /nowarn:1701
 /nowarn:1702
 /utf8output
-/preferreduilang:en-US
+/preferreduilang:ja
 
 
 
