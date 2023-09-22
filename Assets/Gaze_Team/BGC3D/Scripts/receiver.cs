@@ -474,7 +474,7 @@ public class receiver : MonoBehaviour
                 target_amount_all = 25;         // ターゲットの総数
                 target_amount_select = 25;      // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
-                Depth = 3.5f;                   // 奥行き距離
+                Depth = 5.0f;                   // 奥行き距離
                 pointer_switch = false;         // ？？？
                 break;
             case "TEST_16x3":                   // テスト用条件

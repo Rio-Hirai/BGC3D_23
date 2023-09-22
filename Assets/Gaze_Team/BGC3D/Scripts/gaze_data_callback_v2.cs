@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -74,10 +75,11 @@ public class gaze_data_callback_v2 : MonoBehaviour
     private static void EyeCallback(ref EyeData_v2 eye_data)
     {
         eyeData = eye_data; // 各種視線情報を更新
+        ;
     }
 
     public string get_gaze_data() // 各種視線情報をcsv形式の文字列で出力するための関数．このスクリプトがアタッチされているスクリプトであれば使用可能
     {
-        return (server.test_time + "," + server.test_time + "," + (server.task_num + 1) + "," + (server.tasknums[server.task_num]) + "," + (server.taskObject.transform.position.x) + "," + (server.taskObject.transform.position.y) + "," + (server.taskObject.transform.position.z) + "," + (CombineFocus.point.x) + "," + (CombineFocus.point.y) + "," + (eyeData.verbose_data.right.pupil_diameter_mm) + "," + (eyeData.verbose_data.left.pupil_diameter_mm) + "," + (eyeData.verbose_data.right.eye_openness) + "," + (eyeData.verbose_data.left.eye_openness) + "," + (server.HMDRotation.x) + "," + (server.HMDRotation.y) + "," + (server.HMDRotation.z) + "," + (server.lightValue) + "," + (server.center_flag) + "," + (server.interval_flag));
+        return (DateTime.Now + "." + (DateTime.Now.Millisecond.ToString()) + "," + server.test_time + "," + (server.task_num + 1) + "," + (server.tasknums[server.task_num]) + "," + (server.taskObject.transform.position.x) + "," + (server.taskObject.transform.position.y) + "," + (server.taskObject.transform.position.z) + "," + (CombineFocus.point.x) + "," + (CombineFocus.point.y) + "," + (eyeData.verbose_data.right.pupil_diameter_mm) + "," + (eyeData.verbose_data.left.pupil_diameter_mm) + "," + (eyeData.verbose_data.right.eye_openness) + "," + (eyeData.verbose_data.left.eye_openness) + "," + (server.HMDRotation.x) + "," + (server.HMDRotation.y) + "," + (server.HMDRotation.z) + "," + (server.lightValue) + "," + (server.center_flag) + "," + (server.interval_flag));
     }
 }

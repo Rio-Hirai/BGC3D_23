@@ -165,13 +165,18 @@
     <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__tester1__0__922143533.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__tester1__0__922143153.txt" />
     <None Include="Assets\ViveSR\Plugins\SRanipal.dll" />
     <None Include="Assets\ViveSR\Shaders\Unlit-Alpha2Gray.shader" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__tester1__0__922142855.txt" />
     <None Include="Assets\ViveSR\Plugins\SRWorks_Log.dll" />
     <None Include="Assets\ViveSR\Plugins\libHTC_License.dll" />
     <None Include="Assets\ViveSR\Plugins\ViveSR_Client.dll" />
     <None Include="Assets\ViveSR\Shaders\DartBoardShader.shader" />
     <None Include="Assets\ViveSR\Plugins\nanomsg.dll" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__tester1__-80__922143854.txt" />
+    <None Include="Assets\Gaze_Team\BGC3D\Scripts\test_results\Flat_1__test_id = 3__target_p_id = 97__tester_id  = 1__tester1__80__922144239.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
