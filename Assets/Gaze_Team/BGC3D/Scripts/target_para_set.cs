@@ -160,6 +160,7 @@ public class target_para_set : MonoBehaviour
                 if (script.target_p_id == 97) // 分布実験の場合
                 {
                     //this.GetComponent<Renderer>().material.color = Color.white; // ターゲットを灰色に変更
+                    this.GetComponent<Renderer>().material.color = new Color(color_correction, color_correction, color_correction); // ターゲットの色を変更
                 }
             }
             else
@@ -169,7 +170,7 @@ public class target_para_set : MonoBehaviour
 
                 if (script.target_p_id == 97) // 分布実験の場合
                 {
-                    this.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0);
+                    this.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0); // ターゲットを透明に変更
                 }
             }
         }
@@ -181,6 +182,7 @@ public class target_para_set : MonoBehaviour
             if (script.target_p_id == 97) // 分布実験の場合
             {
                 //this.GetComponent<Renderer>().material.color = Color.white; // ターゲットを灰色に変更
+                this.GetComponent<Renderer>().material.color = new Color(color_correction, color_correction, color_correction); // ターゲットの色を変更
             }
         }
         else // 以上の条件に該当しない場合
@@ -190,15 +192,14 @@ public class target_para_set : MonoBehaviour
 
             if (script.target_p_id == 97) // 分布実験の場合
             {
-                this.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0);
+                this.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0); // ターゲットを透明に変更
             }
-            
         }
         //--------------------------------------------------------------
 
         if (script.target_p_id == 97 && script.taskflag == true && Id == 999)
         {
-            this.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0);
+            this.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 0); // ターゲットを透明に変更
         }
     }
 }
