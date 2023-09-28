@@ -1175,7 +1175,7 @@ public class receiver : MonoBehaviour
     // public void error_output() 終了------------------------------
 
 
-    // タスク（選択するターゲット）を生成する関数-------------------
+    // タスク（選択するターゲット）を生成する関数------------------------
     void set_testpattern()
     {
         List<int> numbers = new List<int>();
@@ -1183,17 +1183,21 @@ public class receiver : MonoBehaviour
 
         for (int n = 0; n < target_amount_count; n++)
         {
+            // シャッフル用にターゲットの総数分の数字群を作成
             for (int i = 1; i <= target_amount_all; i++)
             {
                 numbers.Add(i);
             }
+            //--------------------------------------------------------------
 
-            while (numbers.Count > 0)
+
+            // オクルージョンになるターゲットを除外------------------------------
+            while (numbers.Count > 0) // ターゲット総数だけ繰り返し
             {
 
-                int index = UnityEngine.Random.Range(0, numbers.Count);
+                int index = UnityEngine.Random.Range(0, numbers.Count); // 乱数を生成してリストのインデックスに使用
 
-                int ransu = numbers[index];
+                int ransu = numbers[index]; // 該当する数値を格納
 
                 if (ransu != 38)
                 {
@@ -1205,7 +1209,7 @@ public class receiver : MonoBehaviour
                             {
                                 if (!(ransu == 13 && (target_a_id == 3 || target_a_id == 4 || target_a_id == 5)))
                                 {
-                                    tasknums.Add(ransu);
+                                    tasknums.Add(ransu); // 該当する数値を格納
                                 }
                             }
                         }
@@ -1213,6 +1217,7 @@ public class receiver : MonoBehaviour
                 }
                 numbers.RemoveAt(index);
             }
+            //--------------------------------------------------------------
         }
     }
     // void set_testpattern() 終了----------------------------------

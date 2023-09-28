@@ -66,7 +66,7 @@ public class target_para_set : MonoBehaviour
                 }
                 else
                 {
-                    dtime = 0; // 累計注視時間を0にする
+                    dtime = 0; // 累計注視時間を0に更新
                 }
             }
 
