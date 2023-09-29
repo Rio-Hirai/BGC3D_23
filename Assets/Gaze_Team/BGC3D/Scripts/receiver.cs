@@ -1118,16 +1118,10 @@ public class receiver : MonoBehaviour
 
 
         // ？？？-------------------------------------------------------
-        for (int i = 0; i < target_amount_all - 5; i++)
-        {
-            streamWriter.WriteLine(tasknums[i]);
-        }
+        for (int i = 0; i < target_amount_all - 5; i++) streamWriter.WriteLine(tasknums[i]);
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         streamWriter.WriteLine("target_pattorn:");
-        for (int i = 0; i < target_amount_select; i++)
-        {
-            streamWriter.WriteLine(tasknums[i]);
-        }
+        for (int i = 0; i < target_amount_select; i++) streamWriter.WriteLine(tasknums[i]);
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         //--------------------------------------------------------------
 
@@ -1147,16 +1141,13 @@ public class receiver : MonoBehaviour
             streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_end: " + task_end_time[i]);
             streamWriter.WriteLine("task_time: " + (task_end_time[i] - task_start_time[i]));
         }
-        //--------------------------------------------------------------
+        // for (int i = 0; i < task_num; i++) 終了----------------------
 
 
         // 各タスクの計測を追記2----------------------------------------
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n");
         streamWriter.WriteLine("task,target,select,time,totaltime,totalerror");
-        for (int i = 0; i < tasklogs2.Count; i++)
-        {
-            streamWriter.WriteLine(tasklogs2[i]);
-        }
+        for (int i = 0; i < tasklogs2.Count; i++) streamWriter.WriteLine(tasklogs2[i]); // リストに保存したログを出力
         streamWriter.WriteLine("\n-----------------------------------------------------------------------------------------\n");
         //--------------------------------------------------------------
 
@@ -1181,23 +1172,18 @@ public class receiver : MonoBehaviour
         List<int> numbers = new List<int>();
         tasknums = new List<int>();
 
+
+        // タスク（選択するターゲット）の順番を生成--------------------------
         for (int n = 0; n < target_amount_count; n++)
         {
-            // シャッフル用にターゲットの総数分の数字群を作成
-            for (int i = 1; i <= target_amount_all; i++)
-            {
-                numbers.Add(i);
-            }
-            //--------------------------------------------------------------
-
+            for (int i = 1; i <= target_amount_all; i++) numbers.Add(i); // シャッフル用にターゲットの総数分の数字群を作成
 
             // オクルージョンになるターゲットを除外------------------------------
             while (numbers.Count > 0) // ターゲット総数だけ繰り返し
             {
-
                 int index = UnityEngine.Random.Range(0, numbers.Count); // 乱数を生成してリストのインデックスに使用
 
-                int ransu = numbers[index]; // 該当する数値を格納
+                int ransu = numbers[index]; // インデックスに該当する数値を取り出して格納
 
                 if (ransu != 38)
                 {
@@ -1209,16 +1195,17 @@ public class receiver : MonoBehaviour
                             {
                                 if (!(ransu == 13 && (target_a_id == 3 || target_a_id == 4 || target_a_id == 5)))
                                 {
-                                    tasknums.Add(ransu); // 該当する数値を格納
+                                    tasknums.Add(ransu); // 取り出した数値を格納
                                 }
                             }
                         }
                     }
                 }
-                numbers.RemoveAt(index);
+                numbers.RemoveAt(index); // 取り出した値を削除して重複しないようにする
             }
-            //--------------------------------------------------------------
+            // while (numbers.Count > 0) 終了-------------------------------
         }
+        // for (int n = 0; n < target_amount_count; n++) 終了-----------
     }
     // void set_testpattern() 終了----------------------------------
 
