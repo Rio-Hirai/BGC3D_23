@@ -43,8 +43,8 @@ public class receiver : MonoBehaviour
         Density_and_Occlusion_5x5x3,        // 密度＆オクルージョン条件（IDは4）
         Small_5x5x5,                        // 密度＆オクルージョン条件（IDは5）
         Small_5x5x3,                        // 密度＆オクルージョン条件（IDは6）
-        Study_1,                            //
-        Flat_1,                             //
+        Study_1,                            // ？？？
+        Flat_1,                             // 視線のバラツキ調査
         TEST_16x3,                          // テスト用（IDは97）
         TEST_small_16x3,                    // テスト用（IDは98）
         Random,                             // ランダム配置（IDは99）
@@ -169,8 +169,8 @@ public class receiver : MonoBehaviour
     // 各種スクリプト-----------------------------------------------
     public gaze_data_callback_v2 gaze_data; // 視線情報
     public LightSensor sensor;              // 画面の色彩情報
-    private PostProcessVolume _postProcess; // ？？？
-    private ColorGrading _colorGrading;     // ？？？
+    private PostProcessVolume _postProcess; // PostProcessVolume
+    private ColorGrading _colorGrading;     // ColorGrading
     //--------------------------------------------------------------
 
 
@@ -252,8 +252,8 @@ public class receiver : MonoBehaviour
     public bool session_flag;               // セッション中か否かを示す変数（trueだとセッション中）
     public bool taskflag;                   // タスク中か否かを示す変数（trueだとタスク中）
     public bool next_step__flag;            // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
-    public bool head_rot_switch;            // ？？？
-    public bool select_flag;                // ？？？
+    public bool head_rot_switch;            // 頭部が動いているか否かを示す変数（trueだとタスク中）
+    public bool select_flag;                // 選択状態か否かを示す変数（trueだとタスク中）
     private int switch_flag = 0;            // ？？？
     public bool output_flag;                // タスクが全て完了したか否かを示す変数（trueだと完了）
     public Boolean grapgrip;                // 結果の格納用Boolean型関数grapgrip
