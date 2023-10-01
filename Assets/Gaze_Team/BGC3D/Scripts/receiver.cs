@@ -345,10 +345,10 @@ public class receiver : MonoBehaviour
 
 
         // 各種手法のオブジェクトを非表示（以降の条件分岐で該当する手法のみ表示するため）
-        bubblegaze.SetActive(false);
-        gazeraycast.SetActive(false);
-        controller_Raycast.SetActive(false);
-        gazeraycast2.SetActive(false);
+        bubblegaze.SetActive(false); // バブルカーソルを非表示
+        gazeraycast.SetActive(false); // 視線のレイを非表示
+        controller_Raycast.SetActive(false); // コントローラのレイを非表示
+        gazeraycast2.SetActive(false); // ？？？
         //--------------------------------------------------------------
         //--------------------------------------------------------------
 
