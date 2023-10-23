@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638303237030249653
-    m_Hash: 2233022031
+      ticks: 638336627916800500
+    m_Hash: 1797955857
   m_LockFileStatus:
     m_FilePath: C:/Users/riong/WORKSPACE_M.2/BGC3D_23/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638303237030259711
-    m_Hash: 2243754698
+      ticks: 638336627972699939
+    m_Hash: 3752997340
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -34,14 +34,14 @@ m_LocalPackages:
       ticks: 638301234693417290
     m_Hash: 2919789393
 m_ProjectPath: C:/Users/riong/WORKSPACE_M.2/BGC3D_23/Packages
-m_EditorVersion: 2023.1.10f1 (661833f8c66c)
+m_EditorVersion: 2023.1.17f1 (b84c4024cd38)
 m_ResolvedPackages:
-- packageId: com.unity.ai.navigation@1.1.4
+- packageId: com.unity.ai.navigation@1.1.5
   testable: 0
   isDirectDependency: 1
-  version: 1.1.4
+  version: 1.1.5
   source: 1
-  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.ai.navigation@1.1.4
+  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.ai.navigation@1.1.5
   assetPath: Packages/com.unity.ai.navigation
   name: com.unity.ai.navigation
   displayName: AI Navigation
@@ -66,10 +66,13 @@ m_ResolvedPackages:
     - 1.1.1
     - 1.1.3
     - 1.1.4
+    - 1.1.5
     - 2.0.0-pre.3
+    - 2.0.0-pre.4
+    - 2.0.0
     compatible:
-    - 1.1.4
-    recommended: 1.1.4
+    - 1.1.5
+    recommended: 1.1.5
     deprecated: []
   dependencies:
   - name: com.unity.modules.ai
@@ -90,16 +93,16 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638224218100000000
+  datePublishedTicks: 638319373850000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.ai.navigation@1.1/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.ai.navigation.git
-    revision: 3e8d494400ccac6cbd90ee1b474470f4b1299bfa
+    revision: a905e1ab41c8afae1a75688ceb3b4dfa1686ea75
     path: 
   unityLifecycle:
-    version: 1.1.4
+    version: 1.1.5
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -109,16 +112,16 @@ m_ResolvedPackages:
   git:
     hash: 
     revision: 
-  upmReserved: '{"changelog":"### Fixed\n* Published the missing API reference documentation
-    for the new properties that were made available in 1.1.0"}'
+  upmReserved: '{"changelog":"### Fixed\n* Long warning popping up when user starts
+    playmode while editing a prefab that contains NavMesh components ([NAVB-47](https://issuetracker.unity3d.com/product/unity/issues/guid/NAVB-47))"}'
   assetStore:
     productId: 
-- packageId: com.unity.collab-proxy@2.0.7
+- packageId: com.unity.collab-proxy@2.1.0
   testable: 0
   isDirectDependency: 1
-  version: 2.0.7
+  version: 2.1.0
   source: 1
-  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.collab-proxy@2.0.7
+  resolvedPath: C:\Users\riong\WORKSPACE_M.2\BGC3D_23\Library\PackageCache\com.unity.collab-proxy@2.1.0
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Version Control
@@ -204,13 +207,11 @@ m_ResolvedPackages:
     - 2.1.0-preview.5
     - 2.1.0-preview.6
     - 2.1.0
+    - 2.2.0
     compatible:
-    - 2.0.7
-    - 2.1.0-preview.3
-    - 2.1.0-preview.5
-    - 2.1.0-preview.6
     - 2.1.0
-    recommended: 2.0.7
+    - 2.2.0
+    recommended: 2.1.0
     deprecated: []
   dependencies: []
   resolvedDependencies: []
@@ -241,16 +242,16 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638264754080000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.0/manual/index.html
+  datePublishedTicks: 638301329890000000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.1/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.cloud.collaborate.git
-    revision: 13a0e74f47307a1b20a57747cea59891ce36a647
+    revision: 179e96acc2f95fcb9dcc91b5fb2ee5f3e85d48aa
     path: 
   unityLifecycle:
-    version: 2.0.7
+    version: 2.1.0
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -268,10 +269,13 @@ m_ResolvedPackages:
     Asset Store Plug-In:\n\n- Select the PlasticSCM folder in the Assets\\Plugins
     folder on the Project tab, then click Edit > Delete\n- Close the Unity Editor
     and open your project again. You will find the Plastic SCM menu item in the Window
-    menu.\n\nFixed:\n\n- Fixed the Unity Version Control icon disappearing from the
-    Editor Toolbar on domain reload.\n- Fixed the popup stating \"An existing checkout
-    operation has locked the workspace\" when trying to check in a scene with unsaved
-    changes."}'
+    menu.\n\nChanged:\n\n- Moved the button to invite users to the organization from
+    the submenu to the toolbar.\n- Show a message with a link to invite users to
+    the organization after the first checkin.\n- Don''t write cloudProjectId in ProjectSettings.asset
+    anymore since it should only be managed by Services.\n- Added command to support
+    Hub creating a new project, and connecting a project to Unity Version Control.\n\nFixed:\n\n-
+    Fixed Add to ignored/hidden changes list from the Project window creating a negative
+    rule.\n- Fixed Switch to changeset not working on Gluon partial workspace."}'
   assetStore:
     productId: 
 - packageId: com.unity.ide.rider@3.0.25
@@ -335,10 +339,11 @@ m_ResolvedPackages:
     - 3.0.22
     - 3.0.24
     - 3.0.25
+    - 3.0.26
     compatible:
-    - 3.0.24
     - 3.0.25
-    recommended: 3.0.25
+    - 3.0.26
+    recommended: 3.0.26
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
@@ -368,7 +373,7 @@ m_ResolvedPackages:
     revision: e103b4771a884e656407e1b7219e5e3c20222552
     path: 
   unityLifecycle:
-    version: 3.0.24
+    version: 3.0.25
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -427,11 +432,11 @@ m_ResolvedPackages:
     - 2.0.18
     - 2.0.20
     - 2.0.21
+    - 2.0.22
     compatible:
-    - 2.0.18
-    - 2.0.20
     - 2.0.21
-    recommended: 2.0.21
+    - 2.0.22
+    recommended: 2.0.22
     deprecated: []
   dependencies:
   - name: com.unity.test-framework
@@ -467,7 +472,7 @@ m_ResolvedPackages:
     revision: eb2b500b99f6429d3d9dcb8acbcbd366dfbb42be
     path: 
   unityLifecycle:
-    version: 2.0.18
+    version: 2.0.21
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -662,8 +667,6 @@ m_ResolvedPackages:
     - 2.0.1-pre.12
     - 2.0.1-pre.18
     compatible:
-    - 1.3.7
-    - 1.3.8
     - 1.3.9
     - 2.0.1-exp.1
     - 2.0.1-exp.2
@@ -709,7 +712,7 @@ m_ResolvedPackages:
     revision: 5c8a1448cee4d7607be0d60dceb66703b0cfe016
     path: 
   unityLifecycle:
-    version: 1.3.7
+    version: 1.3.9
     nextVersion: 
     recommendedVersion: 
     isDeprecated: 0
@@ -852,6 +855,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.3
     - 3.2.0-pre.4
     - 3.2.0-pre.5
+    - 3.2.0-pre.6
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     compatible:
@@ -861,6 +865,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.3
     - 3.2.0-pre.4
     - 3.2.0-pre.5
+    - 3.2.0-pre.6
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     recommended: 3.0.6
@@ -1013,18 +1018,21 @@ m_ResolvedPackages:
     - 1.7.3
     - 1.7.4
     - 1.7.5
+    - 1.7.6
     - 1.8.0
     - 1.8.1
     - 1.8.2
     - 1.8.3
     - 1.8.4
     - 1.8.5
+    - 1.8.6
     compatible:
     - 1.8.2
     - 1.8.3
     - 1.8.4
     - 1.8.5
-    recommended: 1.8.5
+    - 1.8.6
+    recommended: 1.8.6
     deprecated: []
   dependencies:
   - name: com.unity.modules.director

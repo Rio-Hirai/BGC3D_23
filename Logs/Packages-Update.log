@@ -214,3 +214,12 @@ The following packages were 更新済:
   com.unity.test-framework をバージョン 1.1.33 から 1.3.7 へ
   com.unity.timeline をバージョン 1.7.5 から 1.8.2 へ
   com.unity.xr.management をバージョン 4.3.3 から 4.4.0 へ
+
+=== Mon Oct 23 21:59:51 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were 更新済:
+  com.unity.ai.navigation をバージョン 1.1.4 から 1.1.5 へ
+  com.unity.collab-proxy をバージョン 2.0.7 から 2.1.0 へ

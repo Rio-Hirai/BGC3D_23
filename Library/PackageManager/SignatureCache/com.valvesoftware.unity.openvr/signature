@@ -1,4 +1,4 @@
 {
-  "status": "Error",
-  "reason": "Signature cannot be verified because the signature check is not configured."
+  "status": "Unsigned",
+  "reason": ".signature file could not be located in the package path"
 }
