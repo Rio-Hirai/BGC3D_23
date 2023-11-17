@@ -5,6 +5,13 @@ public class SpherePlacer : MonoBehaviour
     public GameObject[] objectsToDistribute; // 配置するオブジェクトの配列
     public Camera mainCamera; // カメラの参照
     public Transform centerPoint; // 球体の中心点
+    public receiver server;
+
+    private float distance = 3.5f; // カメラからの距離
+    private float sphereSize = 0.1f; // 球体の大きさ
+    private float spacing = 0.24f; // 球体間の距離
+    private int rows = 5;
+    private int columns = 5;
 
     void Start()
     {
@@ -13,11 +20,8 @@ public class SpherePlacer : MonoBehaviour
 
     void PlaceSpheres()
     {
-        float distance = 3.5f; // カメラからの距離
-        float sphereSize = 0.1f; // 球体の大きさ
-        float spacing = 0.24f; // 球体間の距離
-        int rows = 5;
-        int columns = 5;
+
+        spacing = server.target_spacing;
 
         for (int i = 0; i < rows; i++)
         {
@@ -33,6 +37,8 @@ public class SpherePlacer : MonoBehaviour
 
                 objectsToDistribute[index].transform.position = position;
                 objectsToDistribute[index].transform.localScale = Vector3.one * sphereSize;
+
+                Debug.Log("index = " + index);
             }
         }
     }

@@ -11,6 +11,7 @@ using UnityEngine.XR.OpenXR.Input;
 using ViveSR.anipal.Eye;
 using UnityEngine.XR;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SocialPlatforms;
 
 public class receiver : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class receiver : MonoBehaviour
     //--------------------------------------------------------------
 
 
-    // ターゲット配置条件のリスト-----------------------------------
+    // ターゲット配置条件のリスト--------------------------------------
     public enum target_pattern_list         // 新たなターゲット配置条件を追加したい場合はココに名前を追加する
     {
         Null,                               // ターゲット無し（IDは0）
@@ -43,8 +44,9 @@ public class receiver : MonoBehaviour
         Density_and_Occlusion_5x5x3,        // 密度＆オクルージョン条件（IDは4）
         Small_5x5x5,                        // 密度＆オクルージョン条件（IDは5）
         Small_5x5x3,                        // 密度＆オクルージョン条件（IDは6）
-        Study_1,                            //
-        Flat_1,                             //
+        Study,                              // ？？？
+        Study_1,                            // ？？？
+        Flat_1,                             // 視線のバラツキ調査
         TEST_16x3,                          // テスト用（IDは97）
         TEST_small_16x3,                    // テスト用（IDは98）
         Random,                             // ランダム配置（IDは99）
@@ -52,6 +54,19 @@ public class receiver : MonoBehaviour
     }
     [Tooltip("ターゲット配置条件")]
     public target_pattern_list target_pattern = target_pattern_list.High_Density;   // 条件切り替え用のリスト構造
+    //--------------------------------------------------------------
+
+
+    // ターゲット配置条件のリスト--------------------------------------
+    public enum study_target_size           // 新たなターゲット配置条件を追加したい場合はココに名前を追加する
+    {
+        Null,
+        Normal,
+        Middle,
+        Small
+    }
+    [Tooltip("ターゲットサイズ")]
+    public study_target_size target_size_s = study_target_size.Normal;   // 条件切り替え用のリスト構造
     //--------------------------------------------------------------
 
 
@@ -80,9 +95,14 @@ public class receiver : MonoBehaviour
     public float TaskTime;                  // 最大タスク時間
     [Tooltip("ユーザとターゲット間の距離")]
     public float Depth;                     // ユーザとターゲット間の距離
+    [Tooltip("ターゲットサイズ")]
+    public float  target_size_set;
     [Tooltip("画面明度")]
     [SerializeField, Range(-100.0f, 150.0f)]
     public int Brightness;                  // 画面明度（使用していない）
+    [Tooltip("ターゲット間隔")]
+    [SerializeField, Range(0.0f, 5.0f)]
+    public float target_spacing;              // 画面明度（使用していない）
     //--------------------------------------------------------------
 
 
@@ -131,6 +151,8 @@ public class receiver : MonoBehaviour
     public bool free_mode;                  // フリーモードのオン・オフ
     [Tooltip("注視時間表示のオン・オフ")]
     public bool dtime_monitor_switch;       // 注視時間表示のオン・オフ
+    [Tooltip("タスク順番固定化のオン・オフ")]
+    public bool fixed_task_number;          // 注視時間表示のオン・オフ
     //--------------------------------------------------------------
 
 
@@ -155,6 +177,8 @@ public class receiver : MonoBehaviour
     public GameObject controller_Raycast;   // コントローラのレイキャスト機能（機能の無効化用）
     public GameObject dtime_monitor;        // コントローラのレイキャスト機能（機能の無効化用）
     public GameObject[] target_set;         // 配置条件ごとのターゲット群を保存するための配列（表示・非表示用）
+    public GameObject ScreenSphere;
+    public GameObject Lighting;
     //--------------------------------------------------------------
 
 
@@ -169,8 +193,8 @@ public class receiver : MonoBehaviour
     // 各種スクリプト-----------------------------------------------
     public gaze_data_callback_v2 gaze_data; // 視線情報
     public LightSensor sensor;              // 画面の色彩情報
-    private PostProcessVolume _postProcess; // ？？？
-    private ColorGrading _colorGrading;     // ？？？
+    private PostProcessVolume _postProcess; // PostProcessVolume
+    private ColorGrading _colorGrading;     // ColorGrading
     //--------------------------------------------------------------
 
 
@@ -196,6 +220,7 @@ public class receiver : MonoBehaviour
     public int test_id;                     // 使用手法のID
     public int target_a_id;                 // 配置条件のID
     public int target_p_id;                 // 配置条件のID
+    public int target_size_id;
     [Header("状況モニタ")]
     public int target_amount_all;           // ターゲットの総数
     public int target_amount_select;        // 選択する数
@@ -252,8 +277,8 @@ public class receiver : MonoBehaviour
     public bool session_flag;               // セッション中か否かを示す変数（trueだとセッション中）
     public bool taskflag;                   // タスク中か否かを示す変数（trueだとタスク中）
     public bool next_step__flag;            // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
-    public bool head_rot_switch;            // ？？？
-    public bool select_flag;                // ？？？
+    public bool head_rot_switch;            // 頭部が動いているか否かを示す変数（trueだとタスク中）
+    public bool select_flag;                // 選択状態か否かを示す変数（trueだとタスク中）
     private int switch_flag = 0;            // ？？？
     public bool output_flag;                // タスクが全て完了したか否かを示す変数（trueだと完了）
     public Boolean grapgrip;                // 結果の格納用Boolean型関数grapgrip
@@ -345,10 +370,10 @@ public class receiver : MonoBehaviour
 
 
         // 各種手法のオブジェクトを非表示（以降の条件分岐で該当する手法のみ表示するため）
-        bubblegaze.SetActive(false);
-        gazeraycast.SetActive(false);
-        controller_Raycast.SetActive(false);
-        gazeraycast2.SetActive(false);
+        bubblegaze.SetActive(false); // バブルカーソルを非表示
+        gazeraycast.SetActive(false); // 視線のレイを非表示
+        controller_Raycast.SetActive(false); // コントローラのレイを非表示
+        gazeraycast2.SetActive(false); // ？？？
         //--------------------------------------------------------------
         //--------------------------------------------------------------
 
@@ -459,6 +484,15 @@ public class receiver : MonoBehaviour
                 TaskTime = 60.0f;               // 最大タスク時間
                 target_size_mini_switch = true;
                 break;
+            case "Study":                       // テスト用条件
+                target_a_id = 4;                // 高密度条件のID
+                target_p_id = 100;               // 密度＆オクルージョン条件2のID
+                target_amount_all = 47;         // ターゲットの総数
+                target_amount_select = 3;       // 選択（タスク）回数
+                target_amount_count = 1;        // 繰り返し回数
+                Depth = 3.5f;                   // 奥行き距離
+                TaskTime = 60.0f;               // 最大タスク時間
+                break;
             case "Study_1":                     // 高密度条件
                 target_a_id = 1;                // 高密度条件のID
                 target_p_id = 1;                // 高密度条件のID
@@ -476,15 +510,16 @@ public class receiver : MonoBehaviour
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 5.0f;                   // 奥行き距離
                 pointer_switch = false;         // ？？？
+                Lighting.SetActive(false);      //
                 break;
             case "TEST_16x3":                   // テスト用条件
                 target_a_id = 4;                // 高密度条件のID
                 target_p_id = 97;               // 密度＆オクルージョン条件2のID
-                target_amount_all = 47;         // ターゲットの総数
+                target_amount_all = 48;         // ターゲットの総数
                 target_amount_select = 3;       // 選択（タスク）回数
                 target_amount_count = 1;        // 繰り返し回数
                 Depth = 3.5f;                   // 奥行き距離
-                TaskTime = 60.0f;               // 最大タスク時間
+                TaskTime = 30.0f;               // 最大タスク時間
                 break;
             case "TEST_small_16x3":             // テスト用条件
                 target_a_id = 4;                // 高密度条件のID
@@ -511,6 +546,34 @@ public class receiver : MonoBehaviour
                 target_amount_all = 0;          // ？？？
                 target_amount_select = 0;       // ？？？
                 target_amount_count = 0;        // ？？？
+                break;
+        }
+        //--------------------------------------------------------------
+
+        if (target_p_id != 97)
+        {
+            ScreenSphere.SetActive(false);
+        }
+        else
+        {
+            ScreenSphere.SetActive(true);
+        }
+
+
+        // パラメータ条件管理-----------------------------------------------
+        switch (target_size_s.ToString()) // ココでパラメータ条件を毎にパラメータを調整
+        {
+            case "Normal":                   // 実験時
+                target_size_id = 1;
+                break;
+            case "Middle":                   // デバッグ時
+                target_size_id = 2;
+                break;
+            case "Small":            // UI系を全て表示する場合
+                target_size_id = 3;
+                break;
+            default:                        // テンプレート未使用時（Inspectorの設定をそのまま使用）
+                target_size_id = 0;
                 break;
         }
         //--------------------------------------------------------------
@@ -583,6 +646,8 @@ public class receiver : MonoBehaviour
             if (item as ColorGrading) _colorGrading = item as ColorGrading; // PostProcessVolume内のエフェクトからColor Gradingを検索して取得
         }
         //--------------------------------------------------------------
+
+        Invoke("Do_position_calibration", 1.5f);
     }
 
 
@@ -1118,16 +1183,10 @@ public class receiver : MonoBehaviour
 
 
         // ？？？-------------------------------------------------------
-        for (int i = 0; i < target_amount_all - 5; i++)
-        {
-            streamWriter.WriteLine(tasknums[i]);
-        }
+        for (int i = 0; i < target_amount_all - 5; i++) streamWriter.WriteLine(tasknums[i]);
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         streamWriter.WriteLine("target_pattorn:");
-        for (int i = 0; i < target_amount_select; i++)
-        {
-            streamWriter.WriteLine(tasknums[i]);
-        }
+        for (int i = 0; i < target_amount_select; i++) streamWriter.WriteLine(tasknums[i]);
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         //--------------------------------------------------------------
 
@@ -1147,16 +1206,13 @@ public class receiver : MonoBehaviour
             streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_end: " + task_end_time[i]);
             streamWriter.WriteLine("task_time: " + (task_end_time[i] - task_start_time[i]));
         }
-        //--------------------------------------------------------------
+        // for (int i = 0; i < task_num; i++) 終了----------------------
 
 
         // 各タスクの計測を追記2----------------------------------------
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n");
         streamWriter.WriteLine("task,target,select,time,totaltime,totalerror");
-        for (int i = 0; i < tasklogs2.Count; i++)
-        {
-            streamWriter.WriteLine(tasklogs2[i]);
-        }
+        for (int i = 0; i < tasklogs2.Count; i++) streamWriter.WriteLine(tasklogs2[i]); // リストに保存したログを出力
         streamWriter.WriteLine("\n-----------------------------------------------------------------------------------------\n");
         //--------------------------------------------------------------
 
@@ -1175,45 +1231,81 @@ public class receiver : MonoBehaviour
     // public void error_output() 終了------------------------------
 
 
-    // タスク（選択するターゲット）を生成する関数-------------------
+    // タスク（選択するターゲット）を生成する関数------------------------
     void set_testpattern()
     {
         List<int> numbers = new List<int>();
         tasknums = new List<int>();
 
+        for (int i = 1; i <= target_amount_all; i++) numbers.Add(i); // シャッフル用にターゲットの総数分の数字群を作成
+            
+        int index = 0;
+
+
+        // タスク（選択するターゲット）の順番を生成--------------------------
         for (int n = 0; n < target_amount_count; n++)
         {
-            for (int i = 1; i <= target_amount_all; i++)
+            //if (fixed_task_number)
+            //{
+            //    tasknums.Add(index + 1); // 取り出した数値を格納
+            //    index++;
+            //}
+
+            // オクルージョンになるターゲットを除外------------------------------
+            while (numbers.Count > 0) // ターゲット総数だけ繰り返し
             {
-                numbers.Add(i);
-            }
-
-            while (numbers.Count > 0)
-            {
-
-                int index = UnityEngine.Random.Range(0, numbers.Count);
-
-                int ransu = numbers[index];
-
-                if (ransu != 38)
+                if (fixed_task_number)
                 {
-                    if (ransu != 63)
+                    int ransu = numbers[0]; // インデックスに該当する数値を取り出して格納
+
+                    if (ransu != 38)
                     {
-                        if (ransu != 88)
+                        if (ransu != 63)
                         {
-                            if (ransu != 113)
+                            if (ransu != 88)
                             {
-                                if (!(ransu == 13 && (target_a_id == 3 || target_a_id == 4 || target_a_id == 5)))
+                                if (ransu != 113)
                                 {
-                                    tasknums.Add(ransu);
+                                    if (!(ransu == 13 && (target_a_id == 3 || target_a_id == 4 || target_a_id == 5)))
+                                    {
+                                        tasknums.Add(ransu); // 取り出した数値を格納
+                                    }
                                 }
                             }
                         }
                     }
+                    
+                    numbers.RemoveAt(0); // 取り出した値を削除して重複しないようにする
                 }
-                numbers.RemoveAt(index);
+                else
+                {
+                    index = UnityEngine.Random.Range(0, numbers.Count); // 乱数を生成してリストのインデックスに使用
+
+                    int ransu = numbers[index]; // インデックスに該当する数値を取り出して格納
+
+                    if (ransu != 38)
+                    {
+                        if (ransu != 63)
+                        {
+                            if (ransu != 88)
+                            {
+                                if (ransu != 113)
+                                {
+                                    if (!(ransu == 13 && (target_a_id == 3 || target_a_id == 4 || target_a_id == 5)))
+                                    {
+                                        tasknums.Add(ransu); // 取り出した数値を格納
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    numbers.RemoveAt(index); // 取り出した値を削除して重複しないようにする
+                }
             }
+            // while (numbers.Count > 0) 終了-------------------------------
         }
+        // for (int n = 0; n < target_amount_count; n++) 終了-----------
     }
     // void set_testpattern() 終了----------------------------------
 
@@ -1236,6 +1328,11 @@ public class receiver : MonoBehaviour
         //--------------------------------------------------------------
     }
     //private void random_target_set() 終了-------------------------
+
+    private void Do_position_calibration()
+    {
+        target_pos_calibration = true;
+    }
 
 
     // アプリケーション終了時の処理を行う関数-----------------------

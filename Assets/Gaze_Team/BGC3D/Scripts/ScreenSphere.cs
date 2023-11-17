@@ -15,14 +15,14 @@ public class ScreenSphere : MonoBehaviour
 
     private void Update()
     {
-        if (server.target_p_id != 97)
-        {
-            this.gameObject.SetActive(false);
-        }
-        else
-        {
-            this.gameObject.SetActive(true);
-        }
+        //if (server.target_p_id != 97)
+        //{
+        //    this.gameObject.SetActive(false);
+        //}
+        //else
+        //{
+        //    this.gameObject.SetActive(true);
+        //}
     }
 
     public void CreateInvertedMeshCollider()

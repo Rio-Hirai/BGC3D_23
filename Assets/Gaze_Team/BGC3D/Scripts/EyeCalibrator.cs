@@ -8,6 +8,12 @@ public class EyeCalibrator : MonoBehaviour
 {
     [SerializeField] private receiver server; // サーバ接続
 
+    void Start()
+    {
+        // "DoSomething"メソッドを2秒後に一度だけ呼び出す
+        //Invoke("Do_Eye_calibration", 3.0f);
+    }
+
     void Update()
     {
         // 視線のキャリブレーション処理---------------------------------
@@ -18,5 +24,10 @@ public class EyeCalibrator : MonoBehaviour
             server.eye_calibration = false; // 視線のキャリブレーション用フラグをFalseに更新
         }
         //--------------------------------------------------------------
+    }
+
+    void Do_Eye_calibration()
+    {
+        server.eye_calibration = true;
     }
 }
