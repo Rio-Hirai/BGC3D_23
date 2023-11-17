@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 42adde3ad27d8fb42b3eebca0f8d99fb
+labels:
+- Arduino
+- Serial
+- Uduino
+- Unity
+timeCreated: 1484669994
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: uduino
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Advanced/Bundle/Bundle.unity
+  uploadId: 485547

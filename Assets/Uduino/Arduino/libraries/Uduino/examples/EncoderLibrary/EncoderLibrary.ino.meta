@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a4e26477e3fd1a34dbdfaee6daca0123
+timeCreated: 1496304545
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Arduino/libraries/Uduino/examples/EncoderLibrary/EncoderLibrary.ino
+  uploadId: 485547

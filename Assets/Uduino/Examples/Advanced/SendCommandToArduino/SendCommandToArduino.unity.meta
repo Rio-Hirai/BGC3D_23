@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 06006bba7f14a2f45938fc51633ef49a
+timeCreated: 1547132597
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Advanced/SendCommandToArduino/SendCommandToArduino.unity
+  uploadId: 485547

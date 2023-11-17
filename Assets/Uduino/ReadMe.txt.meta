@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 19abcaefd0621b0488b179c07b240d75
+timeCreated: 1549735606
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/ReadMe.txt
+  uploadId: 485547

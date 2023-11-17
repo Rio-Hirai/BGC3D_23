@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 2d59e67ea979cf94fb2ccf2539a8be4a
+labels:
+- Arduino
+- Serial
+- Uduino
+- Unity
+timeCreated: 1462273397
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Advanced/LedIntensity/SendLedIntensity.cs
+  uploadId: 485547

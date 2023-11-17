@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6bfa932c31f3d3b4ab9f9c7cd2f15a10
+timeCreated: 1519248569
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Basic/AnalogWrite/AnalogWrite.unity
+  uploadId: 485547

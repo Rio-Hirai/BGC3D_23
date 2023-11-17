@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a0d91b4416af85e4984b91012a0a429a
+timeCreated: 1520094070
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Basic/Events/Events.unity
+  uploadId: 485547

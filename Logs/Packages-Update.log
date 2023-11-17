@@ -223,3 +223,18 @@ Update Mode: updateDependencies
 The following packages were 更新済:
   com.unity.ai.navigation をバージョン 1.1.4 から 1.1.5 へ
   com.unity.collab-proxy をバージョン 2.0.7 から 2.1.0 へ
+
+=== Fri Nov 17 10:57:31 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were 追加済み:
+  com.unity.modules.accessibility@1.0.0
+The following packages were 更新済み:
+  com.unity.ai.navigation をバージョン 1.1.5 から 2.0.0 へ
+  com.unity.collab-proxy をバージョン 2.1.0 から 2.2.0 へ
+  com.unity.ugui をバージョン 1.0.0 から 2.0.0 へ
+  com.unity.xr.openxr をバージョン 1.8.2 から 1.9.1 へ
+The following packages were 削除済み:
+  com.unity.textmeshpro@3.0.6

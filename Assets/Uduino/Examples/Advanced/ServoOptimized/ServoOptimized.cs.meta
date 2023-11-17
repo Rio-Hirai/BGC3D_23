@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 5c9a580f2826d0f4d88e23409e11fad7
+labels:
+- Arduino
+- Serial
+- Uduino
+- Unity
+timeCreated: 1462275737
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Advanced/ServoOptimized/ServoOptimized.cs
+  uploadId: 485547

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 71271db2c37b0b34da3e19b3bf083742
+timeCreated: 1506934949
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Basic/Servo/Servo.unity
+  uploadId: 485547

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bb5e6aea88a650f4a8317e74940b0ea4
+timeCreated: 1549735606
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: -1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Uduino.prefab
+  uploadId: 485547

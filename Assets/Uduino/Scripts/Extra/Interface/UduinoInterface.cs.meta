@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 1523c764e7c83c34c9d1b33883928f21
+timeCreated: 1519300720
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Scripts/Extra/Interface/UduinoInterface.cs
+  uploadId: 485547

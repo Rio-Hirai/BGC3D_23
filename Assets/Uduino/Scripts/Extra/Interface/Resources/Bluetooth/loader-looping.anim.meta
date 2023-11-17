@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b16bfd431c143034689bf993bb429735
+timeCreated: 1517305144
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Scripts/Extra/Interface/Resources/Bluetooth/loader-looping.anim
+  uploadId: 485547

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b69bfce1cf420ba468a350faf24d3a45
+timeCreated: 1547131857
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Advanced/SendCommandToArduino/ReceiveCommand/ReceiveCommand.ino
+  uploadId: 485547

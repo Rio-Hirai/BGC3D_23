@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 93b03298939eef140b0aa07181ee7e07
+timeCreated: 1496304545
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Advanced/MultipleArduino/SecondArduino/SecondArduino.ino
+  uploadId: 485547

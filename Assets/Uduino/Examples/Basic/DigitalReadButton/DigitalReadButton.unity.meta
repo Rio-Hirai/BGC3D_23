@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 5d37b35f4607a9a4f920cb261c54b24f
+labels:
+- Arduino
+- Serial
+- Uduino
+- Unity
+timeCreated: 1484326584
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: uduino
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Basic/DigitalReadButton/DigitalReadButton.unity
+  uploadId: 485547

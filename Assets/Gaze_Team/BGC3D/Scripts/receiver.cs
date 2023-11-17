@@ -43,8 +43,8 @@ public class receiver : MonoBehaviour
         Density_and_Occlusion_5x5x3,        // 密度＆オクルージョン条件（IDは4）
         Small_5x5x5,                        // 密度＆オクルージョン条件（IDは5）
         Small_5x5x3,                        // 密度＆オクルージョン条件（IDは6）
-        Study_1,                            // ？？？
-        Flat_1,                             // 視線のバラツキ調査
+        Study_1,                            //
+        Flat_1,                             //
         TEST_16x3,                          // テスト用（IDは97）
         TEST_small_16x3,                    // テスト用（IDは98）
         Random,                             // ランダム配置（IDは99）
@@ -169,8 +169,8 @@ public class receiver : MonoBehaviour
     // 各種スクリプト-----------------------------------------------
     public gaze_data_callback_v2 gaze_data; // 視線情報
     public LightSensor sensor;              // 画面の色彩情報
-    private PostProcessVolume _postProcess; // PostProcessVolume
-    private ColorGrading _colorGrading;     // ColorGrading
+    private PostProcessVolume _postProcess; // ？？？
+    private ColorGrading _colorGrading;     // ？？？
     //--------------------------------------------------------------
 
 
@@ -252,8 +252,8 @@ public class receiver : MonoBehaviour
     public bool session_flag;               // セッション中か否かを示す変数（trueだとセッション中）
     public bool taskflag;                   // タスク中か否かを示す変数（trueだとタスク中）
     public bool next_step__flag;            // ？？？（おそらくtaskflagで代替可能，要リファクタリング）
-    public bool head_rot_switch;            // 頭部が動いているか否かを示す変数（trueだとタスク中）
-    public bool select_flag;                // 選択状態か否かを示す変数（trueだとタスク中）
+    public bool head_rot_switch;            // ？？？
+    public bool select_flag;                // ？？？
     private int switch_flag = 0;            // ？？？
     public bool output_flag;                // タスクが全て完了したか否かを示す変数（trueだと完了）
     public Boolean grapgrip;                // 結果の格納用Boolean型関数grapgrip
@@ -345,10 +345,10 @@ public class receiver : MonoBehaviour
 
 
         // 各種手法のオブジェクトを非表示（以降の条件分岐で該当する手法のみ表示するため）
-        bubblegaze.SetActive(false); // バブルカーソルを非表示
-        gazeraycast.SetActive(false); // 視線のレイを非表示
-        controller_Raycast.SetActive(false); // コントローラのレイを非表示
-        gazeraycast2.SetActive(false); // ？？？
+        bubblegaze.SetActive(false);
+        gazeraycast.SetActive(false);
+        controller_Raycast.SetActive(false);
+        gazeraycast2.SetActive(false);
         //--------------------------------------------------------------
         //--------------------------------------------------------------
 
@@ -1118,10 +1118,16 @@ public class receiver : MonoBehaviour
 
 
         // ？？？-------------------------------------------------------
-        for (int i = 0; i < target_amount_all - 5; i++) streamWriter.WriteLine(tasknums[i]);
+        for (int i = 0; i < target_amount_all - 5; i++)
+        {
+            streamWriter.WriteLine(tasknums[i]);
+        }
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         streamWriter.WriteLine("target_pattorn:");
-        for (int i = 0; i < target_amount_select; i++) streamWriter.WriteLine(tasknums[i]);
+        for (int i = 0; i < target_amount_select; i++)
+        {
+            streamWriter.WriteLine(tasknums[i]);
+        }
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------");
         //--------------------------------------------------------------
 
@@ -1141,13 +1147,16 @@ public class receiver : MonoBehaviour
             streamWriter.WriteLine("task=" + (i + 1) + "_select=" + tasknums[i] + "_end: " + task_end_time[i]);
             streamWriter.WriteLine("task_time: " + (task_end_time[i] - task_start_time[i]));
         }
-        // for (int i = 0; i < task_num; i++) 終了----------------------
+        //--------------------------------------------------------------
 
 
         // 各タスクの計測を追記2----------------------------------------
         streamWriter.WriteLine("-----------------------------------------------------------------------------------------\n");
         streamWriter.WriteLine("task,target,select,time,totaltime,totalerror");
-        for (int i = 0; i < tasklogs2.Count; i++) streamWriter.WriteLine(tasklogs2[i]); // リストに保存したログを出力
+        for (int i = 0; i < tasklogs2.Count; i++)
+        {
+            streamWriter.WriteLine(tasklogs2[i]);
+        }
         streamWriter.WriteLine("\n-----------------------------------------------------------------------------------------\n");
         //--------------------------------------------------------------
 
@@ -1166,24 +1175,25 @@ public class receiver : MonoBehaviour
     // public void error_output() 終了------------------------------
 
 
-    // タスク（選択するターゲット）を生成する関数------------------------
+    // タスク（選択するターゲット）を生成する関数-------------------
     void set_testpattern()
     {
         List<int> numbers = new List<int>();
         tasknums = new List<int>();
 
-
-        // タスク（選択するターゲット）の順番を生成--------------------------
         for (int n = 0; n < target_amount_count; n++)
         {
-            for (int i = 1; i <= target_amount_all; i++) numbers.Add(i); // シャッフル用にターゲットの総数分の数字群を作成
-
-            // オクルージョンになるターゲットを除外------------------------------
-            while (numbers.Count > 0) // ターゲット総数だけ繰り返し
+            for (int i = 1; i <= target_amount_all; i++)
             {
-                int index = UnityEngine.Random.Range(0, numbers.Count); // 乱数を生成してリストのインデックスに使用
+                numbers.Add(i);
+            }
 
-                int ransu = numbers[index]; // インデックスに該当する数値を取り出して格納
+            while (numbers.Count > 0)
+            {
+
+                int index = UnityEngine.Random.Range(0, numbers.Count);
+
+                int ransu = numbers[index];
 
                 if (ransu != 38)
                 {
@@ -1195,17 +1205,15 @@ public class receiver : MonoBehaviour
                             {
                                 if (!(ransu == 13 && (target_a_id == 3 || target_a_id == 4 || target_a_id == 5)))
                                 {
-                                    tasknums.Add(ransu); // 取り出した数値を格納
+                                    tasknums.Add(ransu);
                                 }
                             }
                         }
                     }
                 }
-                numbers.RemoveAt(index); // 取り出した値を削除して重複しないようにする
+                numbers.RemoveAt(index);
             }
-            // while (numbers.Count > 0) 終了-------------------------------
         }
-        // for (int n = 0; n < target_amount_count; n++) 終了-----------
     }
     // void set_testpattern() 終了----------------------------------
 

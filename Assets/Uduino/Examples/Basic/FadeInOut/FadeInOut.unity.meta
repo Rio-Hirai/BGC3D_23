@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 9a7ca294f24452e4eaac0495caf456e1
+labels:
+- Arduino
+- Serial
+- Uduino
+- Unity
+timeCreated: 1483798306
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: uduino
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Examples/Basic/FadeInOut/FadeInOut.unity
+  uploadId: 485547

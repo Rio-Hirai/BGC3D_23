@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f1b2d57e9e408b647a985936e1c26218
+timeCreated: 1517936760
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 78402
+  packageName: Uduino - Arduino communication, simple, fast and stable
+  packageVersion: 3.5.0
+  assetPath: Assets/Uduino/Arduino/libraries/Uduino/keywords.txt
+  uploadId: 485547
