@@ -10,8 +10,7 @@ IPLAB視線班の3次元Bubble Gaze Cursorの実験アプリケーション（�
 - Sources：各種効果音が入っている
 
 ## 環境
-Windows11(22H2) + Unity 2023.1.10f1 + Vive Pro Eye + SRanipal Runtime 1.3.2.0<br>
-※Windows11(23H2)でも動作可能
+Windows11(23H2) + Unity 2023.2.0f1 + Vive Pro Eye + SRanipal Runtime 1.3.2.0<br>
 
 ## 使用法
 実験環境にあたるシーンは，Assets/Gaze_Team/BGC3D/Scenesの「BGC3D_2023_v2.unity」<br>
@@ -78,6 +77,7 @@ Bubble Gaze Cursorで注視状態になったターゲットに対して視線�
 - 密度＆オクルージョン（Density_and_Occlusion）
 - 通常条件（Density_and_Occlusion2）
 - テスト条件（TEST）
+- 明度比較用テスト条件（FLAT_1）
 - ランダム条件（Random）
 
 ### 高密度条件
